@@ -214,47 +214,47 @@
 [CmdletBinding()]
 param
 (
-    [Parameter(Mandatory = $false, HelpMessage = {("{9}{1}{3}{6}{10}{5}{4}{7}{0}{8}{2}" -f't),','hi','LDAP','ch m',' (defa','DWS','et','ul',' ','W','hod to use; A')})]
-    [ValidateSet({"{1}{0}" -f'DWS','A'}, {"{0}{1}"-f'L','DAP'})]
-    [string] $Method = ("{0}{1}"-f'A','DWS'),
+    [Parameter(Mandatory = $false, HelpMessage = ('Wh'+'ich'+' method '+'t'+'o use; AD'+'WS'+' '+'(defau'+'l'+'t'+')'+', LDAP'))]
+    [ValidateSet(('AD'+'WS'), ('L'+'DAP'))]
+    [string] $Method = ('A'+'DWS'),
 
-    [Parameter(Mandatory = $false, HelpMessage = {"{4}{5}{0}{1}{3}{7}{2}{6}" -f 'in Controll','er','omain F',' IP Addres','Do','ma','QDN.','s or D'})]
+    [Parameter(Mandatory = $false, HelpMessage = ('D'+'omain C'+'ontroller'+' I'+'P'+' '+'Add'+'ress or Domain F'+'Q'+'DN.'))]
     [string] $DomainController = '',
 
-    [Parameter(Mandatory = $false, HelpMessage = {"{3}{5}{1}{2}{0}{4}"-f'als','n Cred','enti','Doma','.','i'})]
+    [Parameter(Mandatory = $false, HelpMessage = ('Domai'+'n'+' '+'Credenti'+'als.'))]
     [Management.Automation.PSCredential] $Credential = [Management.Automation.PSCredential]::Empty,
 
-    [Parameter(Mandatory = $false, HelpMessage = {"{38}{4}{7}{51}{9}{40}{34}{18}{55}{33}{42}{43}{15}{24}{41}{2}{17}{12}{29}{46}{11}{16}{20}{37}{5}{8}{28}{36}{3}{45}{44}{0}{53}{23}{25}{10}{35}{56}{6}{54}{19}{26}{57}{49}{13}{30}{50}{52}{58}{47}{32}{39}{22}{27}{31}{1}{14}{21}{48}" -f'erat','ed to run A',' th','se ','h for A','rt','Recon-Repo','DRecon ','.','tpu','e','e','SV files ','o','D','i','rat','e C','old','x','e the ADRecon-Re','Recon',' ',' ','ni','th',' when Mi','the host u','xls','t','ft Excel','s','l',' ','f',' ','x. U','po','Pat','led on','t ','ng','co','nta','en','it to g','o gen','nsta','.','os',' ','ou','i','e','rt.xls','er','AD','cr','s not i'})]
+    [Parameter(Mandatory = $false, HelpMessage = ('Pa'+'th'+' for AD'+'Reco'+'n outpu'+'t '+'fol'+'d'+'er containing'+' th'+'e CSV files t'+'o ge'+'nerate '+'the AD'+'Recon-Rep'+'ort.x'+'lsx. Use it'+' to gener'+'ate th'+'e A'+'DReco'+'n-'+'Re'+'port.xl'+'sx when Microsoft '+'Excel'+' i'+'s not'+' instal'+'led '+'on the '+'host used'+' t'+'o run ADRecon.'))]
     [string] $GenExcel,
 
-    [Parameter(Mandatory = $false, HelpMessage = {(("{18}{2}{1}{3}{21}{23}{6}{14}{17}{19}{16}{20}{12}{0}{11}{24}{9}{5}{22}{7}{15}{8}{10}{4}{13}"-f 'n','t','a','h for','if','p','e CSV/X','xlsx.','specified will ','e','be created ','-',' ADReco',' it doesn{0}t exist)','ML/JS',' (The folder ',' and','ON/HTML file','P','s',' the',' ADRecon output folder ','ort.','to save th','R'))  -f[ChaR]39})]
+    [Parameter(Mandatory = $false, HelpMessage = (('Path for ADRec'+'on'+' out'+'pu'+'t f'+'o'+'l'+'der to s'+'av'+'e the'+' CSV/X'+'ML/J'+'S'+'ON/'+'HT'+'M'+'L f'+'ile'+'s and th'+'e'+' ADRecon'+'-'+'Repo'+'rt'+'.xlsx. '+'('+'The f'+'older '+'s'+'pe'+'c'+'ifie'+'d w'+'ill be'+' create'+'d '+'if it do'+'e'+'snD65'+'t'+' exi'+'st'+')') -CrEplaCe ([CHar]68+[CHar]54+[CHar]53),[CHar]39))]
     [string] $OutputDir,
 
-    [Parameter(Mandatory = $false, HelpMessage = {"{91}{31}{36}{85}{50}{9}{56}{64}{22}{59}{49}{83}{109}{94}{17}{5}{73}{105}{6}{62}{71}{70}{52}{115}{10}{100}{27}{96}{33}{34}{55}{48}{104}{45}{93}{76}{92}{40}{25}{57}{19}{75}{78}{112}{99}{43}{14}{21}{41}{89}{7}{44}{95}{35}{51}{32}{101}{103}{18}{87}{3}{80}{67}{107}{53}{63}{65}{26}{47}{60}{102}{111}{12}{114}{66}{86}{42}{0}{24}{46}{13}{8}{39}{77}{110}{106}{69}{88}{4}{1}{68}{90}{74}{72}{16}{98}{20}{29}{37}{28}{113}{79}{82}{54}{58}{81}{15}{23}{2}{38}{97}{108}{61}{84}{30}{11}"-f 'oupM','nte','t','on','i',' and Domai','ount','e',', GPO','; Comma separated; ','orSe','n','Grou','s','cy,','PORepo','ters, ComputerSP','eroast','ain','ub',' L',' ',' Forest,D','rt, Kerberoas','emb','s','tri','Logo','B','AP','Logo',' mod',' ','d val','ues','assw','u','S, ',', DomainAccou','s, gPLin','ite','F','r','wordPoli','d','Forest, D','ers, OU','bu','ncl','in (Def','run','ordPolicy,','e','s, UserSPN','cker, AC',' i','e.',', S','Ls, ','oma','te','rServ','s','s, Password','g','At','roupCh','rolle','rs, ','Reco','s','u','pu','n','m','n','usts, ','ks, DNS','ets, Sche','t','t','G','Lo','aul','ice','les to ','anges, G','C','rds, Pr','ineGrain','Co','Which','S','omain, Tr','ept ACLs, Kerb','P','n) Vali','ntsusedf','Ns,','s','rvice','D','s,','om','ude: ','Acc','S','rs, User','o','t all exc','Zones, DN',' ','maHistory, Pas','i','ps, G','df'})]
-    [ValidateSet({"{1}{0}" -f'rest','Fo'}, {"{1}{0}"-f'ain','Dom'}, {"{0}{1}"-f 'Tr','usts'}, {"{1}{0}"-f'ites','S'}, {"{1}{0}" -f 'ets','Subn'}, {"{0}{3}{1}{2}" -f'Sch','sto','ry','emaHi'}, {"{1}{0}{4}{2}{3}" -f 'sswor','Pa','l','icy','dPo'}, {"{1}{2}{4}{5}{3}{0}"-f'cy','FineGrainedPa','s','i','swordP','ol'}, {"{0}{3}{4}{2}{1}"-f 'Dom','lers','trol','ai','nCon'}, {"{1}{0}"-f 'sers','U'}, {"{1}{2}{0}" -f 'SPNs','U','ser'}, {"{3}{1}{5}{2}{0}{4}"-f'te','w','dAttribu','Pass','s','or'}, {"{0}{1}"-f 'Grou','ps'}, {"{0}{3}{2}{1}"-f 'Gr','hanges','C','oup'}, {"{2}{1}{3}{0}" -f'rs','roupMemb','G','e'}, 'OUs', {"{1}{0}"-f 's','GPO'}, {"{2}{1}{0}" -f's','Link','gP'}, {"{1}{0}{2}"-f'Zo','DNS','nes'}, {"{0}{1}{2}" -f'D','NS','Records'}, {"{0}{1}{2}"-f 'Printe','r','s'}, {"{0}{1}{2}" -f 'Com','pute','rs'}, {"{0}{1}{2}" -f'Compute','rSPN','s'}, {"{0}{1}"-f 'LAP','S'}, {"{2}{0}{1}" -f 'c','ker','BitLo'}, {"{0}{1}" -f 'AC','Ls'}, {"{2}{1}{0}" -f'rt','epo','GPOR'}, {"{2}{3}{0}{1}" -f'r','oast','Kerb','e'}, {"{1}{4}{7}{8}{3}{6}{0}{5}{2}{9}" -f'Servi','D','Lo','fo','omai','ce','r','nAccoun','tsused','gon'}, {"{2}{1}{0}" -f't','ul','Defa'})]
-    [array] $Collect = ("{0}{2}{1}"-f'Defa','lt','u'),
+    [Parameter(Mandatory = $false, HelpMessage = ('Whi'+'c'+'h mo'+'dules to'+' run; Comm'+'a '+'s'+'e'+'p'+'arated'+'; '+'e'+'.'+'g F'+'or'+'est,'+'Domain (D'+'efault '+'al'+'l'+' except ACLs,'+' '+'K'+'erbero'+'ast a'+'n'+'d Domai'+'n'+'Acco'+'un'+'ts'+'usedfo'+'rS'+'erv'+'ic'+'eLogon'+') Valid values'+' '+'i'+'n'+'clude: Forest, '+'Dom'+'ain, Trus'+'ts, '+'Sites, '+'S'+'ubnets, Sc'+'hem'+'aHist'+'or'+'y,'+' Pa'+'ssword'+'Poli'+'cy,'+' Fin'+'eGrainedPa'+'ss'+'word'+'Pol'+'icy, Dom'+'ain'+'Co'+'ntrol'+'l'+'ers, Users, UserSPNs, '+'Pa'+'sswordAt'+'tr'+'ibu'+'tes,'+' Grou'+'ps, GroupCh'+'a'+'nges'+', '+'GroupMembe'+'r'+'s, O'+'Us, GP'+'Os,'+' gPLi'+'nk'+'s,'+' DN'+'S'+'Z'+'ones, DNSRecor'+'ds, Printers, Computers, Comp'+'uterS'+'P'+'Ns, '+'LAP'+'S,'+' B'+'it'+'Lock'+'er, '+'ACLs, GPOReport, Kerber'+'oa'+'s'+'t'+','+' Do'+'m'+'ainA'+'cco'+'u'+'n'+'t'+'suse'+'dfor'+'Servic'+'e'+'Lo'+'gon'))]
+    [ValidateSet(('Fo'+'rest'), ('Dom'+'ai'+'n'), ('Trust'+'s'), ('Si'+'tes'), ('Subne'+'t'+'s'), ('S'+'chemaHi'+'stor'+'y'), ('Pa'+'ssw'+'o'+'rdP'+'olicy'), ('Fi'+'neGra'+'inedP'+'asswor'+'dPolicy'), ('Do'+'ma'+'inC'+'ont'+'rollers'), ('Us'+'ers'), ('UserSPN'+'s'), ('Passw'+'or'+'dAt'+'tributes'), ('Group'+'s'), ('Gr'+'ou'+'pChange'+'s'), ('Gro'+'upM'+'e'+'mbers'), ('O'+'Us'), ('GP'+'Os'), ('gPL'+'inks'), ('DN'+'SZon'+'es'), ('D'+'N'+'SRecord'+'s'), ('Pri'+'nters'), ('C'+'om'+'puters'), ('Co'+'mpu'+'ter'+'SPNs'), ('LA'+'PS'), ('Bi'+'tL'+'o'+'cker'), ('A'+'CLs'), ('GPORepor'+'t'), ('Kerb'+'e'+'roast'), ('DomainA'+'ccount'+'s'+'u'+'s'+'edfo'+'r'+'ServiceLog'+'on'), ('Defau'+'lt'))]
+    [array] $Collect = ('Defaul'+'t'),
 
-    [Parameter(Mandatory = $false, HelpMessage = {"{9}{1}{26}{11}{3}{0}{10}{24}{23}{20}{15}{6}{18}{21}{2}{8}{12}{4}{16}{25}{5}{22}{7}{13}{14}{17}{19}" -f 'erated','u','L,',' Comma sep','t ST',' ','O','rameter, ','Excel (Defau','O','; e','pe;','l','else C','SV','JS','DOUT wit',' and Excel','N,',')','XML,','HTM','-Collect pa','OUT,CSV,','.g STD','h','tput ty'})]
-    [ValidateSet({"{0}{1}" -f'STDO','UT'}, 'CSV', 'XML', {"{0}{1}" -f 'JSO','N'}, {"{0}{1}"-f'E','XCEL'}, {"{1}{0}" -f'TML','H'}, 'All', {"{2}{0}{1}" -f 'ul','t','Defa'})]
-    [array] $OutputType = {"{0}{1}" -f'Defa','ult'},
+    [Parameter(Mandatory = $false, HelpMessage = ('O'+'u'+'tput type;'+' Com'+'ma seperated; e.'+'g STDOUT,CSV,'+'X'+'ML,'+'JS'+'ON'+','+'H'+'TML,Excel (De'+'f'+'ault'+' ST'+'DOUT'+' wi'+'th -Collect parameter, e'+'lse'+' '+'C'+'SV '+'and'+' E'+'xcel)'))]
+    [ValidateSet(('STD'+'OUT'), ('CS'+'V'), ('X'+'ML'), ('JSO'+'N'), ('E'+'XCEL'), ('HTM'+'L'), ('A'+'ll'), ('D'+'efaul'+'t'))]
+    [array] $OutputType = ('De'+'fault'),
 
-    [Parameter(Mandatory = $false, HelpMessage = {"{0}{6}{3}{7}{4}{5}{1}{8}{9}{2}{12}{11}{10}"-f 'T',' ac','ts. Def','pan f','rman','t','imes','or Do','co','un',' days',' 90','ault'})]
+    [Parameter(Mandatory = $false, HelpMessage = ('Time'+'span '+'for Dormant acco'+'unt'+'s. '+'Defaul'+'t '+'90 days'))]
     [ValidateRange(1,1000)]
     [int] $DormantTimeSpan = 90,
 
-    [Parameter(Mandatory = $false, HelpMessage = {"{0}{10}{9}{12}{1}{7}{11}{3}{2}{5}{6}{4}{8}" -f 'Max','t ',' age. Def','word','0 da','a','ult 3','p','ys','um machine acco','im','ass','un'})]
+    [Parameter(Mandatory = $false, HelpMessage = ('M'+'axim'+'um machine a'+'ccount '+'p'+'assw'+'o'+'rd'+' age. Default'+' 30'+' day'+'s'))]
     [ValidateRange(1,1000)]
     [int] $PassMaxAge = 30,
 
-    [Parameter(Mandatory = $false, HelpMessage = {"{0}{5}{17}{13}{6}{18}{11}{4}{9}{14}{12}{1}{3}{8}{15}{7}{2}{16}{10}"-f 'T',' ',' ','LD','t f','h','iz','archer object.','AP s','or ','ault 200','to se','e','ageS','th','e','Def','e P','e '})]
+    [Parameter(Mandatory = $false, HelpMessage = ('The '+'PageSize'+' t'+'o s'+'et'+' '+'for the LD'+'AP searcher ob'+'ject'+'. Default 200'))]
     [ValidateRange(1,10000)]
     [int] $PageSize = 200,
 
-    [Parameter(Mandatory = $false, HelpMessage = {"{1}{8}{2}{6}{4}{7}{10}{3}{0}{12}{5}{11}{9}"-f 'ocess','The','umber o','pr','e du','ng of objects. Def','f threads to us','r',' n','ult 10','ing ','a','i'})]
+    [Parameter(Mandatory = $false, HelpMessage = ('T'+'h'+'e number'+' '+'o'+'f threads to '+'use'+' '+'du'+'ring'+' pr'+'oces'+'sing of'+' ob'+'jec'+'ts. '+'Defa'+'ul'+'t 1'+'0'))]
     [ValidateRange(1,100)]
     [int] $Threads = 10,
 
-    [Parameter(Mandatory = $false, HelpMessage = {"{5}{6}{3}{2}{4}{0}{1}" -f'scr','ipt','-','t','Tran','Create ADRecon Log us','ing Star'})]
+    [Parameter(Mandatory = $false, HelpMessage = ('C'+'reate'+' ADReco'+'n Log using Start-T'+'ransc'+'rip'+'t'))]
     [switch] $Log
 )
 
@@ -4026,23 +4026,23 @@ $PingCastleSMBScannerSource = @"
 # https://msdn.microsoft.com/en-us/library/windows/desktop/aa378612(v=vs.85).aspx
 # https://msdn.microsoft.com/en-us/library/windows/desktop/aa379317(v=vs.85).aspx
 
-$Advapi32Def = ((("{2}{23}{20}{7}{54}{77}{60}{56}{87}{92}{85}{47}{9}{69}{1}{59}{37}{40}{79}{57}{12}{25}{58}{44}{31}{63}{6}{78}{67}{90}{0}{55}{35}{41}{82}{50}{52}{71}{5}{75}{72}{46}{18}{15}{89}{91}{61}{51}{70}{24}{68}{22}{3}{64}{19}{76}{95}{62}{27}{66}{93}{14}{84}{81}{17}{33}{34}{26}{53}{32}{65}{11}{48}{8}{96}{30}{16}{73}{28}{21}{49}{74}{10}{45}{36}{29}{42}{39}{13}{86}{4}{83}{38}{88}{94}{43}{80}"-f 'o','ic ','G',' SetLastError = true','tic','r,','string ',' [DllImp',' ','e)]','SetLas','n);
-','(string',' ','bool Impers',' phToken)','llImpo','U','r','   ','  ','pi32.d','lnoa,','rS
- ','port(noaadvapi32.d',' ','IntPt','i','noaadva','t',' [D','U','k','ser','(','int dwLogonTy','Error = ','tatic ','bool','ue)]
-    public','extern bool Log','pe','r','oSelf();
-','sz','t',' IntPt',' tru','
- ','llnoa',' dwL','DllI','ogon','r hTo','or','rd, ','noa, S','User','lp','s','api32.dll','   [',' stat','sername, ',')]
-','e','c exter','omain, string ','l','
-    publ','m','Provide','t','rt(',', ',' ou',' publ','t(noaadv','lpszD','on','GrS','dOn',', int',' extern ','onateLogge','LastError =','sta','e',' Revert',';
-','lpszPassw','
- ','t','n ','T','ic',' ')).replaCe(([Char]110+[Char]111+[Char]97),[stRinG][Char]34).replaCe(([Char]71+[Char]114+[Char]83),[stRinG][Char]39))
+$Advapi32Def = (('9YC
+   '+' ['+'D'+'llI'+'m'+'port'+'('+'Ow5a'+'dvap'+'i32.dllOw5, SetLastErr'+'o'+'r '+'= '+'t'+'rue)'+']
+'+'    '+'publ'+'ic'+' stati'+'c e'+'xt'+'ern b'+'ool Log'+'onU'+'ser'+'(st'+'r'+'ing lpszUserna'+'me, stri'+'ng '+'lps'+'zDomai'+'n'+', st'+'rin'+'g'+' lpszPass'+'word, '+'int dwLo'+'g'+'onTyp'+'e, '+'i'+'nt'+' '+'dw'+'Log'+'on'+'Provi'+'der,'+' out IntP'+'tr phT'+'oken);'+'
+
+   '+' [Dl'+'lI'+'m'+'p'+'or'+'t('+'Ow5'+'ad'+'vapi'+'32'+'.d'+'llOw5, '+'Set'+'L'+'a'+'stEr'+'ro'+'r '+'='+' true)]
+    pu'+'blic s'+'tat'+'ic '+'ext'+'ern'+' bool '+'Imp'+'er'+'so'+'na'+'teLoggedO'+'nU'+'s'+'e'+'r(IntP'+'t'+'r'+' h'+'T'+'ok'+'en'+')'+';
+
+ '+'   [DllImport(Ow5advapi'+'32.dllOw5'+', '+'S'+'etL'+'as'+'tEr'+'r'+'or = true)]
+'+'   '+' publ'+'ic stati'+'c ext'+'ern'+' b'+'ool'+' Rever'+'t'+'ToSe'+'lf'+'()'+';
+9YC')  -crEpLACE  'Ow5',[CHaR]34 -crEpLACE  ([CHaR]57+[CHaR]89+[CHaR]67),[CHaR]39)
 
 # https://msdn.microsoft.com/en-us/library/windows/desktop/ms724211(v=vs.85).aspx
 
-$Kernel32Def = ((("{3}{16}{14}{10}{27}{8}{4}{0}{19}{1}{15}{26}{25}{5}{2}{28}{21}{22}{23}{17}{18}{20}{12}{9}{24}{7}{11}{6}{13}"-f'l',' S','e)]
- ','DJR
-    [DllIm','2.dl',' tru',');
-D',' hOb','3','le(IntP','4yIkerne','ject','nd','JR','rt(','etLa','po','bool Close','H','4yI,','a',' publ','ic static exter','n ','tr','tError =','s','l','  ')).rEPLAcE('4yI',[STRing][Char]34).rEPLAcE('DJR',[STRing][Char]39))
+$Kernel32Def = (('ce1
+'+'    '+'[DllIm'+'p'+'o'+'rt(kTAke'+'r'+'nel32.dll'+'k'+'TA'+','+' Se'+'tLastE'+'rr'+'o'+'r = '+'t'+'rue)]
+  '+'  p'+'ubl'+'ic stat'+'i'+'c'+' ex'+'tern bool Close'+'Handle(IntPt'+'r hOb'+'ject);'+'
+c'+'e1') -CrePLace  ([ChAR]107+[ChAR]84+[ChAR]65),[ChAR]34 -rePLACE'ce1',[ChAR]39)
 
 Function Get-DateDiff
 {
@@ -4109,15 +4109,15 @@ Function Get-DNtoFQDN
         [string] $ADObjectDN
     )
 
-    $Index = $ADObjectDN.IndexOf('DC=')
+    $Index = $ADObjectDN.IndexOf(('DC'+'='))
     If ($Index)
     {
-        $ADObjectDNDomainName = $($ADObjectDN.SubString($Index)) -replace 'DC=','' -replace ',','.'
+        $ADObjectDNDomainName = $($ADObjectDN.SubString($Index)) -replace ('DC'+'='),'' -replace ',','.'
     }
     Else
     {
         # Modified version from https://adsecurity.org/?p=440
-        [array] $ADObjectDNArray = $ADObjectDN -Split ("DC=")
+        [array] $ADObjectDNArray = $ADObjectDN -Split (('D'+'C='))
         $ADObjectDNArray | ForEach-Object {
             [array] $temp = $_ -Split (",")
             [string] $ADObjectDNArrayItemDomainName += $temp[0] + "."
@@ -4312,12 +4312,12 @@ table {
 "@
     Try
     {
-        If ($ADFileName.Contains(("{1}{0}" -f 'ndex','I')))
+        If ($ADFileName.Contains(('In'+'dex')))
         {
-            $HTMLPath  = -join($ADROutputDir,'\',("{1}{2}{0}"-f 's','HTML','-File'))
+            $HTMLPath  = -join($ADROutputDir,'\',('HTM'+'L'+'-Files'))
             $HTMLPath = $((Convert-Path $HTMLPath).TrimEnd("\"))
             $HTMLFiles = Get-ChildItem -Path $HTMLPath -name
-            $HTML = $HTMLFiles | ConvertTo-HTML -Title ("{1}{0}{2}"-f'e','ADR','con') -Property @{Label=("{4}{0}{2}{1}{3}" -f 'ble','en',' of Cont','ts','Ta');Expression={"<a href='$($_)'>$($_)</a> "}} -Head $Header
+            $HTML = $HTMLFiles | ConvertTo-HTML -Title ('AD'+'Re'+'con') -Property @{Label=('Ta'+'ble of Conte'+'nt'+'s');Expression={"<a href='$($_)'>$($_)</a> "}} -Head $Header
 
             Add-Type -AssemblyName System.Web
             [System.Web.HttpUtility]::HtmlDecode($HTML) | Out-File -FilePath $ADFileName
@@ -4385,9 +4385,9 @@ Function Export-ADR
 
     Switch ($OutputType)
     {
-        ("{2}{1}{0}" -f 'UT','O','STD')
+        ('STD'+'OUT')
         {
-            If ($ADRModuleName -ne ("{0}{1}{2}"-f'Abo','ut','ADRecon'))
+            If ($ADRModuleName -ne ('Ab'+'outADReco'+'n'))
             {
                 If ($ADRObj -is [array])
                 {
@@ -4401,24 +4401,24 @@ Function Export-ADR
                 }
             }
         }
-        'CSV'
+        ('C'+'SV')
         {
-            $ADFileName  = -join($ADROutputDir,'\',("{2}{0}{1}" -f'-File','s','CSV'),'\',$ADRModuleName,("{1}{0}"-f'v','.cs'))
+            $ADFileName  = -join($ADROutputDir,'\',('CSV-'+'Files'),'\',$ADRModuleName,('.c'+'sv'))
             Export-ADRCSV -ADRObj $ADRObj -ADFileName $ADFileName
         }
-        'XML'
+        ('XM'+'L')
         {
-            $ADFileName  = -join($ADROutputDir,'\',("{1}{0}{2}" -f 'le','XML-Fi','s'),'\',$ADRModuleName,("{1}{0}" -f 'l','.xm'))
+            $ADFileName  = -join($ADROutputDir,'\',('XM'+'L-'+'Files'),'\',$ADRModuleName,('.'+'xml'))
             Export-ADRXML -ADRObj $ADRObj -ADFileName $ADFileName
         }
-        ("{0}{1}" -f'J','SON')
+        ('JS'+'ON')
         {
-            $ADFileName  = -join($ADROutputDir,'\',("{2}{0}{1}" -f '-','Files','JSON'),'\',$ADRModuleName,("{0}{1}" -f'.','json'))
+            $ADFileName  = -join($ADROutputDir,'\',('JSON'+'-'+'Files'),'\',$ADRModuleName,('.js'+'on'))
             Export-ADRJSON -ADRObj $ADRObj -ADFileName $ADFileName
         }
-        ("{1}{0}"-f'ML','HT')
+        ('H'+'TML')
         {
-            $ADFileName  = -join($ADROutputDir,'\',("{3}{2}{1}{0}"-f 'es','-Fil','TML','H'),'\',$ADRModuleName,("{1}{0}"-f'tml','.h'))
+            $ADFileName  = -join($ADROutputDir,'\',('HTML-F'+'il'+'es'),'\',$ADRModuleName,('.'+'html'))
             Export-ADRHTML -ADRObj $ADRObj -ADFileName $ADFileName -ADROutputDir $ADROutputDir
         }
     }
@@ -4443,7 +4443,7 @@ Function Get-ADRExcelComObj
     {
         # Suppress verbose output
         $SaveVerbosePreference = $script:VerbosePreference
-        $script:VerbosePreference = ("{2}{3}{4}{1}{0}" -f'ue','tin','S','ilentlyCo','n')
+        $script:VerbosePreference = ('SilentlyC'+'o'+'ntin'+'ue')
         $global:excel = New-Object -ComObject excel.application
         If ($SaveVerbosePreference)
         {
@@ -4458,7 +4458,7 @@ Function Get-ADRExcelComObj
             $script:VerbosePreference = $SaveVerbosePreference
             Remove-Variable SaveVerbosePreference
         }
-        Write-Warning ("{32}{10}{11}{30}{5}{24}{8}{2}{17}{26}{14}{3}{22}{33}{16}{6}{27}{35}{12}{25}{20}{1}{7}{29}{21}{13}{28}{23}{9}{0}{31}{34}{4}{18}{36}{15}{19}"-f'o',' to ge',' appear ','talled. Skipp','i','l','DRecon-Report.xl','nerate','does not',' h','RExcelCom','Obj]','Ge','-Report.','e ins','icrosoft Ex','on of A','to ','th','cel installed.','Excel parameter','Recon','ing gen','slx on a',' ','n','b','sx. Us','x',' the AD',' Exce','st ','[Get-AD','erati','w','e the -',' M')
+        Write-Warning ('[Get-ADREx'+'celComObj] Excel '+'do'+'e'+'s not appear to be inst'+'a'+'lled. S'+'kip'+'ping ge'+'nera'+'tion o'+'f ADR'+'ec'+'on-R'+'ep'+'o'+'rt.xlsx. Use '+'the -G'+'enExcel parameter to '+'generate the '+'ADRecon-Repor'+'t'+'.xslx on a '+'h'+'o'+'s'+'t with M'+'icrosoft '+'Excel'+' i'+'nstall'+'ed.')
         Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
         Return $null
     }
@@ -4579,8 +4579,8 @@ Function Get-ADRExcelImport
         If (Test-Path $ADFileName)
         {
             $worksheet = $workbook.Worksheets.Item(1)
-            $TxtConnector = (("{1}{0}" -f'XT;','TE') + $ADFileName)
-            $CellRef = $worksheet.Range("A1")
+            $TxtConnector = (('TEX'+'T;') + $ADFileName)
+            $CellRef = $worksheet.Range('A1')
             #Build, use and remove the text file connector
             $Connector = $worksheet.QueryTables.add($TxtConnector, $CellRef)
 
@@ -4597,7 +4597,7 @@ Function Get-ADRExcelImport
             Remove-Variable Connector
 
             $listObject = $worksheet.ListObjects.Add([Microsoft.Office.Interop.Excel.XlListObjectSourceType]::xlSrcRange, $worksheet.UsedRange, $null, [Microsoft.Office.Interop.Excel.XlYesNoGuess]::xlYes, $null)
-            $listObject.TableStyle = ("{2}{0}{1}{3}"-f 'ableSt','yl','T','eLight2') # Style Cheat Sheet: https://msdn.microsoft.com/en-au/library/documentformat.openxml.spreadsheet.tablestyle.aspx
+            $listObject.TableStyle = ('Tabl'+'eSty'+'leLi'+'ght2') # Style Cheat Sheet: https://msdn.microsoft.com/en-au/library/documentformat.openxml.spreadsheet.tablestyle.aspx
             $worksheet.UsedRange.EntireColumn.AutoFit() | Out-Null
         }
         Remove-Variable ADFileName
@@ -4618,13 +4618,13 @@ Function Get-ADRExcelImport
             }
             Remove-Variable ADTemp
             $listObject = $worksheet.ListObjects.Add([Microsoft.Office.Interop.Excel.XlListObjectSourceType]::xlSrcRange, $worksheet.UsedRange, $null, [Microsoft.Office.Interop.Excel.XlYesNoGuess]::xlYes, $null)
-            $listObject.TableStyle = ("{1}{4}{3}{0}{2}"-f'tyleLight','Tab','2','eS','l') # Style Cheat Sheet: https://msdn.microsoft.com/en-au/library/documentformat.openxml.spreadsheet.tablestyle.aspx
+            $listObject.TableStyle = ('Ta'+'bleStyl'+'e'+'Light2') # Style Cheat Sheet: https://msdn.microsoft.com/en-au/library/documentformat.openxml.spreadsheet.tablestyle.aspx
             $usedRange = $worksheet.UsedRange
             $usedRange.EntireColumn.AutoFit() | Out-Null
         }
         Else
         {
-            $worksheet.Cells.Item($row, $column) = ("{1}{0}"-f 'r!','Erro')
+            $worksheet.Cells.Item($row, $column) = ('Error'+'!')
         }
         Remove-Variable ADFileName
     }
@@ -4699,7 +4699,7 @@ Function Get-ADRExcelPivotTable
         [array] $PivotPercentage,
 
         [Parameter(Mandatory = $false)]
-        [string] $PivotLocation = ("{0}{1}" -f'R1C','1')
+        [string] $PivotLocation = ('R1'+'C1')
     )
 
     $excel.ScreenUpdating = $false
@@ -4723,23 +4723,23 @@ Function Get-ADRExcelPivotTable
     Catch
     {
         $PivotFailed = $true
-        Write-Verbose ("{7}{1}{4}{5}{6}{3}{2}{8}{0}" -f'ed','v','ate] Fai','Cre','otCa','ches()','.','[Pi','l')
+        Write-Verbose ('[Pi'+'votCaches('+').Cre'+'ate] Fai'+'l'+'ed')
         Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
     }
     If ( $PivotFailed -eq $true )
     {
         $rows = $SrcWorksheet.UsedRange.Rows.Count
-        If ($SrcSheetName -eq ("{2}{1}{0}" -f'PNs','mputer S','Co'))
+        If ($SrcSheetName -eq ('Co'+'mputer SP'+'Ns'))
         {
-            $PivotCols = ("{1}{0}" -f'1:C','A')
+            $PivotCols = ('A'+'1:C')
         }
-        ElseIf ($SrcSheetName -eq ("{1}{0}{2}"-f'p','Com','uters'))
+        ElseIf ($SrcSheetName -eq ('C'+'ompu'+'ters'))
         {
-            $PivotCols = ("{0}{1}"-f'A','1:F')
+            $PivotCols = ('A1'+':F')
         }
-        ElseIf ($SrcSheetName -eq ("{0}{1}"-f 'Use','rs'))
+        ElseIf ($SrcSheetName -eq ('Use'+'rs'))
         {
-            $PivotCols = ("{0}{1}"-f'A1',':C')
+            $PivotCols = ('A1'+':C')
         }
         $UsedRange = $SrcWorksheet.Range($PivotCols+$rows)
         $PivotCaches = $workbook.PivotCaches().Create([Microsoft.Office.Interop.Excel.XlPivotTableSourceType]::xlDatabase, $UsedRange, [Microsoft.Office.Interop.Excel.XlPivotTableVersionList]::xlPivotTableVersion12)
@@ -4885,18 +4885,18 @@ Function Get-ADRExcelAttributeStats
     $row = 1
     $column = 1
     $worksheet.Cells.Item($row, $column) = $Title1
-    $worksheet.Cells.Item($row,$column).Style = ("{1}{2}{0}"-f'ng 2','H','eadi')
+    $worksheet.Cells.Item($row,$column).Style = ('Head'+'ing 2')
     $worksheet.Cells.Item($row,$column).HorizontalAlignment = -4108
-    $MergeCells = $worksheet.Range(("{1}{0}"-f'C1','A1:'))
+    $MergeCells = $worksheet.Range(('A1:C'+'1'))
     $MergeCells.Select() | Out-Null
     $MergeCells.MergeCells = $true
     Remove-Variable MergeCells
 
-    Get-ADRExcelPivotTable -SrcSheetName $SrcSheetName -PivotTableName $PivotTableName -PivotRows @($PivotRows) -PivotValues @($PivotValues) -PivotPercentage @($PivotPercentage) -PivotLocation ("{1}{0}"-f'1','R2C')
+    Get-ADRExcelPivotTable -SrcSheetName $SrcSheetName -PivotTableName $PivotTableName -PivotRows @($PivotRows) -PivotValues @($PivotValues) -PivotPercentage @($PivotPercentage) -PivotLocation ('R2'+'C1')
     $excel.ScreenUpdating = $false
 
     $row = 2
-    ("{1}{0}" -f'pe','Ty'),("{1}{0}" -f 't','Coun'),("{1}{2}{0}"-f'ge','Perce','nta') | ForEach-Object {
+    ('T'+'ype'),('Coun'+'t'),('P'+'erce'+'nt'+'age') | ForEach-Object {
         $worksheet.Cells.Item($row, $column) = $_
         $worksheet.Cells.Item($row, $column).Font.Bold = $True
         $column++
@@ -4909,9 +4909,9 @@ Function Get-ADRExcelAttributeStats
         $temptext = [string] $worksheet.Cells.Item($row, $column).Text
         switch ($temptext.ToUpper())
         {
-            ("{1}{0}" -f 'RUE','T') { $worksheet.Cells.Item($row, $column) = ("{1}{0}" -f 'd','Enable') }
-            ("{1}{0}" -f 'SE','FAL') { $worksheet.Cells.Item($row, $column) = ("{0}{1}" -f 'Di','sabled') }
-            ("{0}{3}{2}{1}"-f 'GRA','TAL',' TO','ND') { $worksheet.Cells.Item($row, $column) = ("{1}{0}"-f 'tal','To') }
+            ('T'+'RUE') { $worksheet.Cells.Item($row, $column) = ('Ena'+'ble'+'d') }
+            ('FALS'+'E') { $worksheet.Cells.Item($row, $column) = ('Disable'+'d') }
+            ('G'+'R'+'AND TOTAL') { $worksheet.Cells.Item($row, $column) = ('To'+'tal') }
         }
     }
 
@@ -4920,20 +4920,20 @@ Function Get-ADRExcelAttributeStats
         $row = 1
         $column = 6
         $worksheet.Cells.Item($row, $column) = $Title2
-        $worksheet.Cells.Item($row,$column).Style = ("{2}{0}{1}" -f ' ','2','Heading')
+        $worksheet.Cells.Item($row,$column).Style = ('Head'+'i'+'ng 2')
         $worksheet.Cells.Item($row,$column).HorizontalAlignment = -4108
-        $MergeCells = $worksheet.Range(("{1}{0}"-f '1:L1','F'))
+        $MergeCells = $worksheet.Range(('F1:'+'L1'))
         $MergeCells.Select() | Out-Null
         $MergeCells.MergeCells = $true
         Remove-Variable MergeCells
 
         $row++
-        ("{1}{0}"-f 'ory','Categ'),("{3}{2}{0}{1}"-f 'Coun','t','d ','Enable'),("{3}{0}{5}{2}{4}{1}"-f 'bl','age',' P','Ena','ercent','ed'),("{1}{0}{2}" -f 'led C','Disab','ount'),("{0}{4}{1}{2}{3}"-f'Di',' Per','centag','e','sabled'),("{2}{1}{0}{3}" -f 'Cou','otal ','T','nt'),("{4}{2}{0}{3}{1}" -f 'erc','e','al P','entag','Tot') | ForEach-Object {
+        ('C'+'atego'+'ry'),('Ena'+'bled Co'+'unt'),('Enabl'+'ed Perce'+'ntag'+'e'),('Disabl'+'ed'+' Cou'+'n'+'t'),('Di'+'sabled'+' Percentag'+'e'),('Tota'+'l'+' Co'+'unt'),('Total P'+'erc'+'e'+'nt'+'age') | ForEach-Object {
             $worksheet.Cells.Item($row, $column) = $_
             $worksheet.Cells.Item($row, $column).Font.Bold = $True
             $column++
         }
-        $ExcelColumn = ($SrcWorksheet.Columns.Find(("{1}{0}"-f'abled','En')))
+        $ExcelColumn = ($SrcWorksheet.Columns.Find(('En'+'a'+'bled')))
         $EnabledColAddress = "$($ExcelColumn.Address($false,$false).Substring(0,$ExcelColumn.Address($false,$false).Length-1)):$($ExcelColumn.Address($false,$false).Substring(0,$ExcelColumn.Address($false,$false).Length-1))"
         $column = 6
         $i = 2
@@ -4943,38 +4943,38 @@ Function Get-ADRExcelAttributeStats
             $ColAddress = "$($ExcelColumn.Address($false,$false).Substring(0,$ExcelColumn.Address($false,$false).Length-1)):$($ExcelColumn.Address($false,$false).Substring(0,$ExcelColumn.Address($false,$false).Length-1))"
             $row++
             $i++
-            If ($_ -eq ("{1}{0}{3}{2}" -f 'ation T','Deleg','p','y'))
+            If ($_ -eq ('De'+'legati'+'on T'+'yp'))
             {
-                $worksheet.Cells.Item($row, $column) = ("{3}{0}{4}{5}{6}{1}{2}" -f'nco','gati','on','U','n','s','trained Dele')
+                $worksheet.Cells.Item($row, $column) = ('U'+'nc'+'ons'+'trained'+' Delegat'+'i'+'on')
             }
-            ElseIf ($_ -eq ("{0}{3}{1}{2}"-f'Dele','Typ','e','gation '))
+            ElseIf ($_ -eq ('De'+'legation '+'T'+'y'+'pe'))
             {
-                $worksheet.Cells.Item($row, $column) = ("{1}{2}{3}{0}"-f 'egation','Cons','tr','ained Del')
+                $worksheet.Cells.Item($row, $column) = ('Const'+'raine'+'d '+'Delegation')
             }
             Else
             {
-                $worksheet.Cells.Item($row, $column).Formula = "='" + $SrcWorksheet.Name + "'!" + $ExcelColumn.Address($false,$false)
+                $worksheet.Cells.Item($row, $column).Formula = (('='+'Vv'+'H').RePLaCe(([CHAr]86+[CHAr]118+[CHAr]72),[sTRINg][CHAr]39)) + $SrcWorksheet.Name + (('{'+'0}!')-f [CHAr]39) + $ExcelColumn.Address($false,$false)
             }
-            $worksheet.Cells.Item($row, $column+1).Formula = (((("{2}{0}{3}{1}"-f 'IFS(U','I','=COUNT','e'))-creplace  'UeI',[ChaR]39)) + $SrcWorksheet.Name + "'!" + $EnabledColAddress + ((("{1}{3}{2}{0}"-f'PE,',',GP','TRUEG','E'))-rePLACe ([cHar]71+[cHar]80+[cHar]69),[cHar]34) + "'" + $SrcWorksheet.Name + "'!" + $ColAddress + ',' + $ObjAttributes[$_] + ')'
-            $worksheet.Cells.Item($row, $column+2).Formula = ((("{0}{3}{2}{1}"-f '=I','(G','ERROR','F'))) + $i + (((("{4}{0}{5}{1}{7}{6}{2}{3}" -f 'LOOKUP(8','E','FALSE),','0)','/V','Qm','bled8Qm,A3:B6,2,','na'))  -crePLACE  ([cHar]56+[cHar]81+[cHar]109),[cHar]34))
-            $worksheet.Cells.Item($row, $column+3).Formula = ((("{3}{2}{4}{0}{1}"-f 'S(uo','1','CO','=','UNTIF')).rEPLACE('uo1',[striNG][cHar]39)) + $SrcWorksheet.Name + "'!" + $EnabledColAddress + ((("{2}{0}{1}" -f'LSE','{0},',',{0}FA')) -F  [cHAR]34) + "'" + $SrcWorksheet.Name + "'!" + $ColAddress + ',' + $ObjAttributes[$_] + ')'
-            $worksheet.Cells.Item($row, $column+4).Formula = ((("{0}{2}{1}"-f '=IFERROR','I','('))) + $i + (((("{8}{0}{1}{10}{4}{9}{3}{5}{2}{7}{6}"-f'{0','}Disabled{0},','SE',',F','6,','AL','0)','),','/VLOOKUP(','2','A3:B')) -F  [cHar]34))
-            If ( ($_ -eq ("{2}{0}{1}" -f 'DHist','ory','SI')) -or ($_ -eq ("{3}{2}{5}{4}{1}{0}" -f'd','rSi','-d','ms','Creato','s-')) )
+            $worksheet.Cells.Item($row, $column+1).Formula = ((('=CO'+'U'+'NTIFS({0}') -f[CHaR]39)) + $SrcWorksheet.Name + (('b8'+'f!').RepLACe('b8f',[strINg][chAR]39)) + $EnabledColAddress + ((',3'+'g'+'0TR'+'UE'+'3g0,') -replAcE([chaR]51+[chaR]103+[chaR]48),[chaR]34) + "'" + $SrcWorksheet.Name + (('vF'+'f!').REplACE('vFf',[sTrinG][CHar]39)) + $ColAddress + ',' + $ObjAttributes[$_] + ')'
+            $worksheet.Cells.Item($row, $column+2).Formula = (('='+'IF'+'ERROR'+'(G')) + $i + ((('/VLOO'+'K'+'U'+'P(IWcE'+'nable'+'dIWc,A3:B6'+',2,'+'F'+'ALSE'+'),'+'0)') -cRePlace'IWc',[char]34))
+            $worksheet.Cells.Item($row, $column+3).Formula = ((('='+'C'+'OUNTIF'+'S(Ogl')  -crePLaCe'Ogl',[chaR]39)) + $SrcWorksheet.Name + (('OQ'+'0!').repLAce(([chAR]79+[chAR]81+[chAR]48),[sTRiNG][chAR]39)) + $EnabledColAddress + ((',{'+'0}FA'+'LSE'+'{0'+'},') -F [Char]34) + "'" + $SrcWorksheet.Name + (('k8x'+'!').rEPlaCe('k8x',[sTriNG][ChaR]39)) + $ColAddress + ',' + $ObjAttributes[$_] + ')'
+            $worksheet.Cells.Item($row, $column+4).Formula = (('=I'+'FERROR('+'I')) + $i + ((('/V'+'LOOKUP({0}Dis'+'abl'+'ed'+'{0},A3'+':'+'B'+'6'+',2,FAL'+'SE'+'),'+'0)')  -f [cHAr]34))
+            If ( ($_ -eq ('SID'+'His'+'tory')) -or ($_ -eq ('ms-d'+'s-Crea'+'t'+'orSid')) )
             {
                 # Remove count of FieldName
-                $worksheet.Cells.Item($row, $column+5).Formula = (((("{1}{2}{0}" -f '0}','=COUNTIF','({'))  -f  [Char]39)) + $SrcWorksheet.Name + "'!" + $ColAddress + ',' + $ObjAttributes[$_] + ')-1'
+                $worksheet.Cells.Item($row, $column+5).Formula = ((('=COUN'+'T'+'IF(5Ev') -cREplACE  ([chAR]53+[chAR]69+[chAR]118),[chAR]39)) + $SrcWorksheet.Name + (('{'+'0}!')  -F  [cHaR]39) + $ColAddress + ',' + $ObjAttributes[$_] + ((')-'+'1'))
             }
             Else
             {
-                $worksheet.Cells.Item($row, $column+5).Formula = ((("{2}{0}{1}"-f'(e','5o','=COUNTIF')).RePlACe(([cHAr]101+[cHAr]53+[cHAr]111),[StrIng][cHAr]39)) + $SrcWorksheet.Name + "'!" + $ColAddress + ',' + $ObjAttributes[$_] + ')'
+                $worksheet.Cells.Item($row, $column+5).Formula = ((('=C'+'O'+'UNT'+'IF(BF5')  -rEPLaCe'BF5',[CHAR]39)) + $SrcWorksheet.Name + (('4yo'+'!')  -rEpLACE  '4yo',[Char]39) + $ColAddress + ',' + $ObjAttributes[$_] + ')'
             }
-            $worksheet.Cells.Item($row, $column+6).Formula = ((("{0}{2}{1}" -f '=','RROR(K','IFE'))) + $i + (((("{0}{7}{4}{3}{6}{1}{5}{8}{2}" -f '/VL',',A',')','(b0rT','OKUP','3','otalb0r','O',':B6,2,FALSE),0')) -rEplaCe([cHaR]98+[cHaR]48+[cHaR]114),[cHaR]34))
+            $worksheet.Cells.Item($row, $column+6).Formula = (('='+'I'+'FE'+'RROR(K')) + $i + (('/VL'+'O'+'O'+'KUP(IMk'+'T'+'o'+'ta'+'lIMk,A'+'3:B6,'+'2,FALSE'+'),0)').replaCe('IMk',[stRiNG][cHAr]34))
         }
 
         # http://www.excelhowto.com/macros/formatting-a-range-of-cells-in-excel-vba/
         "H", "J" , "L" | ForEach-Object {
             $rng = $_ + $($row - $ObjAttributes.Count + 1) + ":" + $_ + $($row)
-            $worksheet.Range($rng).NumberFormat = ("{0}{1}"-f '0','.00%')
+            $worksheet.Range($rng).NumberFormat = ('0.0'+'0%')
         }
     }
     $excel.ScreenUpdating = $true
@@ -5052,7 +5052,7 @@ Function Get-ADRExcelChart
     {
         If ($null -eq $StartRow)
         {
-            $start = $worksheet.Range("A1")
+            $start = $worksheet.Range('A1')
         }
         Else
         {
@@ -5062,7 +5062,7 @@ Function Get-ADRExcelChart
         $X = $worksheet.Range($start,$start.End([Microsoft.Office.Interop.Excel.XLDirection]::xlDown))
         If ($null -eq $StartColumn)
         {
-            $start = $worksheet.Range("B1")
+            $start = $worksheet.Range('B1')
         }
         Else
         {
@@ -5093,7 +5093,7 @@ Function Get-ADRExcelChart
     $chart.parent.top = $temp.Top
     $chart.parent.left = $temp.Left
     $chart.parent.width = $temp.Width
-    If ($ChartTitle -ne ("{0}{6}{2}{7}{3}{5}{4}{1}" -f 'Privi','ups in AD','eg','d','o',' Gr','l','e'))
+    If ($ChartTitle -ne ('P'+'rivilege'+'d Gro'+'ups '+'i'+'n'+' '+'AD'))
     {
         $chart.parent.height = $temp.Height
     }
@@ -5191,41 +5191,41 @@ Function Export-ADRExcel
     )
 
     $ExcelPath = $((Convert-Path $ExcelPath).TrimEnd("\"))
-    $ReportPath = -join($ExcelPath,'\',("{0}{1}" -f 'CSV-File','s'))
+    $ReportPath = -join($ExcelPath,'\',('CS'+'V-F'+'iles'))
     If (!(Test-Path $ReportPath))
     {
-        Write-Warning ("{7}{15}{2}{1}{6}{8}{5}{14}{0}{4}{16}{9}{11}{10}{3}{12}{13}"-f 'V-','ADR','port-','Exi','Files ','t l','Excel] Could','[E',' no','ecto','.. ','ry .','tin','g','ocate the CS','x','dir')
+        Write-Warning ('[Ex'+'p'+'o'+'r'+'t-ADR'+'Ex'+'cel] Could not locate the CSV'+'-F'+'iles d'+'irec'+'t'+'ory .'+'.. '+'Exiting')
         Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
         Return $null
     }
     Get-ADRExcelComObj
     If ($excel)
     {
-        Write-Output ("{4}{3}{8}{2}{0}{5}{6}{1}{7}" -f'econ-','xl','ng ADR','er','[*] Gen','Rep','ort.','sx','ati')
+        Write-Output ('['+'*] Gener'+'ating'+' ADR'+'eco'+'n-'+'Rep'+'or'+'t'+'.xl'+'sx')
 
-        $ADFileName = -join($ReportPath,'\',("{0}{2}{4}{1}{3}"-f'About','n.c','ADRe','sv','co'))
+        $ADFileName = -join($ReportPath,'\',('Abo'+'ut'+'A'+'DR'+'econ.csv'))
         If (Test-Path $ADFileName)
         {
             Get-ADRExcelImport -ADFileName $ADFileName
             Remove-Variable ADFileName
 
-            $workbook.Worksheets.Item(1).Name = ("{2}{1}{0}"-f'econ','out ADR','Ab')
-            $workbook.Worksheets.Item(1).Hyperlinks.Add($workbook.Worksheets.Item(1).Cells.Item(3,2) , ("{4}{8}{2}{6}{7}{3}{1}{0}{5}" -f 'o','c','s://gi','Re','htt','n','t','hub.com/adrecon/AD','p'), "" , "", ("{7}{3}{5}{1}{4}{6}{0}{2}" -f'/','o','ADRecon','t','m/adreco','hub.c','n','gi')) | Out-Null
+            $workbook.Worksheets.Item(1).Name = ('Abo'+'ut '+'ADRe'+'con')
+            $workbook.Worksheets.Item(1).Hyperlinks.Add($workbook.Worksheets.Item(1).Cells.Item(3,2) , ('ht'+'tps:'+'//gith'+'ub.com/adre'+'c'+'on/AD'+'Recon'), "" , "", ('gi'+'thub.com/'+'adrecon'+'/ADRec'+'on')) | Out-Null
             $workbook.Worksheets.Item(1).UsedRange.EntireColumn.AutoFit() | Out-Null
         }
 
-        $ADFileName = -join($ReportPath,'\',("{0}{1}{2}" -f'Fo','rest','.csv'))
+        $ADFileName = -join($ReportPath,'\',('Fore'+'st.'+'csv'))
         If (Test-Path $ADFileName)
         {
-            Get-ADRExcelWorkbook -Name ("{0}{1}"-f'F','orest')
+            Get-ADRExcelWorkbook -Name ('F'+'ores'+'t')
             Get-ADRExcelImport -ADFileName $ADFileName
             Remove-Variable ADFileName
         }
 
-        $ADFileName = -join($ReportPath,'\',("{1}{0}{2}" -f'c','Domain.','sv'))
+        $ADFileName = -join($ReportPath,'\',('Dom'+'ain.c'+'sv'))
         If (Test-Path $ADFileName)
         {
-            Get-ADRExcelWorkbook -Name ("{2}{1}{0}" -f'ain','om','D')
+            Get-ADRExcelWorkbook -Name ('Dom'+'ain')
             Get-ADRExcelImport -ADFileName $ADFileName
             $DomainObj = Import-CSV -Path $ADFileName
             Remove-Variable ADFileName
@@ -5233,60 +5233,60 @@ Function Export-ADRExcel
             Remove-Variable DomainObj
         }
 
-        $ADFileName = -join($ReportPath,'\',("{3}{0}{1}{2}" -f 'ts','.cs','v','Trus'))
+        $ADFileName = -join($ReportPath,'\',('T'+'rusts.c'+'sv'))
         If (Test-Path $ADFileName)
         {
-            Get-ADRExcelWorkbook -Name ("{2}{1}{0}" -f'sts','ru','T')
+            Get-ADRExcelWorkbook -Name ('Trus'+'ts')
             Get-ADRExcelImport -ADFileName $ADFileName
             Remove-Variable ADFileName
         }
 
-        $ADFileName = -join($ReportPath,'\',("{0}{2}{1}{3}"-f'Subne','.c','ts','sv'))
+        $ADFileName = -join($ReportPath,'\',('Su'+'bnets.'+'c'+'sv'))
         If (Test-Path $ADFileName)
         {
-            Get-ADRExcelWorkbook -Name ("{1}{0}{2}" -f'net','Sub','s')
+            Get-ADRExcelWorkbook -Name ('Sub'+'nets')
             Get-ADRExcelImport -ADFileName $ADFileName
             Remove-Variable ADFileName
         }
 
-        $ADFileName = -join($ReportPath,'\',("{0}{1}{2}" -f'S','it','es.csv'))
+        $ADFileName = -join($ReportPath,'\',('Sites'+'.cs'+'v'))
         If (Test-Path $ADFileName)
         {
-            Get-ADRExcelWorkbook -Name ("{0}{1}" -f 'S','ites')
+            Get-ADRExcelWorkbook -Name ('Sit'+'es')
             Get-ADRExcelImport -ADFileName $ADFileName
             Remove-Variable ADFileName
         }
 
-        $ADFileName = -join($ReportPath,'\',("{0}{1}{3}{5}{2}{4}" -f 'S','chema','.c','Hist','sv','ory'))
+        $ADFileName = -join($ReportPath,'\',('Schema'+'His'+'to'+'r'+'y.csv'))
         If (Test-Path $ADFileName)
         {
-            Get-ADRExcelWorkbook -Name ("{4}{2}{1}{3}{0}" -f'ry','His','a','to','Schem')
+            Get-ADRExcelWorkbook -Name ('Schema'+'H'+'isto'+'ry')
             Get-ADRExcelImport -ADFileName $ADFileName
             Remove-Variable ADFileName
         }
 
-        $ADFileName = -join($ReportPath,'\',("{1}{2}{0}{3}{4}" -f 'ainedPasswordPo','Fine','Gr','li','cy.csv'))
+        $ADFileName = -join($ReportPath,'\',('Fin'+'eG'+'rain'+'edPasswo'+'rdPolicy.'+'csv'))
         If (Test-Path $ADFileName)
         {
-            Get-ADRExcelWorkbook -Name ("{4}{2}{1}{0}{3}"-f'd P','Passwor','ine Grained ','olicy','F')
+            Get-ADRExcelWorkbook -Name ('Fine '+'Gr'+'aine'+'d P'+'as'+'swo'+'rd'+' Policy')
             Get-ADRExcelImport -ADFileName $ADFileName
             Remove-Variable ADFileName
         }
 
-        $ADFileName = -join($ReportPath,'\',("{4}{1}{2}{5}{3}{0}" -f 'csv','swo','rd','licy.','DefaultPas','Po'))
+        $ADFileName = -join($ReportPath,'\',('D'+'ef'+'au'+'ltPasswo'+'rdPolicy.'+'c'+'sv'))
         If (Test-Path $ADFileName)
         {
-            Get-ADRExcelWorkbook -Name ("{4}{3}{2}{0}{1}" -f'd Poli','cy','swor','fault Pas','De')
+            Get-ADRExcelWorkbook -Name ('Defau'+'lt Pa'+'ss'+'w'+'ord Policy')
             Get-ADRExcelImport -ADFileName $ADFileName
             Remove-Variable ADFileName
 
             $excel.ScreenUpdating = $false
             $worksheet = $workbook.Worksheets.Item(1)
             # https://docs.microsoft.com/en-us/office/vba/api/excel.xlhalign
-            $worksheet.Range(("{1}{0}"-f '0','B2:G1')).HorizontalAlignment = -4108
+            $worksheet.Range(('B2:G1'+'0')).HorizontalAlignment = -4108
             # https://docs.microsoft.com/en-us/office/vba/api/excel.range.borderaround
 
-            ("{0}{1}"-f'A2:B','10'), ("{0}{1}" -f 'C2:','D10'), ("{1}{0}" -f'2:F10','E'), ("{0}{1}{2}"-f'G2:G','1','0') | ForEach-Object {
+            ('A2'+':B10'), ('C2:D'+'10'), ('E'+'2:'+'F10'), ('G'+'2:G10') | ForEach-Object {
                 $worksheet.Range($_).BorderAround(1) | Out-Null
             }
 
@@ -5297,79 +5297,79 @@ Function Export-ADRExcel
 
             $ObjValues = @(
             # PCI Enforce password history (passwords)
-            "C2", ("{1}{0}{3}{5}{4}{2}" -f '(','=IF','SE)','B','FAL','2<4,TRUE, ')
+            'C2', ('=IF(B2'+'<4'+',T'+'RU'+'E, FALSE)')
 
             # PCI Maximum password age (days)
-            "C3", ("{4}{1}{0}{5}{3}{2}" -f '(B3=0,','F(OR','LSE)','TRUE, FA','=I','B3>90),')
+            'C3', ('=IF(OR(B3'+'=0'+','+'B'+'3>90)'+',TRU'+'E,'+' FALS'+'E)')
 
             # PCI Minimum password age (days)
 
             # PCI Minimum password length (characters)
-            "C5", (("{4}{1}{3}{5}{6}{2}{0}"-f 'ALSE)','IF','RUE, F','(','=','B5<7,','T'))
+            'C5', ('=IF('+'B5<7,TRUE, FA'+'LS'+'E'+')')
 
             # PCI Password must meet complexity requirements
-            "C6", (("{4}{0}{2}{1}{3}"-f'B6<>TRUE,',', F','TRUE','ALSE)','=IF('))
+            'C6', ('=I'+'F'+'(B6<>TRUE'+',TRUE, '+'F'+'A'+'LSE'+')')
 
             # PCI Store password using reversible encryption for all users in the domain
 
             # PCI Account lockout duration (mins)
-            "C8", ((("{1}{7}{5}{2}{6}{3}{0}{4}"-f'),TR','=IF',',B8','0','UE, FALSE)','ND(B8>=1','<3','(A')))
+            'C8', ('=IF(A'+'ND(B'+'8>=1'+',B8<30),TR'+'U'+'E, F'+'ALSE'+')')
 
             # PCI Account lockout threshold (attempts)
-            "C9", ("{2}{3}{1}{0}{4}{5}" -f '(B9=0,B9>','F(OR','=','I','6),','TRUE, FALSE)')
+            'C9', ('=IF('+'OR(B9=0,'+'B9>6),T'+'R'+'UE, FAL'+'SE)')
 
             # PCI Reset account lockout counter after (mins)
 
             # ASD ISM Enforce password history (passwords)
-            "E2", ("{0}{2}{4}{5}{1}{3}{6}" -f'=IF','U','(B','E, FAL','2<8,','TR','SE)')
+            'E2', ('=IF'+'(B2'+'<8,T'+'RUE, '+'FAL'+'SE)')
 
             # ASD ISM Maximum password age (days)
-            "E3", ("{1}{0}{4}{3}{6}{2}{5}{7}"-f 'IF','=','>90','OR(B3=0,B','(','),TRUE, ','3','FALSE)')
+            'E3', ('=IF(OR('+'B'+'3=0'+',B3>90),TRUE, FA'+'LS'+'E)')
 
             # ASD ISM Minimum password age (days)
-            "E4", ("{0}{1}{4}{3}{2}"-f'=IF(B4=0,','TR','FALSE)',' ','UE,')
+            'E4', ('=IF(B'+'4'+'=0,TR'+'UE'+', FALSE)')
 
             # ASD ISM Minimum password length (characters)
-            "E5", ("{2}{0}{1}{4}{3}"-f'F(','B5<13,TR','=I','SE)','UE, FAL')
+            'E5', ('=IF'+'(B5'+'<13,'+'T'+'RUE'+', FAL'+'SE)')
 
             # ASD ISM Password must meet complexity requirements
-            "E6", ("{5}{4}{0}{2}{3}{1}{6}" -f'F(B6',' FALSE','<>TRUE,TR','UE,','I','=',')')
+            'E6', ('='+'IF('+'B6<'+'>TRUE,TRUE, '+'FALSE)')
 
             # ASD ISM Store password using reversible encryption for all users in the domain
 
             # ASD ISM Account lockout duration (mins)
 
             # ASD ISM Account lockout threshold (attempts)
-            "E9", ((("{4}{3}{1}{0}{2}" -f'),','9=0,B9>5','TRUE, FALSE)','(B','=IF(OR')))
+            'E9', ('='+'IF(O'+'R'+'(B9=0,'+'B9>'+'5),T'+'RUE, '+'FALSE)')
 
             # ASD ISM Reset account lockout counter after (mins)
 
             # CIS Benchmark Enforce password history (passwords)
-            "G2", ("{0}{1}{5}{3}{2}{4}" -f'=IF(B2<24,T','R','FALSE',' ',')','UE,')
+            'G2', ('=IF('+'B2'+'<24,TRUE, '+'F'+'ALS'+'E)')
 
             # CIS Benchmark Maximum password age (days)
-            "G3", ("{1}{3}{2}{5}{0}{4}"-f 'SE','=IF(O','B3=0,B3>60),TR','R(',')','UE, FAL')
+            'G3', ('='+'IF(OR'+'(B3='+'0,B3'+'>60)'+',TRU'+'E,'+' FA'+'LSE'+')')
 
             # CIS Benchmark Minimum password age (days)
-            "G4", ("{0}{2}{4}{5}{1}{3}" -f '=IF(B4','E','=',')','0,','TRUE, FALS')
+            'G4', ('=IF('+'B'+'4=0'+',TR'+'U'+'E, FALSE)')
 
             # CIS Benchmark Minimum password length (characters)
-            "G5", (("{2}{0}{3}{4}{6}{5}{1}"-f '5<14,TRU',')','=IF(B','E',',','E',' FALS'))
+            'G5', ('=IF'+'(B5<1'+'4,'+'T'+'RU'+'E, F'+'ALSE)')
 
             # CIS Benchmark Password must meet complexity requirements
-            "G6", (("{2}{0}{4}{3}{1}" -f ',TRUE','E)','=IF(B6<>TRUE',' FALS',','))
+            'G6', ('=IF'+'(B6<'+'>TRUE,TRUE, F'+'A'+'LS'+'E)')
 
             # CIS Benchmark Store password using reversible encryption for all users in the domain
-            "G7", (("{0}{5}{4}{6}{1}{2}{7}{3}"-f '=','TR','UE, FALS',')','7<','IF(B','>FALSE,','E'))
+            'G7', ('=IF'+'('+'B7'+'<>FALSE,'+'TR'+'UE, FAL'+'SE)')
 
             # CIS Benchmark Account lockout duration (mins)
-            "G8", (("{3}{6}{1}{0}{4}{2}{5}" -f ',B8<','B8>=1','RU','=IF(AN','15),T','E, FALSE)','D('))
+            'G8', ('=IF'+'('+'A'+'ND(B8>=1,B8<15'+'),'+'TRUE, F'+'AL'+'S'+'E)')
 
             # CIS Benchmark Account lockout threshold (attempts)
-            "G9", (("{1}{5}{3}{0}{6}{4}{2}" -f'R(B9=0,B9>10),TRUE','=','SE)','O',' FAL','IF(',','))
+            'G9', ('='+'I'+'F'+'(OR(B9'+'=0'+',B9'+'>10),TRUE, FALS'+'E)')
 
             # CIS Benchmark Reset account lockout counter after (mins)
-            "G10", (("{5}{4}{0}{3}{6}{2}{1}"-f '<','E)','E, FALS','15,TR','(B10','=IF','U')) )
+            ('G1'+'0'), ('=IF'+'(B10<15,'+'TRUE, '+'FA'+'LSE)') )
 
             For ($i = 0; $i -lt $($ObjValues.Count); $i++)
             {
@@ -5377,128 +5377,128 @@ Function Export-ADRExcel
                 $i++
             }
 
-            "C2", "C3" , "C5", "C6", "C8", "C9", "E2", "E3" , "E4", "E5", "E6", "E9", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9", "G10" | ForEach-Object {
+            'C2', 'C3' , 'C5', 'C6', 'C8', 'C9', 'E2', 'E3' , 'E4', 'E5', 'E6', 'E9', 'G2', 'G3', 'G4', 'G5', 'G6', 'G7', 'G8', 'G9', ('G'+'10') | ForEach-Object {
                 $worksheet.Range($_).FormatConditions.Item(1).StopIfTrue = $false
                 $worksheet.Range($_).FormatConditions.Item(1).Font.ColorIndex = 3
             }
 
-            $workbook.Worksheets.Item(1).Hyperlinks.Add($workbook.Worksheets.Item(1).Cells.Item(1,4) , ("{11}{5}{14}{3}{17}{4}{0}{1}{6}{10}{7}{16}{12}{2}{13}{9}{8}{15}"-f 'ment_lib','r','o','uritystanda','.org/docu','ttps://ww','ary?','id','pc','ent=','category=pc','h','d','cum','w.pcisec','i_dss','ss&','rds'), "" , "", ("{0}{2}{1}{3}" -f'PCI D',' ','SS','v3.2.1')) | Out-Null
-            $workbook.Worksheets.Item(1).Hyperlinks.Add($workbook.Worksheets.Item(1).Cells.Item(1,6) , ("{0}{5}{3}{7}{1}{4}{2}{6}"-f'h','ac','/is','s','sc.gov.au/infosec','ttp','m/','://'), "" , "", ("{5}{3}{4}{0}{1}{2}" -f'r','o','ls','18 I','SM Cont','20')) | Out-Null
-            $workbook.Worksheets.Item(1).Hyperlinks.Add($workbook.Worksheets.Item(1).Cells.Item(1,7) , ("{6}{9}{7}{0}{2}{5}{4}{1}{8}{3}" -f'rity.org/benchmark','s','/microsoft_','rver/','indow','w','http','www.cisecu','_se','s://'), "" , "", ("{0}{3}{1}{4}{2}" -f 'CIS','enchmark','6',' B',' 201')) | Out-Null
+            $workbook.Worksheets.Item(1).Hyperlinks.Add($workbook.Worksheets.Item(1).Cells.Item(1,4) , ('https://www'+'.pc'+'isecurit'+'y'+'st'+'andards'+'.org/docum'+'ent'+'_li'+'brary?ca'+'tegory=pcidss&'+'docu'+'me'+'nt'+'=p'+'ci_dss'), "" , "", ('P'+'C'+'I DSS v3.2.1')) | Out-Null
+            $workbook.Worksheets.Item(1).Hyperlinks.Add($workbook.Worksheets.Item(1).Cells.Item(1,6) , ('https://ac'+'sc.gov.a'+'u/info'+'s'+'e'+'c/ism'+'/'), "" , "", ('2'+'018 ISM '+'C'+'ontrols')) | Out-Null
+            $workbook.Worksheets.Item(1).Hyperlinks.Add($workbook.Worksheets.Item(1).Cells.Item(1,7) , ('h'+'ttp'+'s://www.cis'+'ec'+'ur'+'i'+'ty.o'+'r'+'g/benchmark/m'+'i'+'c'+'ros'+'oft'+'_'+'wind'+'ows_serv'+'er'+'/'), "" , "", ('C'+'IS'+' Benchmark '+'2016')) | Out-Null
 
             $excel.ScreenUpdating = $true
             Get-ADRExcelComObjRelease -ComObjtoRelease $worksheet
             Remove-Variable worksheet
         }
 
-        $ADFileName = -join($ReportPath,'\',("{3}{1}{0}{2}"-f 'l','o','lers.csv','DomainContr'))
+        $ADFileName = -join($ReportPath,'\',('Domain'+'C'+'ontroller'+'s'+'.csv'))
         If (Test-Path $ADFileName)
         {
-            Get-ADRExcelWorkbook -Name ("{0}{4}{1}{3}{2}" -f'Domai','Contr','s','oller','n ')
+            Get-ADRExcelWorkbook -Name ('Domai'+'n '+'Controlle'+'rs')
             Get-ADRExcelImport -ADFileName $ADFileName
             Remove-Variable ADFileName
         }
 
-        $ADFileName = -join($ReportPath,'\',("{1}{0}{2}{3}{4}" -f'roupCh','G','a','ng','es.csv'))
+        $ADFileName = -join($ReportPath,'\',('GroupChan'+'ges.'+'csv'))
         If (Test-Path $ADFileName)
         {
-            Get-ADRExcelWorkbook -Name ("{0}{2}{1}{3}" -f 'Group ','ange','Ch','s')
+            Get-ADRExcelWorkbook -Name ('Grou'+'p C'+'h'+'ange'+'s')
             Get-ADRExcelImport -ADFileName $ADFileName
             Remove-Variable ADFileName
 
-            Get-ADRExcelSort -ColumnName ("{1}{0}{2}" -f 'Na','Group ','me')
+            Get-ADRExcelSort -ColumnName ('Gro'+'up'+' N'+'ame')
         }
 
-        $ADFileName = -join($ReportPath,'\',("{1}{2}{0}"-f's.csv','DA','CL'))
+        $ADFileName = -join($ReportPath,'\',('DACLs.c'+'s'+'v'))
         If (Test-Path $ADFileName)
         {
-            Get-ADRExcelWorkbook -Name ("{1}{0}"-f'ACLs','D')
-            Get-ADRExcelImport -ADFileName $ADFileName
-            Remove-Variable ADFileName
-        }
-
-        $ADFileName = -join($ReportPath,'\',("{0}{2}{1}" -f 'S','.csv','ACLs'))
-        If (Test-Path $ADFileName)
-        {
-            Get-ADRExcelWorkbook -Name ("{1}{0}" -f's','SACL')
+            Get-ADRExcelWorkbook -Name ('DAC'+'Ls')
             Get-ADRExcelImport -ADFileName $ADFileName
             Remove-Variable ADFileName
         }
 
-        $ADFileName = -join($ReportPath,'\',("{0}{2}{1}"-f 'GP','v','Os.cs'))
+        $ADFileName = -join($ReportPath,'\',('SAC'+'Ls.c'+'sv'))
         If (Test-Path $ADFileName)
         {
-            Get-ADRExcelWorkbook -Name ("{0}{1}"-f 'G','POs')
+            Get-ADRExcelWorkbook -Name ('SA'+'CLs')
             Get-ADRExcelImport -ADFileName $ADFileName
             Remove-Variable ADFileName
         }
 
-        $ADFileName = -join($ReportPath,'\',("{2}{3}{1}{0}" -f'.csv','s','gP','Link'))
+        $ADFileName = -join($ReportPath,'\',('GP'+'Os'+'.csv'))
         If (Test-Path $ADFileName)
         {
-            Get-ADRExcelWorkbook -Name ("{0}{1}" -f'gPL','inks')
+            Get-ADRExcelWorkbook -Name ('GPO'+'s')
             Get-ADRExcelImport -ADFileName $ADFileName
             Remove-Variable ADFileName
         }
 
-        $ADFileName = -join($ReportPath,'\',("{0}{2}{1}"-f 'DNSNo','es','d'),("{1}{0}"-f'sv','.c'))
+        $ADFileName = -join($ReportPath,'\',('gP'+'Links.'+'cs'+'v'))
         If (Test-Path $ADFileName)
         {
-            Get-ADRExcelWorkbook -Name ("{1}{0}{2}" -f 'NS Reco','D','rds')
+            Get-ADRExcelWorkbook -Name ('gPLi'+'nk'+'s')
             Get-ADRExcelImport -ADFileName $ADFileName
             Remove-Variable ADFileName
         }
 
-        $ADFileName = -join($ReportPath,'\',("{1}{3}{0}{2}" -f'nes.','DNSZ','csv','o'))
+        $ADFileName = -join($ReportPath,'\',('D'+'NSNod'+'es'),('.'+'csv'))
         If (Test-Path $ADFileName)
         {
-            Get-ADRExcelWorkbook -Name ("{2}{0}{1}"-f ' Zone','s','DNS')
+            Get-ADRExcelWorkbook -Name ('DNS '+'Rec'+'o'+'rds')
             Get-ADRExcelImport -ADFileName $ADFileName
             Remove-Variable ADFileName
         }
 
-        $ADFileName = -join($ReportPath,'\',("{2}{3}{0}{1}"-f's','v','Printers','.c'))
+        $ADFileName = -join($ReportPath,'\',('DNSZ'+'one'+'s.csv'))
         If (Test-Path $ADFileName)
         {
-            Get-ADRExcelWorkbook -Name ("{2}{1}{0}" -f'rs','nte','Pri')
+            Get-ADRExcelWorkbook -Name ('DNS'+' Zo'+'nes')
             Get-ADRExcelImport -ADFileName $ADFileName
             Remove-Variable ADFileName
         }
 
-        $ADFileName = -join($ReportPath,'\',("{0}{3}{1}{2}{6}{5}{4}" -f 'Bi','ker','Re','tLoc','ryKeys.csv','ove','c'))
+        $ADFileName = -join($ReportPath,'\',('Pr'+'inters.'+'csv'))
         If (Test-Path $ADFileName)
         {
-            Get-ADRExcelWorkbook -Name ("{2}{0}{1}" -f'itLo','cker','B')
+            Get-ADRExcelWorkbook -Name ('Prin'+'te'+'rs')
             Get-ADRExcelImport -ADFileName $ADFileName
             Remove-Variable ADFileName
         }
 
-        $ADFileName = -join($ReportPath,'\',("{1}{2}{0}" -f'.csv','LA','PS'))
+        $ADFileName = -join($ReportPath,'\',('Bit'+'Lock'+'er'+'Rec'+'overyKey'+'s.'+'csv'))
         If (Test-Path $ADFileName)
         {
-            Get-ADRExcelWorkbook -Name ("{1}{0}" -f'APS','L')
+            Get-ADRExcelWorkbook -Name ('B'+'itL'+'ocker')
             Get-ADRExcelImport -ADFileName $ADFileName
             Remove-Variable ADFileName
         }
 
-        $ADFileName = -join($ReportPath,'\',("{1}{5}{4}{2}{3}{0}"-f's.csv','Co','r','SPN','pute','m'))
+        $ADFileName = -join($ReportPath,'\',('L'+'APS.'+'csv'))
         If (Test-Path $ADFileName)
         {
-            Get-ADRExcelWorkbook -Name ("{2}{3}{1}{0}"-f's','uter SPN','Com','p')
+            Get-ADRExcelWorkbook -Name ('L'+'APS')
             Get-ADRExcelImport -ADFileName $ADFileName
             Remove-Variable ADFileName
-
-            Get-ADRExcelSort -ColumnName ("{0}{2}{1}" -f 'Us','Name','er')
         }
 
-        $ADFileName = -join($ReportPath,'\',("{0}{3}{1}{2}"-f 'Com','rs.cs','v','pute'))
+        $ADFileName = -join($ReportPath,'\',('ComputerSP'+'Ns'+'.'+'c'+'sv'))
         If (Test-Path $ADFileName)
         {
-            Get-ADRExcelWorkbook -Name ("{1}{0}{2}" -f 'mputer','Co','s')
+            Get-ADRExcelWorkbook -Name ('Comput'+'er'+' '+'SPNs')
             Get-ADRExcelImport -ADFileName $ADFileName
             Remove-Variable ADFileName
 
-            Get-ADRExcelSort -ColumnName ("{1}{0}{2}" -f'serNam','U','e')
+            Get-ADRExcelSort -ColumnName ('Use'+'rNam'+'e')
+        }
+
+        $ADFileName = -join($ReportPath,'\',('C'+'ompute'+'rs'+'.csv'))
+        If (Test-Path $ADFileName)
+        {
+            Get-ADRExcelWorkbook -Name ('C'+'omp'+'uters')
+            Get-ADRExcelImport -ADFileName $ADFileName
+            Remove-Variable ADFileName
+
+            Get-ADRExcelSort -ColumnName ('UserN'+'am'+'e')
 
             $worksheet = $workbook.Worksheets.Item(1)
             # Freeze First Row and Column
@@ -5511,50 +5511,50 @@ Function Export-ADRExcel
             Remove-Variable worksheet
         }
 
-        $ADFileName = -join($ReportPath,'\',("{1}{0}{2}" -f '.','OUs','csv'))
+        $ADFileName = -join($ReportPath,'\',('OUs.c'+'s'+'v'))
         If (Test-Path $ADFileName)
         {
-            Get-ADRExcelWorkbook -Name "OUs"
+            Get-ADRExcelWorkbook -Name ('OU'+'s')
             Get-ADRExcelImport -ADFileName $ADFileName
             Remove-Variable ADFileName
         }
 
-        $ADFileName = -join($ReportPath,'\',("{1}{0}{2}"-f'ou','Gr','ps.csv'))
+        $ADFileName = -join($ReportPath,'\',('Group'+'s'+'.'+'csv'))
         If (Test-Path $ADFileName)
         {
-            Get-ADRExcelWorkbook -Name ("{0}{1}" -f 'Gr','oups')
+            Get-ADRExcelWorkbook -Name ('Gr'+'oups')
             Get-ADRExcelImport -ADFileName $ADFileName
             Remove-Variable ADFileName
 
-            Get-ADRExcelSort -ColumnName ("{3}{0}{1}{2}" -f 's','h','edName','Distingui')
+            Get-ADRExcelSort -ColumnName ('D'+'isti'+'n'+'guished'+'Na'+'me')
         }
 
-        $ADFileName = -join($ReportPath,'\',("{0}{2}{1}" -f'G','.csv','roupMembers'))
+        $ADFileName = -join($ReportPath,'\',('G'+'roupM'+'em'+'bers.'+'csv'))
         If (Test-Path $ADFileName)
         {
-            Get-ADRExcelWorkbook -Name ("{2}{0}{1}" -f 'roup Memb','ers','G')
+            Get-ADRExcelWorkbook -Name ('Group Mem'+'be'+'rs')
             Get-ADRExcelImport -ADFileName $ADFileName
             Remove-Variable ADFileName
 
-            Get-ADRExcelSort -ColumnName ("{2}{1}{0}" -f 'Name',' ','Group')
+            Get-ADRExcelSort -ColumnName ('G'+'roup'+' Name')
         }
 
-        $ADFileName = -join($ReportPath,'\',("{1}{3}{0}{2}" -f'.','Us','csv','erSPNs'))
+        $ADFileName = -join($ReportPath,'\',('UserS'+'PN'+'s.csv'))
         If (Test-Path $ADFileName)
         {
-            Get-ADRExcelWorkbook -Name ("{0}{2}{1}"-f 'Use','s','r SPN')
+            Get-ADRExcelWorkbook -Name ('User'+' SPN'+'s')
             Get-ADRExcelImport -ADFileName $ADFileName
             Remove-Variable ADFileName
         }
 
-        $ADFileName = -join($ReportPath,'\',("{2}{1}{0}"-f'csv','rs.','Use'))
+        $ADFileName = -join($ReportPath,'\',('Users'+'.c'+'sv'))
         If (Test-Path $ADFileName)
         {
-            Get-ADRExcelWorkbook -Name ("{0}{1}" -f'Use','rs')
+            Get-ADRExcelWorkbook -Name ('U'+'sers')
             Get-ADRExcelImport -ADFileName $ADFileName
             Remove-Variable ADFileName
 
-            Get-ADRExcelSort -ColumnName ("{0}{2}{1}"-f'Us','ame','erN')
+            Get-ADRExcelSort -ColumnName ('User'+'Na'+'me')
 
             $worksheet = $workbook.Worksheets.Item(1)
 
@@ -5575,24 +5575,24 @@ Function Export-ADRExcel
         }
 
         # Computer Role Stats
-        $ADFileName = -join($ReportPath,'\',("{2}{4}{1}{3}{0}" -f'v','.c','Comput','s','erSPNs'))
+        $ADFileName = -join($ReportPath,'\',('ComputerS'+'PNs'+'.c'+'sv'))
         If (Test-Path $ADFileName)
         {
-            Get-ADRExcelWorkbook -Name ("{1}{0}{3}{2}" -f 'le ','Computer Ro','ts','Sta')
+            Get-ADRExcelWorkbook -Name ('Co'+'mp'+'u'+'ter Role Stats')
             Remove-Variable ADFileName
 
             $worksheet = $workbook.Worksheets.Item(1)
-            $PivotTableName = ("{0}{1}{3}{4}{2}"-f'Co','m','SPNs','pu','ter ')
-            Get-ADRExcelPivotTable -SrcSheetName ("{2}{0}{1}"-f'er SP','Ns','Comput') -PivotTableName $PivotTableName -PivotRows @(("{0}{2}{1}" -f'Ser','e','vic')) -PivotValues @(("{0}{1}" -f 'Serv','ice'))
+            $PivotTableName = ('Com'+'p'+'ute'+'r SPNs')
+            Get-ADRExcelPivotTable -SrcSheetName ('C'+'ompu'+'te'+'r SP'+'Ns') -PivotTableName $PivotTableName -PivotRows @(('Serv'+'ice')) -PivotValues @(('S'+'er'+'vice'))
 
-            $worksheet.Cells.Item(1,1) = ("{1}{0}{2}{3}"-f 'mpute','Co','r Ro','le')
-            $worksheet.Cells.Item(1,2) = ("{0}{1}" -f 'Co','unt')
+            $worksheet.Cells.Item(1,1) = ('Compu'+'ter Ro'+'le')
+            $worksheet.Cells.Item(1,2) = ('C'+'ount')
 
             # https://msdn.microsoft.com/en-us/vba/excel-vba/articles/xlsortorder-enumeration-excel
-            $worksheet.PivotTables($PivotTableName).PivotFields(("{1}{0}"-f'ice','Serv')).AutoSort([Microsoft.Office.Interop.Excel.XlSortOrder]::xlDescending,("{0}{1}" -f'Co','unt'))
+            $worksheet.PivotTables($PivotTableName).PivotFields(('Serv'+'ice')).AutoSort([Microsoft.Office.Interop.Excel.XlSortOrder]::xlDescending,('Coun'+'t'))
 
-            Get-ADRExcelChart -ChartType ("{4}{0}{3}{2}{1}"-f 'Co','ustered','l','lumnC','xl') -ChartLayout 10 -ChartTitle ("{1}{3}{2}{0}"-f ' in AD','Compute','es','r Rol') -RangetoCover ("{2}{0}{1}" -f'U','16','D2:')
-            $workbook.Worksheets.Item(1).Hyperlinks.Add($workbook.Worksheets.Item(1).Cells.Item(1,4) , "" , ((("{1}{3}{2}{0}{4}" -f'r SPN','jli','mpute','Co','sjli!A1')).REPLAce(([cHar]106+[cHar]108+[cHar]105),[striNG][cHar]39)), "", ("{2}{1}{0}"-f'a','t','Raw Da')) | Out-Null
+            Get-ADRExcelChart -ChartType ('x'+'lColumn'+'Cl'+'ustered') -ChartLayout 10 -ChartTitle ('Comput'+'er Ro'+'les '+'i'+'n AD') -RangetoCover ('D2:U'+'16')
+            $workbook.Worksheets.Item(1).Hyperlinks.Add($workbook.Worksheets.Item(1).Cells.Item(1,4) , "" , (('4fnCompute'+'r SPNs'+'4'+'fn'+'!A1')  -REPLAce  '4fn',[char]39), "", ('Raw Dat'+'a')) | Out-Null
             $excel.Windows.Item(1).Displaygridlines = $false
             Remove-Variable PivotTableName
 
@@ -5601,24 +5601,24 @@ Function Export-ADRExcel
         }
 
         # Operating System Stats
-        $ADFileName = -join($ReportPath,'\',("{1}{2}{0}" -f 'v','Comp','uters.cs'))
+        $ADFileName = -join($ReportPath,'\',('Com'+'put'+'ers.'+'csv'))
         If (Test-Path $ADFileName)
         {
-            Get-ADRExcelWorkbook -Name ("{4}{2}{3}{0}{1}"-f 'a','ts','stem',' St','Operating Sy')
+            Get-ADRExcelWorkbook -Name ('Op'+'e'+'ra'+'ting System'+' St'+'ats')
             Remove-Variable ADFileName
 
             $worksheet = $workbook.Worksheets.Item(1)
-            $PivotTableName = ("{0}{3}{1}{2}" -f'Operatin','Sy','stems','g ')
-            Get-ADRExcelPivotTable -SrcSheetName ("{0}{1}" -f 'Comput','ers') -PivotTableName $PivotTableName -PivotRows @(("{4}{3}{2}{0}{1}" -f 'yste','m','ng S','ati','Oper')) -PivotValues @(("{1}{4}{2}{0}{3}"-f'ng Sys','Op','ati','tem','er'))
+            $PivotTableName = ('Operati'+'n'+'g Syst'+'em'+'s')
+            Get-ADRExcelPivotTable -SrcSheetName ('Com'+'pu'+'ter'+'s') -PivotTableName $PivotTableName -PivotRows @(('Op'+'erating '+'Syste'+'m')) -PivotValues @(('O'+'pe'+'ratin'+'g Sy'+'stem'))
 
-            $worksheet.Cells.Item(1,1) = ("{2}{0}{3}{1}"-f 'er','em','Op','ating Syst')
-            $worksheet.Cells.Item(1,2) = ("{1}{0}"-f 't','Coun')
+            $worksheet.Cells.Item(1,1) = ('O'+'per'+'a'+'ting Sy'+'stem')
+            $worksheet.Cells.Item(1,2) = ('Coun'+'t')
 
             # https://msdn.microsoft.com/en-us/vba/excel-vba/articles/xlsortorder-enumeration-excel
-            $worksheet.PivotTables($PivotTableName).PivotFields(("{5}{0}{2}{4}{1}{3}" -f 'pe','ing Sys','r','tem','at','O')).AutoSort([Microsoft.Office.Interop.Excel.XlSortOrder]::xlDescending,("{1}{0}"-f'ount','C'))
+            $worksheet.PivotTables($PivotTableName).PivotFields(('Ope'+'rating S'+'y'+'s'+'tem')).AutoSort([Microsoft.Office.Interop.Excel.XlSortOrder]::xlDescending,('Cou'+'nt'))
 
-            Get-ADRExcelChart -ChartType ("{0}{2}{3}{1}"-f'xl','red','Col','umnCluste') -ChartLayout 10 -ChartTitle ("{5}{1}{3}{4}{0}{2}"-f's','Sys',' in AD','t','em','Operating ') -RangetoCover ("{1}{0}"-f'16','D2:S')
-            $workbook.Worksheets.Item(1).Hyperlinks.Add($workbook.Worksheets.Item(1).Cells.Item(1,4) , "" , ("{1}{2}{0}"-f'!A1','Com','puters'), "", ("{0}{1}{2}"-f 'Ra','w D','ata')) | Out-Null
+            Get-ADRExcelChart -ChartType ('xl'+'Column'+'Clu'+'s'+'ter'+'ed') -ChartLayout 10 -ChartTitle ('Opera'+'ting'+' '+'S'+'ys'+'tems i'+'n AD') -RangetoCover ('D'+'2:S16')
+            $workbook.Worksheets.Item(1).Hyperlinks.Add($workbook.Worksheets.Item(1).Cells.Item(1,4) , "" , ('C'+'om'+'puters!'+'A1'), "", ('Raw'+' Dat'+'a')) | Out-Null
             $excel.Windows.Item(1).Displaygridlines = $false
             Remove-Variable PivotTableName
 
@@ -5627,34 +5627,34 @@ Function Export-ADRExcel
         }
 
         # Group Stats
-        $ADFileName = -join($ReportPath,'\',("{2}{0}{4}{3}{1}" -f'upMembers','sv','Gro','c','.'))
+        $ADFileName = -join($ReportPath,'\',('Group'+'Memb'+'er'+'s.'+'cs'+'v'))
         If (Test-Path $ADFileName)
         {
-            Get-ADRExcelWorkbook -Name ("{4}{2}{3}{0}{5}{1}"-f'd Group S','ats','v','ilege','Pri','t')
+            Get-ADRExcelWorkbook -Name ('Priv'+'ileged'+' Group '+'S'+'t'+'a'+'ts')
             Remove-Variable ADFileName
 
             $worksheet = $workbook.Worksheets.Item(1)
-            $PivotTableName = ("{1}{0}{2}" -f 'mber','Group Me','s')
-            Get-ADRExcelPivotTable -SrcSheetName ("{2}{0}{1}" -f'embe','rs','Group M') -PivotTableName $PivotTableName -PivotRows @(("{1}{0}{2}" -f 'Na','Group ','me'))-PivotFilters @(("{1}{2}{0}"-f 'untType','A','cco')) -PivotValues @(("{1}{0}{3}{2}" -f'ntT','Accou','pe','y'))
+            $PivotTableName = ('Gr'+'oup M'+'embers')
+            Get-ADRExcelPivotTable -SrcSheetName ('G'+'roup M'+'ember'+'s') -PivotTableName $PivotTableName -PivotRows @(('Gr'+'o'+'u'+'p Name'))-PivotFilters @(('Ac'+'c'+'ountT'+'ype')) -PivotValues @(('A'+'ccou'+'ntType'))
 
             # Set the filter
-            $worksheet.PivotTables($PivotTableName).PivotFields(("{0}{2}{1}" -f 'Ac','untType','co')).CurrentPage = ("{0}{1}" -f'us','er')
+            $worksheet.PivotTables($PivotTableName).PivotFields(('A'+'cc'+'ou'+'ntType')).CurrentPage = ('u'+'ser')
 
             $worksheet.Cells.Item(1,2).Interior.ColorIndex = 5
             $worksheet.Cells.Item(1,2).font.ColorIndex = 2
 
-            $worksheet.Cells.Item(3,1) = ("{1}{2}{0}"-f 'p Name','Gro','u')
-            $worksheet.Cells.Item(3,2) = ("{0}{4}{2}{1}{3}"-f 'C','Re','unt (Not-','cursive)','o')
+            $worksheet.Cells.Item(3,1) = ('Group N'+'a'+'me')
+            $worksheet.Cells.Item(3,2) = ('Co'+'unt ('+'N'+'ot'+'-Recursi'+'ve)')
 
             $excel.ScreenUpdating = $false
             # Create a copy of the Pivot Table
-            $PivotTableTemp = ($workbook.PivotCaches().Item($workbook.PivotCaches().Count)).CreatePivotTable(("{1}{0}" -f 'C5','R1'),("{2}{3}{1}{0}" -f'leTemp','Tab','P','ivot'))
-            $PivotFieldTemp = $PivotTableTemp.PivotFields(("{0}{2}{1}"-f 'Grou','e','p Nam'))
+            $PivotTableTemp = ($workbook.PivotCaches().Item($workbook.PivotCaches().Count)).CreatePivotTable(('R1'+'C5'),('Pi'+'vo'+'tTable'+'Temp'))
+            $PivotFieldTemp = $PivotTableTemp.PivotFields(('Grou'+'p Na'+'me'))
             # Set a filter
             $PivotFieldTemp.Orientation = [Microsoft.Office.Interop.Excel.XlPivotFieldOrientation]::xlPageField
             Try
             {
-                $PivotFieldTemp.CurrentPage = ("{2}{0}{3}{1}{4}"-f 'ma','n Ad','Do','i','mins')
+                $PivotFieldTemp.CurrentPage = ('Domai'+'n A'+'dmins')
             }
             Catch
             {
@@ -5665,7 +5665,7 @@ Function Export-ADRExcel
             {
                 Try
                 {
-                    $PivotFieldTemp.CurrentPage = ("{1}{2}{0}{3}" -f 'r','Administrat','o','s')
+                    $PivotFieldTemp.CurrentPage = ('A'+'d'+'min'+'istr'+'ators')
                 }
                 Catch
                 {
@@ -5689,10 +5689,10 @@ Function Export-ADRExcel
             Remove-Variable PivotSlicer
             Remove-Variable PivotTableTemp
 
-            ("{0}{3}{1}{2}"-f'Acc',' Op','erators','ount'),("{3}{2}{1}{0}" -f 'rators','inist','m','Ad'),("{2}{0}{3}{1}"-f 'ckup','ators','Ba',' Oper'),("{3}{1}{2}{0}" -f'shers','ert ','Publi','C'),("{0}{1}{3}{2}"-f'Crypto O','pera','s','tor'),("{2}{0}{1}"-f 'dmi','ns','DnsA'),("{1}{0}{2}" -f'omain','D',' Admins'),("{1}{0}{2}{3}{4}"-f 'p','Enter','rise Ad','min','s'),("{5}{2}{1}{0}{3}{4}" -f ' ','ey','K','Admi','ns','Enterprise '),("{0}{8}{9}{4}{6}{2}{5}{1}{7}{3}"-f 'Incoming',' Bu',' Trus','ers','re','t','st','ild',' F','o'),("{0}{1}{2}"-f'Key Ad','m','ins'),("{5}{9}{2}{4}{8}{0}{7}{3}{10}{1}{6}" -f ' Analytics A','istrato','o','mi','ft Advanced Threa','M','rs','d','t','icros','n'),("{0}{3}{1}{2}" -f'Netw','a','tors','ork Oper'),("{1}{2}{0}"-f 'Operators','Print',' '),("{1}{0}{2}"-f 'ected U','Prot','sers'),("{3}{2}{1}{4}{0}"-f 's','sktop','De','Remote ',' User'),("{0}{2}{3}{1}" -f 'Sc','mins','he','ma Ad'),("{0}{2}{3}{1}"-f'Server ','ors','O','perat') | ForEach-Object {
+            ('A'+'cc'+'ount Operato'+'rs'),('Admini'+'s'+'tr'+'a'+'tors'),('Back'+'up Op'+'erator'+'s'),('Ce'+'rt P'+'u'+'bl'+'ishers'),('Crypt'+'o O'+'p'+'erators'),('D'+'nsA'+'dmi'+'ns'),('Do'+'main'+' '+'Admins'),('Enterp'+'rise'+' Ad'+'mins'),('E'+'nterprise K'+'ey '+'Ad'+'m'+'ins'),('Incom'+'ing Forest Tru'+'s'+'t B'+'u'+'ilders'),('Ke'+'y Adm'+'ins'),('Mic'+'rosoft Adv'+'anc'+'ed Thr'+'eat'+' Analy'+'tics Adm'+'inistra'+'tors'),('Netwo'+'rk Ope'+'rato'+'rs'),('Pr'+'int '+'Opera'+'t'+'ors'),('Protect'+'ed '+'Use'+'rs'),('Remote D'+'esk'+'top User'+'s'),('Sc'+'hema A'+'dmins'),('Serve'+'r O'+'perators') | ForEach-Object {
                 Try
                 {
-                    $worksheet.PivotTables($PivotTableName).PivotFields(("{0}{2}{1}" -f'G','p Name','rou')).PivotItems($_).Visible = $true
+                    $worksheet.PivotTables($PivotTableName).PivotFields(('Gro'+'u'+'p Name')).PivotItems($_).Visible = $true
                 }
                 Catch
                 {
@@ -5701,15 +5701,15 @@ Function Export-ADRExcel
             }
 
             # https://msdn.microsoft.com/en-us/vba/excel-vba/articles/xlsortorder-enumeration-excel
-            $worksheet.PivotTables($PivotTableName).PivotFields(("{2}{0}{1}"-f ' ','Name','Group')).AutoSort([Microsoft.Office.Interop.Excel.XlSortOrder]::xlDescending,("{3}{5}{0}{1}{2}{4}"-f 't (N','ot-Recurs','ive','C',')','oun'))
+            $worksheet.PivotTables($PivotTableName).PivotFields(('Group'+' '+'Name')).AutoSort([Microsoft.Office.Interop.Excel.XlSortOrder]::xlDescending,('Count (Not'+'-Recu'+'r'+'sive)'))
 
             $worksheet.Cells.Item(3,1).Interior.ColorIndex = 5
             $worksheet.Cells.Item(3,1).font.ColorIndex = 2
 
             $excel.ScreenUpdating = $true
 
-            Get-ADRExcelChart -ChartType ("{1}{4}{3}{2}{0}" -f 'ered','xlColumn','ust','l','C') -ChartLayout 10 -ChartTitle ("{3}{2}{0}{4}{1}"-f' Groups ','n AD','vileged','Pri','i') -RangetoCover ("{0}{1}"-f 'D2:P','16') -StartRow "A3" -StartColumn "B3"
-            $workbook.Worksheets.Item(1).Hyperlinks.Add($workbook.Worksheets.Item(1).Cells.Item(1,4) , "" , ((("{6}{3}{1}{7}{4}{0}{5}{2}"-f 'bersi','o','1','zlGr','m','zl!A','i','up Me')).rEpLace('izl',[sTRIng][cHAr]39)), "", ("{1}{0}"-f 'a','Raw Dat')) | Out-Null
+            Get-ADRExcelChart -ChartType ('x'+'l'+'Col'+'umnCluster'+'ed') -ChartLayout 10 -ChartTitle ('Privileg'+'ed'+' Group'+'s'+' in AD') -RangetoCover ('D2:'+'P16') -StartRow 'A3' -StartColumn 'B3'
+            $workbook.Worksheets.Item(1).Hyperlinks.Add($workbook.Worksheets.Item(1).Cells.Item(1,4) , "" , (('{0}'+'Group Memb'+'ers{0'+'}'+'!A'+'1')  -F  [CHAr]39), "", ('R'+'aw Data')) | Out-Null
             $excel.Windows.Item(1).Displaygridlines = $false
 
             Get-ADRExcelComObjRelease -ComObjtoRelease $worksheet
@@ -5717,73 +5717,73 @@ Function Export-ADRExcel
         }
 
         # Computer Stats
-        $ADFileName = -join($ReportPath,'\',("{3}{2}{1}{0}{4}" -f 's','ers.c','put','Com','v'))
+        $ADFileName = -join($ReportPath,'\',('Comp'+'u'+'t'+'ers.csv'))
         If (Test-Path $ADFileName)
         {
-            Get-ADRExcelWorkbook -Name ("{2}{0}{1}"-f'puter S','tats','Com')
+            Get-ADRExcelWorkbook -Name ('C'+'o'+'m'+'puter Sta'+'ts')
             Remove-Variable ADFileName
 
             $ObjAttributes = New-Object System.Collections.Specialized.OrderedDictionary
-            $ObjAttributes.Add(("{2}{4}{0}{3}{1}"-f'ati','p','Dele','on Ty','g'),((("{0}{3}{2}{1}{4}{5}" -f'ZHVUn','traine','s','con','dZH','V'))  -crePLACE  ([cHAR]90+[cHAR]72+[cHAR]86),[cHAR]34))
-            $ObjAttributes.Add(("{1}{2}{0}"-f'on Type','Delegat','i'),((("{0}{3}{4}{1}{2}"-f'f','str','ainedf01','01Co','n')).REPLaCE(([chAr]102+[chAr]48+[chAr]49),[StrIng][chAr]34)))
-            $ObjAttributes.Add(("{0}{2}{1}"-f 'SI','ry','DHisto'),'"*"')
-            $ObjAttributes.Add(("{1}{2}{0}" -f 'nt','Dor','ma'),((("{2}{3}{0}{1}"-f'{0','}','{0}','TRUE'))  -f [chaR]34))
-            $ObjAttributes.Add(((("{3}{2}{0}{1}" -f 'rd A','ge (> ','o','Passw'))),((("{0}{2}{1}"-f 'iNITR','I','UEiN'))-REPLAce ([CHaR]105+[CHaR]78+[CHaR]73),[CHaR]34))
-            $ObjAttributes.Add(("{3}{0}{1}{4}{2}" -f's-ds-Cr','ea','orSid','m','t'),'"*"')
+            $ObjAttributes.Add(('De'+'l'+'egatio'+'n Typ'),(('IN'+'YUnconstr'+'ai'+'ne'+'d'+'I'+'NY').repLaCe(([ChaR]73+[ChaR]78+[ChaR]89),[sTRInG][ChaR]34)))
+            $ObjAttributes.Add(('Delegat'+'i'+'on Type'),(('wdGCons'+'traine'+'dw'+'dG')-CrEpLacE 'wdG',[cHAR]34))
+            $ObjAttributes.Add(('SIDH'+'ist'+'or'+'y'),(('ukB*'+'ukB') -cREpLACE ([Char]117+[Char]107+[Char]66),[Char]34))
+            $ObjAttributes.Add(('Dorma'+'n'+'t'),(('{0}TRUE'+'{0}')-F[cHAr]34))
+            $ObjAttributes.Add((('Passwor'+'d '+'Age ('+'> ')),(('n'+'kpTRUEnkp').RePlACe('nkp',[sTRing][CHaR]34)))
+            $ObjAttributes.Add(('ms-ds-Cr'+'eat'+'orSid'),(('{0}*{'+'0'+'}')  -f  [ChAr]34))
 
-            Get-ADRExcelAttributeStats -SrcSheetName ("{2}{0}{1}"-f 'om','puters','C') -Title1 ("{2}{1}{0}{4}{3}" -f'cc','r A','Compute','unts in AD','o') -PivotTableName ("{3}{4}{0}{2}{1}" -f'nt','tatus','s S','Computer Acc','ou') -PivotRows ("{2}{0}{1}"-f 'ble','d','Ena') -PivotValues ("{2}{0}{1}"-f'm','e','UserNa') -PivotPercentage ("{1}{0}"-f'e','UserNam') -Title2 ("{3}{2}{1}{4}{0}" -f'Accounts','mpute','Co','Status of ','r ') -ObjAttributes $ObjAttributes
+            Get-ADRExcelAttributeStats -SrcSheetName ('Computer'+'s') -Title1 ('Compute'+'r Ac'+'cou'+'n'+'t'+'s in'+' AD') -PivotTableName ('Com'+'p'+'ut'+'er Accounts Stat'+'us') -PivotRows ('E'+'nabl'+'ed') -PivotValues ('UserNa'+'me') -PivotPercentage ('Use'+'r'+'Name') -Title2 ('Sta'+'tus '+'of '+'Com'+'puter '+'Accounts') -ObjAttributes $ObjAttributes
             Remove-Variable ObjAttributes
 
-            Get-ADRExcelChart -ChartType ("{0}{1}"-f 'xl','Pie') -ChartLayout 3 -ChartTitle ("{5}{4}{3}{6}{0}{1}{2}" -f ' in ','A','D','oun','mputer Acc','Co','ts') -RangetoCover ("{0}{1}" -f 'A11:','D23') -ChartData $workbook.Worksheets.Item(1).Range(("{1}{2}{0}" -f'B3:B4','A','3:A4,'))
-            $workbook.Worksheets.Item(1).Hyperlinks.Add($workbook.Worksheets.Item(1).Cells.Item(10,1) , "" , ("{2}{1}{0}"-f 'ers!A1','omput','C'), "", ("{0}{1}{2}" -f'Ra','w D','ata')) | Out-Null
+            Get-ADRExcelChart -ChartType ('xl'+'Pie') -ChartLayout 3 -ChartTitle ('Co'+'mput'+'er A'+'ccounts in AD') -RangetoCover ('A11'+':D2'+'3') -ChartData $workbook.Worksheets.Item(1).Range(('A3'+':A4,B3'+':B4'))
+            $workbook.Worksheets.Item(1).Hyperlinks.Add($workbook.Worksheets.Item(1).Cells.Item(10,1) , "" , ('Comp'+'u'+'ters!A'+'1'), "", ('Ra'+'w Da'+'ta')) | Out-Null
 
-            Get-ADRExcelChart -ChartType ("{1}{3}{0}{2}" -f 'lus','xlB','tered','arC') -ChartLayout 1 -ChartTitle ("{0}{5}{6}{2}{1}{4}{3}"-f 'Stat','mp','o','ter Accounts','u','us of',' C') -RangetoCover ("{1}{0}" -f'L23','F11:') -ChartData $workbook.Worksheets.Item(1).Range(("{0}{2}{1}" -f'F','G8','2:F8,G2:'))
-            $workbook.Worksheets.Item(1).Hyperlinks.Add($workbook.Worksheets.Item(1).Cells.Item(10,6) , "" , ("{0}{1}{2}"-f'Co','mputer','s!A1'), "", ("{0}{1}"-f 'Raw Dat','a')) | Out-Null
+            Get-ADRExcelChart -ChartType ('xl'+'Ba'+'r'+'Clu'+'stered') -ChartLayout 1 -ChartTitle ('S'+'t'+'atus of'+' Compu'+'ter'+' '+'Accounts') -RangetoCover ('F11:'+'L'+'23') -ChartData $workbook.Worksheets.Item(1).Range(('F'+'2:F8'+',G2:'+'G8'))
+            $workbook.Worksheets.Item(1).Hyperlinks.Add($workbook.Worksheets.Item(1).Cells.Item(10,6) , "" , ('Co'+'mp'+'u'+'ters!A1'), "", ('Raw'+' D'+'ata')) | Out-Null
 
             $workbook.Worksheets.Item(1).UsedRange.EntireColumn.AutoFit() | Out-Null
             $excel.Windows.Item(1).Displaygridlines = $false
         }
 
         # User Stats
-        $ADFileName = -join($ReportPath,'\',("{2}{1}{0}"-f '.csv','s','User'))
+        $ADFileName = -join($ReportPath,'\',('User'+'s'+'.csv'))
         If (Test-Path $ADFileName)
         {
-            Get-ADRExcelWorkbook -Name ("{0}{1}{2}"-f'Use','r S','tats')
+            Get-ADRExcelWorkbook -Name ('User '+'St'+'ats')
             Remove-Variable ADFileName
 
             $ObjAttributes = New-Object System.Collections.Specialized.OrderedDictionary
-            $ObjAttributes.Add(("{4}{2}{8}{1}{6}{7}{5}{3}{0}"-f't Logon','C','t','sword a','Mus','Pas','han','ge ',' '),((("{0}{2}{1}" -f'{0}','{0}','TRUE'))-F[chAR]34))
-            $ObjAttributes.Add(("{2}{5}{6}{3}{4}{0}{1}" -f'r','d','Cannot Chang','ass','wo','e ','P'),((("{2}{1}{0}"-f'TRUEWwe','we','W')).RepLace(([CHAR]87+[CHAR]119+[CHAR]101),[StRiNg][CHAR]34)))
-            $ObjAttributes.Add(("{2}{3}{1}{4}{0}" -f'res','er ','Pass','word Nev','Expi'),((("{1}{2}{3}{0}"-f'Zc','KZcTR','UE','K')) -crePLAcE  'KZc',[chaR]34))
-            $ObjAttributes.Add(("{2}{6}{1}{3}{0}{8}{4}{7}{5}" -f 'e Pa','rsib','Rev','l','swo','on','e','rd Encrypti','s'),((("{1}{2}{0}" -f'ud','WudT','RUEW')).rEPlAcE(([cHaR]87+[cHaR]117+[cHaR]100),[STRiNG][cHaR]34)))
-            $ObjAttributes.Add(("{2}{6}{1}{3}{4}{0}{5}"-f 're','d ','Smartca','Lo','gon Requi','d','r'),((("{2}{0}{1}" -f 'TRU','E0dr','0dr'))  -rEplacE'0dr',[cHaR]34))
-            $ObjAttributes.Add(("{2}{0}{1}{4}{3}"-f 'elegat','ion','D','itted',' Perm'),((("{1}{3}{0}{2}" -f 'RUE','do','dot','tT')) -CrEPlacE 'dot',[Char]34))
-            $ObjAttributes.Add(("{5}{4}{1}{2}{3}{0}"-f'nly','os D','ES ','O','erber','K'),((("{1}{0}{3}{2}" -f 'YgTR','I','IYg','UE')).RepLAce(([chAr]73+[chAr]89+[chAr]103),[strinG][chAr]34)))
-            $ObjAttributes.Add(("{0}{1}{2}{3}"-f 'Kerb','ero','s RC','4'),((("{1}{2}{0}" -f'{0}','{0}','TRUE'))-F  [ChaR]34))
-            $ObjAttributes.Add(("{3}{2}{4}{0}{1}"-f'ire ','Pre Auth','ot','Does N',' Requ'),((("{3}{0}{1}{2}"-f'oj','T','RUEZoj','Z')) -repLaCE ([cHar]90+[cHar]111+[cHar]106),[cHar]34))
-            $ObjAttributes.Add(((("{0}{2}{1}{3}"-f 'Pas','r','swo','d Age (> '))),((("{1}{2}{3}{0}" -f'1gM','1gMT','RU','E')).ReplAce(([ChAR]49+[ChAR]103+[ChAR]77),[stRinG][ChAR]34)))
-            $ObjAttributes.Add(("{1}{3}{0}{2}"-f'nt L','Ac','ocked Out','cou'),((("{2}{0}{3}{1}" -f'R','{0}','{0}T','UE'))  -F  [CHAR]34))
-            $ObjAttributes.Add(("{0}{4}{1}{2}{3}"-f 'Neve',' L','og','ged in','r'),((("{0}{2}{1}" -f '{0}','UE{0}','TR')) -f [cHaR]34))
-            $ObjAttributes.Add(("{0}{1}" -f'D','ormant'),((("{1}{0}"-f 'FT','AFTTRUEA')).rePlaCe(([chaR]65+[chaR]70+[chaR]84),[strIng][chaR]34)))
-            $ObjAttributes.Add(("{2}{3}{4}{0}{1}{5}"-f'eq','uire','Passw','or','d Not R','d'),((("{1}{2}{0}"-f 'Zu','bZ','uTRUEb')) -crEPLAce  'bZu',[CHar]34))
-            $ObjAttributes.Add(("{4}{1}{0}{3}{2}" -f'ega','l','yp','tion T','De'),((("{1}{2}{4}{0}{3}{5}{6}" -f 'ned','W','aRUncons','W','trai','a','R'))-rEpLaCe'WaR',[char]34))
-            $ObjAttributes.Add(("{3}{0}{2}{1}"-f 'DHist','y','or','SI'),'"*"')
+            $ObjAttributes.Add(('Mu'+'st Change Pass'+'word '+'at'+' Lo'+'g'+'o'+'n'),(('{0}'+'TR'+'UE{0}')  -F [chaR]34))
+            $ObjAttributes.Add(('Cannot C'+'hange Pas'+'s'+'wor'+'d'),(('MmKT'+'RUE'+'MmK')-crEpLACe  'MmK',[chAr]34))
+            $ObjAttributes.Add(('Passw'+'ord'+' Nev'+'er '+'Expires'),(('C'+'5'+'pTRUEC5p')  -cReplaCE  ([CHar]67+[CHar]53+[CHar]112),[CHar]34))
+            $ObjAttributes.Add(('Reve'+'rsible Passwor'+'d '+'En'+'crypt'+'ion'),(('9c'+'sTR'+'UE9cs').repLace(([chAr]57+[chAr]99+[chAr]115),[striNg][chAr]34)))
+            $ObjAttributes.Add(('Smar'+'tca'+'rd '+'Lo'+'gon Req'+'u'+'ired'),(('{0'+'}'+'TRU'+'E{0}') -f [CHar]34))
+            $ObjAttributes.Add(('D'+'elegation Pe'+'r'+'mit'+'ted'),(('4dSTR'+'UE4d'+'S').rePLaCe(([CHaR]52+[CHaR]100+[CHaR]83),[STRING][CHaR]34)))
+            $ObjAttributes.Add(('Ke'+'rberos DES'+' O'+'nly'),(('9'+'Z'+'k'+'TRUE9Zk')  -cREPlACE'9Zk',[cHar]34))
+            $ObjAttributes.Add(('Kerber'+'os '+'RC'+'4'),(('{0'+'}T'+'RU'+'E{0}')  -F[cHAr]34))
+            $ObjAttributes.Add(('Doe'+'s No'+'t Req'+'u'+'i'+'re '+'Pre '+'Auth'),(('{0}TRUE'+'{0}') -f[char]34))
+            $ObjAttributes.Add((('Pas'+'s'+'word Ag'+'e '+'(> ')),(('{0}TRUE{'+'0}')  -F [CHaR]34))
+            $ObjAttributes.Add(('Account'+' Loc'+'k'+'e'+'d Out'),(('d'+'JwTR'+'U'+'EdJw').rePLAce(([ChAR]100+[ChAR]74+[ChAR]119),[STRing][ChAR]34)))
+            $ObjAttributes.Add(('Never '+'Log'+'ge'+'d in'),(('{0}TR'+'UE{0}')  -F  [CHAr]34))
+            $ObjAttributes.Add(('Do'+'rmant'),(('bL'+'eT'+'RUEbLe').rEpLaCE('bLe',[StRIng][chaR]34)))
+            $ObjAttributes.Add(('Pas'+'sword No'+'t '+'R'+'eq'+'ui'+'red'),(('{0'+'}T'+'RUE'+'{0}')  -f[chAr]34))
+            $ObjAttributes.Add(('D'+'ele'+'gation T'+'yp'),(('ZA'+'Q'+'Un'+'const'+'rai'+'ned'+'ZAQ').REplaCE('ZAQ',[sTRiNg][chAR]34)))
+            $ObjAttributes.Add(('SIDH'+'ist'+'ory'),(('0'+'un*0u'+'n')-CREpLace'0un',[ChAr]34))
 
-            Get-ADRExcelAttributeStats -SrcSheetName ("{0}{1}"-f 'User','s') -Title1 ("{1}{3}{4}{2}{0}"-f 'D','Us','unts in A','er Acc','o') -PivotTableName ("{0}{1}{2}{4}{3}{5}" -f 'Use','r A','c','unts Statu','co','s') -PivotRows ("{2}{1}{0}" -f 'ed','abl','En') -PivotValues ("{2}{0}{1}"-f 'serN','ame','U') -PivotPercentage ("{0}{2}{1}"-f 'U','erName','s') -Title2 ("{2}{1}{3}{0}"-f 's','atus of U','St','ser Account') -ObjAttributes $ObjAttributes
+            Get-ADRExcelAttributeStats -SrcSheetName ('User'+'s') -Title1 ('U'+'s'+'er '+'Ac'+'coun'+'ts in AD') -PivotTableName ('User Account'+'s Sta'+'t'+'us') -PivotRows ('Enable'+'d') -PivotValues ('U'+'se'+'rName') -PivotPercentage ('Use'+'rName') -Title2 ('Status of'+' '+'U'+'ser Accoun'+'ts') -ObjAttributes $ObjAttributes
             Remove-Variable ObjAttributes
 
-            Get-ADRExcelChart -ChartType ("{0}{1}"-f 'xlP','ie') -ChartLayout 3 -ChartTitle ("{0}{3}{2}{5}{1}{4}"-f 'User A','in ','unts','cco','AD',' ') -RangetoCover ("{0}{1}" -f 'A','21:D33') -ChartData $workbook.Worksheets.Item(1).Range(("{0}{2}{1}"-f'A3:A','B3:B4','4,'))
-            $workbook.Worksheets.Item(1).Hyperlinks.Add($workbook.Worksheets.Item(1).Cells.Item(20,1) , "" , ("{1}{0}"-f's!A1','User'), "", ("{1}{0}" -f ' Data','Raw')) | Out-Null
+            Get-ADRExcelChart -ChartType ('xlP'+'ie') -ChartLayout 3 -ChartTitle ('User Ac'+'co'+'unts '+'i'+'n'+' AD') -RangetoCover ('A21'+':D3'+'3') -ChartData $workbook.Worksheets.Item(1).Range(('A3:A4,B'+'3'+':B4'))
+            $workbook.Worksheets.Item(1).Hyperlinks.Add($workbook.Worksheets.Item(1).Cells.Item(20,1) , "" , ('U'+'sers!A1'), "", ('R'+'a'+'w Data')) | Out-Null
 
-            Get-ADRExcelChart -ChartType ("{1}{3}{2}{0}"-f 'ed','x','Cluster','lBar') -ChartLayout 1 -ChartTitle ("{5}{2}{1}{0}{3}{4}{6}" -f 'e','s','s of U','r',' Ac','Statu','counts') -RangetoCover ("{1}{0}"-f '1:L43','F2') -ChartData $workbook.Worksheets.Item(1).Range(("{2}{0}{1}"-f':G','18','F2:F18,G2'))
-            $workbook.Worksheets.Item(1).Hyperlinks.Add($workbook.Worksheets.Item(1).Cells.Item(20,6) , "" , ("{2}{1}{0}" -f '1','A','Users!'), "", ("{0}{1}{2}" -f 'Raw',' ','Data')) | Out-Null
+            Get-ADRExcelChart -ChartType ('xlBarC'+'l'+'us'+'tered') -ChartLayout 1 -ChartTitle ('Status '+'of Us'+'er A'+'c'+'cou'+'nts') -RangetoCover ('F2'+'1:L43') -ChartData $workbook.Worksheets.Item(1).Range(('F'+'2:F1'+'8,G2:'+'G18'))
+            $workbook.Worksheets.Item(1).Hyperlinks.Add($workbook.Worksheets.Item(1).Cells.Item(20,6) , "" , ('Use'+'rs!'+'A1'), "", ('Raw'+' D'+'ata')) | Out-Null
 
             $workbook.Worksheets.Item(1).UsedRange.EntireColumn.AutoFit() | Out-Null
             $excel.Windows.Item(1).Displaygridlines = $false
         }
 
         # Create Table of Contents
-        Get-ADRExcelWorkbook -Name ("{0}{2}{1}{3}" -f 'Table ','C','of ','ontents')
+        Get-ADRExcelWorkbook -Name ('Table of'+' C'+'on'+'te'+'nts')
         $worksheet = $workbook.Worksheets.Item(1)
 
         $excel.ScreenUpdating = $false
@@ -5791,12 +5791,12 @@ Function Export-ADRExcel
         # $path = "C:\ADRecon_Logo.jpg"
         # $base64adrecon = [convert]::ToBase64String((Get-Content $path -Encoding byte))
 
-		$base64adrecon = ("{64}{110}{42}{108}{41}{29}{120}{34}{119}{14}{113}{7}{44}{124}{4}{6}{71}{97}{104}{37}{46}{2}{88}{103}{77}{69}{31}{81}{32}{107}{0}{94}{22}{127}{118}{78}{10}{19}{58}{57}{49}{13}{106}{87}{91}{18}{89}{83}{115}{102}{112}{114}{16}{50}{82}{3}{62}{86}{11}{80}{36}{111}{28}{125}{51}{123}{30}{98}{21}{63}{126}{67}{85}{25}{33}{48}{99}{109}{1}{66}{95}{84}{38}{92}{53}{43}{5}{93}{72}{26}{101}{61}{76}{52}{59}{122}{12}{121}{23}{9}{70}{79}{56}{105}{116}{45}{73}{68}{17}{55}{27}{75}{15}{39}{100}{8}{74}{35}{24}{54}{60}{20}{65}{47}{90}{40}{96}{117}" -f 'COFTQCVjF','sBEQAhM','AAmZmAADypwAADVkAA','u4+Cf8Q2bePdL7eNunUH4J/xCa9u+d79eOSRcqvBX+0+f9+9n/wBqfjv/ABp+Ev8Aa34v/wBrXgr/AGnz/v8Awl/tb8X/AO1p2XKN3ut7DYqJqbS4ltZtqudsnjvp9hvVcnwy903CVXbwpe2ttZTGsu1bgZl72LRN/t9/c2jTH4bUnk+GXvYtE3+339zaNMfhtSeT4Ze6qt4N02y6sr9HJ8Mu','ABzAFIARwBCACAAYgB1AGkAbAB0AC0AaQBuAAB','sJfikYEjw004pmkDMoycNP2EPd/wDoXyDHO35E8Z3/AMEkjRPmgISKSSTrTLm8yppKfM//AI','tbHVjAAAAAAAAAAEAAAAMZW5VUwAAADIAAAAcAE4Abw','AAUAAAABOd3RwdAAAAZAAAAAUY2hhZAAAAaQAAAAsclhZWgAAAdAAAAAUYlhZWgAAAeQAAAAUZ1hZWgAAAfgAAAAUclRSQwAAAgwAAAAgZ1RSQwAAAiwAAAAgYlRSQwAAAkwAAAAgY2hybQAAAmwAAAAkbWx1Y','nALJVOBE9euaWIJ4PO9VeYEik9qQAc','OcZYrBhDkYMyzYGSPSZbPLTi/KSt04vylo64+khMj01aW7f/wP/9oACAE','AkKGRooKSo4OTpISUpXWFlaZ2hpand4eXqGh4iJipCWl5iZmqClpqeoqaqwtba3uLm6wMTFxsfIycrQ1NXW19jZ2uDk5ebn6Onq8/T19vf4+fr/xAAfAQADAQEBAQEBAQEBAAAAAAA','EeGPEbbEmA+6ndfFJHL7ZafaLt5fbKIkmkYyUhxi5IHPlIqJYeWJ+9NV9ri/E74sDc22P4Cw/Ex/Gg3Jn+JEq091M7Y','zzzzzzz/wD/APP/AD/wKnmaoBooIKgvfeTw8W/lljjYE0YOWwgCijjT9','Wl5iZmqCjpKWmp6ipqrCys7S1tre4ubrAwsPExcbHyMnK0NPU1dbX2Nna4OL','ANwAOYWNzcEFQUEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPbWAAEAAAAA0','/wAPa0gcVkonCuMUypAY/FHmQQOT192AsGoHUfx/w','DEuRSPD22FH9Hdre82kVruGxbTb3cX9Hdre77JZW9kpKknw9tMO4W2zbXFc3afDe2qO+2aL','fl/yvg/8A2XlD2XXGsrKPCQMa0rQehwF2fFaq0','HDggIDh4UERQeHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4','BAgADBA','2P+','s09tw25XnRQNXB/Z7R/Itf9kO5T6lqV70NT6M7VyuqPpz7XI/lMq','ESyg/Em','QLuXISvrdiTi4','5NSPikLWeSGF48lkBc8GHOx7v','82i73CVPvYPEtKriaNRTw1ftx/i5LOKWtqD0D4drhE8yUFXCrWR+00Wd/L','r1c2lCENUOdU','VaIpDT7f8AHNEibhMhqaRA7wmOQRP/ABwNxwweWEviqi81iPGNihoDyNN3jEgxETAeqIQ5R0x6mlAV8','YqlStWE3A','ZjwCyBOmACZjs+EJ+/+IC','E8C','AAAAKPXAABUewAATM0AAJmaAAAmZgAAD1z/wg','ABgcICQoL/8QAw','/FKcC1CyoYaaUZRDJihR6mFLXHkRrq/bj/FqFlQw0FKMohkxQ','GSUxFAAEBAAACkGxjbXMEMAAAbW50clJHQiBYWV','NXKRJ4vgB6/n/hEfxRFkg8','z7jufcROn3P6IlRtBpJv9g//aAAgBAhEBPwH9gEz+L83ICZgO04+XLL7LDs2i7Yy+2y+/HT34pmALRniykIi05ohBsW5pbY2Emo/hQblFyn7XJ/CRd1Nz/gfbmR5cgrGhl/EDk/CWf8IMogQcf4AmFm2k4ObtjjpnHcKZRsO3ii+z/V28UX2f6px2EYf6soCQpIsUxG0V+wf/2gAIAQEABj8C/wB/tGpe7x8uJQ6CpyXEUJ91r','AAC3kAAAGN5wYXJhAAA','v7Nf5TzeBygj8rzNkKfNBoEFJFi5IKcT+aDEIAJ/F9SyEUGgQUkWLkgp','7q8Dr/RcwB8fzUGQdb7sQxlJsSzHFm/OECZlizBl7rrKRCY','v/AN','AAAABDUHYz','XhpZgAATU0AKgAAAAgAAgESAAMAAAABAAEAAIdpAAQAAAABAAAAJgAAAAAAAqACAAQAAAABAAAA6qADAAQAAAABAAAARgAAAAD/7QA4UGhv','f/AMHufCD+rAxmaP6lIXmKqus1Uh','wAAAAAAAAABAAAADGVuVVMAAA','jm','AAAADAAA','syslwhDgfdXi1yILMcX/AOt/1RwRw5','o9TClrjyI11ftx/i89uUM','kVUkiei0ggJChgZGigpKjc4OTpGR0hJSlVWV1hZWmRlZmdoaWpzdHV2d3h5eoCDhIWGh4iJipCTlJW','HcO2x7Sb+Pft2F9BZ3v6UsxZGw8QeO/8afhL/a14v/2teBxlZSeFFqXuu5BFk/BCQqyX4WlUvadgXZXvi7/a14LA9wnUrn5Ke0a7p456brJT8J6714v/ANrXgc0svEG8JvkeEyf014v/ANrXbwPQWS942ML2vc','+TX/aLjkWClFD1Hg1lKgRiODGKFEV1oGkm71p+0GqW2mMsnkkGropJB+LGKF','EL4Dj/wAKobHbKCiRSfmkbjB4qoMBQeFqHm7wA93/ABCg0APC1Dzd4Ae7/iMIEaEN6lrDn','Yoh7v7f+','+xV/Jf8AgEz/AB58uqnveZDnKiJFEfDKtIjTK5o+GzFtwBcE8','RSGn2pbjhg8sJfFVg5KxHjGtB6HAXZjit','Lwpb','IcBAAIRAxASIQQgMUETBTAiMlEUQAYzI2FCFXFSNIFQJJGhQ7EWB2I1U/DRJWDBROFy8ReCYzZwJ','UGBwgJCgv/xADDEQACAgEDAwMCAwUCBQIEB','/EJbEGpyv5QQ0qls9soOJFp+aJwqa','ji81AkZB9ySk2hBPIWfi/8A0P8AusW0BlGPd/f/AMqPT7uNWPd/x/u/7Xld8','/8/SX9r/P/wCE3Sf5Tz/+C3CCwfJ4qyYPPLX50p','/k2mzt7u4lupvCl7a21lMay+GporfdfE08Vxuv8Av9//2gAIAQMR','984lpnVcCQDya/7Id1p5/1NfUfaL9ou3r+24MdOl+0fxcdddGv','/9j/4AAQSkZJRgABA','B1e8d380Cvt/K/4byv8AgPV/xfuwe6J4A1B50VbxhwHPqtRLE8rzYCoSCYHm','UFRYXGBkaGxwfD','f9TnVeSyKQdA5N0GPIkNRrr2uvn/U1/wAYk9o+b/xmT8XlIoqPqXdf7fk1/wBo9rf+27f+z2','PGBeRPqi9cvQc40E7gNJ4rfuw+P+/i56/5H/IfH/Iv+b/8Ag/fxf8X4f8Mf4rz/AMDw8HXTEcFloORd/T7pZHfaZmi','mYAAPKnAAANWQAAE9AAAApbcGFyYQAAAAAAAwAAAAJmZgAA8qcAAA1ZAAAT0AAACltjaHJtAAAAAAADA','C','AgAGMAbwBwAHkAcg','5/58ljT','PVVURhgv/ANb/AKs7xoQo4je71TziphgrU','jflf/AKupa5p//SyEks4/4Lp/Yq3RKOZ4oMQ6/ujHkYeQVRnWAiEnV','ssz','b0xhXcHk8cUy6Qun/','MAAAACZ','VXWklcOF8tNGdoDjR1Zmt','EQE/EP8A7rwzk+pkCXCwYdPmR35','ypEqd','ARCABGAOoDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAwIEAQU','tquLzd/wDjLvHf+NPZ7OXbTv8AdxX','e','J/wAQTSvdf8TyMYzwVkAjDRDKZfoqYxJf/wBDP0v8390/hf8AP+7+mv7f+f8An4VPrihzizy','j+Ra/7Id18/wCpr/tFx/Itf9kdo+d+7y6mI9nlAjWOujJPmxLCrFY','AT8B/YD','BQYHDAgHBwcHDwsLCQwRDxISEQ8RERMWHBcTFBoVEREYIRgaHR0fHx8TFyIkIh4kHB','BPQAAAKW3BhcmEA','eHh4eHh4eHh4eHh4eHh4eHh4eHv/aAAwDAQACEQMRAAAB8w2n2fNjTqjTqjTqjTqjTqjTqjTqjbVttW21bTqjbVtOqNtWnFj2dP3RuXfy/wBc8p7JltuB5/0A3n/ovL93R63zjqgeYbdbzW2TafWaxH84lRtc2+9ZJjp5Fry8deGn12oVvOJV2jpxMdh2CN5BF9Q6LPWcn63m3LWtzY4bedXiFuvm/W8l32ubDq+E7nJw1WZVx/rPk3rDqO08uCjX3UeW+pkeYAIHfO27PjOyy0856zketdVdXynU46c4HlundF8d2PHsHnZcDmEummZfVLzw/Ya+vcNzWZd6P5xnUvWcdqu0U+r1xXkGze8RT7RPXF','Di9XZ0Xbx5ZPxQ7mpQN4IjjiiVjpSTs/1XCJophMP6sBvmXzJXjzf/AK3/AFRKxk5J2f6rhE0UwmH9WA3zL5krx5','4fHv/bAEMBBQUFBwY','xP5v+L/dUHiER0/VjguHOfd/xf7qDEIAJ/F9SaEVf1wO+X2Dt/fd9X2Boc4s/9D4HIJnurZYZPTKL52bJlJ','OPgBJ/F4dw9tlxp0b+9/a/tv','zXwk3OiU','REOHxIDBAUGBwgJCgsMDQ4P/aAAgBAQABPyH/APXoQHLfFhkC0kH51UGYQeaOGZH','b/AKsblVUay79Ua2pCiMvHu/8A1v8Aqr0wehckJV1nQIw4uzs63js1Q4djQ/j','BpAGcAaAB0ACwAIAB1AHMAZQAgAGYAcgBlAGUAbAB5AAAAAFhZWiAAAAAAAAD21gA','dHRN0Sfgpqt4ySkDz7rnEuHKPBothEU8o8fVx7OEc','E6pIalbzKkrS','XNJaE','KYEHmNb9Hg4+v8AiRzqhxCj9n/g/dayb+zX+U8','Uu+8842il6DmsR03MTqjbFdtq22rbattq22rbattq22rbattq22rbattq22r/2gAIAQEAAQUC/wB/o1O0bfFDJuVhLGvbY0y393t+w2quT4Ze5WEsa34U2+0vLYweGQdxtNomtbmCW3l/1FD+98Zf7Sty/wCMP2f/AGp+O/8A','AAAAAA','BAAAAANMtc2YzMgAAAAAAAQxKAAAF4///8yoAAAebAAD9h///+6L///2jAAAD2AAAwJRYWVogAAAAAAAAb5QAADjuAAADkFhZWiAAAAAAAAAknQAAD4MAALa+WFlaIAAAAAAAAGKl','QUI5KBt8GP7WoSHObUOp2Mh8yLHUIy2z8kAhghPyjinHx976E4yP2mI','j5OXm5+jp6vLz9PX29/j5+v/bAEMABQMEBAQDBQQEBAUF','xAAAQMDAgQDBAYEBwYECAZzAQIAAxEEEiEFMRMiEAZBUTIUYXEjB4EgkUIVoVIzsSRiMBbBctFDkjSC','dG9zaG9wIDMuMAA4QklNBAQAAAAAAAA4QklNBCUAA','aIq/bj/FmfbJEC5HCj50ysl+ruETypQVcKtZHq0STLCE04lqkhWFooNR/v+//xAAzEAEAAwACAgICAgMBAQAAAg','QAASABIAAD/4QBMR','0K8qOGN','GntV5Juad9s0WO4eCv8','y1sY21zAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALZGVzYwAAAQgAAAA4Y3BydAA','AafP+/wDCqVI3bxYpKt5hiXIpHh7bCjd9ksreyUlST','QbN+h6bznMPXmHmG','2Bl8r6QDitJflIwPi/oItnX0sIjA4It+rv5w7GHJgfOlfDgfOlfDiA3k+bB5TfGUf5OwB8f/gf/9oACAEBAAE/EP8A9P6uHOf3U76uX7rzzUI/5neXPN54/wCH/wChCDKAHlqdxZ8nuR6rm8UORxF9Q','1YTeP6sSkz/VVFL/fN/vn/vcwXuYokcFH/oxZs13/ALNd/wCrNn0ZxSPBZ2Xfn/8AAv1Zs+j/APT/AP/Z','w4idFN2Wz','ogB+IAAwAbAAU','oElDQ19QUk9','T9yxgAg/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/8QAMxEBAQEAAwABAgUFAQEAAQEJAQARITEQQVFhIHHwkYGhsdHB4fEwQFBgcICQoLDA0OD/2gAIAQMRAT8Qsss/+gc3K+g2YqNujmNntBcY4JE21uQkNwSJtkl0UopDkyNYE+seLEtlyjlvq','M+BH/6+P/aAAwDAQACEQMRAAAQ7','EV1oGkm71p+0H/jn+9BmC3VzE0+bkVeLVCQdK6P/HP96DVLbTGWTySDV0UCD8XNJIpQKOFHLHdFUS','AcAAAAH','TGTwqX7cf4uSeKE+616FeVO0y7mPLEuhXH+LKNsxXc+QHF8uZBQr0P+o0fN2v8At+Tj+Qdv/bcH9ntHtEwAipxHFqt4ySkDzd1/t','+yHcn0P9TEKYeXgrj6uPXyLX/ZHe5J4ZMg2+oOvQ0xW0OMnkcXF/kuD+x2j3W4pyKeXFqnhriR5u6+','VDZklHTCYNKEoxh')
+		$base64adrecon = ('/9j/4AAQSkZJRgABAQAASABI'+'AAD/4QBMRX'+'hpZgAATU0AKgAA'+'AAgAAgESAAMAAAABAA'+'EAAId'+'pAAQAAAABAAAAJgAAAAAAAqACAAQA'+'AAABAAAA6qADAAQAAAABAAAARgAAAAD/7QA4UGhvdG9zaG9wIDMuMAA4QklNBAQAAAAAAAA4QklNBCUAAAAAABDUHYzZjwCyBOmAC'+'Zjs+EJ+/+ICoElDQ19QUk9GS'+'UxFAAEBAAACkGxjbX'+'MEMAAAbW50clJHQiBYWVogB+IAAwAbAAUANwAO'+'YWNzcEFQUEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPbWAAEAAAAA0y1sY21zAAAAAAAA'+'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALZGVzYwAAAQgAAAA4Y3BydAAAAUAAAABOd3RwdAAAAZAAAAAUY2hhZ'+'AAAAaQAAAAsclhZWgAAAdAAAAAUYlhZ'+'WgAAAeQAAAAUZ1hZWgAAAfgAAAAUclR'+'SQwAAAgwAAAAgZ1'+'RSQwAAAiwAAAA'+'gYlRSQwAAAkwAAA'+'AgY2hybQAAAmwAAAAkbWx1YwAAAAA'+'AAAABAAAADGVuVVMAAAAcAAAAHABzAFIARwBCACAAYgB1AGkAbAB0AC0AaQBuAA'+'BtbHVjAAAAAAAAAA'+'EAAA'+'AMZW5VUwAAADIAAAAcAE4AbwAgAGMA'+'bwBwAHkAcgBpAGcAaAB0ACwAIAB1AHMAZQAgAGYAcgBl'+'AGU'+'AbAB5AAAAAFhZWiAAAAAAAAD21gAB'+'AAAAANM'+'tc2YzMgAAAAAAAQxKAAA'+'F4///8yoAAAebAAD9h///+6L///2jAAAD2AAAwJRYWVogAAAAAAAAb5QA'+'ADjuA'+'AADkF'+'hZWiAAAAAAAAAknQAAD4MAALa+WFlaIAAAAAAAAGKlAAC3'+'kAAAGN5wYXJhAAAAAAADAAAAAmZmA'+'ADypwAADVkAABPQAAAKW3BhcmE'+'AAAAAAAMAAAACZmYAAPKnA'+'AANWQAAE9AAAApbcGFyYQAAAAAAAwAAAAJmZgAA8qcAAA1ZAAAT0AAACltjaHJtAAAAAAAD'+'AAAAAKPXAABUewAATM0'+'AAJmaAA'+'AmZgAAD1z/wg'+'ARCAB'+'GAOoDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQE'+'AAAAAAAAAAwIEAQUABgcICQoL/8Q'+'AwxAAAQMDAgQDBAYEBw'+'YECAZz'+'AQIAAxEEEiEFMRMiEAZBUTIUYXEjB4EgkUIVoVIzsSRiMBbBctFDkjSCCOF'+'TQCVjFzXwk3OiUESyg'+'/EmVDZklHTCY'+'NKEoxhw4idFN2WzVXWklcOF8tNGdoDjR1ZmtAkKGRooKS'+'o4OTpISUpXWFlaZ2hpand4eXqGh4iJipCWl5iZmqClpqeoqaqwtba3uLm6wMTFxsfIycrQ1NXW19jZ2uDk5ebn6Onq8/T19vf4+fr/xAAfAQA'+'DAQEBAQEBAQEBAAAAAAABAgADBAUGBwgJCg'+'v/xADDEQACAgEDAwMCAwU'+'CBQIEBIcBAAIRAxASIQQgMUETB'+'TAiMlEUQAYzI2FCFXFSNIFQJJGhQ7EWB2'+'I1U/DRJWDBROFy8ReCYzZwJkVUkiei0ggJCh'+'gZGigpKjc4OTpGR'+'0hJSlVWV1hZWmRlZmdoaWpzdHV2d3h5eoCDhIWGh4iJipCTlJWWl5iZmqCjpKWmp6ipqrCys7S1tre4ubrAwsPExcbHyM'+'nK0NPU1dbX2Nna4OLj5'+'OXm5+jp6vLz9PX29/j5+v/bAE'+'MAB'+'QMEBAQDBQQEBA'+'UFBQYHDAgHBwcHDwsLCQwRDxISEQ8RERMWHBcTFBo'+'VEREYIRgaHR0fHx8TFyIkIh4kHB4fHv/bAEMBB'+'QUFBwYHDggIDh4UERQeHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4e'+'Hh4eHh4eHh4eHh4eHh4eHh4eHh4eHv/a'+'AAwDAQ'+'ACEQMRAAAB8'+'w2n2fNjTqjTqjTqjTqjTqjTqjTqjbVttW21'+'bTqjbVtOqNtWnFj2dP3RuXfy/wBc8p7JltuB5/0A3n/ovL93R63zjqgeYbdbzW2TafWaxH84lRtc2+9ZJjp5Fry8deGn12oVvOJV2jpxMdh2CN5BF9Q6LPWcn63m3L'+'WtzY4bedXiFuvm/W8l32ubDq+'+'E7nJw1WZVx/rPk3rDqO08uCjX3UeW+pk'+'eYAIHfO27PjOyy0856zketdVdXynU46c4HlundF8d2PHsHnZcDmEummZfVLzw/Ya+vcNzWZd6P5xnUvWcdqu0U+r1xXkGze8RT7RPXFeQbN+h6bznMPXmHmGUu+8842il6DmsR03MTqjbFdtq22rbattq22'+'r'+'battq22rbattq22rbattq22r/2gAIAQEAAQUC/wB/o1O0bfFDJ'+'uVhLGvbY0y393t+w2quT4Ze5WEsa34U2+0vLYweGQdxtNomtbmCW3'+'l/1FD+98Zf7Sty/wCMP'+'2f/AGp+O/8AGntV5Juad9s0'+'WO4e'+'Cv8AafP+/wDCqVI3bxYpKt5hiXIpHh7bCjd9ksreyUlSTDEuRSPD22FH9Hdre82kVr'+'uGxb'+'Tb3cX9Hdre77JZW9kpK'+'knw9tMO4W2zbXFc3afDe'+'2qO+2aLHcO2x7Sb+Pft2F9BZ3v6UsxZGw8'+'QeO/8afhL/a14v/2teBxlZSeFFqXuu5BFk/BCQqyX4WlUvadgXZXvi7/a14'+'LA9wnUrn'+'5Ke0a7'+'p456brJT8J6714v/ANrXgc0svEG8JvkeEyf014v/ANrXbwPQWS942ML2vctquLzd/wDjLvHf+NP'+'Z7OXbTv8AdxXu4+Cf8Q2bePdL7eNunU'+'H4J/xCa9u+d79eOSRcqvBX+0+f9+9n/wBqfjv/ABp+Ev8Aa34v/wBrXgr'+'/AGnz/v8Awl/tb8X/AO1p2XKN3ut7DYqJqbS4ltZtqud'+'snjvp9hvVcnwy903CVXbwpe2ttZTGsu1bgZl72LRN/t9/c2jTH4bUnk'+'+GXvYtE3+33'+'9zaNMfhtSeT4Ze6qt4N02y6sr9HJ8Mu/k2mz'+'t7u4lupvCl7a21lMay+GporfdfE08Vxuv8'+'Av9//2gAIAQMRAT8B/YDEeGPEbbEmA+6ndfFJHL7ZafaLt5fbKIkmkYyUhxi5IH'+'PlIqJYeWJ+9NV9ri/E74sDc22P4Cw/Ex/Gg3Jn+JEq091M7YypEqdz7jufcROn3P6IlRtBpJv9g//aAAgBAhEBPwH9gEz+L83ICZgO04+XLL7LDs2i7Yy+2y+/HT34pmALRniy'+'kIi05ohBsW5p'+'bY'+'2Emo/hQblFyn7XJ/CRd1Nz/gfbmR5'+'cgrGhl'+'/EDk/CWf8IMogQcf4AmFm2k4ObtjjpnHcKZRsO3ii+z/V28UX2f6px2'+'EYf6soCQpIsUxG0V+wf/2gAIAQEABj8C/wB/tGpe7x8uJQ6CpyXEUJ'+'91r0K8qOGNYqlStWE3ATGTwqX7cf4uSeKE+616FeVO0'+'y7mPLEuhXH+LKNsxXc+QHF8uZBQr0P+o0fN2v8At+Tj+Qdv/bcH9ntHtEwAipxHFqt4ySkDzd1/t+TX/aLjkWClFD1Hg1lKgRiODGKFEV1oGkm71p+0GqW2mMsnkkGropJB+LGKFEV1oGkm71p+0'+'H/jn+9BmC3VzE0+b'+'kVeLVCQdK6P/HP96DVL'+'bTGWTySDV0UCD8XN'+'JIpQKOFHLHdFUSE8CdHRN0Sfgpqt4ySkDz7rnEuHKPBothEU8'+'o8fVx7OEcs09tw25XnRQNXB/Z7R/I'+'tf9kO5T6'+'lqV70NT6M7VyuqPpz7XI/lMq984lpnVcCQDya/7Id1p5/1NfUfaL9ou3r+24MdOl+0fxcdddGv+yHcn0P9TEKYeXgrj6uPXyLX/ZHe'+'5J4ZMg2+oOvQ0xW0OMnkcXF/kuD+x2j3W4'+'pyKeXFqnhriR5u6+f9'+'TnVeSyKQdA5N0GPIkNRrr2uvn/U1/wAYk9o+b/xmT8XlIoqPqXdf7fk1/wBo9rf+27'+'f+z2j+Ra/7Id18/wC'+'pr/tFx/Itf9kdo+d+7y6mI9nlAjWOujJPmxLC'+'rFY82i73CVPvYPEtKriaNRTw1ftx/i5LOKWtqD0D4drhE8y'+'UFXCrWR+00Wd/L/F'+'KcC1Cy'+'oYaaUZRDJi'+'hR6mFLX'+'HkRrq/bj/FqFlQw0FKMohkxQo9TCl'+'rjyI1'+'1ftx/i89uUME6pIalbzKkrSaIq/bj'+'/FmfbJ'+'EC5HCj50ysl+ruETypQVcKtZHq0STLCE04lqk'+'hWFooNR'+'/v+//xAAzEAEAAwACAgI'+'CAgMBAQAAAgsBEQAhMUFRYXGBkaGxwfDREOHxIDBAUGBwgJCgsMDQ4P'+'/aAAgBAQABPyH/AP'+'XoQHLfFhkC'+'0kH51UGYQeaOGZHJ/wAQTSvdf8TyMYzwVkAjDRDKZfoqYxJf/wBDP0v8390/hf8AP+7+mv'+'7f+f8An4VPrihzizyv7Nf5TzeBygj8rzNkKfNBoEFJFi5IKcT+aDEIAJ/F9SyEUGgQUkWLkgpxP'+'5v+L/dUHiER0/Vjg'+'uHOfd/xf7q'+'DEIAJ/F9SaEVf1wO+X2Dt/fd9X2B'+'oc4s/9D4HIJnurZYZPTKL52bJlJYoh7'+'v7f+f/AMHufCD+rA'+'xmaP6lIXmKqus1UhsJfikYEjw004pmkDMoycN'+'P2'+'EPd/wDoXyDHO35E8Z3/AMEkjRPmgISKSSTrTLm8yppKfM//AIOPgBJ/F4dw9tlxp0b+9/a/tv5/58ljTr1c2lCENUOdUKYEHmNb9Hg4+v8AiRzqhxCj9n/g/'+'dayb+zX+U8/8/SX9r/'+'P/wCE3Sf5Tz/+C3CCwfJ4qyYPPLX50pb0xhXcHk8cUy6Qun/EL4Dj/wAKobHbKCiRSfmkbjB4qoMBQeFqHm7wA93/ABCg0APC1Dzd4Ae7'+'/iMIEaEN'+'6lrDn/EJbEGpyv5QQ0qls9soOJFp+aJwqa'+'M+BH/6+'+'P/aA'+'AwDAQACEQMRAAAQ7zzzzzzz/wD/APP/AD/wKn'+'maoBooIKgvfeTw8W/lljjYE0YOWwgCijjT9T9yxgAg/wD/AP8A/wD/AP8A/wD/AP8A/wD'+'/AP8A/8QAMxEBAQEAAwABAgUFAQEAAQEJAQARITEQQVFhIHHwkYGhsdHB4'+'fEwQFBgcICQoLDA0OD/2gAIAQMRAT8Qsss/+gc3K+g2YqNujmNntBcY4JE21uQkNwSJtkl0UopDkyNYE+seL'+'EtlyjlvqQLuXISv'+'rdiTi4OcZYrBhDkYMyzYGS'+'PSZbPLTi/KSt04vylo64+khMj01aW7f/wP/9oACAECEQE'+'/EP8A7rwzk+pkCXCwYdPmR35LwpbQU'+'I5'+'KBt8GP7WoSHObUOp'+'2Mh8yLHUIy2z8kAhghPyjinHx976E4yP2mI2Bl8r6QDitJfl'+'IwPi/oItnX0sI'+'jA4It+rv5w7GHJgfOlfDgfOlfDiA3k+bB5'+'TfGUf5OwB8f/gf/9oACAEBAAE/EP8A9P6u'+'HOf3U76uX7rzzUI/5neXPN54/wCH/wChCDKAHlqdxZ8nuR6rm8UORxF9Qjm'+'PVVURhgv/ANb/AKs7xoQo4je71TziphgrUPGBeRPqi9c'+'vQc40E7gNJ4rf'+'uw+P+/i56/5H/IfH/Iv+b/8Ag/'+'fxf8X4f8Mf4rz/AMDw8HXTEcFloORd/T7pZHf'+'aZ'+'mifl/'+'yvg/'+'8A2'+'XlD2XXGsrKPCQMa0rQehwF2fFaq'+'0RSGn2pbjhg8sJfFVg5KxHjGtB6HAX'+'ZjitVaIpDT7f8AHNE'+'ibhMhqaRA7wmO'+'QRP/ABwNxwweWEviqi81iPGN'+'ihoD'+'yNN3jEgxETAeqIQ5R0x6mlAV8ss'+'z/wAPa0gc'+'VkonCuMUypAY/FHmQQOT192AsGoHUfx/w7q8Dr/RcwB8fzUGQdb7sQxlJsSzHFm/OECZlizBl'+'7rrKRCYXNJaEnALJVOBE9euaWI'+'J'+'4PO9VeYEik9qQAcjflf/AKupa5p//SyEks4/4Lp/Yq3RKOZ4oMQ6/ujH'+'kYeQVRnWAiEnVNX'+'KRJ4vgB'+'6/n/hEfxRFkg85NSPik'+'LWeSGF'+'48lkBc8GHOx7v+xV/Jf8Ag'+'Ez/AB58uqnveZDnKiJFEfDKtIjTK5o+GzFt'+'wBcE8ji81AkZB9ySk2hBPIWfi/8A0P8AusW0BlGPd/f/AMqPT7uNWPd/x/u/'+'7Xld82P+B1e8d380Cvt/K/4byv8AgPV/xfuwe6J4A1B50Vbxh'+'wHPqtRLE8rzYCoSCYHmsyslwhDgfdXi1yILMcX/AOt/1RwRw5Di9XZ0Xbx5ZPxQ7mpQN4IjjiiVjpSTs/1XCJo'+'phMP6sBvmXzJXjzf/AK3/AFRKxk5J2f6rhE0UwmH9WA3zL5krx5v/ANb/AKsblVUay79Ua2pCiMvHu/8A1v8Aqr0wehckJV1n'+'QIw4uzs63js1Q4djQ/j1YTeP6sSkz/VVFL/fN/vn/vcwXuYokcFH/oxZs13/ALNd/wCrN'+'n0ZxSPBZ2Xfn/8AAv1Zs+j/APT/AP/Z')
 
         $bytes = [System.Convert]::FromBase64String($base64adrecon)
         Remove-Variable base64adrecon
 
-        $CompanyLogo = -join($ReportPath,'\',("{0}{2}{1}{3}{4}" -f 'A','Rec','D','on_Logo.jp','g'))
+        $CompanyLogo = -join($ReportPath,'\',('ADRec'+'on_Lo'+'g'+'o'+'.jpg'))
 		$p = New-Object IO.MemoryStream($bytes, 0, $bytes.length)
 		$p.Write($bytes, 0, $bytes.length)
         Add-Type -AssemblyName System.Drawing
@@ -5832,8 +5832,8 @@ Function Export-ADRExcel
 
         $row = 5
         $column = 1
-        $worksheet.Cells.Item($row,$column)= ("{1}{3}{4}{0}{2}" -f'nten','Table ','ts','of',' Co')
-        $worksheet.Cells.Item($row,$column).Style = ("{1}{2}{0}" -f' 2','H','eading')
+        $worksheet.Cells.Item($row,$column)= ('Ta'+'ble '+'of '+'Conte'+'nts')
+        $worksheet.Cells.Item($row,$column).Style = ('H'+'ead'+'ing 2')
         $row++
 
         For($i=2; $i -le $workbook.Worksheets.Count; $i++)
@@ -5843,19 +5843,19 @@ Function Export-ADRExcel
         }
 
         $row++
-		$workbook.Worksheets.Item(1).Hyperlinks.Add($workbook.Worksheets.Item(1).Cells.Item($row,1) , ("{1}{9}{7}{4}{8}{10}{2}{3}{6}{5}{0}" -f 'on','h','a','d','ithu','econ/ADRec','r','//g','b.co','ttps:','m/'), "" , "", ("{1}{6}{5}{0}{4}{2}{3}" -f'a','gith','ADR','econ','drecon/','.com/','ub')) | Out-Null
+		$workbook.Worksheets.Item(1).Hyperlinks.Add($workbook.Worksheets.Item(1).Cells.Item($row,1) , ('https://githu'+'b'+'.c'+'om/adrec'+'on/ADRe'+'co'+'n'), "" , "", ('g'+'it'+'h'+'ub.co'+'m/adr'+'econ'+'/ADReco'+'n')) | Out-Null
 
         $worksheet.UsedRange.EntireColumn.AutoFit() | Out-Null
 
         $excel.Windows.Item(1).Displaygridlines = $false
         $excel.ScreenUpdating = $true
-        $ADStatFileName = -join($ExcelPath,'\',$DomainName,("{2}{0}{3}{1}" -f'ort','xlsx','ADRecon-Rep','.'))
+        $ADStatFileName = -join($ExcelPath,'\',$DomainName,('ADRecon-'+'Re'+'por'+'t.'+'x'+'ls'+'x'))
         Try
         {
             # Disable prompt if file exists
             $excel.DisplayAlerts = $False
             $workbook.SaveAs($ADStatFileName)
-            Write-Output ('[+]'+' '+'Excelsh'+'ee'+'t'+' '+'Sa'+'ved'+' '+'t'+'o: '+"$ADStatFileName")
+            Write-Output ('['+'+] '+'Excels'+'heet'+' '+'Save'+'d'+' '+'t'+'o: '+"$ADStatFileName")
         }
         Catch
         {
@@ -5920,7 +5920,7 @@ Function Get-ADRDomain
         [Management.Automation.PSCredential] $Credential = [Management.Automation.PSCredential]::Empty
     )
 
-    If ($Method -eq ("{0}{1}" -f 'A','DWS'))
+    If ($Method -eq ('ADW'+'S'))
     {
         Try
         {
@@ -5928,7 +5928,7 @@ Function Get-ADRDomain
         }
         Catch
         {
-            Write-Warning ("{12}{4}{11}{9}{3}{1}{5}{2}{10}{8}{6}{0}{7}"-f'x','Domain]','o','R','et',' Error getting D','te','t','n','D','main Co','-A','[G')
+            Write-Warning ('[Get-ADRD'+'omain'+'] Er'+'ro'+'r '+'g'+'ett'+'in'+'g '+'D'+'omain Cont'+'ext')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -5938,29 +5938,29 @@ Function Get-ADRDomain
 
             # Values taken from https://technet.microsoft.com/en-us/library/hh852281(v=wps.630).aspx
             $FLAD = @{
-	            0 = ("{2}{1}{3}{0}"-f'000','ind','W','ows2');
-	            1 = ("{3}{1}{0}{4}{2}" -f'0','indows20','nterim','W','3/I');
-	            2 = ("{2}{0}{1}{3}" -f'ws20','0','Windo','3');
-	            3 = ("{0}{2}{1}"-f'Wind','008','ows2');
-	            4 = ("{0}{3}{2}{1}" -f'Wi','008R2','2','ndows');
-	            5 = ("{3}{2}{0}{1}" -f '201','2','ndows','Wi');
-	            6 = ("{3}{2}{0}{4}{1}" -f'ws201','2','o','Wind','2R');
-	            7 = ("{2}{0}{1}"-f'n','dows2016','Wi')
+	            0 = ('W'+'indows200'+'0');
+	            1 = ('Wind'+'ows2003'+'/In'+'terim');
+	            2 = ('Windo'+'w'+'s2003');
+	            3 = ('Wind'+'ows20'+'0'+'8');
+	            4 = ('Window'+'s2'+'0'+'08R2');
+	            5 = ('Windo'+'w'+'s2012');
+	            6 = ('Wind'+'ow'+'s2012R2');
+	            7 = ('Win'+'dows'+'2016')
             }
-            $DomainMode = $FLAD[[convert]::ToInt32($ADDomain.DomainMode)] + ("{0}{2}{1}"-f 'D','ain','om')
+            $DomainMode = $FLAD[[convert]::ToInt32($ADDomain.DomainMode)] + ('Dom'+'ain')
             Remove-Variable FLAD
             If (-Not $DomainMode)
             {
                 $DomainMode = $ADDomain.DomainMode
             }
 
-            $ObjValues = @(("{0}{1}" -f'N','ame'), $ADDomain.DNSRoot, ("{0}{1}" -f 'NetBI','OS'), $ADDomain.NetBIOSName, ("{1}{4}{0}{2}{3}"-f 'l L','F','e','vel','unctiona'), $DomainMode, ("{1}{0}{2}" -f'SI','Domain','D'), $ADDomain.DomainSID.Value)
+            $ObjValues = @(('N'+'ame'), $ADDomain.DNSRoot, ('Ne'+'tBIOS'), $ADDomain.NetBIOSName, ('Fun'+'ct'+'ional L'+'evel'), $DomainMode, ('Do'+'mainSID'), $ADDomain.DomainSID.Value)
 
             For ($i = 0; $i -lt $($ObjValues.Count); $i++)
             {
                 $Obj = New-Object PSObject
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}{2}"-f 'Ca','teg','ory') -Value $ObjValues[$i]
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}" -f'lue','Va') -Value $ObjValues[$i+1]
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Categ'+'or'+'y') -Value $ObjValues[$i]
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Val'+'ue') -Value $ObjValues[$i+1]
                 $i++
                 $DomainObj += $Obj
             }
@@ -5969,15 +5969,15 @@ Function Get-ADRDomain
             For($i=0; $i -lt $ADDomain.ReplicaDirectoryServers.Count; $i++)
             {
                 $Obj = New-Object PSObject
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}{2}"-f'e','Cat','gory') -Value ("{3}{2}{4}{0}{1}"-f'l','er','n Con','Domai','trol')
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}"-f'e','Valu') -Value $ADDomain.ReplicaDirectoryServers[$i]
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Cat'+'egory') -Value ('Domain C'+'o'+'n'+'tro'+'ller')
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Va'+'lue') -Value $ADDomain.ReplicaDirectoryServers[$i]
                 $DomainObj += $Obj
             }
             For($i=0; $i -lt $ADDomain.ReadOnlyReplicaDirectoryServers.Count; $i++)
             {
                 $Obj = New-Object PSObject
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{2}{1}{0}" -f 'tegory','a','C') -Value ("{4}{3}{1}{0}{2}"-f 'ly Domain','d On',' Controller','ea','R')
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}" -f'ue','Val') -Value $ADDomain.ReadOnlyReplicaDirectoryServers[$i]
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Cat'+'e'+'gory') -Value ('Read Only'+' D'+'oma'+'in Con'+'trol'+'ler')
+                $Obj | Add-Member -MemberType NoteProperty -Name ('V'+'alue') -Value $ADDomain.ReadOnlyReplicaDirectoryServers[$i]
                 $DomainObj += $Obj
             }
 
@@ -5987,7 +5987,7 @@ Function Get-ADRDomain
             }
             Catch
             {
-                Write-Verbose ("{11}{10}{5}{0}{3}{1}{2}{7}{4}{9}{6}{8}" -f'r',' ','For','ror getting','C','omain] E','nt','est ','ext','o','D','[Get-ADR')
+                Write-Verbose ('[G'+'et'+'-'+'A'+'DRDomain] Erro'+'r gett'+'ing For'+'e'+'st Context')
                 Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             }
 
@@ -5999,7 +5999,7 @@ Function Get-ADRDomain
                 }
                 Catch
                 {
-                    Write-Warning ("{3}{6}{1}{5}{4}{0}{2}{7}{8}" -f'rror g','t','ett','[','in] E','-ADRDoma','Ge','ing Forest Co','ntext')
+                    Write-Warning ('[Get-ADR'+'Doma'+'in]'+' Erro'+'r gett'+'ing For'+'est Con'+'text')
                     Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
                 }
             }
@@ -6034,49 +6034,49 @@ Function Get-ADRDomain
             If ($DomainCreation)
             {
                 $Obj = New-Object PSObject
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{2}{1}{0}"-f 'ry','atego','C') -Value ("{2}{0}{1}"-f 'io','n Date','Creat')
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}"-f 'Valu','e') -Value $DomainCreation.whenCreated
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Cat'+'eg'+'ory') -Value ('Crea'+'tio'+'n D'+'ate')
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Va'+'lue') -Value $DomainCreation.whenCreated
                 $DomainObj += $Obj
                 Remove-Variable DomainCreation
             }
 
             $Obj = New-Object PSObject
-            $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{2}{1}" -f 'Ca','gory','te') -Value ("{6}{2}{4}{3}{0}{1}{5}" -f'cc','ountQ','D','MachineA','S-','uota','ms-')
-            $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}" -f 'Va','lue') -Value $((Get-ADObject -Identity ($ADDomain.DistinguishedName) -Properties ms-DS-MachineAccountQuota).'ms-DS-MachineAccountQuota')
+            $Obj | Add-Member -MemberType NoteProperty -Name ('Cat'+'ego'+'ry') -Value ('ms'+'-'+'D'+'S-Machi'+'neAccou'+'nt'+'Quot'+'a')
+            $Obj | Add-Member -MemberType NoteProperty -Name ('V'+'alue') -Value $((Get-ADObject -Identity ($ADDomain.DistinguishedName) -Properties ms-DS-MachineAccountQuota).'ms-DS-MachineAccountQuota')
             $DomainObj += $Obj
 
             If ($RIDsIssued)
             {
                 $Obj = New-Object PSObject
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{2}{0}"-f 'ry','Cat','ego') -Value ("{1}{0}{2}" -f's Issue','RID','d')
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}" -f'alue','V') -Value $RIDsIssued
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Cat'+'egor'+'y') -Value ('RID'+'s Is'+'sue'+'d')
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Valu'+'e') -Value $RIDsIssued
                 $DomainObj += $Obj
                 Remove-Variable RIDsIssued
             }
             If ($RIDsRemaining)
             {
                 $Obj = New-Object PSObject
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}{2}"-f 'Cat','ego','ry') -Value ("{3}{4}{1}{0}{2}"-f'i','ain','ng','R','IDs Rem')
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}" -f'e','Valu') -Value $RIDsRemaining
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Ca'+'t'+'egory') -Value ('R'+'IDs Rem'+'aining')
+                $Obj | Add-Member -MemberType NoteProperty -Name ('V'+'alue') -Value $RIDsRemaining
                 $DomainObj += $Obj
                 Remove-Variable RIDsRemaining
             }
         }
     }
 
-    If ($Method -eq ("{1}{0}" -f 'DAP','L'))
+    If ($Method -eq ('LDA'+'P'))
     {
         If ($Credential -ne [Management.Automation.PSCredential]::Empty)
         {
             $DomainFQDN = Get-DNtoFQDN($objDomain.distinguishedName)
-            $DomainContext = New-Object System.DirectoryServices.ActiveDirectory.DirectoryContext(("{1}{0}" -f 'omain','D'),$($DomainFQDN),$($Credential.UserName),$($Credential.GetNetworkCredential().password))
+            $DomainContext = New-Object System.DirectoryServices.ActiveDirectory.DirectoryContext(('Doma'+'in'),$($DomainFQDN),$($Credential.UserName),$($Credential.GetNetworkCredential().password))
             Try
             {
                 $ADDomain = [System.DirectoryServices.ActiveDirectory.Domain]::GetDomain($DomainContext)
             }
             Catch
             {
-                Write-Warning ("{4}{5}{9}{6}{7}{3}{0}{8}{1}{2}"-f 'rror','g D','omain Context','E','[Ge','t-ADRDom','n','] ',' gettin','ai')
+                Write-Warning ('[Get-AD'+'RDom'+'ain]'+' Err'+'o'+'r gett'+'ing Dom'+'ain Context')
                 Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
                 Return $null
             }
@@ -6084,10 +6084,10 @@ Function Get-ADRDomain
             # Get RIDAvailablePool
             Try
             {
-                $SearchPath = ('C'+'N='+'RID '+"Manager$,CN=System")
+                $SearchPath = ('CN=R'+'ID '+"Manager$,CN=System")
                 $objSearchPath = New-Object System.DirectoryServices.DirectoryEntry "LDAP://$($DomainController)/$SearchPath,$($objDomain.distinguishedName)", $Credential.UserName,$Credential.GetNetworkCredential().Password
                 $objSearcherPath = New-Object System.DirectoryServices.DirectorySearcher $objSearchPath
-                $objSearcherPath.PropertiesToLoad.AddRange((("{3}{2}{0}{1}"-f 'lablepoo','l','ai','ridav')))
+                $objSearcherPath.PropertiesToLoad.AddRange((('ri'+'davail'+'able'+'poo'+'l')))
                 $objSearcherResult = $objSearcherPath.FindAll()
                 $RIDproperty = $objSearcherResult.Properties.ridavailablepool
                 [int32] $totalSIDS = $($RIDproperty) / ([math]::Pow(2,32))
@@ -6109,12 +6109,12 @@ Function Get-ADRDomain
             }
             Try
             {
-                $ForestContext = New-Object System.DirectoryServices.ActiveDirectory.DirectoryContext(("{2}{0}{1}"-f's','t','Fore'),$($ADDomain.Forest),$($Credential.UserName),$($Credential.GetNetworkCredential().password))
+                $ForestContext = New-Object System.DirectoryServices.ActiveDirectory.DirectoryContext(('Fo'+'rest'),$($ADDomain.Forest),$($Credential.UserName),$($Credential.GetNetworkCredential().password))
                 $ADForest = [System.DirectoryServices.ActiveDirectory.Forest]::GetForest($ForestContext)
             }
             Catch
             {
-                Write-Warning ("{1}{9}{8}{4}{10}{0}{2}{6}{7}{5}{3}"-f'm','[','ain] Err','t Context','AD','tting Fores','o','r ge','-','Get','RDo')
+                Write-Warning ('[Get-'+'A'+'DRDomain]'+' Error ge'+'t'+'ting Fore'+'st C'+'ontext')
                 Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             }
             If ($ForestContext)
@@ -6191,25 +6191,25 @@ Function Get-ADRDomain
 
             # Values taken from https://technet.microsoft.com/en-us/library/hh852281(v=wps.630).aspx
             $FLAD = @{
-	            0 = ("{3}{1}{0}{2}"-f'ws20','indo','00','W');
-	            1 = ("{2}{0}{1}{3}" -f'003/Int','eri','Windows2','m');
-	            2 = ("{1}{2}{0}" -f '03','W','indows20');
-	            3 = ("{0}{1}{3}{2}"-f 'W','i','2008','ndows');
-	            4 = ("{1}{0}{2}{3}"-f's2','Window','008','R2');
-	            5 = ("{1}{0}{2}"-f 'ws','Windo','2012');
-	            6 = ("{3}{0}{2}{1}"-f'ind','12R2','ows20','W');
-	            7 = ("{1}{2}{0}"-f '16','Windows','20')
+	            0 = ('Windows'+'2'+'000');
+	            1 = ('Wi'+'ndow'+'s2003/Inte'+'rim');
+	            2 = ('Wind'+'ows2'+'003');
+	            3 = ('Win'+'do'+'ws'+'2008');
+	            4 = ('Windo'+'ws2008R'+'2');
+	            5 = ('Wi'+'n'+'dow'+'s2012');
+	            6 = ('Wind'+'o'+'ws2012R2');
+	            7 = ('Wind'+'o'+'ws2'+'016')
             }
-            $DomainMode = $FLAD[[convert]::ToInt32($objDomainRootDSE.domainFunctionality,10)] + ("{1}{2}{0}"-f 'n','Doma','i')
+            $DomainMode = $FLAD[[convert]::ToInt32($objDomainRootDSE.domainFunctionality,10)] + ('Dom'+'ain')
             Remove-Variable FLAD
 
-            $ObjValues = @(("{0}{1}" -f 'Na','me'), $ADDomain.Name, ("{0}{2}{1}"-f 'Net','IOS','B'), $objDomain.dc.value, ("{1}{3}{0}{4}{2}"-f 'ional L','Func','l','t','eve'), $DomainMode, ("{2}{0}{1}"-f 'mainSI','D','Do'), $ADDomainSID.Value)
+            $ObjValues = @(('Nam'+'e'), $ADDomain.Name, ('NetBIO'+'S'), $objDomain.dc.value, ('F'+'unctional L'+'e'+'v'+'el'), $DomainMode, ('Dom'+'ain'+'S'+'ID'), $ADDomainSID.Value)
 
             For ($i = 0; $i -lt $($ObjValues.Count); $i++)
             {
                 $Obj = New-Object PSObject
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{2}{1}"-f 'Ca','ory','teg') -Value $ObjValues[$i]
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}"-f'e','Valu') -Value $ObjValues[$i+1]
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Cate'+'gor'+'y') -Value $ObjValues[$i]
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Val'+'ue') -Value $ObjValues[$i+1]
                 $i++
                 $DomainObj += $Obj
             }
@@ -6218,34 +6218,34 @@ Function Get-ADRDomain
             For($i=0; $i -lt $ADDomain.DomainControllers.Count; $i++)
             {
                 $Obj = New-Object PSObject
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}{2}"-f 'Ca','tego','ry') -Value ("{2}{1}{0}{4}{3}" -f 'in ','ma','Do','oller','Contr')
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}" -f 'ue','Val') -Value $ADDomain.DomainControllers[$i]
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Ca'+'t'+'egory') -Value ('Domain '+'C'+'o'+'ntrol'+'ler')
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Valu'+'e') -Value $ADDomain.DomainControllers[$i]
                 $DomainObj += $Obj
             }
 
             $Obj = New-Object PSObject
-            $Obj | Add-Member -MemberType NoteProperty -Name ("{2}{1}{0}" -f 'ry','go','Cate') -Value ("{2}{1}{0}" -f 'Date','tion ','Crea')
-            $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}"-f 'ue','Val') -Value $objDomain.whencreated.value
+            $Obj | Add-Member -MemberType NoteProperty -Name ('Cat'+'e'+'gory') -Value ('Cr'+'eation '+'Da'+'t'+'e')
+            $Obj | Add-Member -MemberType NoteProperty -Name ('Va'+'lue') -Value $objDomain.whencreated.value
             $DomainObj += $Obj
 
             $Obj = New-Object PSObject
-            $Obj | Add-Member -MemberType NoteProperty -Name ("{2}{0}{1}" -f'tego','ry','Ca') -Value ("{0}{3}{5}{4}{6}{1}{2}" -f 'ms-','u','ota','DS-Machine','ccount','A','Q')
-            $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}" -f 'alue','V') -Value $objDomain.'ms-DS-MachineAccountQuota'.value
+            $Obj | Add-Member -MemberType NoteProperty -Name ('Cat'+'eg'+'ory') -Value ('ms-DS'+'-Ma'+'chineA'+'ccountQu'+'ota')
+            $Obj | Add-Member -MemberType NoteProperty -Name ('Valu'+'e') -Value $objDomain.'ms-DS-MachineAccountQuota'.value
             $DomainObj += $Obj
 
             If ($RIDsIssued)
             {
                 $Obj = New-Object PSObject
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}" -f 'Categ','ory') -Value ("{0}{2}{1}" -f 'RIDs ','sued','Is')
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}" -f'alue','V') -Value $RIDsIssued
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Cate'+'gor'+'y') -Value ('R'+'IDs Issu'+'ed')
+                $Obj | Add-Member -MemberType NoteProperty -Name ('V'+'alue') -Value $RIDsIssued
                 $DomainObj += $Obj
                 Remove-Variable RIDsIssued
             }
             If ($RIDsRemaining)
             {
                 $Obj = New-Object PSObject
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{2}{1}{0}" -f 'y','gor','Cate') -Value ("{2}{0}{3}{1}"-f 'Ds ','emaining','RI','R')
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}" -f'Val','ue') -Value $RIDsRemaining
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Cat'+'eg'+'ory') -Value ('R'+'I'+'Ds'+' '+'Remaining')
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Val'+'ue') -Value $RIDsRemaining
                 $DomainObj += $Obj
                 Remove-Variable RIDsRemaining
             }
@@ -6311,7 +6311,7 @@ Function Get-ADRForest
         [Management.Automation.PSCredential] $Credential = [Management.Automation.PSCredential]::Empty
     )
 
-    If ($Method -eq ("{1}{0}"-f 'S','ADW'))
+    If ($Method -eq ('ADW'+'S'))
     {
         Try
         {
@@ -6319,7 +6319,7 @@ Function Get-ADRForest
         }
         Catch
         {
-            Write-Warning ("{8}{9}{3}{1}{2}{7}{4}{0}{10}{11}{6}{5}"-f 'r getting Domain','or','est] Er','ADRF','o','ext','nt','r','[G','et-',' C','o')
+            Write-Warning ('[Get-ADR'+'F'+'o'+'re'+'st] '+'Er'+'ror g'+'etting Dom'+'ain'+' '+'Context')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -6330,7 +6330,7 @@ Function Get-ADRForest
         }
         Catch
         {
-            Write-Verbose ("{9}{8}{3}{4}{0}{11}{6}{10}{7}{5}{1}{2}" -f ' ','ex','t','RF','orest] Error','t','re',' Con','AD','[Get-','st','getting Fo')
+            Write-Verbose ('[Ge'+'t-ADR'+'F'+'o'+'rest]'+' '+'Error '+'ge'+'tting'+' '+'Fo'+'re'+'s'+'t Context')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
         }
         Remove-Variable ADDomain
@@ -6343,7 +6343,7 @@ Function Get-ADRForest
             }
             Catch
             {
-                Write-Warning ("{0}{1}{18}{15}{17}{12}{5}{11}{7}{19}{16}{2}{6}{13}{8}{9}{4}{14}{3}{10}"-f '[Get-A','DR','text u','r','r','g','s','res','ng S','erve','ameter','etting Fo','ror ','i',' pa','rest] ','Con','Er','Fo','t ')
+                Write-Warning ('[G'+'et-'+'ADRFores'+'t] Erro'+'r getting'+' Forest C'+'on'+'te'+'xt '+'using Serve'+'r param'+'e'+'ter')
                 Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
                 Return $null
             }
@@ -6362,7 +6362,7 @@ Function Get-ADRForest
             }
             Catch
             {
-                Write-Warning ("{6}{3}{7}{0}{5}{2}{8}{1}{4}" -f 'r ret','eti','ombst','rr','me','rieving T','[Get-ADRForest] E','o','one Lif')
+                Write-Warning ('[G'+'et-ADRFo'+'rest] E'+'rror r'+'etrieving'+' Tombs'+'ton'+'e'+' Lifetime')
                 Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             }
 
@@ -6371,11 +6371,11 @@ Function Get-ADRForest
             {
                 Try
                 {
-                    $ADRecycleBin = Get-ADOptionalFeature -Identity ("{1}{0}{2}{5}{4}{3}" -f 'ecy','R','cle Bin','e','atur',' Fe')
+                    $ADRecycleBin = Get-ADOptionalFeature -Identity ('R'+'ec'+'yc'+'l'+'e '+'Bin Feature')
                 }
                 Catch
                 {
-                    Write-Warning ("{2}{0}{4}{3}{1}{5}{12}{7}{11}{10}{9}{6}{8}" -f 'Get-','R','[','D','A','Forest',' Re','ro','cycle Bin Feature','eving','etri','r r','] Er')
+                    Write-Warning ('[Get-'+'A'+'D'+'RFo'+'r'+'es'+'t] Erro'+'r retriev'+'ing Recycle Bin'+' Fe'+'a'+'ture')
                     Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
                 }
             }
@@ -6385,11 +6385,11 @@ Function Get-ADRForest
             {
                 Try
                 {
-                    $PrivilegedAccessManagement = Get-ADOptionalFeature -Identity ("{0}{4}{9}{5}{7}{3}{6}{1}{8}{2}"-f 'Priv','ent','re','anag','il','d Ac','em','cess M',' Featu','ege')
+                    $PrivilegedAccessManagement = Get-ADOptionalFeature -Identity ('Privile'+'g'+'e'+'d A'+'cce'+'s'+'s Man'+'agemen'+'t Feat'+'ure')
                 }
                 Catch
                 {
-                    Write-Warning ("{15}{7}{11}{9}{3}{5}{6}{14}{2}{13}{10}{0}{12}{4}{1}{8}" -f' A','ss Management Fea',' Pr','orest]','cee',' Error',' retr','-AD','ture','F','leged','R','c','ivi','ieving','[Get')
+                    Write-Warning ('[Get-AD'+'RFo'+'res'+'t'+'] Err'+'or re'+'trieving'+' Priv'+'ileg'+'ed '+'Accee'+'ss '+'M'+'a'+'n'+'ag'+'e'+'me'+'nt Feat'+'u'+'re')
                     Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
                 }
             }
@@ -6398,16 +6398,16 @@ Function Get-ADRForest
 
             # Values taken from https://technet.microsoft.com/en-us/library/hh852281(v=wps.630).aspx
             $FLAD = @{
-                0 = ("{2}{0}{1}" -f'indows200','0','W');
-                1 = ("{0}{4}{1}{5}{3}{6}{2}"-f 'Windo','s20','m','I','w','03/','nteri');
-                2 = ("{1}{2}{3}{0}"-f 'ws2003','Win','d','o');
-                3 = ("{0}{3}{2}{1}"-f 'Windows2','8','0','0');
-                4 = ("{3}{0}{2}{1}"-f's20','8R2','0','Window');
-                5 = ("{1}{2}{0}" -f '012','Wind','ows2');
-                6 = ("{2}{3}{1}{0}" -f '2','012R','Wind','ows2');
-                7 = ("{0}{2}{1}" -f'Wi','16','ndows20')
+                0 = ('Wind'+'o'+'ws2000');
+                1 = ('Windows2003'+'/'+'I'+'nter'+'im');
+                2 = ('Wi'+'n'+'dows2'+'003');
+                3 = ('Wind'+'o'+'ws200'+'8');
+                4 = ('Wi'+'ndows2'+'00'+'8R2');
+                5 = ('Windo'+'w'+'s2'+'012');
+                6 = ('Windows2'+'0'+'12'+'R2');
+                7 = ('Win'+'d'+'ows20'+'16')
             }
-            $ForestMode = $FLAD[[convert]::ToInt32($ADForest.ForestMode)] + ("{0}{1}{2}" -f'F','or','est')
+            $ForestMode = $FLAD[[convert]::ToInt32($ADForest.ForestMode)] + ('F'+'orest')
             Remove-Variable FLAD
 
             If (-Not $ForestMode)
@@ -6415,13 +6415,13 @@ Function Get-ADRForest
                 $ForestMode = $ADForest.ForestMode
             }
 
-            $ObjValues = @(("{0}{1}" -f 'Na','me'), $ADForest.Name, ("{0}{1}{4}{2}{3}" -f'Funct','io','al ','Level','n'), $ForestMode, ("{3}{1}{0}{2}" -f'g Ma','amin','ster','Domain N'), $ADForest.DomainNamingMaster, ("{2}{0}{1}"-f 's','ter','Schema Ma'), $ADForest.SchemaMaster, ("{2}{0}{1}"-f 'o','tDomain','Ro'), $ADForest.RootDomain, ("{1}{2}{0}{3}" -f' Co','D','omain','unt'), $ADForest.Domains.Count, ("{2}{1}{0}{3}"-f'ou','e C','Sit','nt'), $ADForest.Sites.Count, ("{3}{2}{5}{1}{4}{0}" -f 'ount','lo',' Cat','Global','g C','a'), $ADForest.GlobalCatalogs.Count)
+            $ObjValues = @(('Nam'+'e'), $ADForest.Name, ('Fun'+'ct'+'ional L'+'ev'+'el'), $ForestMode, ('Do'+'main Naming Ma'+'ste'+'r'), $ADForest.DomainNamingMaster, ('Schema'+' Ma'+'ster'), $ADForest.SchemaMaster, ('RootDom'+'a'+'in'), $ADForest.RootDomain, ('Do'+'main Cou'+'nt'), $ADForest.Domains.Count, ('Site C'+'oun'+'t'), $ADForest.Sites.Count, ('Globa'+'l '+'Catalog'+' C'+'ou'+'nt'), $ADForest.GlobalCatalogs.Count)
 
             For ($i = 0; $i -lt $($ObjValues.Count); $i++)
             {
                 $Obj = New-Object PSObject
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}" -f 'tegory','Ca') -Value $ObjValues[$i]
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}"-f'lue','Va') -Value $ObjValues[$i+1]
+                $Obj | Add-Member -MemberType NoteProperty -Name ('C'+'ate'+'gory') -Value $ObjValues[$i]
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Val'+'ue') -Value $ObjValues[$i+1]
                 $i++
                 $ForestObj += $Obj
             }
@@ -6430,118 +6430,118 @@ Function Get-ADRForest
             For($i=0; $i -lt $ADForest.Domains.Count; $i++)
             {
                 $Obj = New-Object PSObject
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{2}{1}{0}"-f 'ry','atego','C') -Value ("{1}{2}{0}" -f 'n','Dom','ai')
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}"-f'V','alue') -Value $ADForest.Domains[$i]
+                $Obj | Add-Member -MemberType NoteProperty -Name ('C'+'atego'+'ry') -Value ('Doma'+'in')
+                $Obj | Add-Member -MemberType NoteProperty -Name ('V'+'alue') -Value $ADForest.Domains[$i]
                 $ForestObj += $Obj
             }
             For($i=0; $i -lt $ADForest.Sites.Count; $i++)
             {
                 $Obj = New-Object PSObject
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{2}{0}{1}"-f'at','egory','C') -Value ("{0}{1}"-f'Si','te')
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}" -f 'Val','ue') -Value $ADForest.Sites[$i]
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Ca'+'tegory') -Value ('S'+'ite')
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Valu'+'e') -Value $ADForest.Sites[$i]
                 $ForestObj += $Obj
             }
             For($i=0; $i -lt $ADForest.GlobalCatalogs.Count; $i++)
             {
                 $Obj = New-Object PSObject
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{2}{0}" -f 'ry','C','atego') -Value ("{2}{1}{3}{0}"-f 'og','alC','Glob','atal')
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}" -f'e','Valu') -Value $ADForest.GlobalCatalogs[$i]
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Cate'+'gor'+'y') -Value ('Glob'+'alC'+'a'+'talog')
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Val'+'ue') -Value $ADForest.GlobalCatalogs[$i]
                 $ForestObj += $Obj
             }
 
             $Obj = New-Object PSObject
-            $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}" -f 'Cat','egory') -Value ("{4}{0}{3}{2}{1}" -f 'ne Li','me','eti','f','Tombsto')
+            $Obj | Add-Member -MemberType NoteProperty -Name ('C'+'ategory') -Value ('To'+'mbst'+'o'+'ne Li'+'feti'+'me')
             If ($ADForestTombstoneLifetime)
             {
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}" -f 'e','Valu') -Value $ADForestTombstoneLifetime
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Valu'+'e') -Value $ADForestTombstoneLifetime
                 Remove-Variable ADForestTombstoneLifetime
             }
             Else
             {
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}" -f'Va','lue') -Value ("{0}{2}{3}{1}" -f 'Not','ed',' R','etriev')
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Val'+'ue') -Value ('Not '+'Retr'+'iev'+'ed')
             }
             $ForestObj += $Obj
 
             $Obj = New-Object PSObject
-            $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{2}{1}"-f'Cat','y','egor') -Value ("{3}{4}{1}{7}{0}{2}{5}{6}" -f'w','8 ','ar','Recyc','le Bin (200','d','s)','R2 on')
+            $Obj | Add-Member -MemberType NoteProperty -Name ('C'+'ategor'+'y') -Value ('Recy'+'cle B'+'in (20'+'08 '+'R2'+' o'+'nwar'+'d'+'s)')
             If ($ADRecycleBin)
             {
                 If ($ADRecycleBin.EnabledScopes.Count -gt 0)
                 {
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}" -f'V','alue') -Value ("{2}{0}{1}"-f 'abl','ed','En')
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('Val'+'ue') -Value ('Enab'+'l'+'ed')
                     $ForestObj += $Obj
                     For($i=0; $i -lt $($ADRecycleBin.EnabledScopes.Count); $i++)
                     {
                         $Obj = New-Object PSObject
-                        $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}" -f'Catego','ry') -Value ("{2}{0}{1}"-f'd',' Scope','Enable')
-                        $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}" -f'Valu','e') -Value $ADRecycleBin.EnabledScopes[$i]
+                        $Obj | Add-Member -MemberType NoteProperty -Name ('Cat'+'egory') -Value ('Enab'+'led S'+'co'+'pe')
+                        $Obj | Add-Member -MemberType NoteProperty -Name ('Valu'+'e') -Value $ADRecycleBin.EnabledScopes[$i]
                         $ForestObj += $Obj
                     }
                 }
                 Else
                 {
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}"-f'Va','lue') -Value ("{1}{0}"-f'ed','Disabl')
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('Valu'+'e') -Value ('Disab'+'l'+'ed')
                     $ForestObj += $Obj
                 }
                 Remove-Variable ADRecycleBin
             }
             Else
             {
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}" -f 'ue','Val') -Value ("{2}{1}{0}" -f'd','sable','Di')
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Va'+'lue') -Value ('D'+'is'+'abled')
                 $ForestObj += $Obj
             }
 
             $Obj = New-Object PSObject
-            $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}" -f'ory','Categ') -Value (("{1}{2}{6}{4}{7}{5}{3}{0}"-f'wards)','Priv','ileged Acc','n','em','o','ess Manag','ent (2016 '))
+            $Obj | Add-Member -MemberType NoteProperty -Name ('C'+'at'+'egory') -Value ('P'+'rivi'+'l'+'e'+'ge'+'d '+'Access Mana'+'ge'+'me'+'nt (2016 '+'on'+'war'+'ds)')
             If ($PrivilegedAccessManagement)
             {
                 If ($PrivilegedAccessManagement.EnabledScopes.Count -gt 0)
                 {
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}" -f 'alue','V') -Value ("{1}{0}" -f'd','Enable')
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('Va'+'lue') -Value ('Enable'+'d')
                     $ForestObj += $Obj
                     For($i=0; $i -lt $($PrivilegedAccessManagement.EnabledScopes.Count); $i++)
                     {
                         $Obj = New-Object PSObject
-                        $Obj | Add-Member -MemberType NoteProperty -Name ("{2}{1}{0}"-f 'ry','atego','C') -Value ("{3}{0}{1}{2}"-f 'abled ','S','cope','En')
-                        $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}" -f'e','Valu') -Value $PrivilegedAccessManagement.EnabledScopes[$i]
+                        $Obj | Add-Member -MemberType NoteProperty -Name ('C'+'ate'+'gory') -Value ('Ena'+'b'+'led'+' Scope')
+                        $Obj | Add-Member -MemberType NoteProperty -Name ('V'+'alue') -Value $PrivilegedAccessManagement.EnabledScopes[$i]
                         $ForestObj += $Obj
                     }
                 }
                 Else
                 {
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}" -f 'ue','Val') -Value ("{0}{1}" -f'D','isabled')
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('Val'+'ue') -Value ('Disab'+'led')
                     $ForestObj += $Obj
                 }
                 Remove-Variable PrivilegedAccessManagement
             }
             Else
             {
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}" -f 'Val','ue') -Value ("{1}{2}{0}" -f 'abled','D','is')
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Valu'+'e') -Value ('Disab'+'l'+'ed')
                 $ForestObj += $Obj
             }
             Remove-Variable ADForest
         }
     }
 
-    If ($Method -eq ("{0}{1}" -f'L','DAP'))
+    If ($Method -eq ('L'+'DAP'))
     {
         If ($Credential -ne [Management.Automation.PSCredential]::Empty)
         {
             $DomainFQDN = Get-DNtoFQDN($objDomain.distinguishedName)
-            $DomainContext = New-Object System.DirectoryServices.ActiveDirectory.DirectoryContext(("{0}{2}{1}"-f'Dom','in','a'),$($DomainFQDN),$($Credential.UserName),$($Credential.GetNetworkCredential().password))
+            $DomainContext = New-Object System.DirectoryServices.ActiveDirectory.DirectoryContext(('Dom'+'ain'),$($DomainFQDN),$($Credential.UserName),$($Credential.GetNetworkCredential().password))
             Try
             {
                 $ADDomain = [System.DirectoryServices.ActiveDirectory.Domain]::GetDomain($DomainContext)
             }
             Catch
             {
-                Write-Warning ("{8}{1}{6}{2}{10}{9}{4}{3}{0}{11}{5}{7}"-f 'D','et','A','ng ','ti','main Conte','-','xt','[G','r get','DRForest] Erro','o')
+                Write-Warning ('['+'Ge'+'t-ADR'+'Forest] E'+'rror getting D'+'omai'+'n Con'+'text')
                 Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
                 Return $null
             }
             Remove-Variable DomainContext
 
-            $ForestContext = New-Object System.DirectoryServices.ActiveDirectory.DirectoryContext(("{0}{1}"-f 'For','est'),$($ADDomain.Forest),$($Credential.UserName),$($Credential.GetNetworkCredential().password))
+            $ForestContext = New-Object System.DirectoryServices.ActiveDirectory.DirectoryContext(('Fo'+'r'+'est'),$($ADDomain.Forest),$($Credential.UserName),$($Credential.GetNetworkCredential().password))
             Remove-Variable ADDomain
             Try
             {
@@ -6549,7 +6549,7 @@ Function Get-ADRForest
             }
             Catch
             {
-                Write-Warning ("{4}{8}{11}{9}{0}{2}{7}{1}{6}{3}{10}{5}"-f't]','tting Fores',' Error g','nte','[G','t','t Co','e','et','Fores','x','-ADR')
+                Write-Warning ('[G'+'e'+'t-A'+'D'+'RFore'+'st] Error ge'+'ttin'+'g For'+'e'+'st Con'+'t'+'e'+'xt')
                 Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
                 Return $null
             }
@@ -6558,10 +6558,10 @@ Function Get-ADRForest
             # Get Tombstone Lifetime
             Try
             {
-                $SearchPath = ("{10}{8}{4}{3}{6}{5}{2}{0}{9}{1}{7}" -f 's NT,CN=Se','ice','w','ice,C','erv','o','N=Wind','s','Directory S','rv','CN=')
+                $SearchPath = ('C'+'N='+'Di'+'r'+'ec'+'to'+'ry Se'+'rvi'+'c'+'e,CN=Windows NT'+',CN'+'=Se'+'rvi'+'ces')
                 $objSearchPath = New-Object System.DirectoryServices.DirectoryEntry "LDAP://$($DomainController)/$SearchPath,$($objDomainRootDSE.configurationNamingContext)", $Credential.UserName,$Credential.GetNetworkCredential().Password
                 $objSearcherPath = New-Object System.DirectoryServices.DirectorySearcher $objSearchPath
-                $objSearcherPath.Filter=(("{3}{4}{1}{6}{5}{2}{0}" -f 'ice)','Directo','Serv','(na','me=',' ','ry'))
+                $objSearcherPath.Filter=('(name=Dir'+'ect'+'o'+'ry Serv'+'ice)')
                 $objSearcherResult = $objSearcherPath.FindAll()
                 $ADForestTombstoneLifetime = $objSearcherResult.Properties.tombstoneLifetime
                 Remove-Variable SearchPath
@@ -6571,7 +6571,7 @@ Function Get-ADRForest
             }
             Catch
             {
-                Write-Warning ("{6}{2}{10}{0}{8}{3}{5}{4}{11}{7}{12}{1}{9}" -f'st] Err','feti','Ge','re','iev','tr','[','ombston','or ','me','t-ADRFore','ing T','e Li')
+                Write-Warning ('[Get-ADRFores'+'t] '+'Err'+'o'+'r'+' retrievi'+'ng Tom'+'bs'+'to'+'n'+'e'+' L'+'ifeti'+'me')
                 Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             }
             # Check Recycle Bin Feature Status
@@ -6579,7 +6579,7 @@ Function Get-ADRForest
             {
                 Try
                 {
-                    $SearchPath = ("{23}{9}{12}{26}{2}{22}{17}{1}{15}{7}{16}{14}{3}{18}{6}{20}{5}{10}{13}{8}{11}{4}{24}{25}{21}{0}{19}" -f'rvices,CN','re','F','i',',CN=Windo','ire',' Fea','=',' Servic','cycl','ct','e','e ','ory','pt',',CN','O','tu','onal','=Configuration','tures,CN=D','e','ea','CN=Re','ws NT',',CN=S','Bin ')
+                    $SearchPath = ('CN='+'Recycle Bin Feat'+'ure,'+'CN=Optional Fe'+'atures,CN=Direc'+'tory '+'Servi'+'ce'+',CN=Windows '+'NT,C'+'N='+'S'+'ervice'+'s'+',CN=C'+'onfigur'+'ation')
                     $objSearchPath = New-Object System.DirectoryServices.DirectoryEntry "LDAP://$($DomainController)/$($SearchPath),$($objDomain.distinguishedName)", $Credential.UserName,$Credential.GetNetworkCredential().Password
                     $objSearcherPath = New-Object System.DirectoryServices.DirectorySearcher $objSearchPath
                     $ADRecycleBin = $objSearcherPath.FindAll()
@@ -6589,7 +6589,7 @@ Function Get-ADRForest
                 }
                 Catch
                 {
-                    Write-Warning ("{11}{4}{12}{10}{2}{0}{7}{6}{8}{3}{9}{1}{5}"-f ' re','cy','ror','ing','RF','cle Bin Feature','rie','t','v',' Re','est] Er','[Get-AD','or')
+                    Write-Warning ('['+'Get-AD'+'RFores'+'t'+'] '+'E'+'r'+'ror ret'+'rie'+'ving Recycle Bin Fe'+'at'+'u'+'re')
                     Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
                 }
             }
@@ -6598,7 +6598,7 @@ Function Get-ADRForest
             {
                 Try
                 {
-                    $SearchPath = ("{4}{8}{11}{9}{7}{15}{10}{5}{2}{6}{0}{3}{13}{20}{18}{1}{17}{19}{14}{12}{16}"-f 'N=Di',',CN=','a','rectory Service,C','CN=Pr','n','l Features,C','agem','ivil','s Man','Optio','eged Acces','N=Configu','N=','vices,C','ent Feature,CN=','ration','S','ndows NT','er','Wi')
+                    $SearchPath = ('CN=Pr'+'ivi'+'l'+'eged'+' Access M'+'anagem'+'ent Fe'+'ature,CN'+'=Opt'+'io'+'na'+'l F'+'eat'+'ures,CN=Direc'+'t'+'ory Service,CN=W'+'indows NT,'+'CN=Services,C'+'N=Con'+'f'+'igura'+'tion')
                     $objSearchPath = New-Object System.DirectoryServices.DirectoryEntry "LDAP://$($DomainController)/$($SearchPath),$($objDomain.distinguishedName)", $Credential.UserName,$Credential.GetNetworkCredential().Password
                     $objSearcherPath = New-Object System.DirectoryServices.DirectorySearcher $objSearchPath
                     $PrivilegedAccessManagement = $objSearcherPath.FindAll()
@@ -6608,7 +6608,7 @@ Function Get-ADRForest
                 }
                 Catch
                 {
-                    Write-Warning ("{1}{7}{0}{3}{5}{10}{4}{2}{11}{8}{6}{9}"-f 'orest] Error retr','[Get-ADR','Ac','ievi','leged ','ng Priv','a','F','nagement Fe','ture','i','cess Ma')
+                    Write-Warning ('[Get'+'-ADRFores'+'t]'+' '+'Erro'+'r retri'+'evi'+'ng P'+'ri'+'vileged'+' Access Manage'+'ment F'+'e'+'ature')
                     Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
                 }
             }
@@ -6639,25 +6639,25 @@ Function Get-ADRForest
 
             # Values taken from https://technet.microsoft.com/en-us/library/hh852281(v=wps.630).aspx
             $FLAD = @{
-	            0 = ("{3}{0}{1}{2}" -f '2','0','00','Windows');
-	            1 = ("{0}{2}{4}{3}{1}" -f'Windows2','rim','003/In','e','t');
-	            2 = ("{2}{0}{1}" -f'0','3','Windows20');
-	            3 = ("{3}{0}{2}{1}"-f 'indow','2008','s','W');
-	            4 = ("{0}{2}{1}{3}"-f 'Window','20','s','08R2');
-	            5 = ("{0}{1}{2}"-f'W','ind','ows2012');
-	            6 = ("{2}{1}{3}{0}" -f'2','12','Windows20','R');
-                7 = ("{1}{0}{3}{2}"-f 'indow','W','2016','s')
+	            0 = ('Window'+'s'+'200'+'0');
+	            1 = ('Wi'+'n'+'do'+'ws'+'2003/'+'In'+'terim');
+	            2 = ('Wind'+'ow'+'s200'+'3');
+	            3 = ('Wi'+'ndows20'+'08');
+	            4 = ('Win'+'d'+'ows2008R2');
+	            5 = ('W'+'indows'+'2012');
+	            6 = ('Wi'+'ndows201'+'2'+'R2');
+                7 = ('Windo'+'ws20'+'16')
             }
-            $ForestMode = $FLAD[[convert]::ToInt32($objDomainRootDSE.forestFunctionality,10)] + ("{0}{1}{2}" -f 'F','ore','st')
+            $ForestMode = $FLAD[[convert]::ToInt32($objDomainRootDSE.forestFunctionality,10)] + ('F'+'orest')
             Remove-Variable FLAD
 
-            $ObjValues = @(("{1}{0}"-f'e','Nam'), $ADForest.Name, ("{2}{1}{4}{3}{0}" -f 'l','Le','Functional ','e','v'), $ForestMode, ("{4}{1}{2}{3}{0}{5}{6}" -f'ng','o','m','ain Nami','D',' M','aster'), $ADForest.NamingRoleOwner, ("{3}{1}{0}{2}" -f'as','ema M','ter','Sch'), $ADForest.SchemaRoleOwner, ("{1}{0}{2}"-f'oo','R','tDomain'), $ADForest.RootDomain, ("{1}{3}{0}{2}" -f'in','D',' Count','oma'), $ADForest.Domains.Count, ("{2}{1}{0}" -f'unt','te Co','Si'), $ADForest.Sites.Count, ("{0}{1}{3}{2}"-f 'Global',' ','atalog Count','C'), $ADForest.GlobalCatalogs.Count)
+            $ObjValues = @(('Nam'+'e'), $ADForest.Name, ('Fu'+'nction'+'al Le'+'v'+'el'), $ForestMode, ('Dom'+'ain'+' Naming '+'Master'), $ADForest.NamingRoleOwner, ('Schema Ma'+'s'+'ter'), $ADForest.SchemaRoleOwner, ('Root'+'D'+'o'+'main'), $ADForest.RootDomain, ('D'+'omai'+'n '+'Count'), $ADForest.Domains.Count, ('Sit'+'e'+' Count'), $ADForest.Sites.Count, ('Global C'+'ata'+'l'+'og C'+'o'+'unt'), $ADForest.GlobalCatalogs.Count)
 
             For ($i = 0; $i -lt $($ObjValues.Count); $i++)
             {
                 $Obj = New-Object PSObject
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{2}{1}"-f'Cat','gory','e') -Value $ObjValues[$i]
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}" -f 'Va','lue') -Value $ObjValues[$i+1]
+                $Obj | Add-Member -MemberType NoteProperty -Name ('C'+'ategor'+'y') -Value $ObjValues[$i]
+                $Obj | Add-Member -MemberType NoteProperty -Name ('V'+'alue') -Value $ObjValues[$i+1]
                 $i++
                 $ForestObj += $Obj
             }
@@ -6666,93 +6666,93 @@ Function Get-ADRForest
             For($i=0; $i -lt $ADForest.Domains.Count; $i++)
             {
                 $Obj = New-Object PSObject
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{2}{1}{0}"-f'ry','atego','C') -Value ("{2}{1}{0}"-f 'in','ma','Do')
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}"-f 'ue','Val') -Value $ADForest.Domains[$i]
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Cate'+'g'+'ory') -Value ('Doma'+'in')
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Va'+'lue') -Value $ADForest.Domains[$i]
                 $ForestObj += $Obj
             }
             For($i=0; $i -lt $ADForest.Sites.Count; $i++)
             {
                 $Obj = New-Object PSObject
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{2}{0}"-f 'y','C','ategor') -Value ("{1}{0}"-f'ite','S')
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}"-f'Valu','e') -Value $ADForest.Sites[$i]
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Ca'+'teg'+'ory') -Value ('Sit'+'e')
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Val'+'ue') -Value $ADForest.Sites[$i]
                 $ForestObj += $Obj
             }
             For($i=0; $i -lt $ADForest.GlobalCatalogs.Count; $i++)
             {
                 $Obj = New-Object PSObject
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}" -f'ategory','C') -Value ("{1}{3}{2}{0}"-f 'g','Global','alo','Cat')
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}"-f'ue','Val') -Value $ADForest.GlobalCatalogs[$i]
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Ca'+'t'+'egory') -Value ('Gl'+'ob'+'alCatalo'+'g')
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Valu'+'e') -Value $ADForest.GlobalCatalogs[$i]
                 $ForestObj += $Obj
             }
 
             $Obj = New-Object PSObject
-            $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}{2}" -f 'Cat','egor','y') -Value ("{1}{0}{2}{3}{4}" -f 'o','Tombst','n','e Lif','etime')
+            $Obj | Add-Member -MemberType NoteProperty -Name ('C'+'atego'+'ry') -Value ('Tomb'+'st'+'one '+'L'+'ifetim'+'e')
             If ($ADForestTombstoneLifetime)
             {
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}"-f 'Valu','e') -Value $ADForestTombstoneLifetime
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Valu'+'e') -Value $ADForestTombstoneLifetime
                 Remove-Variable ADForestTombstoneLifetime
             }
             Else
             {
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}" -f 'Val','ue') -Value ("{0}{2}{1}" -f'Not Ret','ieved','r')
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Valu'+'e') -Value ('Not Re'+'t'+'rieved')
             }
             $ForestObj += $Obj
 
             $Obj = New-Object PSObject
-            $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}" -f 'C','ategory') -Value ("{3}{7}{1}{6}{4}{2}{0}{5}"-f' (2008 R2 onwar','l','in','R',' B','ds)','e','ecyc')
+            $Obj | Add-Member -MemberType NoteProperty -Name ('Categ'+'ory') -Value ('Recy'+'c'+'le Bin '+'(2008'+' R2 onwa'+'r'+'d'+'s)')
             If ($ADRecycleBin)
             {
                 If ($ADRecycleBin.Properties.'msDS-EnabledFeatureBL'.Count -gt 0)
                 {
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}" -f'lue','Va') -Value ("{0}{1}{2}"-f'En','a','bled')
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('V'+'alue') -Value ('Enable'+'d')
                     $ForestObj += $Obj
                     For($i=0; $i -lt $($ADRecycleBin.Properties.'msDS-EnabledFeatureBL'.Count); $i++)
                     {
                         $Obj = New-Object PSObject
-                        $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}"-f'Catego','ry') -Value ("{1}{0}{2}" -f'nabled S','E','cope')
-                        $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}" -f'Va','lue') -Value $ADRecycleBin.Properties.'msDS-EnabledFeatureBL'[$i]
+                        $Obj | Add-Member -MemberType NoteProperty -Name ('Cate'+'gor'+'y') -Value ('En'+'abled Sc'+'op'+'e')
+                        $Obj | Add-Member -MemberType NoteProperty -Name ('Val'+'ue') -Value $ADRecycleBin.Properties.'msDS-EnabledFeatureBL'[$i]
                         $ForestObj += $Obj
                     }
                 }
                 Else
                 {
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}" -f 'V','alue') -Value ("{1}{0}" -f 'd','Disable')
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('Val'+'ue') -Value ('Di'+'sable'+'d')
                     $ForestObj += $Obj
                 }
                 Remove-Variable ADRecycleBin
             }
             Else
             {
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}" -f'Val','ue') -Value ("{0}{1}"-f 'Disab','led')
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Valu'+'e') -Value ('D'+'isabled')
                 $ForestObj += $Obj
             }
 
             $Obj = New-Object PSObject
-            $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{2}{1}" -f'Ca','y','tegor') -Value ("{6}{0}{8}{4}{3}{5}{2}{1}{7}" -f'ivileg',' onwa','2016',' ','s Management','(','Pr','rds)','ed Acces')
+            $Obj | Add-Member -MemberType NoteProperty -Name ('Cat'+'egory') -Value ('Privil'+'eg'+'ed Acces'+'s Ma'+'nage'+'m'+'ent ('+'2'+'01'+'6 onw'+'ards'+')')
             If ($PrivilegedAccessManagement)
             {
                 If ($PrivilegedAccessManagement.Properties.'msDS-EnabledFeatureBL'.Count -gt 0)
                 {
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}"-f 'lue','Va') -Value ("{1}{0}"-f'bled','Ena')
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('Val'+'ue') -Value ('En'+'abled')
                     $ForestObj += $Obj
                     For($i=0; $i -lt $($PrivilegedAccessManagement.Properties.'msDS-EnabledFeatureBL'.Count); $i++)
                     {
                         $Obj = New-Object PSObject
-                        $Obj | Add-Member -MemberType NoteProperty -Name ("{2}{1}{0}"-f 'egory','at','C') -Value ("{2}{3}{1}{0}" -f 'ope','d Sc','E','nable')
-                        $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}"-f'lue','Va') -Value $PrivilegedAccessManagement.Properties.'msDS-EnabledFeatureBL'[$i]
+                        $Obj | Add-Member -MemberType NoteProperty -Name ('Cat'+'ego'+'ry') -Value ('En'+'able'+'d'+' Scope')
+                        $Obj | Add-Member -MemberType NoteProperty -Name ('Va'+'lue') -Value $PrivilegedAccessManagement.Properties.'msDS-EnabledFeatureBL'[$i]
                         $ForestObj += $Obj
                     }
                 }
                 Else
                 {
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}" -f 'V','alue') -Value ("{0}{2}{1}" -f 'Disa','d','ble')
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('V'+'alue') -Value ('Dis'+'abl'+'ed')
                     $ForestObj += $Obj
                 }
                 Remove-Variable PrivilegedAccessManagement
             }
             Else
             {
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}"-f'V','alue') -Value ("{2}{0}{1}"-f 'i','sabled','D')
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Va'+'lue') -Value ('Di'+'sabled')
                 $ForestObj += $Obj
             }
 
@@ -6800,29 +6800,29 @@ Function Get-ADRTrust
 
     # Values taken from https://msdn.microsoft.com/en-us/library/cc223768.aspx
     $TDAD = @{
-        0 = ("{1}{2}{0}"-f'ed','Di','sabl');
-        1 = ("{1}{2}{0}"-f 'd','Inbou','n');
-        2 = ("{0}{1}"-f 'Ou','tbound');
-        3 = ("{2}{0}{4}{1}{3}"-f 'i','ection','B','al','Dir');
+        0 = ('Disabl'+'e'+'d');
+        1 = ('Inbo'+'und');
+        2 = ('Out'+'bo'+'und');
+        3 = ('BiD'+'irec'+'tiona'+'l');
     }
 
     # Values taken from https://msdn.microsoft.com/en-us/library/cc223771.aspx
     $TTAD = @{
-        1 = ("{2}{1}{0}" -f'level','n','Dow');
-        2 = ("{0}{2}{1}" -f 'Upl','vel','e');
-        3 = "MIT";
-        4 = "DCE";
+        1 = ('Do'+'w'+'nlevel');
+        2 = ('Up'+'level');
+        3 = ('MI'+'T');
+        4 = ('DC'+'E');
     }
 
-    If ($Method -eq ("{0}{1}" -f'AD','WS'))
+    If ($Method -eq ('ADW'+'S'))
     {
         Try
         {
-            $ADTrusts = Get-ADObject -LDAPFilter (("{5}{7}{2}{1}{0}{3}{6}{4}" -f'usted','lass=tr','ctC','Do','n)','(ob','mai','je')) -Properties DistinguishedName,trustPartner,trustdirection,trusttype,TrustAttributes,whenCreated,whenChanged
+            $ADTrusts = Get-ADObject -LDAPFilter ('(obj'+'ectClas'+'s'+'=tr'+'u'+'s'+'tedDoma'+'in)') -Properties DistinguishedName,trustPartner,trustdirection,trusttype,TrustAttributes,whenCreated,whenChanged
         }
         Catch
         {
-            Write-Warning ("{0}{1}{6}{2}{7}{5}{8}{13}{3}{9}{10}{11}{4}{12}"-f'[G','e','s','m','trustedDomain Obje','or wh','t-ADRTru','t] Err','ile en','er','ating',' ','cts','u')
+            Write-Warning ('[Get-'+'AD'+'RTrust'+']'+' E'+'rro'+'r whil'+'e en'+'u'+'m'+'er'+'atin'+'g'+' tr'+'ust'+'edDomain Ob'+'jects')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -6835,44 +6835,44 @@ Function Get-ADRTrust
             $ADTrusts | ForEach-Object {
                 # Create the object for each instance.
                 $Obj = New-Object PSObject
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{2}{1}" -f 'Sourc','n','e Domai') -Value (Get-DNtoFQDN $_.DistinguishedName)
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{4}{3}{2}{1}{0}"-f'in','oma',' D','arget','T') -Value $_.trustPartner
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Source D'+'omai'+'n') -Value (Get-DNtoFQDN $_.DistinguishedName)
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Target Dom'+'ai'+'n') -Value $_.trustPartner
                 $TrustDirection = [string] $TDAD[$_.trustdirection]
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{2}{0}{3}{1}{4}"-f 'D','ectio','Trust ','ir','n') -Value $TrustDirection
+                $Obj | Add-Member -MemberType NoteProperty -Name ('T'+'rus'+'t'+' Di'+'rection') -Value $TrustDirection
                 $TrustType = [string] $TTAD[$_.trusttype]
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{2}{0}"-f'Type','Trust',' ') -Value $TrustType
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Tr'+'ust Ty'+'pe') -Value $TrustType
 
                 $TrustAttributes = $null
-                If ([int32] $_.TrustAttributes -band 0x00000001) { $TrustAttributes += ("{4}{2}{3}{0}{1}"-f've',',','i','ti','Non Trans') }
-                If ([int32] $_.TrustAttributes -band 0x00000002) { $TrustAttributes += ("{0}{1}{2}"-f'Up','L','evel,') }
-                If ([int32] $_.TrustAttributes -band 0x00000004) { $TrustAttributes += ("{0}{2}{1}" -f'Quaranti',',','ned') } #SID Filtering
-                If ([int32] $_.TrustAttributes -band 0x00000008) { $TrustAttributes += ("{3}{5}{0}{2}{4}{1}" -f 's','Transitive,','t','For',' ','e') }
-                If ([int32] $_.TrustAttributes -band 0x00000010) { $TrustAttributes += ("{3}{5}{2}{4}{1}{0}" -f'n,','izatio','Orga','Cro','n','ss ') } #Selective Auth
-                If ([int32] $_.TrustAttributes -band 0x00000020) { $TrustAttributes += ("{1}{3}{2}{0}"-f'rest,','Wit','Fo','hin ') }
-                If ([int32] $_.TrustAttributes -band 0x00000040) { $TrustAttributes += ("{1}{3}{0}{2}"-f 'as Ex','Tr','ternal,','eat ') }
-                If ([int32] $_.TrustAttributes -band 0x00000080) { $TrustAttributes += ("{3}{1}{4}{5}{0}{2}"-f 'tio','es RC4','n,','Us',' Encr','yp') }
-                If ([int32] $_.TrustAttributes -band 0x00000200) { $TrustAttributes += ("{2}{1}{0}{4}{3}" -f 'T Delegati','TG','No ',',','on') }
-                If ([int32] $_.TrustAttributes -band 0x00000400) { $TrustAttributes += ("{0}{1}{2}{3}"-f'PIM',' T','r','ust,') }
+                If ([int32] $_.TrustAttributes -band 0x00000001) { $TrustAttributes += ('Non T'+'ra'+'nsitive'+',') }
+                If ([int32] $_.TrustAttributes -band 0x00000002) { $TrustAttributes += ('Up'+'Level'+',') }
+                If ([int32] $_.TrustAttributes -band 0x00000004) { $TrustAttributes += ('Quaran'+'ti'+'n'+'ed,') } #SID Filtering
+                If ([int32] $_.TrustAttributes -band 0x00000008) { $TrustAttributes += ('Fore'+'s'+'t '+'Tra'+'nsitive'+',') }
+                If ([int32] $_.TrustAttributes -band 0x00000010) { $TrustAttributes += ('Cross '+'O'+'rganiza'+'ti'+'on,') } #Selective Auth
+                If ([int32] $_.TrustAttributes -band 0x00000020) { $TrustAttributes += ('W'+'i'+'thi'+'n '+'Forest,') }
+                If ([int32] $_.TrustAttributes -band 0x00000040) { $TrustAttributes += ('Treat'+' as Ex'+'t'+'ern'+'al,') }
+                If ([int32] $_.TrustAttributes -band 0x00000080) { $TrustAttributes += ('Uses '+'RC'+'4 En'+'crypt'+'ion,') }
+                If ([int32] $_.TrustAttributes -band 0x00000200) { $TrustAttributes += ('N'+'o T'+'GT '+'Delegatio'+'n,') }
+                If ([int32] $_.TrustAttributes -band 0x00000400) { $TrustAttributes += ('PIM '+'Tru'+'s'+'t,') }
                 If ($TrustAttributes)
                 {
                     $TrustAttributes = $TrustAttributes.TrimEnd(",")
                 }
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{2}{1}{0}"-f's','ute','Attrib') -Value $TrustAttributes
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{3}{0}{2}" -f 'te','w','d','henCrea') -Value ([DateTime] $($_.whenCreated))
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{2}{3}{0}" -f 'ged','when','Cha','n') -Value ([DateTime] $($_.whenChanged))
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Att'+'ribu'+'tes') -Value $TrustAttributes
+                $Obj | Add-Member -MemberType NoteProperty -Name ('w'+'h'+'enCr'+'eated') -Value ([DateTime] $($_.whenCreated))
+                $Obj | Add-Member -MemberType NoteProperty -Name ('w'+'henC'+'hanged') -Value ([DateTime] $($_.whenChanged))
                 $ADTrustObj += $Obj
             }
             Remove-Variable ADTrusts
         }
     }
 
-    If ($Method -eq ("{0}{1}" -f 'LD','AP'))
+    If ($Method -eq ('LDA'+'P'))
     {
         $objSearcher = New-Object System.DirectoryServices.DirectorySearcher $objDomain
         $ObjSearcher.PageSize = $PageSize
-        $ObjSearcher.Filter = (("{3}{5}{2}{0}{4}{1}" -f'ss=truste','n)','Cla','(objec','dDomai','t'))
-        $ObjSearcher.PropertiesToLoad.AddRange((("{2}{0}{1}{3}"-f'tin','guished','dis','name'),("{0}{2}{1}"-f 'trus','ner','tpart'),("{0}{1}{2}"-f'tru','std','irection'),("{2}{1}{0}" -f 'ype','stt','tru'),("{4}{0}{2}{1}{3}"-f 'st','r','att','ibutes','tru'),("{3}{2}{1}{0}"-f'ted','rea','c','when'),("{1}{3}{2}{0}"-f 'ed','whe','hang','nc')))
-        $ObjSearcher.SearchScope = ("{0}{1}" -f'Sub','tree')
+        $ObjSearcher.Filter = ('('+'objectClass=tr'+'us'+'ted'+'Dom'+'a'+'in)')
+        $ObjSearcher.PropertiesToLoad.AddRange((('dist'+'i'+'nguis'+'hedn'+'ame'),('tr'+'u'+'stpar'+'tner'),('t'+'rustd'+'ir'+'ectio'+'n'),('tr'+'us'+'ttype'),('tru'+'stat'+'tri'+'butes'),('wh'+'encreate'+'d'),('whe'+'nch'+'an'+'ged')))
+        $ObjSearcher.SearchScope = ('Sub'+'tree')
 
         Try
         {
@@ -6880,7 +6880,7 @@ Function Get-ADRTrust
         }
         Catch
         {
-            Write-Warning ("{15}{13}{11}{17}{1}{9}{10}{6}{7}{2}{0}{8}{12}{16}{5}{3}{4}{14}" -f ' t','r ','ng','main Obj','ect','Do','me','rati','r','while ','enu','-ADRTrust] Err','us','et','s','[G','ted','o')
+            Write-Warning ('[Ge'+'t-ADRTrus'+'t] Error whil'+'e'+' enumerating trus'+'t'+'edD'+'o'+'ma'+'in Obje'+'cts')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -6894,31 +6894,31 @@ Function Get-ADRTrust
             $ADTrusts | ForEach-Object {
                 # Create the object for each instance.
                 $Obj = New-Object PSObject
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{2}{4}{3}{1}" -f'Source','main',' ','o','D') -Value $(Get-DNtoFQDN ([string] $_.Properties.distinguishedname))
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{2}{0}" -f'ain','T','arget Dom') -Value $([string] $_.Properties.trustpartner)
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Source D'+'oma'+'in') -Value $(Get-DNtoFQDN ([string] $_.Properties.distinguishedname))
+                $Obj | Add-Member -MemberType NoteProperty -Name ('T'+'a'+'rget D'+'omain') -Value $([string] $_.Properties.trustpartner)
                 $TrustDirection = [string] $TDAD[$_.Properties.trustdirection]
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{2}{0}{4}{3}"-f'ire','Trust',' D','on','cti') -Value $TrustDirection
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Trust D'+'ire'+'ct'+'ion') -Value $TrustDirection
                 $TrustType = [string] $TTAD[$_.Properties.trusttype]
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}{2}" -f 'ust','Tr',' Type') -Value $TrustType
+                $Obj | Add-Member -MemberType NoteProperty -Name ('T'+'r'+'ust Type') -Value $TrustType
 
                 $TrustAttributes = $null
-                If ([int32] $_.Properties.trustattributes[0] -band 0x00000001) { $TrustAttributes += ("{1}{0}{2}"-f 'nsitiv','Non Tra','e,') }
-                If ([int32] $_.Properties.trustattributes[0] -band 0x00000002) { $TrustAttributes += ("{0}{1}" -f 'UpLe','vel,') }
-                If ([int32] $_.Properties.trustattributes[0] -band 0x00000004) { $TrustAttributes += ("{3}{2}{1}{0}" -f 'ed,','antin','uar','Q') } #SID Filtering
-                If ([int32] $_.Properties.trustattributes[0] -band 0x00000008) { $TrustAttributes += ("{3}{4}{0}{5}{1}{2}"-f'ns','tiv','e,','Fores','t Tra','i') }
-                If ([int32] $_.Properties.trustattributes[0] -band 0x00000010) { $TrustAttributes += ("{3}{1}{2}{4}{0}"-f'ganization,','os','s ','Cr','Or') } #Selective Auth
-                If ([int32] $_.Properties.trustattributes[0] -band 0x00000020) { $TrustAttributes += ("{2}{4}{1}{3}{0}" -f 'rest,','in ','Wi','Fo','th') }
-                If ([int32] $_.Properties.trustattributes[0] -band 0x00000040) { $TrustAttributes += ("{0}{1}{3}{2}{4}" -f 'T','reat','al',' as Extern',',') }
-                If ([int32] $_.Properties.trustattributes[0] -band 0x00000080) { $TrustAttributes += ("{3}{0}{4}{1}{2}"-f'Encry','o','n,','Uses RC4 ','pti') }
-                If ([int32] $_.Properties.trustattributes[0] -band 0x00000200) { $TrustAttributes += ("{1}{3}{4}{2}{0}{5}"-f'io','N',' Delegat','o',' TGT','n,') }
-                If ([int32] $_.Properties.trustattributes[0] -band 0x00000400) { $TrustAttributes += ("{1}{2}{0}" -f't,','PIM T','rus') }
+                If ([int32] $_.Properties.trustattributes[0] -band 0x00000001) { $TrustAttributes += ('N'+'on Transiti'+'ve'+',') }
+                If ([int32] $_.Properties.trustattributes[0] -band 0x00000002) { $TrustAttributes += ('UpLe'+'vel'+',') }
+                If ([int32] $_.Properties.trustattributes[0] -band 0x00000004) { $TrustAttributes += ('Qua'+'ra'+'n'+'tined,') } #SID Filtering
+                If ([int32] $_.Properties.trustattributes[0] -band 0x00000008) { $TrustAttributes += ('Forest'+' Trans'+'i'+'ti'+'v'+'e,') }
+                If ([int32] $_.Properties.trustattributes[0] -band 0x00000010) { $TrustAttributes += ('Cross'+' O'+'rg'+'an'+'izati'+'on'+',') } #Selective Auth
+                If ([int32] $_.Properties.trustattributes[0] -band 0x00000020) { $TrustAttributes += ('Wi'+'thin F'+'orest,') }
+                If ([int32] $_.Properties.trustattributes[0] -band 0x00000040) { $TrustAttributes += ('Treat as'+' Ex'+'t'+'ernal,') }
+                If ([int32] $_.Properties.trustattributes[0] -band 0x00000080) { $TrustAttributes += ('Use'+'s '+'R'+'C'+'4 Enc'+'ryp'+'tion,') }
+                If ([int32] $_.Properties.trustattributes[0] -band 0x00000200) { $TrustAttributes += ('N'+'o '+'TGT '+'Delegat'+'ion'+',') }
+                If ([int32] $_.Properties.trustattributes[0] -band 0x00000400) { $TrustAttributes += ('P'+'IM'+' Trust,') }
                 If ($TrustAttributes)
                 {
                     $TrustAttributes = $TrustAttributes.TrimEnd(",")
                 }
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{3}{1}{2}{0}"-f 's','ttri','bute','A') -Value $TrustAttributes
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}{2}"-f 'whenCreat','e','d') -Value ([DateTime] $($_.Properties.whencreated))
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{2}{1}{0}{3}" -f 'ha','enC','wh','nged') -Value ([DateTime] $($_.Properties.whenchanged))
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Attr'+'ibu'+'tes') -Value $TrustAttributes
+                $Obj | Add-Member -MemberType NoteProperty -Name ('w'+'henCreate'+'d') -Value ([DateTime] $($_.Properties.whencreated))
+                $Obj | Add-Member -MemberType NoteProperty -Name ('w'+'h'+'enCha'+'nged') -Value ([DateTime] $($_.Properties.whenchanged))
                 $ADTrustObj += $Obj
             }
             Remove-Variable ADTrusts
@@ -6984,16 +6984,16 @@ Function Get-ADRSite
         [Management.Automation.PSCredential] $Credential = [Management.Automation.PSCredential]::Empty
     )
 
-    If ($Method -eq ("{1}{0}" -f 'DWS','A'))
+    If ($Method -eq ('A'+'DWS'))
     {
         Try
         {
-            $SearchPath = ("{0}{2}{1}" -f'CN','es','=Sit')
-            $ADSites = Get-ADObject -SearchBase "$SearchPath,$((Get-ADRootDSE).configurationNamingContext)" -LDAPFilter (("{2}{4}{3}{1}{0}" -f'ite)','ss=s','(ob','Cla','ject')) -Properties Name,Description,whenCreated,whenChanged
+            $SearchPath = ('CN=Si'+'t'+'es')
+            $ADSites = Get-ADObject -SearchBase "$SearchPath,$((Get-ADRootDSE).configurationNamingContext)" -LDAPFilter ('(obje'+'ct'+'C'+'lass=site'+')') -Properties Name,Description,whenCreated,whenChanged
         }
         Catch
         {
-            Write-Warning ("{6}{11}{0}{13}{10}{8}{12}{7}{3}{4}{1}{2}{5}{9}"-f'-ADR','e Obje','c','S','it','t','[',' enumerating ','or ','s',' Err','Get','while','Site]')
+            Write-Warning ('[Get-ADRS'+'ite'+'] E'+'rror w'+'hil'+'e enumera'+'ti'+'ng'+' Sit'+'e'+' Objects')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -7006,19 +7006,19 @@ Function Get-ADRSite
             $ADSites | ForEach-Object {
                 # Create the object for each instance.
                 $Obj = New-Object PSObject
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}"-f'Na','me') -Value $_.Name
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{2}{1}" -f'Desc','n','riptio') -Value $_.Description
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{2}{1}{0}{3}"-f'Cr','en','wh','eated') -Value $_.whenCreated
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}{2}"-f 'henChang','w','ed') -Value $_.whenChanged
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Na'+'me') -Value $_.Name
+                $Obj | Add-Member -MemberType NoteProperty -Name ('De'+'script'+'i'+'on') -Value $_.Description
+                $Obj | Add-Member -MemberType NoteProperty -Name ('whe'+'nCre'+'a'+'ted') -Value $_.whenCreated
+                $Obj | Add-Member -MemberType NoteProperty -Name ('whe'+'nCha'+'nge'+'d') -Value $_.whenChanged
                 $ADSiteObj += $Obj
             }
             Remove-Variable ADSites
         }
     }
 
-    If ($Method -eq ("{1}{0}" -f'AP','LD'))
+    If ($Method -eq ('LD'+'AP'))
     {
-        $SearchPath = ("{2}{0}{1}" -f'=S','ites','CN')
+        $SearchPath = ('CN'+'=Sites')
         If ($Credential -ne [Management.Automation.PSCredential]::Empty)
         {
             $objSearchPath = New-Object System.DirectoryServices.DirectoryEntry "LDAP://$($DomainController)/$SearchPath,$($objDomainRootDSE.ConfigurationNamingContext)", $Credential.UserName,$Credential.GetNetworkCredential().Password
@@ -7028,8 +7028,8 @@ Function Get-ADRSite
             $objSearchPath = New-Object System.DirectoryServices.DirectoryEntry "LDAP://$SearchPath,$($objDomainRootDSE.ConfigurationNamingContext)"
         }
         $objSearcher = New-Object System.DirectoryServices.DirectorySearcher $objSearchPath
-        $ObjSearcher.Filter = (("{3}{1}{2}{0}" -f'e)','ss=s','it','(objectCla'))
-        $ObjSearcher.SearchScope = ("{1}{0}" -f 'ubtree','S')
+        $ObjSearcher.Filter = ('(obj'+'ectCla'+'ss=sit'+'e)')
+        $ObjSearcher.SearchScope = ('Subt'+'r'+'ee')
 
         Try
         {
@@ -7037,7 +7037,7 @@ Function Get-ADRSite
         }
         Catch
         {
-            Write-Warning ("{12}{4}{1}{7}{3}{2}{11}{8}{10}{0}{9}{5}{6}"-f 'ng ','] Error','e','le enum','DRSite','ec','ts',' whi','t','Site Obj','i','ra','[Get-A')
+            Write-Warning ('['+'Get-A'+'DRSite] Er'+'r'+'o'+'r '+'whil'+'e enu'+'m'+'erating Site'+' O'+'bjec'+'t'+'s')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -7051,10 +7051,10 @@ Function Get-ADRSite
             $ADSites | ForEach-Object {
                 # Create the object for each instance.
                 $Obj = New-Object PSObject
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}" -f 'N','ame') -Value $([string] $_.Properties.name)
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{3}{1}{2}{0}"-f'ption','c','ri','Des') -Value $([string] $_.Properties.description)
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{2}{0}{1}"-f're','ated','whenC') -Value ([DateTime] $($_.Properties.whencreated))
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{2}{3}{1}"-f'whenC','ed','ha','ng') -Value ([DateTime] $($_.Properties.whenchanged))
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Na'+'me') -Value $([string] $_.Properties.name)
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Descr'+'iptio'+'n') -Value $([string] $_.Properties.description)
+                $Obj | Add-Member -MemberType NoteProperty -Name ('whenCre'+'ate'+'d') -Value ([DateTime] $($_.Properties.whencreated))
+                $Obj | Add-Member -MemberType NoteProperty -Name ('whe'+'nC'+'hange'+'d') -Value ([DateTime] $($_.Properties.whenchanged))
                 $ADSiteObj += $Obj
             }
             Remove-Variable ADSites
@@ -7120,16 +7120,16 @@ Function Get-ADRSubnet
         [Management.Automation.PSCredential] $Credential = [Management.Automation.PSCredential]::Empty
     )
 
-    If ($Method -eq ("{0}{1}" -f'ADW','S'))
+    If ($Method -eq ('ADW'+'S'))
     {
         Try
         {
-            $SearchPath = ("{0}{2}{4}{3}{1}" -f'CN','tes','=','i','Subnets,CN=S')
-            $ADSubnets = Get-ADObject -SearchBase "$SearchPath,$((Get-ADRootDSE).configurationNamingContext)" -LDAPFilter ("{1}{3}{2}{0}{4}"-f'tCl','(ob','ec','j','ass=subnet)') -Properties Name,Description,siteObject,whenCreated,whenChanged
+            $SearchPath = ('CN=Su'+'bnets,CN'+'=Sit'+'es')
+            $ADSubnets = Get-ADObject -SearchBase "$SearchPath,$((Get-ADRootDSE).configurationNamingContext)" -LDAPFilter ('(obje'+'ctCla'+'s'+'s=s'+'ubn'+'et)') -Properties Name,Description,siteObject,whenCreated,whenChanged
         }
         Catch
         {
-            Write-Warning ("{4}{10}{5}{0}{3}{7}{9}{1}{8}{6}{2}" -f'rror while enumer',' Ob','ts','atin','[','-ADRSubnet] E','c','g S','je','ubnet','Get')
+            Write-Warning ('[G'+'et-AD'+'R'+'Subn'+'et'+'] Erro'+'r'+' wh'+'il'+'e e'+'numerating'+' S'+'u'+'bnet '+'Obj'+'ects')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -7142,20 +7142,20 @@ Function Get-ADRSubnet
             $ADSubnets | ForEach-Object {
                 # Create the object for each instance.
                 $Obj = New-Object PSObject
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}" -f 'S','ite') -Value $(($_.siteObject -Split ",")[0] -replace 'CN=','')
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}"-f'ame','N') -Value $_.Name
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{2}{1}{0}"-f 'ion','ipt','Descr') -Value $_.Description
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{2}{0}"-f 'Created','w','hen') -Value $_.whenCreated
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{2}{1}{0}" -f'anged','h','whenC') -Value $_.whenChanged
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Sit'+'e') -Value $(($_.siteObject -Split ",")[0] -replace ('C'+'N='),'')
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Na'+'me') -Value $_.Name
+                $Obj | Add-Member -MemberType NoteProperty -Name ('D'+'es'+'cr'+'iption') -Value $_.Description
+                $Obj | Add-Member -MemberType NoteProperty -Name ('whenC'+'rea'+'ted') -Value $_.whenCreated
+                $Obj | Add-Member -MemberType NoteProperty -Name ('when'+'Ch'+'anged') -Value $_.whenChanged
                 $ADSubnetObj += $Obj
             }
             Remove-Variable ADSubnets
         }
     }
 
-    If ($Method -eq ("{1}{0}"-f 'AP','LD'))
+    If ($Method -eq ('LDA'+'P'))
     {
-        $SearchPath = ("{2}{1}{0}{3}"-f 'N=Site','Subnets,C','CN=','s')
+        $SearchPath = ('C'+'N'+'=Su'+'b'+'nets'+',CN=Sites')
         If ($Credential -ne [Management.Automation.PSCredential]::Empty)
         {
             $objSearchPath = New-Object System.DirectoryServices.DirectoryEntry "LDAP://$($DomainController)/$SearchPath,$($objDomainRootDSE.ConfigurationNamingContext)", $Credential.UserName,$Credential.GetNetworkCredential().Password
@@ -7165,8 +7165,8 @@ Function Get-ADRSubnet
             $objSearchPath = New-Object System.DirectoryServices.DirectoryEntry "LDAP://$SearchPath,$($objDomainRootDSE.ConfigurationNamingContext)"
         }
         $objSearcher = New-Object System.DirectoryServices.DirectorySearcher $objSearchPath
-        $ObjSearcher.Filter = ("{1}{4}{2}{3}{0}{5}" -f 'Class=subne','(o','c','t','bje','t)')
-        $ObjSearcher.SearchScope = ("{1}{0}" -f 'ee','Subtr')
+        $ObjSearcher.Filter = ('(obj'+'e'+'ct'+'C'+'las'+'s=subnet'+')')
+        $ObjSearcher.SearchScope = ('S'+'ub'+'tree')
 
         Try
         {
@@ -7174,7 +7174,7 @@ Function Get-ADRSubnet
         }
         Catch
         {
-            Write-Warning ("{3}{4}{9}{6}{11}{5}{8}{7}{2}{0}{1}{10}" -f 't Obj','e','ating Subne','[G','e','or w',']',' enumer','hile','t-ADRSubnet','cts',' Err')
+            Write-Warning ('[G'+'et'+'-ADRSubn'+'et]'+' '+'Error while'+' enu'+'meratin'+'g'+' Su'+'bnet Objects')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -7188,11 +7188,11 @@ Function Get-ADRSubnet
             $ADSubnets | ForEach-Object {
                 # Create the object for each instance.
                 $Obj = New-Object PSObject
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}" -f'te','Si') -Value $((([string] $_.Properties.siteobject) -Split ",")[0] -replace 'CN=','')
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}"-f'ame','N') -Value $([string] $_.Properties.name)
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{2}{1}" -f 'D','n','escriptio') -Value $([string] $_.Properties.description)
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{2}{0}{3}{1}"-f'hen','ed','w','Creat') -Value ([DateTime] $($_.Properties.whencreated))
-                $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{2}{1}" -f'wh','anged','enCh') -Value ([DateTime] $($_.Properties.whenchanged))
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Sit'+'e') -Value $((([string] $_.Properties.siteobject) -Split ",")[0] -replace ('CN'+'='),'')
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Nam'+'e') -Value $([string] $_.Properties.name)
+                $Obj | Add-Member -MemberType NoteProperty -Name ('Descripti'+'o'+'n') -Value $([string] $_.Properties.description)
+                $Obj | Add-Member -MemberType NoteProperty -Name ('whenCr'+'ea'+'ted') -Value ([DateTime] $($_.Properties.whencreated))
+                $Obj | Add-Member -MemberType NoteProperty -Name ('whenCh'+'a'+'ng'+'ed') -Value ([DateTime] $($_.Properties.whenchanged))
                 $ADSubnetObj += $Obj
             }
             Remove-Variable ADSubnets
@@ -7259,7 +7259,7 @@ Function Get-ADRSchemaHistory
         [Management.Automation.PSCredential] $Credential = [Management.Automation.PSCredential]::Empty
     )
 
-    If ($Method -eq ("{1}{0}" -f 'DWS','A'))
+    If ($Method -eq ('A'+'DWS'))
     {
         Try
         {
@@ -7267,7 +7267,7 @@ Function Get-ADRSchemaHistory
         }
         Catch
         {
-            Write-Warning ("{15}{4}{1}{13}{8}{5}{3}{16}{0}{12}{2}{7}{14}{10}{6}{17}{11}{9}" -f'while','he','e','rror','RSc','E','c','n','] ','cts','ing S','ma Obje',' ','maHistory','umerat','[Get-AD',' ','he')
+            Write-Warning ('[Get-ADRSchema'+'H'+'istory] '+'Error whi'+'l'+'e'+' e'+'numer'+'ating Sc'+'he'+'ma '+'Objects')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -7280,7 +7280,7 @@ Function Get-ADRSchemaHistory
         }
     }
 
-    If ($Method -eq ("{0}{1}"-f 'LDA','P'))
+    If ($Method -eq ('LDA'+'P'))
     {
         If ($Credential -ne [Management.Automation.PSCredential]::Empty)
         {
@@ -7291,9 +7291,9 @@ Function Get-ADRSchemaHistory
             $objSearchPath = New-Object System.DirectoryServices.DirectoryEntry "LDAP://$($objDomainRootDSE.schemaNamingContext)"
         }
         $objSearcher = New-Object System.DirectoryServices.DirectorySearcher $objSearchPath
-        $ObjSearcher.Filter = ("{2}{0}{1}{4}{3}"-f 'b','jec','(o','*)','tClass=')
-        $ObjSearcher.PropertiesToLoad.AddRange((("{2}{3}{0}{1}" -f'ednam','e','distingu','ish'),("{0}{1}"-f'nam','e'),("{1}{0}{2}" -f's','objectcla','s'),("{0}{3}{2}{1}"-f'w','nged','cha','hen'),("{0}{3}{2}{1}"-f 'wh','d','create','en')))
-        $ObjSearcher.SearchScope = ("{0}{2}{1}" -f 'On','evel','eL')
+        $ObjSearcher.Filter = ('('+'obj'+'ectC'+'l'+'ass=*)')
+        $ObjSearcher.PropertiesToLoad.AddRange((('d'+'istin'+'guishednam'+'e'),('n'+'ame'),('ob'+'j'+'ec'+'tclass'),('whe'+'nchan'+'ged'),('w'+'hencrea'+'ted')))
+        $ObjSearcher.SearchScope = ('On'+'eLevel')
 
         Try
         {
@@ -7301,7 +7301,7 @@ Function Get-ADRSchemaHistory
         }
         Catch
         {
-            Write-Warning ("{1}{5}{11}{4}{2}{7}{3}{10}{8}{6}{9}{0}" -f'ts','[',' while ','u','ory] Error','Get-ADRSchema',' Schema Obj','en','erating','ec','m','Hist')
+            Write-Warning ('[Get'+'-AD'+'RS'+'chemaH'+'i'+'sto'+'r'+'y] Err'+'o'+'r'+' '+'while e'+'numera'+'ting '+'Schem'+'a Ob'+'je'+'cts')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -7353,7 +7353,7 @@ Function Get-ADRDefaultPasswordPolicy
         [DirectoryServices.DirectoryEntry] $objDomain
     )
 
-    If ($Method -eq ("{1}{0}"-f 'S','ADW'))
+    If ($Method -eq ('A'+'DWS'))
     {
         Try
         {
@@ -7361,42 +7361,42 @@ Function Get-ADRDefaultPasswordPolicy
         }
         Catch
         {
-            Write-Warning ("{10}{8}{1}{7}{4}{14}{0}{11}{9}{12}{2}{3}{13}{6}{15}{17}{16}{5}" -f ' ','efa','e en','um','dPo','ault Password Policy','ng','ultPasswor','D','ror ','[Get-ADR','Er','whil','erati','licy]',' the D','f','e')
+            Write-Warning ('[Get-'+'A'+'DRDefau'+'ltPassw'+'ordPo'+'li'+'cy] Er'+'ror'+' whil'+'e enumeratin'+'g the '+'Def'+'ault Pass'+'word Poli'+'cy')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
 
         If ($ADpasspolicy)
         {
-            $ObjValues = @( ("{2}{4}{0}{7}{1}{3}{5}{10}{8}{9}{6}" -f 'ce passwor','t','E','o','nfor','ry (p',')','d his','ss','words','a'), $ADpasspolicy.PasswordHistoryCount, "4", ("{0}{1}{2}"-f 'Req. 8','.','2.5'), "8", ("{4}{1}{0}{2}{3}"-f 'l: 04','ntro','2','3','Co'), ("{2}{1}{0}" -f're',' or mo','24'),
-            ("{2}{4}{1}{5}{6}{0}{3}"-f 'sword ag','m','Max','e (days)','i','u','m pas'), $ADpasspolicy.MaxPasswordAge.days, "90", ("{0}{1}{2}"-f 'Req.',' 8','.2.4'), "90", ("{4}{0}{1}{3}{2}"-f'ont','rol: 0','3','42','C'), ("{0}{1}{2}"-f '1 t','o ','60'),
-            (("{3}{4}{0}{5}{2}{6}{7}{1}" -f 'm pa',')','age ','Min','imu','ssword ','(da','ys')), $ADpasspolicy.MinPasswordAge.days, "N/A", "-", "1", ("{1}{0}{4}{3}{2}"-f':','Control','3','42',' 0'), ("{1}{0}"-f'or more','1 '),
-            ("{7}{9}{8}{0}{3}{1}{6}{4}{2}{5}" -f 'word ','gt','charac','len',' (','ters)','h','Minim','pass','um '), $ADpasspolicy.MinPasswordLength, "7", ("{0}{1}{2}" -f'R','eq','. 8.2.3'), "13", ("{1}{2}{3}{0}" -f '421','Contr','ol: ','0'), ("{1}{2}{0}" -f ' more','1','4 or'),
-            ("{6}{0}{2}{3}{1}{4}{7}{5}" -f'mu','mplexi','st mee','t co','t','requirements','Password ','y '), $ADpasspolicy.ComplexityEnabled, $true, ("{1}{0}{2}"-f '. 8','Req','.2.3'), $true, ("{3}{1}{2}{0}"-f': 0421','r','ol','Cont'), $true,
-            ("{12}{14}{13}{2}{9}{3}{8}{1}{0}{5}{10}{11}{4}{7}{6}{15}" -f 'i','s','si','re','sers ','ble encryption for al','the dom','in ','ver','ng ','l ','u','Sto','rd u','re passwo','ain'), $ADpasspolicy.ReversibleEncryptionEnabled, "N/A", "-", "N/A", "-", $false,
-            (("{4}{2}{3}{1}{6}{5}{0}" -f 's)','ion ','lockout dur','at','Account ','in','(m')), $ADpasspolicy.LockoutDuration.minutes, ("{2}{1}{5}{0}{4}{3}" -f' or ','unlo','0 (manual ','0','3','ck)'), ("{1}{2}{0}" -f '7','Req. 8.1','.'), "N/A", "-", ("{1}{0}{2}" -f'r','15 or mo','e'),
-            (("{9}{1}{10}{8}{3}{4}{5}{0}{7}{6}{2}" -f'l','ou',')',' thr','esh','o','pts','d (attem','ut','Acc','nt locko')), $ADpasspolicy.LockoutThreshold, ("{1}{0}"-f'to 6','1 '), ("{1}{0}{2}" -f ' ','Req.','8.1.6'), ("{0}{1}"-f '1 ','to 5'), ("{2}{1}{3}{0}" -f '3','trol: 1','Con','40'), ("{0}{1}" -f '1 ','to 10'),
-            (("{8}{5}{2}{1}{11}{0}{7}{6}{4}{3}{10}{9}"-f'ckou','nt l','cou','te',' af','eset ac',' counter','t','R',')','r (mins','o')), $ADpasspolicy.LockoutObservationWindow.minutes, "N/A", "-", "N/A", "-", ("{0}{1}{2}"-f'15 ','o','r more') )
+            $ObjValues = @( ('Enforc'+'e'+' pas'+'swo'+'rd histor'+'y'+' ('+'passwor'+'ds'+')'), $ADpasspolicy.PasswordHistoryCount, "4", ('R'+'eq.'+' 8.2.5'), "8", ('Con'+'trol:'+' 042'+'3'), ('24 '+'or '+'mo'+'re'),
+            ('M'+'a'+'ximum p'+'assword'+' age '+'(d'+'ays)'), $ADpasspolicy.MaxPasswordAge.days, '90', ('R'+'eq.'+' 8.2.4'), '90', ('Co'+'ntro'+'l: 042'+'3'), ('1 '+'to 6'+'0'),
+            ('Minim'+'um pass'+'wor'+'d a'+'ge '+'(days)'), $ADpasspolicy.MinPasswordAge.days, ('N/'+'A'), "-", "1", ('Contro'+'l: 042'+'3'), ('1 or'+' mo'+'re'),
+            ('Minim'+'u'+'m'+' pa'+'ss'+'word'+' length (cha'+'ra'+'c'+'ters'+')'), $ADpasspolicy.MinPasswordLength, "7", ('R'+'eq'+'. 8.2.3'), '13', ('Cont'+'rol: 04'+'2'+'1'), ('14 o'+'r mor'+'e'),
+            ('Pass'+'word mu'+'st '+'meet c'+'omplexi'+'ty req'+'u'+'ir'+'ements'), $ADpasspolicy.ComplexityEnabled, $true, ('Req. '+'8'+'.2.'+'3'), $true, ('C'+'ontrol'+': 04'+'21'), $true,
+            ('St'+'o'+'re '+'pass'+'word '+'us'+'ing revers'+'ibl'+'e encry'+'ption for all u'+'sers i'+'n t'+'he dom'+'ain'), $ADpasspolicy.ReversibleEncryptionEnabled, ('N'+'/A'), "-", ('N/'+'A'), "-", $false,
+            ('Acc'+'ount lockou'+'t '+'du'+'ratio'+'n (mins)'), $ADpasspolicy.LockoutDuration.minutes, ('0 '+'(manu'+'a'+'l '+'u'+'nlock)'+' or 30'), ('Req. 8'+'.1.'+'7'), ('N'+'/A'), "-", ('1'+'5 '+'or mo'+'re'),
+            ('Accoun'+'t'+' loc'+'ko'+'ut threshold (attempts'+')'), $ADpasspolicy.LockoutThreshold, ('1 '+'to '+'6'), ('Req. '+'8'+'.1.6'), ('1 to'+' 5'), ('C'+'on'+'tr'+'ol: 14'+'03'), ('1'+' to'+' 10'),
+            ('Reset acco'+'un'+'t l'+'ock'+'ou'+'t c'+'o'+'unter af'+'ter'+' (m'+'ins)'), $ADpasspolicy.LockoutObservationWindow.minutes, ('N'+'/A'), "-", ('N/'+'A'), "-", ('1'+'5 or m'+'or'+'e') )
 
             Remove-Variable ADpasspolicy
         }
     }
 
-    If ($Method -eq ("{0}{1}"-f'L','DAP'))
+    If ($Method -eq ('LD'+'AP'))
     {
         If ($ObjDomain)
         {
             #Value taken from https://msdn.microsoft.com/en-us/library/ms679431(v=vs.85).aspx
             $pwdProperties = @{
-                ("{3}{6}{1}{4}{0}{2}{5}" -f'D','MAIN_PAS','_COM','D','SWOR','PLEX','O') = 1;
-                ("{0}{1}{5}{3}{4}{6}{2}"-f'DOMAIN_','PASSW','N_CHANGE','O_','A','ORD_N','NO') = 2;
-                ("{6}{0}{5}{1}{3}{2}{4}"-f 'AIN_PASSWOR','_NO','AN','_CLEAR_CH','GE','D','DOM') = 4;
-                ("{0}{4}{1}{5}{2}{3}{6}" -f 'DOMA','LO','KO','UT_ADMI','IN_','C','NS') = 8;
-                ("{6}{4}{7}{1}{3}{2}{5}{0}" -f'XT','OR','AR','D_STORE_CLE','N_P','TE','DOMAI','ASSW') = 16;
-                ("{1}{6}{7}{0}{3}{2}{5}{4}" -f 'EFUSE','DOMA','S','_PA','RD_CHANGE','SWO','IN','_R') = 32
+                ('DO'+'MAIN_P'+'AS'+'SWO'+'RD_C'+'O'+'MPLEX') = 1;
+                ('DOMAI'+'N_'+'PA'+'SSWORD_N'+'O_ANO'+'N_CHA'+'N'+'GE') = 2;
+                ('DOMAIN_PASSWO'+'R'+'D_NO_CLE'+'A'+'R'+'_'+'CHANGE') = 4;
+                ('DOMAI'+'N_'+'LOC'+'KOUT_A'+'DMINS') = 8;
+                ('D'+'OM'+'AIN_PASS'+'WO'+'RD_S'+'TO'+'RE_CLEARTEX'+'T') = 16;
+                ('DOMAI'+'N_'+'REFUSE_P'+'AS'+'SWORD_CHANGE') = 32
             }
 
-            If (($ObjDomain.pwdproperties.value -band $pwdProperties[("{3}{1}{0}{2}{4}" -f'RD_CO','IN_PASSWO','MPLE','DOMA','X')]) -eq $pwdProperties[("{2}{4}{5}{1}{3}{0}"-f 'LEX','N_PASSWOR','DOM','D_COMP','A','I')])
+            If (($ObjDomain.pwdproperties.value -band $pwdProperties[('D'+'OMAIN'+'_'+'PA'+'SSW'+'ORD_CO'+'MPLEX')]) -eq $pwdProperties[('DOMAIN'+'_PAS'+'S'+'WORD_COMP'+'LEX')])
             {
                 $ComplexPasswords = $true
             }
@@ -7405,7 +7405,7 @@ Function Get-ADRDefaultPasswordPolicy
                 $ComplexPasswords = $false
             }
 
-            If (($ObjDomain.pwdproperties.value -band $pwdProperties[("{2}{7}{8}{4}{6}{5}{3}{0}{1}"-f 'TE','XT','DO','EAR','ORE','CL','_','MAIN_PASSWORD_','ST')]) -eq $pwdProperties[("{3}{1}{5}{0}{6}{4}{7}{2}"-f '_PASSWOR','MA','T','DO','TORE_CLE','IN','D_S','ARTEX')])
+            If (($ObjDomain.pwdproperties.value -band $pwdProperties[('DOM'+'AIN_PAS'+'SWORD'+'_STORE'+'_C'+'L'+'EA'+'RTE'+'XT')]) -eq $pwdProperties[('DOMAIN_PA'+'SS'+'W'+'ORD_'+'STORE_C'+'L'+'EARTE'+'X'+'T')])
             {
                 $ReversibleEncryption = $true
             }
@@ -7421,15 +7421,15 @@ Function Get-ADRDefaultPasswordPolicy
                 $LockoutDuration = 0
             }
 
-            $ObjValues = @( ("{9}{5}{1}{0}{4}{6}{2}{3}{7}{8}"-f 'ssword history',' pa','o','r',' (','e','passw','d','s)','Enforc'), $ObjDomain.PwdHistoryLength.value, "4", ("{1}{2}{0}"-f'.5','Req. ','8.2'), "8", ("{3}{1}{2}{4}{0}" -f'23','n','trol: 0','Co','4'), ("{0}{1}{2}"-f'24 or ','mor','e'),
-            ("{3}{0}{1}{2}{4}" -f's','word age (d','ay','Maximum pas','s)'), $($ObjDomain.ConvertLargeIntegerToInt64($ObjDomain.maxpwdage.value) /-864000000000), "90", ("{1}{2}{0}"-f ' 8.2.4','R','eq.'), "90", ("{3}{4}{0}{1}{2}" -f 'o','l: 04','23','Co','ntr'), ("{1}{0}"-f ' 60','1 to'),
-            ("{0}{6}{5}{3}{2}{4}{1}" -f'M',' (days)','ss','m pa','word age','imu','in'), $($ObjDomain.ConvertLargeIntegerToInt64($ObjDomain.minpwdage.value) /-864000000000), "N/A", "-", "1", ("{0}{1}{2}{3}"-f'Co','nt','ro','l: 0423'), ("{2}{0}{1}" -f'or m','ore','1 '),
-            (("{3}{6}{1}{5}{0}{2}{7}{4}"-f ' passwo','u','rd l','Mi','acters)','m','nim','ength (char')), $ObjDomain.MinPwdLength.value, "7", ("{1}{3}{0}{2}"-f '2','R','.3','eq. 8.'), "13", ("{3}{1}{2}{0}"-f '421','rol',': 0','Cont'), ("{2}{0}{1}" -f' or mor','e','14'),
-            ("{3}{0}{1}{2}{4}{6}{5}" -f'a','ss','word','P',' must ','complexity requirements','meet '), $ComplexPasswords, $true, ("{0}{2}{1}"-f 'Re','. 8.2.3','q'), $true, ("{0}{2}{1}"-f 'Cont','21','rol: 04'), $true,
-            ("{1}{13}{10}{12}{0}{2}{9}{6}{18}{4}{11}{5}{8}{16}{14}{15}{7}{3}{17}"-f'd u','S','si','ma','ypt','on fo','rsi','the do','r','ng reve','e','i',' passwor','tor','l','l users in ',' a','in','ble encr'), $ReversibleEncryption, "N/A", "-", "N/A", "-", $false,
-            ("{3}{0}{7}{1}{5}{4}{9}{8}{2}{6}" -f'count ','o','tion (mins','Ac','k','c',')','l','t dura','ou'), $LockoutDuration, ("{3}{2}{0}{1}{4}{5}" -f 'nual ','un',' (ma','0','lock) or',' 30'), ("{0}{2}{1}" -f 'Req','8.1.7','. '), "N/A", "-", ("{2}{0}{1}"-f' m','ore','15 or'),
-            (("{4}{7}{0}{3}{2}{1}{9}{5}{8}{6}" -f 'ount ','ut th','ocko','l','A','hold ','tempts)','cc','(at','res')), $ObjDomain.LockoutThreshold.value, ("{0}{1}" -f '1',' to 6'), ("{2}{0}{1}" -f'q. 8','.1.6','Re'), ("{0}{1}{2}"-f'1',' ','to 5'), ("{0}{2}{1}" -f 'Control:','3',' 140'), ("{0}{1}" -f '1',' to 10'),
-            ("{5}{4}{11}{1}{0}{8}{3}{2}{12}{9}{7}{10}{6}" -f'nt','cou','ut co','o','et a','Res','ter (mins)','r ',' lock','e','af','c','unt'), $($ObjDomain.ConvertLargeIntegerToInt64($ObjDomain.lockoutobservationWindow.value)/-600000000), "N/A", "-", "N/A", "-", ("{1}{0}{2}" -f '5 or ','1','more') )
+            $ObjValues = @( ('Enforce '+'pa'+'sswo'+'rd histor'+'y ('+'passwords)'), $ObjDomain.PwdHistoryLength.value, "4", ('Req.'+' 8.'+'2.5'), "8", ('Con'+'tro'+'l: 0423'), ('24 or mo'+'r'+'e'),
+            ('Maximu'+'m pa'+'ssw'+'ord age'+' (days'+')'), $($ObjDomain.ConvertLargeIntegerToInt64($ObjDomain.maxpwdage.value) /-864000000000), '90', ('Re'+'q. '+'8.2.4'), '90', ('Co'+'ntro'+'l'+': 0'+'423'), ('1 to '+'6'+'0'),
+            ('Mi'+'nim'+'u'+'m '+'p'+'assword age (days)'), $($ObjDomain.ConvertLargeIntegerToInt64($ObjDomain.minpwdage.value) /-864000000000), ('N/'+'A'), "-", "1", ('Con'+'trol'+':'+' 042'+'3'), ('1 o'+'r m'+'ore'),
+            ('Mini'+'m'+'u'+'m pass'+'wor'+'d'+' length (c'+'harac'+'t'+'ers'+')'), $ObjDomain.MinPwdLength.value, "7", ('R'+'eq.'+' 8.2.3'), '13', ('Con'+'trol:'+' 0421'), ('1'+'4 or'+' '+'more'),
+            ('Pa'+'ss'+'word must meet '+'complexity'+' re'+'qu'+'i'+'r'+'e'+'ment'+'s'), $ComplexPasswords, $true, ('R'+'e'+'q. 8.2.3'), $true, ('Cont'+'rol:'+' 0421'), $true,
+            ('Store passw'+'or'+'d using reve'+'rsi'+'ble'+' '+'e'+'ncrypt'+'i'+'on'+' '+'f'+'or all'+' user'+'s in'+' th'+'e '+'d'+'om'+'ai'+'n'), $ReversibleEncryption, ('N/'+'A'), "-", ('N/'+'A'), "-", $false,
+            ('Acc'+'ount '+'lock'+'o'+'ut '+'dura'+'t'+'io'+'n '+'(mins)'), $LockoutDuration, ('0 (manual'+' '+'unl'+'ock)'+' '+'or'+' 30'), ('R'+'eq. 8.1'+'.7'), ('N'+'/A'), "-", ('15 or '+'m'+'ore'),
+            ('Ac'+'co'+'unt l'+'ockout thres'+'hold (atte'+'mpts'+')'), $ObjDomain.LockoutThreshold.value, ('1 to '+'6'), ('Req.'+' '+'8.1.6'), ('1 '+'to 5'), ('Con'+'trol'+': 1403'), ('1 t'+'o'+' 10'),
+            ('R'+'ese'+'t'+' ac'+'count '+'lockou'+'t'+' co'+'u'+'nter af'+'ter (mi'+'ns'+')'), $($ObjDomain.ConvertLargeIntegerToInt64($ObjDomain.lockoutobservationWindow.value)/-600000000), ('N'+'/A'), "-", ('N'+'/A'), "-", ('15 o'+'r '+'more') )
 
             Remove-Variable pwdProperties
             Remove-Variable ComplexPasswords
@@ -7443,13 +7443,13 @@ Function Get-ADRDefaultPasswordPolicy
         For ($i = 0; $i -lt $($ObjValues.Count); $i++)
         {
             $Obj = New-Object PSObject
-            $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}"-f 'Poli','cy') -Value $ObjValues[$i]
-            $Obj | Add-Member -MemberType NoteProperty -Name ("{2}{1}{0}{3}" -f'rent ','ur','C','Value') -Value $ObjValues[$i+1]
-            $Obj | Add-Member -MemberType NoteProperty -Name ("{3}{2}{1}{0}{4}"-f 'Req','DSS ','CI ','P','uirement') -Value $ObjValues[$i+2]
-            $Obj | Add-Member -MemberType NoteProperty -Name ("{2}{3}{1}{0}"-f'3.2.1','v','P','CI DSS ') -Value $ObjValues[$i+3]
-            $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}"-f'ASD',' ISM') -Value $ObjValues[$i+4]
-            $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{2}{1}{3}" -f '2018 ISM Con','rol','t','s') -Value $ObjValues[$i+5]
-            $Obj | Add-Member -MemberType NoteProperty -Name ("{2}{0}{3}{1}{4}" -f'h','1','CIS Benc','mark 20','6') -Value $ObjValues[$i+6]
+            $Obj | Add-Member -MemberType NoteProperty -Name ('Polic'+'y') -Value $ObjValues[$i]
+            $Obj | Add-Member -MemberType NoteProperty -Name ('C'+'u'+'r'+'rent '+'Value') -Value $ObjValues[$i+1]
+            $Obj | Add-Member -MemberType NoteProperty -Name ('PC'+'I '+'DSS Req'+'uireme'+'n'+'t') -Value $ObjValues[$i+2]
+            $Obj | Add-Member -MemberType NoteProperty -Name ('PC'+'I '+'DSS '+'v3.'+'2.1') -Value $ObjValues[$i+3]
+            $Obj | Add-Member -MemberType NoteProperty -Name ('A'+'SD ISM') -Value $ObjValues[$i+4]
+            $Obj | Add-Member -MemberType NoteProperty -Name ('2'+'018 ISM Cont'+'ro'+'ls') -Value $ObjValues[$i+5]
+            $Obj | Add-Member -MemberType NoteProperty -Name ('CIS'+' Benchmark '+'20'+'1'+'6') -Value $ObjValues[$i+6]
             $i += 6
             $ADPassPolObj += $Obj
         }
@@ -7490,7 +7490,7 @@ Function Get-ADRFineGrainedPasswordPolicy
         [DirectoryServices.DirectoryEntry] $objDomain
     )
 
-    If ($Method -eq ("{1}{0}"-f 'S','ADW'))
+    If ($Method -eq ('AD'+'WS'))
     {
         Try
         {
@@ -7498,7 +7498,7 @@ Function Get-ADRFineGrainedPasswordPolicy
         }
         Catch
         {
-            Write-Warning ("{14}{2}{8}{13}{11}{17}{16}{25}{19}{18}{22}{10}{21}{5}{3}{15}{6}{23}{12}{1}{9}{7}{20}{4}{0}{24}" -f 'Polic','ne','DRFi','er','rd ','hile enum','ting the','Grain','ne',' ','ro','rainedPa','Fi','G','[Get-A','a','swor','s','cy] E','i','ed Passwo','r w','r',' ','y','dPol')
+            Write-Warning ('[Ge'+'t-AD'+'R'+'Fine'+'Gr'+'aine'+'dPasswor'+'dPol'+'icy'+'] Error'+' w'+'hi'+'l'+'e '+'enu'+'m'+'era'+'ting'+' the'+' '+'Fine '+'Grain'+'ed '+'Passwor'+'d Pol'+'icy')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -7516,12 +7516,12 @@ Function Get-ADRFineGrainedPasswordPolicy
                 {
                     $AppliesTo = $AppliesTo.TrimStart(",")
                 }
-                $ObjValues = @(("{1}{0}" -f'ame','N'), $($_.Name), ("{2}{0}{1}" -f 'plies ','To','Ap'), $AppliesTo, ("{5}{0}{6}{3}{2}{1}{4}"-f 'for','sto',' hi','rd','ry','En','ce passwo'), $_.PasswordHistoryCount, ("{4}{2}{0}{1}{3}"-f'passwo','rd ag',' ','e (days)','Maximum'), $_.MaxPasswordAge.days, (("{1}{4}{3}{2}{6}{5}{0}" -f')','Minim','g','assword a','um p','days','e (')), $_.MinPasswordAge.days, ("{1}{4}{0}{3}{2}"-f'nimum password','M','ength',' l','i'), $_.MinPasswordLength, ("{7}{6}{2}{1}{5}{9}{0}{3}{4}{8}"-f 'e','et ',' me','xi','ty ','com','rd must','Passwo','requirements','pl'), $_.ComplexityEnabled, ("{9}{1}{10}{7}{5}{2}{0}{8}{6}{3}{4}"-f'ersib',' pass',' rev','ncrypti','on',' using',' e','d','le','Store','wor'), $_.ReversibleEncryptionEnabled, (("{5}{6}{7}{3}{1}{0}{4}{2}"-f'on','ati','ins)','dur',' (m','Acco','unt lo','ckout ')), $_.LockoutDuration.minutes, ("{4}{6}{2}{7}{1}{5}{3}{0}"-f 'old','lo','t','t thresh','A','ckou','ccoun',' '), $_.LockoutThreshold, ("{9}{6}{10}{0}{1}{8}{4}{5}{3}{2}{7}"-f 'un','t lockou','ter ','r af',' coun','te',' acc','(mins)','t','Reset','o'), $_.LockoutObservationWindow.minutes, ("{2}{1}{0}{3}"-f'ede','rec','P','nce'), $($_.Precedence))
+                $ObjValues = @(('N'+'ame'), $($_.Name), ('Applies'+' '+'To'), $AppliesTo, ('Enf'+'orce'+' pas'+'s'+'wo'+'rd '+'history'), $_.PasswordHistoryCount, ('Maximum '+'pa'+'ssword ag'+'e '+'(d'+'ays)'), $_.MaxPasswordAge.days, ('Minim'+'um pa'+'s'+'s'+'wor'+'d age (days)'), $_.MinPasswordAge.days, ('M'+'inimum p'+'asswo'+'r'+'d length'), $_.MinPasswordLength, ('Pas'+'sword must meet'+' compl'+'ex'+'ity requ'+'ir'+'emen'+'ts'), $_.ComplexityEnabled, ('St'+'or'+'e '+'password'+' '+'us'+'ing reversible en'+'cryption'), $_.ReversibleEncryptionEnabled, ('Ac'+'c'+'oun'+'t l'+'o'+'ckout duration'+' (min'+'s)'), $_.LockoutDuration.minutes, ('Ac'+'co'+'unt lockout '+'thresho'+'ld'), $_.LockoutThreshold, ('Reset accoun'+'t '+'lockout cou'+'nter a'+'ft'+'e'+'r (mi'+'ns)'), $_.LockoutObservationWindow.minutes, ('Prec'+'edenc'+'e'), $($_.Precedence))
                 For ($i = 0; $i -lt $($ObjValues.Count); $i++)
                 {
                     $Obj = New-Object PSObject
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{2}{1}"-f 'Po','y','lic') -Value $ObjValues[$i]
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}"-f'e','Valu') -Value $ObjValues[$i+1]
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('Po'+'licy') -Value $ObjValues[$i]
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('Va'+'lue') -Value $ObjValues[$i+1]
                     $i++
                     $ADPassPolObj += $Obj
                 }
@@ -7530,21 +7530,21 @@ Function Get-ADRFineGrainedPasswordPolicy
         }
     }
 
-    If ($Method -eq ("{0}{1}" -f 'LDA','P'))
+    If ($Method -eq ('LD'+'AP'))
     {
         If ($ObjDomain)
         {
             $objSearcher = New-Object System.DirectoryServices.DirectorySearcher $objDomain
             $ObjSearcher.PageSize = $PageSize
-            $ObjSearcher.Filter = ("{0}{6}{1}{2}{3}{5}{4}"-f '(o','ctC','lass=msDS-P','asswor','s)','dSetting','bje')
-            $ObjSearcher.SearchScope = ("{0}{1}" -f 'Subtr','ee')
+            $ObjSearcher.Filter = ('(ob'+'j'+'ectCla'+'ss=msDS-P'+'ass'+'wordSet'+'tings'+')')
+            $ObjSearcher.SearchScope = ('Su'+'btree')
             Try
             {
                 $ADFinepasspolicy = $ObjSearcher.FindAll()
             }
             Catch
             {
-                Write-Warning ("{18}{8}{15}{0}{19}{20}{3}{1}{16}{24}{26}{13}{21}{7}{5}{14}{10}{6}{11}{25}{2}{9}{4}{17}{12}{22}{23}" -f 'i','dP','e ','aine','Password','ro',' ','Er','Get-','Grained ',' while','enumerating ','P','cy]','r','ADRF','asswo',' ','[','ne','Gr',' ','o','licy','r','the Fin','dPoli')
+                Write-Warning ('['+'G'+'et-A'+'DRF'+'ineGra'+'i'+'n'+'edP'+'as'+'swor'+'dPolicy] Error w'+'hi'+'le en'+'u'+'mer'+'ating '+'the Fine G'+'r'+'aine'+'d'+' P'+'a'+'ssword'+' Poli'+'cy')
                 Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
                 Return $null
             }
@@ -7563,12 +7563,12 @@ Function Get-ADRFineGrainedPasswordPolicy
                     {
                         $AppliesTo = $AppliesTo.TrimStart(",")
                     }
-                        $ObjValues = @(("{1}{0}" -f'ame','N'), $($_.Properties.name), ("{1}{2}{0}"-f ' To','Appli','es'), $AppliesTo, ("{3}{2}{4}{0}{5}{6}{1}"-f ' passwo','story','c','Enfor','e','rd',' hi'), $($_.Properties.'msds-passwordhistorylength'), (("{4}{7}{6}{5}{0}{3}{1}{8}{2}"-f 'ssw','ag','days)','ord ','Maximu','a','p','m ','e (')), $($($_.Properties.'msds-maximumpasswordage') /-864000000000), ("{4}{2}{3}{1}{6}{0}{7}{5}"-f 'ge (d','word','p','ass','Minimum ','s)',' a','ay'), $($($_.Properties.'msds-minimumpasswordage') /-864000000000), ("{3}{1}{0}{2}{4}{5}" -f'rd ',' passwo','l','Minimum','e','ngth'), $($_.Properties.'msds-minimumpasswordlength'), ("{0}{6}{4}{1}{5}{2}{7}{3}{8}" -f 'Pa','s','e','ement','rd mu','t meet complexity r','sswo','quir','s'), $($_.Properties.'msds-passwordcomplexityenabled'), ("{7}{9}{11}{5}{10}{0}{12}{3}{4}{8}{1}{2}{6}" -f'g r','p','t','versib','le ','i','ion','Store ','encry','passw','n','ord us','e'), $($_.Properties.'msds-passwordreversibleencryptionenabled'), (("{7}{6}{8}{3}{4}{5}{2}{1}{0}" -f 's)',' (min','tion','lockout du','r','a','cou','Ac','nt ')), $($($_.Properties.'msds-lockoutduration')/-600000000), ("{6}{7}{2}{4}{5}{0}{3}{1}"-f 'thre','hold','k','s','ou','t ','A','ccount loc'), $($_.Properties.'msds-lockoutthreshold'), ("{2}{1}{5}{4}{0}{7}{6}{3}" -f'unte','ese','R','after (mins)',' lockout co','t account',' ','r'), $($($_.Properties.'msds-lockoutobservationwindow')/-600000000), ("{2}{1}{0}{3}" -f 'c','en','Preced','e'), $($_.Properties.'msds-passwordsettingsprecedence'))
+                        $ObjValues = @(('Na'+'me'), $($_.Properties.name), ('Appl'+'ies '+'To'), $AppliesTo, ('Enforc'+'e '+'passwo'+'rd h'+'istory'), $($_.Properties.'msds-passwordhistorylength'), ('Maxim'+'um pa'+'ssw'+'ord '+'age (da'+'y'+'s)'), $($($_.Properties.'msds-maximumpasswordage') /-864000000000), ('M'+'in'+'im'+'um '+'p'+'assw'+'or'+'d a'+'ge (days)'), $($($_.Properties.'msds-minimumpasswordage') /-864000000000), ('Mi'+'n'+'imum p'+'ass'+'word'+' length'), $($_.Properties.'msds-minimumpasswordlength'), ('P'+'assword mu'+'st'+' mee'+'t comp'+'lex'+'ity '+'req'+'uirements'), $($_.Properties.'msds-passwordcomplexityenabled'), ('Stor'+'e passwor'+'d us'+'ing re'+'versible '+'encry'+'ptio'+'n'), $($_.Properties.'msds-passwordreversibleencryptionenabled'), ('Ac'+'coun'+'t lo'+'ckout du'+'rati'+'on '+'(m'+'ins'+')'), $($($_.Properties.'msds-lockoutduration')/-600000000), ('Acc'+'ount lock'+'out'+' thre'+'sh'+'ol'+'d'), $($_.Properties.'msds-lockoutthreshold'), ('Reset account lo'+'cko'+'u'+'t c'+'ounter'+' af'+'ter'+' (mins)'), $($($_.Properties.'msds-lockoutobservationwindow')/-600000000), ('Prec'+'eden'+'ce'), $($_.Properties.'msds-passwordsettingsprecedence'))
                         For ($i = 0; $i -lt $($ObjValues.Count); $i++)
                         {
                             $Obj = New-Object PSObject
-                            $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}" -f'olicy','P') -Value $ObjValues[$i]
-                            $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}"-f 'Valu','e') -Value $ObjValues[$i+1]
+                            $Obj | Add-Member -MemberType NoteProperty -Name ('Pol'+'icy') -Value $ObjValues[$i]
+                            $Obj | Add-Member -MemberType NoteProperty -Name ('Va'+'lue') -Value $ObjValues[$i+1]
                             $i++
                             $ADPassPolObj += $Obj
                         }
@@ -7624,7 +7624,7 @@ Function Get-ADRDomainController
         [Management.Automation.PSCredential] $Credential = [Management.Automation.PSCredential]::Empty
     )
 
-    If ($Method -eq ("{0}{1}" -f 'A','DWS'))
+    If ($Method -eq ('A'+'DWS'))
     {
         Try
         {
@@ -7632,7 +7632,7 @@ Function Get-ADRDomainController
         }
         Catch
         {
-            Write-Warning ("{16}{0}{5}{14}{3}{4}{12}{17}{15}{18}{8}{10}{2}{13}{1}{7}{6}{11}{9}" -f 'Get-','ler ',' Domai','omainCon','tro','A','bj','O','merat','s','ing','ect','lle','nControl','DRD','while en','[','r] Error ','u')
+            Write-Warning ('[G'+'e'+'t-ADRDomainC'+'ontroll'+'er]'+' Er'+'r'+'or whi'+'le '+'enumerat'+'ing DomainCo'+'ntr'+'ol'+'ler Obj'+'e'+'c'+'ts')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -7646,19 +7646,19 @@ Function Get-ADRDomainController
         }
     }
 
-    If ($Method -eq ("{1}{0}"-f 'DAP','L'))
+    If ($Method -eq ('LDA'+'P'))
     {
         If ($Credential -ne [Management.Automation.PSCredential]::Empty)
         {
             $DomainFQDN = Get-DNtoFQDN($objDomain.distinguishedName)
-            $DomainContext = New-Object System.DirectoryServices.ActiveDirectory.DirectoryContext(("{0}{1}" -f 'D','omain'),$($DomainFQDN),$($Credential.UserName),$($Credential.GetNetworkCredential().password))
+            $DomainContext = New-Object System.DirectoryServices.ActiveDirectory.DirectoryContext(('Do'+'main'),$($DomainFQDN),$($Credential.UserName),$($Credential.GetNetworkCredential().password))
             Try
             {
                 $ADDomain = [System.DirectoryServices.ActiveDirectory.Domain]::GetDomain($DomainContext)
             }
             Catch
             {
-                Write-Warning ("{10}{4}{3}{9}{6}{7}{5}{8}{2}{0}{1}" -f'n C','ontext','i','omai','RD','tin','r] Error ge','t','g Doma','nControlle','[Get-AD')
+                Write-Warning ('['+'G'+'et-ADRD'+'o'+'ma'+'in'+'Cont'+'rol'+'l'+'er] Error '+'get'+'ti'+'ng D'+'omain Con'+'t'+'ext')
                 Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
                 Return $null
             }
@@ -7755,17 +7755,17 @@ Function Get-ADRUser
         [int] $ADRUserSPNs = $false
     )
 
-    If ($Method -eq ("{1}{0}"-f 'DWS','A'))
+    If ($Method -eq ('A'+'DWS'))
     {
         If (!$ADRUsers)
         {
             Try
             {
-                $ADUsers = @( Get-ADObject -LDAPFilter ((("{7}{4}{9}{12}{8}{5}{1}{10}{0}{11}{2}{6}{3}"-f ')(service','=805','cipal','*))','(samA','tType','Name=','(&','oun','c','306368','Prin','c'))) -ResultPageSize $PageSize -Properties Name,Description,memberOf,sAMAccountName,servicePrincipalName,primaryGroupID,pwdLastSet,userAccountControl )
+                $ADUsers = @( Get-ADObject -LDAPFilter ('(&(sa'+'mAccountTy'+'pe='+'805306368)('+'s'+'ervicePr'+'incipalNa'+'me=*'+'))') -ResultPageSize $PageSize -Properties Name,Description,memberOf,sAMAccountName,servicePrincipalName,primaryGroupID,pwdLastSet,userAccountControl )
             }
             Catch
             {
-                Write-Warning ("{3}{0}{7}{6}{2}{11}{9}{5}{8}{1}{10}{4}"-f'-','rSPN',' Error ','[Get','ts','ile enumerati',']','ADRUser','ng Use','h',' Objec','w')
+                Write-Warning ('[G'+'et-A'+'D'+'RUse'+'r] '+'Error while enu'+'m'+'erati'+'ng Us'+'erSPN Object'+'s')
                 Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
                 Return $null
             }
@@ -7774,11 +7774,11 @@ Function Get-ADRUser
         {
             Try
             {
-                $ADUsers = @( Get-ADUser -Filter * -ResultPageSize $PageSize -Properties AccountExpirationDate,accountExpires,AccountNotDelegated,AdminCount,AllowReversiblePasswordEncryption,c,CannotChangePassword,CanonicalName,Company,Department,Description,DistinguishedName,DoesNotRequirePreAuth,Enabled,givenName,homeDirectory,Info,LastLogonDate,lastLogonTimestamp,LockedOut,LogonWorkstations,mail,Manager,memberOf,middleName,mobile,("{3}{6}{0}{1}{2}{4}{5}" -f '-All','o','w','msD','edToDelega','teTo','S'),("{0}{3}{1}{4}{8}{6}{5}{2}{7}" -f 'msDS-Sup','ortedEncry','p','p','pt','Ty','on','es','i'),Name,PasswordExpired,PasswordLastSet,PasswordNeverExpires,PasswordNotRequired,primaryGroupID,profilePath,pwdlastset,SamAccountName,ScriptPath,servicePrincipalName,SID,SIDHistory,SmartcardLogonRequired,sn,Title,TrustedForDelegation,TrustedToAuthForDelegation,UseDESKeyOnly,UserAccountControl,whenChanged,whenCreated )
+                $ADUsers = @( Get-ADUser -Filter * -ResultPageSize $PageSize -Properties AccountExpirationDate,accountExpires,AccountNotDelegated,AdminCount,AllowReversiblePasswordEncryption,c,CannotChangePassword,CanonicalName,Company,Department,Description,DistinguishedName,DoesNotRequirePreAuth,Enabled,givenName,homeDirectory,Info,LastLogonDate,lastLogonTimestamp,LockedOut,LogonWorkstations,mail,Manager,memberOf,middleName,mobile,('ms'+'D'+'S'+'-Allow'+'edToDe'+'legateT'+'o'),('msDS-'+'Suppo'+'rt'+'edEncryptionT'+'y'+'pe'+'s'),Name,PasswordExpired,PasswordLastSet,PasswordNeverExpires,PasswordNotRequired,primaryGroupID,profilePath,pwdlastset,SamAccountName,ScriptPath,servicePrincipalName,SID,SIDHistory,SmartcardLogonRequired,sn,Title,TrustedForDelegation,TrustedToAuthForDelegation,UseDESKeyOnly,UserAccountControl,whenChanged,whenCreated )
             }
             Catch
             {
-                Write-Warning ("{2}{3}{1}{0}{8}{6}{4}{5}{7}" -f 'er] Error wh','Us','[Get-A','DR','erating ','User Object','le enum','s','i')
+                Write-Warning ('[Get'+'-ADRUser] '+'Error'+' while'+' en'+'umerat'+'ing U'+'s'+'e'+'r'+' Objec'+'ts')
                 Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
                 Return $null
             }
@@ -7796,7 +7796,7 @@ Function Get-ADRUser
                 }
                 Catch
                 {
-                    Write-Warning ("{0}{22}{6}{19}{16}{21}{9}{3}{4}{10}{14}{12}{18}{15}{20}{7}{24}{17}{5}{8}{2}{13}{1}{11}{23}"-f'[Get-ADRU','g v','ol','ving ','M',' ','r] E',' ','P','ie','a','alu',' Password Age f','icy. Usin','x','aul','r','rd','rom the Def','rror ','t','etr','se','e as 90 days','Passwo')
+                    Write-Warning ('[Get-ADRU'+'ser] E'+'rror retr'+'i'+'e'+'ving Max Pa'+'ssword Age f'+'r'+'o'+'m'+' th'+'e D'+'ef'+'aul'+'t P'+'a'+'ssword Polic'+'y. Usin'+'g'+' value a'+'s 9'+'0 d'+'ays')
                     Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
                     $PassMaxAge = 90
                 }
@@ -7810,22 +7810,22 @@ Function Get-ADRUser
         }
     }
 
-    If ($Method -eq ("{1}{0}"-f 'DAP','L'))
+    If ($Method -eq ('LD'+'AP'))
     {
         If (!$ADRUsers)
         {
             $objSearcher = New-Object System.DirectoryServices.DirectorySearcher $objDomain
             $ObjSearcher.PageSize = $PageSize
-            $ObjSearcher.Filter = ("{6}{15}{14}{5}{2}{11}{9}{13}{7}{4}{1}{0}{8}{12}{3}{10}" -f'i','v','ount','alN','r','mAcc','(&(','8)(se','c','yp','ame=*))','T','ePrincip','e=80530636','a','s')
-            $ObjSearcher.PropertiesToLoad.AddRange((("{1}{0}"-f'me','na'),("{1}{0}{2}{3}"-f 'p','descri','ti','on'),("{1}{0}{2}" -f'ero','memb','f'),("{3}{0}{1}{2}"-f'amaccoun','t','name','s'),("{1}{0}{4}{2}{3}"-f 'r','se','epr','incipalname','vic'),("{4}{1}{0}{3}{2}"-f'm','ri','d','arygroupi','p'),("{0}{3}{2}{1}" -f'p','set','t','wdlas'),("{4}{0}{3}{1}{2}"-f 'er','ccoun','tcontrol','a','us')))
-            $ObjSearcher.SearchScope = ("{0}{1}" -f'Subtre','e')
+            $ObjSearcher.Filter = ('(&(samAccoun'+'tTyp'+'e=8'+'05'+'306'+'36'+'8)(ser'+'vic'+'ePrincipal'+'Name=*)'+')')
+            $ObjSearcher.PropertiesToLoad.AddRange((('n'+'ame'),('des'+'c'+'riptio'+'n'),('m'+'em'+'berof'),('sa'+'maccountnam'+'e'),('se'+'r'+'vicep'+'rincipal'+'nam'+'e'),('p'+'rim'+'arygroupi'+'d'),('pwd'+'las'+'t'+'set'),('use'+'r'+'a'+'ccountcontro'+'l')))
+            $ObjSearcher.SearchScope = ('S'+'u'+'btree')
             Try
             {
                 $ADUsers = $ObjSearcher.FindAll()
             }
             Catch
             {
-                Write-Warning ("{12}{15}{1}{0}{5}{2}{11}{14}{4}{10}{7}{6}{13}{8}{3}{9}"-f' ','User] Error','hil','ect','ratin','w','Us',' ','bj','s','g','e ','[Ge','erSPN O','enume','t-ADR')
+                Write-Warning ('[G'+'et-'+'ADRUs'+'er] Erro'+'r while e'+'nu'+'mera'+'t'+'ing '+'Us'+'erSPN '+'Ob'+'ject'+'s')
                 Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
                 Return $null
             }
@@ -7835,18 +7835,18 @@ Function Get-ADRUser
         {
             $objSearcher = New-Object System.DirectoryServices.DirectorySearcher $objDomain
             $ObjSearcher.PageSize = $PageSize
-            $ObjSearcher.Filter = ("{5}{1}{2}{7}{0}{4}{3}{6}"-f 'ountType','sam','Ac','3063','=805','(','68)','c')
+            $ObjSearcher.Filter = ('(samA'+'cc'+'o'+'untT'+'ype=80530636'+'8'+')')
             # https://msdn.microsoft.com/en-us/library/system.directoryservices.securitymasks(v=vs.110).aspx
-            $ObjSearcher.SecurityMasks = [System.DirectoryServices.SecurityMasks]("{1}{0}"-f'cl','Da')
-            $ObjSearcher.PropertiesToLoad.AddRange((("{1}{0}{2}" -f'ntExpire','accou','s'),("{1}{2}{0}{3}"-f 'n','admi','ncou','t'),"c",("{1}{0}{2}" -f 'ic','canon','alname'),("{0}{1}"-f 'compa','ny'),("{1}{2}{0}"-f'nt','depart','me'),("{2}{3}{0}{1}" -f 'riptio','n','de','sc'),("{0}{1}{2}{4}{3}" -f 'd','ist','in','ame','guishedn'),("{0}{1}{2}" -f 'gi','venN','ame'),("{0}{2}{1}"-f'homedire','ory','ct'),("{0}{1}" -f 'in','fo'),("{3}{4}{1}{0}{2}" -f 'est','ontim','amp','las','tLog'),("{1}{0}" -f'l','mai'),("{1}{0}"-f 'ger','mana'),("{0}{1}{2}"-f 'm','ember','of'),("{1}{2}{0}"-f 'e','mi','ddleNam'),("{0}{1}" -f 'mobi','le'),("{3}{2}{4}{1}{0}" -f 'elegateTo','wedToD','S','msD','-Allo'),("{0}{6}{2}{1}{4}{7}{3}{5}{8}" -f 'msD','p','Su','onT','portedEncryp','y','S-','ti','pes'),("{0}{1}"-f 'na','me'),("{1}{3}{2}{0}" -f'tydescriptor','n','securi','t'),("{2}{0}{1}" -f'ectsi','d','obj'),("{2}{1}{0}{3}"-f 'rygroupi','rima','p','d'),("{0}{2}{1}{3}" -f'p','o','r','filepath'),("{2}{1}{0}"-f 'Set','dLast','pw'),("{3}{4}{1}{0}{2}"-f 'untNam','o','e','s','amacc'),("{2}{0}{3}{1}"-f 'rip','h','sc','tpat'),("{2}{0}{3}{4}{1}" -f'ervicep','lname','s','rinci','pa'),("{2}{1}{0}" -f'tory','his','sid'),"sn",("{1}{0}" -f'tle','ti'),("{3}{2}{0}{1}"-f'tcontr','ol','oun','useracc'),("{3}{0}{1}{2}"-f'work','sta','tions','user'),("{1}{0}{2}"-f 'e','whenchang','d'),("{0}{1}{2}"-f'whe','ncre','ated')))
-            $ObjSearcher.SearchScope = ("{1}{0}{2}"-f't','Sub','ree')
+            $ObjSearcher.SecurityMasks = [System.DirectoryServices.SecurityMasks]('Da'+'cl')
+            $ObjSearcher.PropertiesToLoad.AddRange((('a'+'cco'+'un'+'tExpire'+'s'),('a'+'dm'+'incount'),"c",('can'+'o'+'nical'+'name'),('compan'+'y'),('d'+'epartm'+'ent'),('des'+'cri'+'ptio'+'n'),('di'+'stingui'+'sh'+'edname'),('giv'+'enNam'+'e'),('homed'+'irec'+'tory'),('inf'+'o'),('lastLogont'+'i'+'mestam'+'p'),('mai'+'l'),('ma'+'nag'+'er'),('membe'+'ro'+'f'),('mid'+'d'+'leNam'+'e'),('mobil'+'e'),('ms'+'DS-Allo'+'we'+'d'+'ToDe'+'legat'+'eTo'),('msDS-Suppor'+'tedEnc'+'r'+'y'+'ptio'+'n'+'Type'+'s'),('na'+'me'),('nt'+'secu'+'rity'+'des'+'cri'+'pto'+'r'),('ob'+'jects'+'id'),('pr'+'imar'+'y'+'groupid'),('profile'+'p'+'at'+'h'),('pwd'+'La'+'stS'+'et'),('samaccoun'+'tNam'+'e'),('scriptpa'+'t'+'h'),('servi'+'ceprinc'+'ip'+'alname'),('sidh'+'i'+'sto'+'ry'),'sn',('ti'+'tle'),('usera'+'ccountcon'+'tro'+'l'),('userw'+'orks'+'t'+'at'+'ions'),('whenc'+'h'+'anged'),('whencreat'+'e'+'d')))
+            $ObjSearcher.SearchScope = ('S'+'ubtree')
             Try
             {
                 $ADUsers = $ObjSearcher.FindAll()
             }
             Catch
             {
-                Write-Warning ("{8}{2}{12}{1}{3}{7}{10}{11}{5}{13}{4}{0}{9}{14}{6}" -f'Us','DRUser]','t',' Error',' ','erat','ts',' w','[Ge','er Ob','h','ile enum','-A','ing','jec')
+                Write-Warning ('['+'G'+'e'+'t-ADR'+'Use'+'r] Erro'+'r while '+'e'+'nu'+'mer'+'at'+'ing User '+'Object'+'s')
                 Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
                 Return $null
             }
@@ -7860,7 +7860,7 @@ Function Get-ADRUser
                 $PassMaxAge = $($ObjDomain.ConvertLargeIntegerToInt64($ObjDomain.maxpwdage.value) /-864000000000)
                 If (-Not $PassMaxAge)
                 {
-                    Write-Warning ("{12}{13}{6}{2}{0}{7}{17}{11}{15}{9}{19}{1}{8}{18}{14}{16}{3}{4}{5}{10}" -f 's','ax Password','DRU','d Poli','cy. Usi','ng value as','-A','er] Err',' A','e',' 90 days','r','[Ge','t','m the Defa',' retri','ult Passwor','o','ge fro','ving M')
+                    Write-Warning ('[Get-AD'+'R'+'U'+'s'+'er] '+'Error retri'+'evi'+'ng'+' M'+'ax '+'Passwo'+'rd'+' Age'+' '+'f'+'rom'+' t'+'he Defaul'+'t '+'Pa'+'ss'+'wor'+'d Policy. Us'+'i'+'ng v'+'alue as '+'90'+' day'+'s')
                     Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
                     $PassMaxAge = 90
                 }
@@ -7876,12 +7876,12 @@ Function Get-ADRUser
 
     If ($UserObj)
     {
-        Export-ADR -ADRObj $UserObj -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ("{0}{1}" -f 'U','sers')
+        Export-ADR -ADRObj $UserObj -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ('Use'+'rs')
         Remove-Variable UserObj
     }
     If ($UserSPNObj)
     {
-        Export-ADR -ADRObj $UserSPNObj -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ("{0}{1}"-f'UserSPN','s')
+        Export-ADR -ADRObj $UserSPNObj -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ('Use'+'rSPN'+'s')
         Remove-Variable UserSPNObj
     }
 }
@@ -7927,15 +7927,15 @@ Function Get-ADRPasswordAttributes
         [int] $PageSize
     )
 
-    If ($Method -eq ("{0}{1}"-f'A','DWS'))
+    If ($Method -eq ('AD'+'WS'))
     {
         Try
         {
-            $ADUsers = Get-ADObject -LDAPFilter ((("{3}{5}{4}{11}{0}{6}{14}{2}{13}{10}{8}{1}{12}{9}{16}{7}{15}"-f'(UnixUser','wd=','word=*','(','erPa','AFM(Us','P','0','eP',')','d','ssword=*)','*',')(unico','ass','Password=*))','(msSFU3')).rEplacE('AFM',[strINg][cHar]124)) -ResultPageSize $PageSize -Properties *
+            $ADUsers = Get-ADObject -LDAPFilter (('({0}(UserP'+'a'+'ss'+'w'+'or'+'d=*)(Un'+'ixUserPa'+'ssw'+'ord=*)('+'unicod'+'eP'+'wd=*'+')(msSFU3'+'0Pas'+'swor'+'d'+'=*'+'))')-f [ChaR]124) -ResultPageSize $PageSize -Properties *
         }
         Catch
         {
-            Write-Warning ("{2}{13}{10}{0}{14}{12}{7}{6}{1}{4}{3}{5}{11}{8}{9}" -f 'asswordA','merat','[','wo','ing Pass','rd Att','Error while enu',' ','b','utes','t-ADRP','ri','ibutes]','Ge','ttr')
+            Write-Warning ('[Get-ADR'+'Passwo'+'rdAttrib'+'ute'+'s] Error while enume'+'rat'+'ing'+' Pass'+'word A'+'t'+'t'+'ributes')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -7948,19 +7948,19 @@ Function Get-ADRPasswordAttributes
         }
     }
 
-    If ($Method -eq ("{0}{1}" -f 'L','DAP'))
+    If ($Method -eq ('LDA'+'P'))
     {
         $objSearcher = New-Object System.DirectoryServices.DirectorySearcher $objDomain
         $ObjSearcher.PageSize = $PageSize
-        $ObjSearcher.Filter = ((("{16}{17}{9}{8}{3}{0}{12}{6}{10}{5}{14}{11}{2}{7}{13}{1}{15}{4}"-f'UserPas',')(msSFU','un','ssword=*)(Unix','Password=*))','d=*','o','ic','serPa','(U','r','(','sw','odePwd=*',')','30','(','oYh'))  -rePlace ([cHar]111+[cHar]89+[cHar]104),[cHar]124)
-        $ObjSearcher.SearchScope = ("{1}{0}"-f'tree','Sub')
+        $ObjSearcher.Filter = (('(SNH(Us'+'erPassword=*)(UnixUserPas'+'sw'+'or'+'d=*)('+'uni'+'codeP'+'wd=*)('+'msSFU30P'+'assword=*)'+')')-RePlACE  'SNH',[CHAr]124)
+        $ObjSearcher.SearchScope = ('Subt'+'ree')
         Try
         {
             $ADUsers = $ObjSearcher.FindAll()
         }
         Catch
         {
-            Write-Warning ("{15}{17}{2}{14}{13}{11}{5}{8}{12}{16}{10}{7}{4}{3}{0}{1}{9}{6}" -f 'rating Pass','wo','RP','ume','le en','ttributes','Attributes',' whi','] ','rd ','r','dA','Err','wor','ass','[G','o','et-AD')
+            Write-Warning ('['+'Get'+'-ADRPasswordA'+'ttrib'+'ute'+'s] E'+'rror w'+'hi'+'l'+'e e'+'numer'+'a'+'t'+'i'+'ng Pass'+'word Attr'+'i'+'butes')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -7971,7 +7971,7 @@ Function Get-ADRPasswordAttributes
             $cnt = [ADRecon.LDAPClass]::ObjectCount($ADUsers)
             If ($cnt -gt 0)
             {
-                Write-Warning ('[*'+'] '+'Tot'+'a'+'l '+'Passw'+'o'+'r'+'dAtt'+'ribute '+'Ob'+'j'+'ects: '+"$cnt")
+                Write-Warning ('[*]'+' '+'Tot'+'al '+'P'+'assword'+'At'+'tr'+'ibute '+'Obj'+'ects'+': '+"$cnt")
             }
             $UserObj = $ADUsers
             Remove-Variable ADUsers
@@ -8063,15 +8063,15 @@ Function Get-ADRGroup
         [bool] $ADRGroupChanges = $false
     )
 
-    If ($Method -eq ("{1}{0}"-f'S','ADW'))
+    If ($Method -eq ('ADW'+'S'))
     {
         Try
         {
-            $ADGroups = @( Get-ADGroup -Filter * -ResultPageSize $PageSize -Properties AdminCount,CanonicalName,DistinguishedName,Description,GroupCategory,GroupScope,SamAccountName,SID,SIDHistory,managedBy,("{4}{3}{0}{2}{1}" -f 'Me','ata','taD','lValue','msDS-Rep'),whenChanged,whenCreated )
+            $ADGroups = @( Get-ADGroup -Filter * -ResultPageSize $PageSize -Properties AdminCount,CanonicalName,DistinguishedName,Description,GroupCategory,GroupScope,SamAccountName,SID,SIDHistory,managedBy,('msDS-Rep'+'lVal'+'u'+'e'+'Meta'+'Da'+'ta'),whenChanged,whenCreated )
         }
         Catch
         {
-            Write-Warning ("{13}{14}{6}{5}{4}{10}{15}{3}{2}{12}{11}{0}{9}{1}{8}{7}" -f 'ra','ro','while ','ror ','p','RGrou','AD','ects','up Obj','ting G',']','ume','en','[Ge','t-',' Er')
+            Write-Warning ('[Ge'+'t-'+'ADRGr'+'o'+'up]'+' E'+'rror wh'+'ile enum'+'erating Gro'+'up '+'Objects')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -8093,13 +8093,13 @@ Function Get-ADRGroup
         }
     }
 
-    If ($Method -eq ("{0}{1}"-f 'LDA','P'))
+    If ($Method -eq ('LDA'+'P'))
     {
         $objSearcher = New-Object System.DirectoryServices.DirectorySearcher $objDomain
         $ObjSearcher.PageSize = $PageSize
-        $ObjSearcher.Filter = ("{0}{4}{3}{1}{2}"-f'(objec','=gro','up)','ss','tCla')
-        $ObjSearcher.PropertiesToLoad.AddRange((("{1}{0}{3}{2}"-f'in','adm','t','coun'),("{0}{3}{1}{2}"-f 'cano','n','ame','nical'), ("{3}{1}{2}{4}{0}" -f'me','sti','nguish','di','edna'), ("{1}{2}{3}{0}"-f'on','desc','ript','i'), ("{2}{1}{0}"-f'pe','upty','gro'),("{2}{1}{0}" -f'e','m','samaccountna'), ("{1}{2}{0}"-f 'ory','si','dhist'), ("{2}{1}{3}{0}" -f 'edby','ana','m','g'), ("{2}{3}{1}{0}" -f 'data','valuemeta','m','sds-repl'), ("{1}{0}{2}"-f'bjects','o','id'), ("{1}{2}{3}{0}" -f 'reated','wh','e','nc'), ("{0}{1}{2}" -f'whenchan','g','ed')))
-        $ObjSearcher.SearchScope = ("{0}{1}{2}"-f'S','u','btree')
+        $ObjSearcher.Filter = ('('+'ob'+'jec'+'tClass=grou'+'p)')
+        $ObjSearcher.PropertiesToLoad.AddRange((('ad'+'mincou'+'nt'),('ca'+'nonicaln'+'am'+'e'), ('disting'+'u'+'ishe'+'d'+'name'), ('des'+'c'+'r'+'iption'), ('gr'+'oup'+'type'),('sama'+'cc'+'oun'+'tnam'+'e'), ('sidhis'+'t'+'or'+'y'), ('ma'+'na'+'gedby'), ('msds'+'-r'+'ep'+'lvalu'+'emeta'+'dat'+'a'), ('obje'+'c'+'tsid'), ('w'+'hencreat'+'ed'), ('w'+'hench'+'ange'+'d')))
+        $ObjSearcher.SearchScope = ('S'+'ubt'+'ree')
 
         Try
         {
@@ -8107,7 +8107,7 @@ Function Get-ADRGroup
         }
         Catch
         {
-            Write-Warning ("{9}{11}{5}{6}{0}{8}{3}{12}{4}{10}{1}{2}{7}" -f'RGro','erati','ng Group O','Err','e ','t-A','D','bjects','up] ','[','enum','Ge','or whil')
+            Write-Warning ('[G'+'et'+'-A'+'DRG'+'roup] '+'Error while enumerating '+'Gro'+'up Ob'+'jects')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -8132,13 +8132,13 @@ Function Get-ADRGroup
 
     If ($GroupObj)
     {
-        Export-ADR -ADRObj $GroupObj -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ("{0}{1}" -f'G','roups')
+        Export-ADR -ADRObj $GroupObj -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ('Gr'+'oups')
         Remove-Variable GroupObj
     }
 
     If ($GroupChangesObj)
     {
-        Export-ADR -ADRObj $GroupChangesObj -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ("{2}{3}{0}{1}"-f'upChan','ges','Gr','o')
+        Export-ADR -ADRObj $GroupChangesObj -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ('Gr'+'oupCha'+'nge'+'s')
         Remove-Variable GroupChangesObj
     }
 }
@@ -8185,7 +8185,7 @@ Function Get-ADRGroupMember
         [int] $Threads = 10
     )
 
-    If ($Method -eq ("{1}{0}"-f'DWS','A'))
+    If ($Method -eq ('ADW'+'S'))
     {
         Try
         {
@@ -8195,7 +8195,7 @@ Function Get-ADRGroupMember
         }
         Catch
         {
-            Write-Warning ("{7}{2}{8}{4}{11}{9}{14}{10}{5}{12}{13}{3}{1}{0}{6}" -f'te','n','-AD','o','pMember',' get','xt','[Get','RGrou','r','or','] E','ting Domai','n C','r')
+            Write-Warning ('['+'Ge'+'t-ADR'+'GroupMem'+'ber] Error ge'+'ttin'+'g'+' Domain'+' Co'+'ntex'+'t')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -8206,17 +8206,17 @@ Function Get-ADRGroupMember
         }
         Catch
         {
-            Write-Warning ("{11}{9}{5}{8}{6}{2}{1}{7}{0}{3}{4}{10}"-f'num','or wh','r','erating Gro','up Objec','DRGroup','ember] Er','ile e','M','-A','ts','[Get')
+            Write-Warning ('[G'+'e'+'t'+'-'+'ADRGroup'+'Member] '+'Error'+' whi'+'le'+' '+'en'+'umer'+'at'+'i'+'n'+'g Group'+' Objects')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
         }
 
         Try
         {
-            $ADGroupMembers = @( Get-ADObject -LDAPFilter ((("{3}{4}{2}{0}{5}{1}"-f 'ou','id=*))','marygr','({0}(mem','berof=*)(pri','p'))-F  [CHaR]124) -Properties DistinguishedName,ObjectClass,memberof,primaryGroupID,sAMAccountName,samaccounttype )
+            $ADGroupMembers = @( Get-ADObject -LDAPFilter (('(Xl'+'Z'+'('+'me'+'mbe'+'rof'+'=*)(primarygro'+'u'+'pid=*'+'))').REPlAcE('XlZ',[strINg][ChAR]124)) -Properties DistinguishedName,ObjectClass,memberof,primaryGroupID,sAMAccountName,samaccounttype )
         }
         Catch
         {
-            Write-Warning ("{6}{10}{0}{16}{3}{1}{4}{14}{12}{7}{5}{2}{9}{15}{13}{8}{11}{17}" -f 'ADRGro','Me','enumera','p','mb','e ','[G','il','upMem','tin','et-','ber ',' wh','Gro','er] Error','g ','u','Objects')
+            Write-Warning ('['+'Ge'+'t-AD'+'RG'+'r'+'oupMem'+'ber] E'+'r'+'ror whil'+'e '+'enum'+'eratin'+'g'+' GroupMemb'+'er '+'Object'+'s')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -8231,32 +8231,32 @@ Function Get-ADRGroupMember
         }
     }
 
-    If ($Method -eq ("{1}{0}"-f 'AP','LD'))
+    If ($Method -eq ('LD'+'AP'))
     {
 
         If ($Credential -ne [Management.Automation.PSCredential]::Empty)
         {
             $DomainFQDN = Get-DNtoFQDN($objDomain.distinguishedName)
-            $DomainContext = New-Object System.DirectoryServices.ActiveDirectory.DirectoryContext(("{1}{0}" -f 'ain','Dom'),$($DomainFQDN),$($Credential.UserName),$($Credential.GetNetworkCredential().password))
+            $DomainContext = New-Object System.DirectoryServices.ActiveDirectory.DirectoryContext(('D'+'o'+'main'),$($DomainFQDN),$($Credential.UserName),$($Credential.GetNetworkCredential().password))
             Try
             {
                 $ADDomain = [System.DirectoryServices.ActiveDirectory.Domain]::GetDomain($DomainContext)
             }
             Catch
             {
-                Write-Warning ("{9}{7}{5}{2}{6}{1}{10}{3}{0}{4}{8}" -f ' ','Do','g','n','Contex','ror ','etting ','t-ADRGroupMember] Er','t','[Ge','mai')
+                Write-Warning ('[Ge'+'t-A'+'DRGroup'+'Mem'+'ber]'+' '+'Er'+'ror ge'+'t'+'t'+'in'+'g Domai'+'n C'+'ontext')
                 Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
                 Return $null
             }
             Remove-Variable DomainContext
             Try
             {
-                $ForestContext = New-Object System.DirectoryServices.ActiveDirectory.DirectoryContext(("{0}{2}{1}" -f'For','st','e'),$($ADDomain.Forest),$($Credential.UserName),$($Credential.GetNetworkCredential().password))
+                $ForestContext = New-Object System.DirectoryServices.ActiveDirectory.DirectoryContext(('Fo'+'rest'),$($ADDomain.Forest),$($Credential.UserName),$($Credential.GetNetworkCredential().password))
                 $ADForest = [System.DirectoryServices.ActiveDirectory.Forest]::GetForest($ForestContext)
             }
             Catch
             {
-                Write-Warning ("{4}{0}{2}{5}{1}{8}{3}{6}{7}"-f '-ADRGroupMem','g','be',' Con','[Get','r] Error gettin','t','ext',' Forest')
+                Write-Warning ('['+'Get'+'-A'+'D'+'RGroupMember'+']'+' '+'Erro'+'r getting Fo'+'res'+'t'+' Context')
                 Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             }
             If ($ForestContext)
@@ -8310,9 +8310,9 @@ Function Get-ADRGroupMember
 
         $objSearcher = New-Object System.DirectoryServices.DirectorySearcher $objDomain
         $ObjSearcher.PageSize = $PageSize
-        $ObjSearcher.Filter = ("{0}{3}{2}{4}{1}" -f '(o','up)','ectCl','bj','ass=gro')
-        $ObjSearcher.PropertiesToLoad.AddRange((("{1}{2}{0}"-f'tname','sama','ccoun'), ("{2}{0}{1}" -f 'bjec','tsid','o')))
-        $ObjSearcher.SearchScope = ("{1}{0}{2}" -f 'ubtr','S','ee')
+        $ObjSearcher.Filter = ('('+'obj'+'ectC'+'lass=g'+'r'+'oup)')
+        $ObjSearcher.PropertiesToLoad.AddRange((('sa'+'macco'+'untnam'+'e'), ('obj'+'ectsi'+'d')))
+        $ObjSearcher.SearchScope = ('Sub'+'tree')
 
         Try
         {
@@ -8320,7 +8320,7 @@ Function Get-ADRGroupMember
         }
         Catch
         {
-            Write-Warning ("{7}{10}{4}{9}{6}{2}{5}{1}{3}{8}{0}"-f's','Group','i',' Objec','GroupM','ng ','ror while enumerat','[Get-A','t','ember] Er','DR')
+            Write-Warning ('[Get-ADRGroupMe'+'mber'+'] Err'+'or '+'whil'+'e e'+'n'+'u'+'m'+'er'+'ating '+'Group Object'+'s')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -8328,9 +8328,9 @@ Function Get-ADRGroupMember
 
         $objSearcher = New-Object System.DirectoryServices.DirectorySearcher $objDomain
         $ObjSearcher.PageSize = $PageSize
-        $ObjSearcher.Filter = ((("{3}{6}{0}{1}{5}{2}{4}" -f'of=*)(prim','aryg','id=','(K5C(m','*))','roup','ember'))  -CREplACE 'K5C',[Char]124)
-        $ObjSearcher.PropertiesToLoad.AddRange((("{2}{3}{1}{0}{4}" -f'dnam','e','distingu','ish','e'), ("{1}{0}{2}"-f'am','dnshostn','e'), ("{2}{0}{1}" -f 'ectcl','ass','obj'), ("{2}{0}{1}{3}" -f'ry','g','prima','roupid'), ("{1}{2}{0}" -f 'f','memb','ero'), ("{2}{4}{3}{0}{1}"-f'untn','ame','s','cco','ama'), ("{1}{3}{2}{0}"-f 'ype','samacc','ntt','ou')))
-        $ObjSearcher.SearchScope = ("{0}{1}" -f 'Sub','tree')
+        $ObjSearcher.Filter = (('(U'+'g'+'a('+'me'+'mb'+'e'+'rof'+'=*)(primarygroup'+'id'+'=*)'+')')-repLacE'Uga',[chaR]124)
+        $ObjSearcher.PropertiesToLoad.AddRange((('dist'+'i'+'n'+'guished'+'nam'+'e'), ('dns'+'ho'+'stname'), ('o'+'bject'+'c'+'lass'), ('prima'+'ry'+'grou'+'pid'), ('membero'+'f'), ('sam'+'a'+'ccountname'), ('samacc'+'o'+'untt'+'ype')))
+        $ObjSearcher.SearchScope = ('S'+'ubtre'+'e')
 
         Try
         {
@@ -8338,7 +8338,7 @@ Function Get-ADRGroupMember
         }
         Catch
         {
-            Write-Warning ("{10}{7}{2}{4}{8}{6}{0}{9}{1}{3}{5}" -f 'mber] Error while enu','rating GroupMember Obj','t-A','ec','DRGrou','ts','e','e','pM','me','[G')
+            Write-Warning ('[Ge'+'t-ADR'+'Gr'+'oupMemb'+'er'+'] '+'Error w'+'hi'+'le e'+'n'+'u'+'mera'+'ti'+'n'+'g '+'G'+'rou'+'pMember Obj'+'ec'+'ts')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -8406,7 +8406,7 @@ Function Get-ADROU
         [int] $Threads = 10
     )
 
-    If ($Method -eq ("{1}{0}"-f 'DWS','A'))
+    If ($Method -eq ('AD'+'WS'))
     {
         Try
         {
@@ -8414,7 +8414,7 @@ Function Get-ADROU
         }
         Catch
         {
-            Write-Warning ("{4}{10}{5}{8}{9}{6}{1}{2}{3}{0}{7}" -f'ct','Error while enume','rating ','OU Obje','[Ge','ADRO',' ','s','U',']','t-')
+            Write-Warning ('[Get-AD'+'ROU] '+'Erro'+'r whi'+'le e'+'numera'+'ting '+'OU Objects')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -8427,13 +8427,13 @@ Function Get-ADROU
         }
     }
 
-    If ($Method -eq ("{0}{1}" -f 'LDA','P'))
+    If ($Method -eq ('L'+'DAP'))
     {
         $objSearcher = New-Object System.DirectoryServices.DirectorySearcher $objDomain
         $ObjSearcher.PageSize = $PageSize
-        $ObjSearcher.Filter = (("{8}{4}{1}{6}{0}{9}{7}{2}{5}{3}" -f'org','as','ati','nit)','bjectcl','onalu','s=','iz','(o','an'))
-        $ObjSearcher.PropertiesToLoad.AddRange((("{0}{1}{3}{2}"-f'd','istin','e','guishednam'),("{0}{1}{2}"-f 'd','es','cription'),("{0}{1}"-f 'n','ame'),("{2}{0}{3}{1}"-f 'en','eated','wh','cr'),("{0}{2}{1}" -f'whenc','ed','hang')))
-        $ObjSearcher.SearchScope = ("{1}{2}{0}"-f'ree','Sub','t')
+        $ObjSearcher.Filter = ('(objec'+'t'+'class'+'='+'or'+'gani'+'zatio'+'nalu'+'nit)')
+        $ObjSearcher.PropertiesToLoad.AddRange((('disti'+'ng'+'u'+'ishedna'+'me'),('des'+'crip'+'tion'),('n'+'ame'),('w'+'hencreate'+'d'),('wh'+'ench'+'anged')))
+        $ObjSearcher.SearchScope = ('Sub'+'tree')
 
         Try
         {
@@ -8441,7 +8441,7 @@ Function Get-ADROU
         }
         Catch
         {
-            Write-Warning ("{3}{11}{4}{2}{6}{7}{1}{5}{8}{0}{10}{9}" -f'rating OU O','or wh','DRO','[','et-A','ile','U] ','Err',' enume','s','bject','G')
+            Write-Warning ('[Get-ADRO'+'U] Error whi'+'le '+'e'+'numera'+'ti'+'ng'+' OU '+'Obje'+'c'+'ts')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -8511,15 +8511,15 @@ Function Get-ADRGPO
         [int] $Threads = 10
     )
 
-    If ($Method -eq ("{0}{1}" -f'A','DWS'))
+    If ($Method -eq ('AD'+'WS'))
     {
         Try
         {
-            $ADGPOs = @( Get-ADObject -LDAPFilter (("{6}{7}{8}{9}{1}{2}{5}{3}{0}{4}" -f 'ner','Po','licyC','i',')','onta','(ob','jec','tCategory=g','roup')) -Properties DisplayName,DistinguishedName,Name,gPCFileSysPath,whenCreated,whenChanged )
+            $ADGPOs = @( Get-ADObject -LDAPFilter ('(o'+'bje'+'ctC'+'atego'+'r'+'y=group'+'PolicyC'+'ontain'+'e'+'r'+')') -Properties DisplayName,DistinguishedName,Name,gPCFileSysPath,whenCreated,whenChanged )
         }
         Catch
         {
-            Write-Warning ("{6}{8}{9}{4}{2}{5}{10}{7}{3}{0}{11}{1}" -f 'icyContainer','bjects','h','g groupPol','r w','ile enum','[Get-','atin','ADRGPO] ','Erro','er',' O')
+            Write-Warning ('[Get-ADRGPO] '+'E'+'rror '+'whi'+'l'+'e enu'+'merating g'+'ro'+'up'+'Poli'+'c'+'yCon'+'t'+'ainer'+' Obje'+'c'+'ts')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -8532,12 +8532,12 @@ Function Get-ADRGPO
         }
     }
 
-    If ($Method -eq ("{0}{1}"-f 'LDA','P'))
+    If ($Method -eq ('LDA'+'P'))
     {
         $objSearcher = New-Object System.DirectoryServices.DirectorySearcher $objDomain
         $ObjSearcher.PageSize = $PageSize
-        $ObjSearcher.Filter = ("{0}{7}{6}{1}{5}{3}{2}{4}"-f'(','Catego','olicyC','pP','ontainer)','ry=grou','bject','o')
-        $ObjSearcher.SearchScope = ("{1}{0}" -f'ee','Subtr')
+        $ObjSearcher.Filter = ('(o'+'bjec'+'tCategory=g'+'roupPo'+'licyCon'+'tai'+'ne'+'r)')
+        $ObjSearcher.SearchScope = ('Su'+'btr'+'ee')
 
         Try
         {
@@ -8545,7 +8545,7 @@ Function Get-ADRGPO
         }
         Catch
         {
-            Write-Warning ("{8}{14}{5}{3}{6}{4}{13}{7}{15}{10}{12}{16}{2}{1}{9}{11}{0}" -f'bjects','Cont','g groupPolicy',' E','o',']','rr','hile','[Get','aine','enu','r O','mer','r w','-ADRGPO',' ','atin')
+            Write-Warning ('['+'Get-ADR'+'GP'+'O] Er'+'ror wh'+'ile'+' en'+'umerating '+'gr'+'oup'+'Po'+'lic'+'yCont'+'ainer'+' '+'Objec'+'t'+'s')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -8612,27 +8612,27 @@ Function Get-ADRGPLink
         [int] $Threads = 10
     )
 
-    If ($Method -eq ("{1}{0}"-f'DWS','A'))
+    If ($Method -eq ('A'+'DWS'))
     {
         Try
         {
-            $ADSOMs = @( Get-ADObject -LDAPFilter ((("{9}{0}{6}{5}{3}{1}{4}{2}{8}{7}"-f '0}(objectclas','ass','ani','jectcl','=org','main)(ob','s=do','ionalUnit))','zat','({'))-f  [Char]124) -Properties DistinguishedName,Name,gPLink,gPOptions )
-            $ADSOMs += @( Get-ADObject -SearchBase "CN=Sites,$((Get-ADRootDSE).configurationNamingContext)" -LDAPFilter (("{5}{2}{1}{4}{0}{3}"-f 'ass=si','bjectc','o','te)','l','(')) -Properties DistinguishedName,Name,gPLink,gPOptions )
+            $ADSOMs = @( Get-ADObject -LDAPFilter (('({0}(obje'+'c'+'tclass=domai'+'n)'+'(objectclass=or'+'ganization'+'al'+'Uni'+'t))') -F [cHaR]124) -Properties DistinguishedName,Name,gPLink,gPOptions )
+            $ADSOMs += @( Get-ADObject -SearchBase "CN=Sites,$((Get-ADRootDSE).configurationNamingContext)" -LDAPFilter ('(ob'+'jectc'+'lass='+'s'+'ite)') -Properties DistinguishedName,Name,gPLink,gPOptions )
         }
         Catch
         {
-            Write-Warning ("{4}{0}{8}{6}{3}{2}{7}{1}{5}"-f'-ADRGPLink]','ting ','e enum','r whil','[Get','SOM Objects','ro','era',' Er')
+            Write-Warning ('[Ge'+'t-ADR'+'G'+'PL'+'in'+'k'+'] Er'+'ro'+'r while enumerating SOM Objects')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
 
         Try
         {
-            $ADGPOs = @( Get-ADObject -LDAPFilter ("{0}{2}{5}{6}{3}{4}{1}" -f'(objec','tainer)','tCategory','P','olicyCon','=gr','oup') -Properties DisplayName,DistinguishedName )
+            $ADGPOs = @( Get-ADObject -LDAPFilter ('(ob'+'j'+'ectC'+'a'+'tegor'+'y='+'g'+'r'+'oupPolic'+'yContaine'+'r)') -Properties DisplayName,DistinguishedName )
         }
         Catch
         {
-            Write-Warning ("{12}{10}{7}{0}{4}{11}{6}{8}{1}{2}{3}{5}{9}" -f 'in','g gro','upPolicy','Container','k] Error w',' Ob','mer','DRGPL','atin','jects','t-A','hile enu','[Ge')
+            Write-Warning ('['+'G'+'e'+'t-ADRGP'+'Lin'+'k] '+'E'+'rr'+'or w'+'hil'+'e e'+'nu'+'m'+'erat'+'ing '+'groupPolicy'+'Cont'+'ai'+'ner'+' Objec'+'ts')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -8646,14 +8646,14 @@ Function Get-ADRGPLink
         }
     }
 
-    If ($Method -eq ("{0}{1}"-f 'LD','AP'))
+    If ($Method -eq ('L'+'DAP'))
     {
         $ADSOMs = @()
         $objSearcher = New-Object System.DirectoryServices.DirectorySearcher $objDomain
         $ObjSearcher.PageSize = $PageSize
-        $ObjSearcher.Filter = ((("{13}{15}{9}{1}{2}{4}{14}{5}{6}{7}{10}{0}{3}{8}{11}{12}"-f'tc','c','t','lass','c','s=','domain)','(obj','=organiz','e','ec','ationalUnit)',')','({0','las','}(obj'))-f [Char]124)
-        $ObjSearcher.PropertiesToLoad.AddRange((("{4}{2}{0}{3}{1}"-f 's','me','i','hedna','distingu'),("{1}{0}"-f'ame','n'),("{1}{0}{2}"-f 'l','gp','ink'),("{0}{1}"-f 'gpoption','s')))
-        $ObjSearcher.SearchScope = ("{1}{0}"-f 'ee','Subtr')
+        $ObjSearcher.Filter = (('({0}'+'(o'+'bjectclass=dom'+'a'+'in)(obj'+'ectclass='+'o'+'r'+'gani'+'zationalUn'+'i'+'t))')-F[ChaR]124)
+        $ObjSearcher.PropertiesToLoad.AddRange((('di'+'s'+'tingu'+'ishedname'),('n'+'ame'),('gpli'+'nk'),('gpo'+'pt'+'ions')))
+        $ObjSearcher.SearchScope = ('Subt'+'ree')
 
         Try
         {
@@ -8661,13 +8661,13 @@ Function Get-ADRGPLink
         }
         Catch
         {
-            Write-Warning ("{8}{3}{5}{4}{2}{7}{9}{6}{10}{11}{1}{0}"-f 'cts','e','GPL','-','DR','A','rror while en','i','[Get','nk] E','umerating SOM ','Obj')
+            Write-Warning ('[Get-'+'ADRGPLin'+'k] Error'+' w'+'h'+'ile'+' '+'en'+'umerat'+'ing S'+'OM Obje'+'c'+'ts')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
         $ObjSearcher.dispose()
 
-        $SearchPath = ("{1}{0}" -f 's','CN=Site')
+        $SearchPath = ('CN='+'Sites')
         If ($Credential -ne [Management.Automation.PSCredential]::Empty)
         {
             $objSearchPath = New-Object System.DirectoryServices.DirectoryEntry "LDAP://$($DomainController)/$SearchPath,$($objDomainRootDSE.ConfigurationNamingContext)", $Credential.UserName,$Credential.GetNetworkCredential().Password
@@ -8677,9 +8677,9 @@ Function Get-ADRGPLink
             $objSearchPath = New-Object System.DirectoryServices.DirectoryEntry "LDAP://$SearchPath,$($objDomainRootDSE.ConfigurationNamingContext)"
         }
         $objSearcher = New-Object System.DirectoryServices.DirectorySearcher $objSearchPath
-        $ObjSearcher.Filter = (("{3}{0}{2}{4}{1}" -f 'obj','=site)','ec','(','tclass'))
-        $ObjSearcher.PropertiesToLoad.AddRange((("{2}{4}{3}{1}{0}"-f 'name','hed','dis','is','tingu'),("{0}{1}" -f'na','me'),("{0}{1}"-f'gp','link'),("{0}{1}{2}" -f'gpop','t','ions')))
-        $ObjSearcher.SearchScope = ("{2}{1}{0}"-f 'btree','u','S')
+        $ObjSearcher.Filter = ('(object'+'class=sit'+'e'+')')
+        $ObjSearcher.PropertiesToLoad.AddRange((('d'+'istinguish'+'edn'+'ame'),('nam'+'e'),('gplin'+'k'),('g'+'poption'+'s')))
+        $ObjSearcher.SearchScope = ('S'+'u'+'btree')
 
         Try
         {
@@ -8687,7 +8687,7 @@ Function Get-ADRGPLink
         }
         Catch
         {
-            Write-Warning ("{6}{10}{8}{9}{13}{3}{12}{4}{1}{0}{15}{11}{14}{5}{7}{2}"-f'r',' Erro','umerating SOM Objects','in',']',' ','[Get-','en','G','P','ADR','h','k','L','ile',' w')
+            Write-Warning ('[Ge'+'t-ADR'+'GPLin'+'k'+']'+' Erro'+'r '+'while enumera'+'ting '+'SOM O'+'bjects')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -8695,8 +8695,8 @@ Function Get-ADRGPLink
 
         $objSearcher = New-Object System.DirectoryServices.DirectorySearcher $objDomain
         $ObjSearcher.PageSize = $PageSize
-        $ObjSearcher.Filter = ("{0}{5}{4}{1}{3}{6}{7}{2}"-f'(o','=gr','ainer)','oupPolicyC','y','bjectCategor','o','nt')
-        $ObjSearcher.SearchScope = ("{1}{0}"-f 'e','Subtre')
+        $ObjSearcher.Filter = ('(obje'+'ctCategor'+'y='+'gr'+'ou'+'pPolic'+'y'+'Cont'+'ainer)')
+        $ObjSearcher.SearchScope = ('S'+'ubtree')
 
         Try
         {
@@ -8704,7 +8704,7 @@ Function Get-ADRGPLink
         }
         Catch
         {
-            Write-Warning ("{11}{9}{7}{15}{3}{10}{6}{4}{14}{1}{17}{5}{2}{8}{0}{12}{13}{16}"-f 'j','ing g','ne','Li','hile enumera','cyContai',' w','-ADRG','r Ob','Get','nk] Error','[','ec','t','t','P','s','roupPoli')
+            Write-Warning ('[Get-ADRGPLink'+']'+' E'+'rr'+'or whil'+'e enu'+'mer'+'at'+'ing '+'groupPolicy'+'Conta'+'in'+'er Obj'+'ects')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -8763,7 +8763,7 @@ Outputs custom PSObjects with detailed information about the DNS record entry.
 https://raw.githubusercontent.com/mmessano/PowerShell/master/dns-dump.ps1
 #>
 
-    [OutputType({"{7}{5}{3}{6}{1}{4}{2}{0}"-f 't','to','bjec','.A','mation.PSCustomO','agement','u','System.Man'})]
+    [OutputType(('S'+'yste'+'m.'+'Mana'+'gement.'+'Automatio'+'n.'+'PSCustomObject'))]
     [CmdletBinding()]
     Param(
         [Parameter(Position = 0, Mandatory = $True, ValueFromPipelineByPropertyName = $True)]
@@ -8774,7 +8774,7 @@ https://raw.githubusercontent.com/mmessano/PowerShell/master/dns-dump.ps1
     BEGIN {
         Function Get-Name
         {
-            [Diagnostics.CodeAnalysis.SuppressMessageAttribute({"{2}{5}{1}{6}{4}{3}{0}"-f'ly','tput','P','rrect','o','SUseOu','TypeC'}, '')]
+            [Diagnostics.CodeAnalysis.SuppressMessageAttribute(('P'+'SUseOutp'+'utTy'+'peCor'+'rectly'), '')]
             [CmdletBinding()]
             Param(
                 [Byte[]]
@@ -8818,7 +8818,7 @@ https://raw.githubusercontent.com/mmessano/PowerShell/master/dns-dump.ps1
         }
         Else
         {
-            $TimeStamp = ("{2}{0}{1}" -f'tatic',']','[s')
+            $TimeStamp = ('[stat'+'ic]')
         }
 
         $DNSRecordObject = New-Object PSObject
@@ -8829,21 +8829,21 @@ https://raw.githubusercontent.com/mmessano/PowerShell/master/dns-dump.ps1
             {
                 $IP = "{0}.{1}.{2}.{3}" -f $DNSRecord[24], $DNSRecord[25], $DNSRecord[26], $DNSRecord[27]
                 $Data = $IP
-                $DNSRecordObject | Add-Member Noteproperty ("{0}{1}{2}" -f'R','ecord','Type') 'A'
+                $DNSRecordObject | Add-Member Noteproperty ('Recor'+'d'+'T'+'ype') 'A'
             }
 
             2
             {
                 $NSName = Get-Name $DNSRecord[24..$DNSRecord.length]
                 $Data = $NSName
-                $DNSRecordObject | Add-Member Noteproperty ("{0}{1}{2}"-f 'Re','co','rdType') 'NS'
+                $DNSRecordObject | Add-Member Noteproperty ('RecordT'+'y'+'pe') 'NS'
             }
 
             5
             {
                 $Alias = Get-Name $DNSRecord[24..$DNSRecord.length]
                 $Data = $Alias
-                $DNSRecordObject | Add-Member Noteproperty ("{1}{2}{0}" -f'Type','R','ecord') ("{1}{0}" -f'E','CNAM')
+                $DNSRecordObject | Add-Member Noteproperty ('Rec'+'ord'+'Type') ('C'+'NAME')
             }
 
             6
@@ -8871,15 +8871,15 @@ https://raw.githubusercontent.com/mmessano/PowerShell/master/dns-dump.ps1
                 $Null = [array]::Reverse($MinTTLRaw)
                 $MinTTL = [BitConverter]::ToUInt32($MinTTLRaw, 0)
 
-                $Data = "[" + $Serial + "][" + $PrimaryNS + "][" + $ResponsibleParty + "][" + $Refresh + "][" + $Retry + "][" + $Expires + "][" + $MinTTL + "]"
-                $DNSRecordObject | Add-Member Noteproperty ("{0}{1}{2}"-f 'R','ecordTy','pe') 'SOA'
+                $Data = "[" + $Serial + '][' + $PrimaryNS + '][' + $ResponsibleParty + '][' + $Refresh + '][' + $Retry + '][' + $Expires + '][' + $MinTTL + "]"
+                $DNSRecordObject | Add-Member Noteproperty ('Recor'+'dT'+'ype') ('S'+'OA')
             }
 
             12
             {
                 $Ptr = Get-Name $DNSRecord[24..$DNSRecord.length]
                 $Data = $Ptr
-                $DNSRecordObject | Add-Member Noteproperty ("{0}{2}{1}"-f'Rec','dType','or') 'PTR'
+                $DNSRecordObject | Add-Member Noteproperty ('Reco'+'rdT'+'ype') ('P'+'TR')
             }
 
             13
@@ -8898,8 +8898,8 @@ https://raw.githubusercontent.com/mmessano/PowerShell/master/dns-dump.ps1
                 {
                     $OSType += [char]$DNSRecord[$Index++]
                 }
-                $Data = "[" + $CPUType + "][" + $OSType + "]"
-                $DNSRecordObject | Add-Member Noteproperty ("{2}{1}{0}{3}"-f 'p','rdTy','Reco','e') ("{1}{0}" -f 'INFO','H')
+                $Data = "[" + $CPUType + '][' + $OSType + "]"
+                $DNSRecordObject | Add-Member Noteproperty ('Reco'+'r'+'dType') ('HIN'+'FO')
             }
 
             15
@@ -8909,8 +8909,8 @@ https://raw.githubusercontent.com/mmessano/PowerShell/master/dns-dump.ps1
                 $Null = [array]::Reverse($PriorityRaw)
                 $Priority = [BitConverter]::ToUInt16($PriorityRaw, 0)
                 $MXHost   = Get-Name $DNSRecord[26..$DNSRecord.length]
-                $Data = "[" + $Priority + "][" + $MXHost + "]"
-                $DNSRecordObject | Add-Member Noteproperty ("{1}{0}{2}" -f'ec','R','ordType') 'MX'
+                $Data = "[" + $Priority + '][' + $MXHost + "]"
+                $DNSRecordObject | Add-Member Noteproperty ('Re'+'cordTy'+'pe') 'MX'
             }
 
             16
@@ -8923,7 +8923,7 @@ https://raw.githubusercontent.com/mmessano/PowerShell/master/dns-dump.ps1
                     $TXT += [char]$DNSRecord[$Index++]
                 }
                 $Data = $TXT
-                $DNSRecordObject | Add-Member Noteproperty ("{1}{2}{0}" -f'ype','Re','cordT') 'TXT'
+                $DNSRecordObject | Add-Member Noteproperty ('Reco'+'rdT'+'yp'+'e') ('TX'+'T')
             }
 
             28
@@ -8943,7 +8943,7 @@ https://raw.githubusercontent.com/mmessano/PowerShell/master/dns-dump.ps1
                     }
                 }
                 $Data = $AAAA
-                $DNSRecordObject | Add-Member Noteproperty ("{2}{0}{3}{1}"-f 'ec','ype','R','ordT') ("{1}{0}"-f 'AAA','A')
+                $DNSRecordObject | Add-Member Noteproperty ('Recor'+'dT'+'y'+'pe') ('AA'+'AA')
             }
 
             33
@@ -8962,21 +8962,21 @@ https://raw.githubusercontent.com/mmessano/PowerShell/master/dns-dump.ps1
                 $Port = [BitConverter]::ToUInt16($PortRaw, 0)
 
                 $SRVHost = Get-Name $DNSRecord[30..$DNSRecord.length]
-                $Data = "[" + $Priority + "][" + $Weight + "][" + $Port + "][" + $SRVHost + "]"
-                $DNSRecordObject | Add-Member Noteproperty ("{3}{2}{0}{1}"-f 'yp','e','ecordT','R') 'SRV'
+                $Data = "[" + $Priority + '][' + $Weight + '][' + $Port + '][' + $SRVHost + "]"
+                $DNSRecordObject | Add-Member Noteproperty ('R'+'ecor'+'d'+'Type') ('SR'+'V')
             }
 
             default
             {
                 $Data = $([System.Convert]::ToBase64String($DNSRecord[24..$DNSRecord.length]))
-                $DNSRecordObject | Add-Member Noteproperty ("{2}{1}{0}"-f'Type','cord','Re') ("{0}{1}"-f 'UNKNOW','N')
+                $DNSRecordObject | Add-Member Noteproperty ('Record'+'Typ'+'e') ('U'+'NK'+'NOWN')
             }
         }
-        $DNSRecordObject | Add-Member Noteproperty ("{1}{0}{3}{4}{2}"-f'date','Up','l','dAtSe','ria') $UpdatedAtSerial
-        $DNSRecordObject | Add-Member Noteproperty 'TTL' $TTL
-        $DNSRecordObject | Add-Member Noteproperty 'Age' $Age
-        $DNSRecordObject | Add-Member Noteproperty ("{1}{0}{2}" -f'a','TimeSt','mp') $TimeStamp
-        $DNSRecordObject | Add-Member Noteproperty ("{1}{0}"-f'a','Dat') $Data
+        $DNSRecordObject | Add-Member Noteproperty ('U'+'pdatedAt'+'Se'+'rial') $UpdatedAtSerial
+        $DNSRecordObject | Add-Member Noteproperty ('TT'+'L') $TTL
+        $DNSRecordObject | Add-Member Noteproperty ('Ag'+'e') $Age
+        $DNSRecordObject | Add-Member Noteproperty ('TimeS'+'tamp') $TimeStamp
+        $DNSRecordObject | Add-Member Noteproperty ('Dat'+'a') $Data
         Return $DNSRecordObject
     }
 }
@@ -9056,15 +9056,15 @@ Function Get-ADRDNSZone
         [bool] $ADRDNSRecords = $false
     )
 
-    If ($Method -eq ("{1}{0}"-f 'WS','AD'))
+    If ($Method -eq ('A'+'DWS'))
     {
         Try
         {
-            $ADDNSZones = Get-ADObject -LDAPFilter ("{2}{1}{0}{4}{5}{3}"-f'ectClass=d','bj','(o','Zone)','n','s') -Properties Name,whenCreated,whenChanged,usncreated,usnchanged,distinguishedname
+            $ADDNSZones = Get-ADObject -LDAPFilter ('(obj'+'e'+'ctClass='+'dnsZ'+'one)') -Properties Name,whenCreated,whenChanged,usncreated,usnchanged,distinguishedname
         }
         Catch
         {
-            Write-Warning ("{0}{1}{7}{10}{9}{2}{4}{14}{8}{5}{13}{12}{3}{6}{11}" -f'[','Get-',' while ',' ','e','ng ','Objec','AD','erati',' Error','RDNSZone]','ts','sZone','dn','num')
+            Write-Warning ('['+'Get-ADRDNSZone'+']'+' '+'Er'+'ror '+'whi'+'le e'+'n'+'umer'+'a'+'ting dns'+'Zone Obj'+'ects')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
         }
 
@@ -9081,14 +9081,14 @@ Function Get-ADRDNSZone
         }
         Catch
         {
-            Write-Warning ("{3}{7}{8}{4}{6}{1}{0}{2}{10}{9}{5}"-f'getting',' ',' ','[G','ADRDNS',' Context','Zone] Error','et','-','in','Doma')
+            Write-Warning ('[Get-AD'+'RDNSZone] Error'+' '+'get'+'ting '+'D'+'omain'+' Context')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
 
         Try
         {
-            $ADDNSZones1 = Get-ADObject -LDAPFilter ("{0}{1}{3}{5}{2}{4}" -f'(obj','ec','dnsZone','tClass',')','=') -SearchBase "DC=DomainDnsZones,$($ADDomain.DistinguishedName)" -Properties Name,whenCreated,whenChanged,usncreated,usnchanged,distinguishedname
+            $ADDNSZones1 = Get-ADObject -LDAPFilter ('(objectCl'+'as'+'s=dns'+'Zon'+'e)') -SearchBase "DC=DomainDnsZones,$($ADDomain.DistinguishedName)" -Properties Name,whenCreated,whenChanged,usncreated,usnchanged,distinguishedname
         }
         Catch
         {
@@ -9103,7 +9103,7 @@ Function Get-ADRDNSZone
 
         Try
         {
-            $ADDNSZones2 = Get-ADObject -LDAPFilter (("{3}{5}{4}{1}{2}{0}"-f'ne)','ss=dns','Zo','(ob','la','jectC')) -SearchBase "DC=ForestDnsZones,DC=$($ADDomain.Forest -replace '\.',',DC=')" -Properties Name,whenCreated,whenChanged,usncreated,usnchanged,distinguishedname
+            $ADDNSZones2 = Get-ADObject -LDAPFilter ('(ob'+'je'+'ctC'+'lass=dnsZo'+'ne)') -SearchBase "DC=ForestDnsZones,DC=$($ADDomain.Forest -replace '\.',',DC=')" -Properties Name,whenCreated,whenChanged,usncreated,usnchanged,distinguishedname
         }
         Catch
         {
@@ -9133,7 +9133,7 @@ Function Get-ADRDNSZone
                 $Obj | Add-Member -MemberType NoteProperty -Name Name -Value $([ADRecon.ADWSClass]::CleanString($_.Name))
                 Try
                 {
-                    $DNSNodes = Get-ADObject -SearchBase $($_.DistinguishedName) -LDAPFilter ("{1}{0}{2}{4}{3}{5}{6}" -f'b','(o','jectCla','=d','ss','nsNod','e)') -Properties DistinguishedName,dnsrecord,dNSTombstoned,Name,ProtectedFromAccidentalDeletion,showInAdvancedViewOnly,whenChanged,whenCreated
+                    $DNSNodes = Get-ADObject -SearchBase $($_.DistinguishedName) -LDAPFilter ('(obj'+'ectC'+'lass'+'=dnsNode'+')') -Properties DistinguishedName,dnsrecord,dNSTombstoned,Name,ProtectedFromAccidentalDeletion,showInAdvancedViewOnly,whenChanged,whenCreated
                 }
                 Catch
                 {
@@ -9153,7 +9153,7 @@ Function Get-ADRDNSZone
                         }
                         Catch
                         {
-                            Write-Warning ("{12}{8}{4}{11}{1}{9}{5}{3}{6}{14}{0}{13}{7}{10}{2}"-f'nv','ADR','rd','l','e','e] Error whi','e','g the DNSRec','G','DNSZon','o','t-','[','ertin',' co')
+                            Write-Warning ('[Get-AD'+'RDNSZo'+'ne] E'+'rror'+' wh'+'ile converti'+'ng t'+'he DN'+'S'+'Record')
                             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
                         }
                         $ObjNode | Add-Member -MemberType NoteProperty -Name RecordType -Value $DNSRecord.RecordType
@@ -9192,13 +9192,13 @@ Function Get-ADRDNSZone
         }
     }
 
-    If ($Method -eq ("{0}{1}"-f 'LD','AP'))
+    If ($Method -eq ('LDA'+'P'))
     {
         $objSearcher = New-Object System.DirectoryServices.DirectorySearcher $objDomain
         $ObjSearcher.PageSize = $PageSize
-        $ObjSearcher.PropertiesToLoad.AddRange((("{0}{1}"-f 'n','ame'),("{3}{0}{1}{2}" -f 'encrea','t','ed','wh'),("{1}{2}{0}{3}" -f 'a','whenc','h','nged'),("{0}{1}{2}"-f 'u','sncreate','d'),("{0}{3}{1}{2}"-f 'usnc','ng','ed','ha'),("{4}{1}{0}{2}{5}{3}"-f'ting','is','uish','e','d','ednam')))
-        $ObjSearcher.Filter = (("{4}{3}{2}{5}{0}{1}"-f'one',')','s','bjectClas','(o','=dnsZ'))
-        $ObjSearcher.SearchScope = ("{1}{2}{0}" -f 'e','Sub','tre')
+        $ObjSearcher.PropertiesToLoad.AddRange((('nam'+'e'),('wh'+'enc'+'reated'),('whenc'+'h'+'anged'),('usnc'+'re'+'ated'),('u'+'snchan'+'g'+'ed'),('dis'+'ti'+'nguis'+'he'+'dna'+'me')))
+        $ObjSearcher.Filter = ('(ob'+'jectCla'+'ss'+'=d'+'nsZ'+'one)')
+        $ObjSearcher.SearchScope = ('Su'+'btree')
 
         Try
         {
@@ -9206,7 +9206,7 @@ Function Get-ADRDNSZone
         }
         Catch
         {
-            Write-Warning ("{5}{7}{9}{6}{2}{0}{3}{1}{4}{8}"-f' ','g dnsZone Ob','le','enumeratin','j','[Get-','e] Error whi','ADRDNS','ects','Zon')
+            Write-Warning ('[Ge'+'t-A'+'D'+'R'+'D'+'NSZone] Er'+'ror wh'+'ile en'+'ume'+'ra'+'ting dnsZ'+'o'+'n'+'e Objects')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
         }
         $ObjSearcher.dispose()
@@ -9218,7 +9218,7 @@ Function Get-ADRDNSZone
             Remove-Variable ADDNSZones
         }
 
-        $SearchPath = ("{0}{3}{1}{2}" -f'DC=Dom','sZ','ones','ainDn')
+        $SearchPath = ('D'+'C='+'D'+'oma'+'inDnsZones')
         If ($Credential -ne [Management.Automation.PSCredential]::Empty)
         {
             $objSearchPath = New-Object System.DirectoryServices.DirectoryEntry "LDAP://$($DomainController)/$($SearchPath),$($objDomain.distinguishedName)", $Credential.UserName,$Credential.GetNetworkCredential().Password
@@ -9228,10 +9228,10 @@ Function Get-ADRDNSZone
             $objSearchPath = New-Object System.DirectoryServices.DirectoryEntry "LDAP://$($SearchPath),$($objDomain.distinguishedName)"
         }
         $objSearcherPath = New-Object System.DirectoryServices.DirectorySearcher $objSearchPath
-        $objSearcherPath.Filter = ("{0}{2}{1}{3}" -f '(objectClass=dn','o','sZ','ne)')
+        $objSearcherPath.Filter = ('(obje'+'ctClass=d'+'ns'+'Zo'+'ne'+')')
         $objSearcherPath.PageSize = $PageSize
-        $objSearcherPath.PropertiesToLoad.AddRange((("{0}{1}" -f 'n','ame'),("{2}{0}{1}" -f 'hencreat','ed','w'),("{1}{2}{3}{0}"-f 'nged','when','ch','a'),("{2}{0}{3}{1}"-f'rea','ed','usnc','t'),("{0}{1}{2}"-f'us','nc','hanged'),("{4}{1}{0}{2}{5}{3}" -f'inguis','st','hed','ame','di','n')))
-        $objSearcherPath.SearchScope = ("{1}{2}{0}"-f'tree','S','ub')
+        $objSearcherPath.PropertiesToLoad.AddRange((('n'+'ame'),('w'+'henc'+'reated'),('whe'+'nchang'+'ed'),('usnc'+'re'+'at'+'ed'),('u'+'snchange'+'d'),('disti'+'n'+'guis'+'hedn'+'am'+'e')))
+        $objSearcherPath.SearchScope = ('Subtr'+'ee')
 
         Try
         {
@@ -9250,18 +9250,18 @@ Function Get-ADRDNSZone
             Remove-Variable ADDNSZones1
         }
 
-        $SearchPath = ("{1}{4}{0}{2}{3}" -f'ForestDns','D','Z','ones','C=')
+        $SearchPath = ('DC=ForestDn'+'sZ'+'on'+'es')
         If ($Credential -ne [Management.Automation.PSCredential]::Empty)
         {
             $DomainFQDN = Get-DNtoFQDN($objDomain.distinguishedName)
-            $DomainContext = New-Object System.DirectoryServices.ActiveDirectory.DirectoryContext(("{0}{1}"-f'D','omain'),$($DomainFQDN),$($Credential.UserName),$($Credential.GetNetworkCredential().password))
+            $DomainContext = New-Object System.DirectoryServices.ActiveDirectory.DirectoryContext(('Doma'+'in'),$($DomainFQDN),$($Credential.UserName),$($Credential.GetNetworkCredential().password))
             Try
             {
                 $ADDomain = [System.DirectoryServices.ActiveDirectory.Domain]::GetDomain($DomainContext)
             }
             Catch
             {
-                Write-Warning ("{2}{8}{1}{4}{11}{10}{0}{9}{3}{6}{5}{7}"-f'om',' Er','[Get','n ','ror','ntex','Co','t','-ADRForest]','ai','ing D',' gett')
+                Write-Warning ('[G'+'et-ADRForest] Err'+'o'+'r ge'+'tting '+'D'+'oma'+'in'+' Context')
                 Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
                 Return $null
             }
@@ -9275,10 +9275,10 @@ Function Get-ADRDNSZone
         }
 
         $objSearcherPath = New-Object System.DirectoryServices.DirectorySearcher $objSearchPath
-        $objSearcherPath.Filter = (("{6}{1}{0}{3}{2}{4}{5}" -f 'e','obj','s','ctClass=dn','Z','one)','('))
+        $objSearcherPath.Filter = ('('+'o'+'bjectClass=dn'+'s'+'Zo'+'n'+'e)')
         $objSearcherPath.PageSize = $PageSize
-        $objSearcherPath.PropertiesToLoad.AddRange((("{0}{1}" -f'n','ame'),("{3}{0}{1}{2}"-f'en','creat','ed','wh'),("{1}{2}{0}{3}" -f 'e','whench','ang','d'),("{0}{2}{1}"-f 'u','ncreated','s'),("{0}{2}{1}{3}" -f'u','ang','snch','ed'),("{4}{0}{3}{1}{2}"-f't','uish','edname','ing','dis')))
-        $objSearcherPath.SearchScope = ("{1}{0}"-f'e','Subtre')
+        $objSearcherPath.PropertiesToLoad.AddRange((('na'+'me'),('wh'+'encreate'+'d'),('w'+'hench'+'anged'),('us'+'nc'+'reated'),('usnch'+'ange'+'d'),('d'+'istin'+'guishedn'+'ame')))
+        $objSearcherPath.SearchScope = ('Subt'+'ree')
 
         Try
         {
@@ -9318,9 +9318,9 @@ Function Get-ADRDNSZone
                     $objSearchPath = New-Object System.DirectoryServices.DirectoryEntry "LDAP://$($_.Properties.distinguishedname)"
                 }
                 $objSearcherPath = New-Object System.DirectoryServices.DirectorySearcher $objSearchPath
-                $objSearcherPath.Filter = ("{2}{1}{0}{3}"-f'Class=dnsNo','ject','(ob','de)')
+                $objSearcherPath.Filter = ('(obje'+'ctCla'+'s'+'s=d'+'nsNo'+'de)')
                 $objSearcherPath.PageSize = $PageSize
-                $objSearcherPath.PropertiesToLoad.AddRange((("{0}{5}{3}{2}{1}{4}"-f'd','a','inguishedn','st','me','i'),("{0}{1}" -f 'dnsrec','ord'),("{1}{0}" -f 'me','na'),"dc",("{2}{4}{1}{0}{5}{3}"-f'ance','inadv','sh','ewonly','ow','dvi'),("{2}{0}{1}"-f 'ge','d','whenchan'),("{0}{3}{1}{2}" -f'w','enc','reated','h')))
+                $objSearcherPath.PropertiesToLoad.AddRange((('di'+'stinguish'+'edna'+'me'),('d'+'nsre'+'cor'+'d'),('na'+'me'),'dc',('s'+'howi'+'nadvancedvi'+'ew'+'on'+'ly'),('w'+'he'+'nchanged'),('whencre'+'at'+'ed')))
                 Try
                 {
                     $DNSNodes = $objSearcherPath.FindAll()
@@ -9354,7 +9354,7 @@ Function Get-ADRDNSZone
                         }
                         Catch
                         {
-                            Write-Warning ("{3}{4}{5}{11}{8}{9}{1}{6}{10}{0}{2}{7}" -f'c',' while convert','o','[Get-A','DR','DN','ing the DN','rd','o','ne] Error','SRe','SZ')
+                            Write-Warning ('['+'Get'+'-AD'+'RD'+'NSZon'+'e] Error'+' while co'+'nvert'+'in'+'g the DNSRec'+'or'+'d')
                             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
                         }
                         $ObjNode | Add-Member -MemberType NoteProperty -Name RecordType -Value $DNSRecord.RecordType
@@ -9395,13 +9395,13 @@ Function Get-ADRDNSZone
 
     If ($ADDNSZonesObj -and $ADRDNSZones)
     {
-        Export-ADR $ADDNSZonesObj $ADROutputDir $OutputType ("{2}{1}{0}"-f 'es','on','DNSZ')
+        Export-ADR $ADDNSZonesObj $ADROutputDir $OutputType ('DNS'+'Zon'+'es')
         Remove-Variable ADDNSZonesObj
     }
 
     If ($ADDNSNodesObj -and $ADRDNSRecords)
     {
-        Export-ADR $ADDNSNodesObj $ADROutputDir $OutputType ("{0}{1}{2}" -f 'DN','SNode','s')
+        Export-ADR $ADDNSNodesObj $ADROutputDir $OutputType ('D'+'NSN'+'odes')
         Remove-Variable ADDNSNodesObj
     }
 }
@@ -9449,15 +9449,15 @@ Function Get-ADRPrinter
         [int] $Threads = 10
     )
 
-    If ($Method -eq ("{1}{0}"-f 'DWS','A'))
+    If ($Method -eq ('A'+'DWS'))
     {
         Try
         {
-            $ADPrinters = @( Get-ADObject -LDAPFilter (("{2}{3}{5}{0}{4}{1}" -f 'pr','tQueue)','(objec','t','in','Category=')) -Properties driverName,driverVersion,Name,portName,printShareName,serverName,url,whenChanged,whenCreated )
+            $ADPrinters = @( Get-ADObject -LDAPFilter ('(objectCa'+'te'+'gory=pri'+'ntQ'+'ueue)') -Properties driverName,driverVersion,Name,portName,printShareName,serverName,url,whenChanged,whenCreated )
         }
         Catch
         {
-            Write-Warning ("{1}{6}{7}{10}{17}{3}{16}{12}{8}{13}{0}{14}{5}{11}{4}{2}{9}{15}" -f 'ti','[Get-ADR','c','r w','je',' printQueue O','Pri','nter','r','t','] Er','b','ume','a','ng','s','hile en','ro')
+            Write-Warning ('[Get-ADR'+'Prin'+'ter'+'] E'+'rr'+'or wh'+'ile en'+'umerat'+'ing pr'+'in'+'tQ'+'u'+'eu'+'e'+' O'+'b'+'je'+'cts')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -9470,12 +9470,12 @@ Function Get-ADRPrinter
         }
     }
 
-    If ($Method -eq ("{0}{1}"-f'L','DAP'))
+    If ($Method -eq ('LDA'+'P'))
     {
         $objSearcher = New-Object System.DirectoryServices.DirectorySearcher $objDomain
         $ObjSearcher.PageSize = $PageSize
-        $ObjSearcher.Filter = (("{7}{6}{0}{3}{1}{8}{4}{5}{2}"-f 'e','or','Queue)','ctCateg','ri','nt','obj','(','y=p'))
-        $ObjSearcher.SearchScope = ("{1}{0}{2}" -f'bt','Su','ree')
+        $ObjSearcher.Filter = ('('+'objec'+'tC'+'ate'+'gory=p'+'r'+'intQu'+'eue)')
+        $ObjSearcher.SearchScope = ('Subtr'+'ee')
 
         Try
         {
@@ -9483,7 +9483,7 @@ Function Get-ADRPrinter
         }
         Catch
         {
-            Write-Warning ("{10}{1}{7}{0}{8}{12}{6}{4}{5}{2}{11}{9}{3}"-f '] ','DRPrint',' printQu','bjects',' enumerat','ing','e','er','Erro','e O','[Get-A','eu','r whil')
+            Write-Warning ('[Get-'+'ADRPri'+'nt'+'er'+']'+' '+'Error whi'+'le en'+'umera'+'ting printQueue '+'Objec'+'ts')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -9494,7 +9494,7 @@ Function Get-ADRPrinter
             $cnt = $([ADRecon.LDAPClass]::ObjectCount($ADPrinters))
             If ($cnt -ge 1)
             {
-                Write-Verbose ('[*'+'] '+'Tot'+'al '+'Printe'+'r'+'s: '+"$cnt")
+                Write-Verbose ('[*'+'] '+'To'+'tal'+' '+'Pri'+'nter'+'s: '+"$cnt")
                 $PrintersObj = [ADRecon.LDAPClass]::PrinterParser($ADPrinters, $Threads)
             }
             Remove-Variable ADPrinters
@@ -9587,17 +9587,17 @@ Function Get-ADRComputer
         [int] $ADRComputerSPNs = $false
     )
 
-    If ($Method -eq ("{0}{1}"-f 'AD','WS'))
+    If ($Method -eq ('ADW'+'S'))
     {
         If (!$ADRComputers)
         {
             Try
             {
-                $ADComputers = @( Get-ADObject -LDAPFilter ((("{4}{1}{9}{7}{3}{5}{8}{10}{2}{6}{0}" -f '))','(samA','cipalN','805','(&','306','ame=*','countType=','3','c','69)(servicePrin'))) -ResultPageSize $PageSize -Properties Name,servicePrincipalName )
+                $ADComputers = @( Get-ADObject -LDAPFilter ('(&(s'+'am'+'A'+'ccount'+'Ty'+'pe=805306369)(se'+'rvicePrinci'+'palName='+'*))') -ResultPageSize $PageSize -Properties Name,servicePrincipalName )
             }
             Catch
             {
-                Write-Warning ("{0}{10}{9}{3}{4}{1}{8}{2}{5}{6}{7}"-f '[Get-ADRComputer]','ing C','P','le',' enumerat','N ','Object','s','omputerS','Error whi',' ')
+                Write-Warning ('[Get'+'-'+'A'+'DRCompu'+'t'+'er'+'] '+'Error wh'+'i'+'le'+' '+'en'+'umer'+'ati'+'n'+'g C'+'omp'+'uterSPN Objec'+'ts')
                 Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
                 Return $null
             }
@@ -9606,11 +9606,11 @@ Function Get-ADRComputer
         {
             Try
             {
-                $ADComputers = @( Get-ADComputer -Filter * -ResultPageSize $PageSize -Properties Description,DistinguishedName,DNSHostName,Enabled,IPv4Address,LastLogonDate,("{4}{5}{0}{3}{1}{2}" -f'e','ToDelegate','To','d','msD','S-Allow'),("{0}{1}{3}{2}" -f 'ms-d','s','Sid','-Creator'),("{2}{0}{4}{3}{1}{5}" -f'S-Suppo','rypti','msD','dEnc','rte','onTypes'),Name,OperatingSystem,OperatingSystemHotfix,OperatingSystemServicePack,OperatingSystemVersion,PasswordLastSet,primaryGroupID,SamAccountName,servicePrincipalName,SID,SIDHistory,TrustedForDelegation,TrustedToAuthForDelegation,UserAccountControl,whenChanged,whenCreated )
+                $ADComputers = @( Get-ADComputer -Filter * -ResultPageSize $PageSize -Properties Description,DistinguishedName,DNSHostName,Enabled,IPv4Address,LastLogonDate,('msDS-Allow'+'edToD'+'ele'+'gat'+'eTo'),('ms-d'+'s-Cre'+'a'+'torSid'),('msD'+'S-S'+'u'+'ppo'+'rtedEncrypti'+'o'+'nTyp'+'es'),Name,OperatingSystem,OperatingSystemHotfix,OperatingSystemServicePack,OperatingSystemVersion,PasswordLastSet,primaryGroupID,SamAccountName,servicePrincipalName,SID,SIDHistory,TrustedForDelegation,TrustedToAuthForDelegation,UserAccountControl,whenChanged,whenCreated )
             }
             Catch
             {
-                Write-Warning ("{5}{4}{8}{6}{7}{9}{3}{1}{2}{0}"-f 'ts','mp','uter Objec','enumerating Co','RComputer]','[Get-AD','r wh','ile',' Erro',' ')
+                Write-Warning ('[G'+'et-'+'ADRCompute'+'r] Error wh'+'ile'+' '+'enume'+'ra'+'t'+'i'+'ng Computer'+' Obje'+'c'+'ts')
                 Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
                 Return $null
             }
@@ -9630,22 +9630,22 @@ Function Get-ADRComputer
         }
     }
 
-    If ($Method -eq ("{1}{0}" -f 'AP','LD'))
+    If ($Method -eq ('LD'+'AP'))
     {
         If (!$ADRComputers)
         {
             $objSearcher = New-Object System.DirectoryServices.DirectorySearcher $objDomain
             $ObjSearcher.PageSize = $PageSize
-            $ObjSearcher.Filter = (("{1}{0}{4}{13}{14}{11}{12}{8}{2}{15}{7}{9}{10}{6}{5}{3}" -f'cc','(&(samA','vic','e=*))','o','lNam','a','Pri',')(ser','nc','ip','30636','9','untType','=805','e'))
-            $ObjSearcher.PropertiesToLoad.AddRange((("{1}{0}" -f 'e','nam'),("{1}{3}{4}{2}{0}"-f 'me','service','a','pr','incipaln')))
-            $ObjSearcher.SearchScope = ("{1}{0}"-f'btree','Su')
+            $ObjSearcher.Filter = ('(&(sa'+'mA'+'ccoun'+'tType=805'+'306369)'+'(servi'+'ceP'+'r'+'i'+'ncipa'+'lN'+'a'+'me'+'=*))')
+            $ObjSearcher.PropertiesToLoad.AddRange((('na'+'me'),('serviceprincipa'+'l'+'n'+'ame')))
+            $ObjSearcher.SearchScope = ('Sub'+'tre'+'e')
             Try
             {
                 $ADComputers = $ObjSearcher.FindAll()
             }
             Catch
             {
-                Write-Warning ("{9}{5}{6}{1}{10}{0}{3}{8}{11}{12}{4}{7}{2}" -f 'at',' enum','s','in',' Objec',' Error wh','ile','t','g C','[Get-ADRComputer]','er','omp','uterSPN')
+                Write-Warning ('['+'Get-'+'A'+'DR'+'C'+'o'+'mpute'+'r'+'] Error w'+'hi'+'le enumerating '+'Co'+'mputerSPN O'+'bj'+'ec'+'ts')
                 Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
                 Return $null
             }
@@ -9655,9 +9655,9 @@ Function Get-ADRComputer
         {
             $objSearcher = New-Object System.DirectoryServices.DirectorySearcher $objDomain
             $ObjSearcher.PageSize = $PageSize
-            $ObjSearcher.Filter = (("{7}{5}{1}{0}{2}{3}{4}{6}"-f'cc','mA','ountType','=','80530','sa','6369)','('))
-            $ObjSearcher.PropertiesToLoad.AddRange((("{3}{1}{0}{2}" -f'scr','e','iption','d'),("{3}{1}{2}{4}{0}" -f 'e','sti','ngu','di','ishednam'),("{0}{2}{1}"-f'dnsh','stname','o'),("{0}{2}{1}{3}" -f 'lastlogo','timest','n','amp'),("{6}{4}{0}{5}{2}{3}{1}" -f 'S-Allo','ateTo','Del','eg','D','wedTo','ms'),("{4}{1}{2}{0}{3}" -f'Si','ds','-Creator','d','ms-'),("{1}{2}{0}{5}{3}{4}{6}"-f'pp','ms','DS-Su','yptionT','ype','ortedEncr','s'),("{1}{0}" -f'ame','n'),("{1}{0}" -f'jectsid','ob'),("{3}{0}{1}{2}"-f'in','gsy','stem','operat'),("{6}{5}{3}{4}{0}{1}{2}"-f'em','ho','tfix','ng','syst','rati','ope'),("{1}{7}{5}{6}{2}{4}{3}{0}" -f'k','oper','v','epac','ic','gsystems','er','atin'),("{5}{0}{1}{2}{4}{3}"-f 'ra','ting','s','ion','ystemvers','ope'),("{0}{2}{1}" -f 'primar','d','ygroupi'),("{0}{2}{1}"-f'p','astset','wdl'),("{1}{2}{0}"-f'me','samaccountn','a'),("{2}{1}{0}{3}{5}{4}"-f 'cep','ervi','s','rincipa','me','lna'),("{2}{0}{1}"-f'ist','ory','sidh'),("{5}{2}{1}{4}{0}{3}"-f'o','t','un','l','contr','useracco'),("{1}{2}{0}"-f'd','whenchang','e'),("{0}{1}{2}" -f'whe','ncr','eated')))
-            $ObjSearcher.SearchScope = ("{1}{0}" -f 'e','Subtre')
+            $ObjSearcher.Filter = ('(s'+'amAc'+'countT'+'ype=805'+'3'+'06369'+')')
+            $ObjSearcher.PropertiesToLoad.AddRange((('de'+'s'+'c'+'ription'),('di'+'stingui'+'s'+'he'+'dname'),('dnsh'+'ostn'+'ame'),('la'+'stlog'+'onti'+'mesta'+'mp'),('msDS-A'+'llowedToDe'+'l'+'egat'+'eTo'),('ms-'+'d'+'s-Cre'+'at'+'o'+'rSid'),('msDS'+'-'+'Supported'+'E'+'ncryption'+'Types'),('nam'+'e'),('objects'+'id'),('o'+'peratin'+'g'+'system'),('o'+'peratingsyst'+'em'+'h'+'o'+'tfix'),('opera'+'tings'+'yst'+'e'+'mser'+'v'+'ic'+'epack'),('o'+'per'+'ati'+'ngsystem'+'v'+'er'+'sion'),('prim'+'arygrou'+'p'+'id'),('pw'+'dla'+'st'+'set'),('samacc'+'oun'+'t'+'n'+'ame'),('ser'+'vicep'+'ri'+'nc'+'i'+'palnam'+'e'),('si'+'dhis'+'tory'),('user'+'ac'+'countc'+'ontrol'),('whe'+'ncha'+'nge'+'d'),('whe'+'ncreate'+'d')))
+            $ObjSearcher.SearchScope = ('S'+'ubtr'+'ee')
 
             Try
             {
@@ -9665,7 +9665,7 @@ Function Get-ADRComputer
             }
             Catch
             {
-                Write-Warning ("{7}{8}{10}{5}{14}{6}{1}{11}{12}{13}{0}{2}{15}{3}{4}{9}"-f 'mera','r] Err','ting Co','pu','ter Object','o','e','[','Get-','s','ADRC','or ','while e','nu','mput','m')
+                Write-Warning ('[Ge'+'t-A'+'DRCom'+'put'+'er'+'] Err'+'or while '+'en'+'um'+'erat'+'ing'+' Co'+'m'+'p'+'ut'+'er Object'+'s')
                 Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
                 Return $null
             }
@@ -9689,12 +9689,12 @@ Function Get-ADRComputer
 
     If ($ComputerObj)
     {
-        Export-ADR -ADRObj $ComputerObj -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ("{2}{0}{1}" -f 'mpute','rs','Co')
+        Export-ADR -ADRObj $ComputerObj -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ('Comp'+'u'+'ters')
         Remove-Variable ComputerObj
     }
     If ($ComputerSPNObj)
     {
-        Export-ADR -ADRObj $ComputerSPNObj -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ("{2}{1}{0}{3}" -f'terS','mpu','Co','PNs')
+        Export-ADR -ADRObj $ComputerSPNObj -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ('Co'+'mputer'+'SP'+'Ns')
         Remove-Variable ComputerSPNObj
     }
 }
@@ -9742,20 +9742,20 @@ Function Get-ADRLAPSCheck
         [int] $Threads = 10
     )
 
-    If ($Method -eq ("{0}{1}"-f 'A','DWS'))
+    If ($Method -eq ('AD'+'WS'))
     {
         Try
         {
-            $ADComputers = @( Get-ADObject -LDAPFilter ("{2}{3}{5}{1}{0}{4}" -f'e=805','yp','(samAccou','nt','306369)','T') -Properties CN,DNSHostName,("{0}{3}{2}{1}" -f'ms','wd','mP','-Mcs-Ad'),("{0}{3}{1}{4}{6}{8}{2}{7}{5}"-f'ms-','-','dExpira','Mcs','A','e','dmP','tionTim','w') -ResultPageSize $PageSize )
+            $ADComputers = @( Get-ADObject -LDAPFilter ('('+'sa'+'mA'+'cc'+'ou'+'ntTy'+'p'+'e=805306369'+')') -Properties CN,DNSHostName,('m'+'s-M'+'cs-Ad'+'mPwd'),('ms-Mcs'+'-'+'Ad'+'mPwdEx'+'pir'+'ation'+'Time') -ResultPageSize $PageSize )
         }
         Catch [System.ArgumentException]
         {
-            Write-Warning ("{1}{2}{6}{0}{5}{3}{4}" -f't ','[*','] L','t','ed.','implemen','APS is no')
+            Write-Warning ('[*] L'+'APS '+'is '+'no'+'t'+' i'+'mplemente'+'d.')
             Return $null
         }
         Catch
         {
-            Write-Warning ("{6}{0}{12}{9}{10}{4}{8}{15}{7}{13}{5}{11}{14}{1}{3}{2}" -f 'G','numerat','S Objects','ing LAP','APSCh','whi','[','o','eck] ','ADR','L','le ','et-','r ','e','Err')
+            Write-Warning ('[Get-A'+'DRL'+'A'+'PSCheck]'+' Error while'+' enum'+'erating'+' LAPS Ob'+'j'+'ect'+'s')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -9768,20 +9768,20 @@ Function Get-ADRLAPSCheck
         }
     }
 
-    If ($Method -eq ("{0}{1}" -f'LDA','P'))
+    If ($Method -eq ('L'+'DAP'))
     {
         $objSearcher = New-Object System.DirectoryServices.DirectorySearcher $objDomain
         $ObjSearcher.PageSize = $PageSize
-        $ObjSearcher.Filter = (("{4}{2}{0}{1}{3}" -f'05','306','ccountType=8','369)','(samA'))
-        $ObjSearcher.PropertiesToLoad.AddRange(("cn",("{3}{1}{0}{2}"-f'stn','nsho','ame','d'),("{0}{1}{2}" -f'ms-mc','s-ad','mpwd'),("{1}{0}{3}{2}{4}" -f'cs-','ms-m','xpiratio','admpwde','ntime')))
-        $ObjSearcher.SearchScope = ("{1}{0}"-f 'ree','Subt')
+        $ObjSearcher.Filter = ('(samAccou'+'ntType=805'+'30'+'6369'+')')
+        $ObjSearcher.PropertiesToLoad.AddRange(('cn',('dn'+'shostnam'+'e'),('ms-m'+'c'+'s-'+'admpwd'),('ms-m'+'c'+'s-admpwdex'+'pirati'+'ont'+'i'+'me')))
+        $ObjSearcher.SearchScope = ('S'+'ubtr'+'ee')
         Try
         {
             $ADComputers = $ObjSearcher.FindAll()
         }
         Catch
         {
-            Write-Warning ("{8}{5}{4}{7}{10}{14}{1}{12}{2}{0}{13}{9}{6}{3}{11}"-f'ng',' ','le enumerati','bje','t-ADRLAPSCheck]','e','O',' Er','[G',' ','ro','cts','whi',' LAPS','r')
+            Write-Warning ('[Get'+'-ADRLAP'+'SC'+'h'+'ec'+'k] Er'+'ror w'+'h'+'ile enumer'+'a'+'ting LAPS O'+'bje'+'cts')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -9792,7 +9792,7 @@ Function Get-ADRLAPSCheck
             $LAPSCheck = [ADRecon.LDAPClass]::LAPSCheck($ADComputers)
             If (-Not $LAPSCheck)
             {
-                Write-Warning ("{2}{0}{1}{6}{4}{3}{5}"-f'o','t im','[*] LAPS is n','ted','n','.','pleme')
+                Write-Warning ('[*] LAPS '+'is '+'not'+' i'+'mplemented.')
                 Return $null
             }
             Else
@@ -9856,15 +9856,15 @@ Function Get-ADRBitLocker
         [Management.Automation.PSCredential] $Credential = [Management.Automation.PSCredential]::Empty
     )
 
-    If ($Method -eq ("{1}{0}"-f 'S','ADW'))
+    If ($Method -eq ('A'+'DWS'))
     {
         Try
         {
-            $ADBitLockerRecoveryKeys = Get-ADObject -LDAPFilter (("{2}{0}{5}{8}{4}{6}{9}{7}{3}{1}" -f 'c',')','(obje','n','-Rec','t','ov','formatio','Class=msFVE','eryIn')) -Properties distinguishedName,msFVE-RecoveryPassword,msFVE-RecoveryGuid,msFVE-VolumeGuid,Name,whenCreated
+            $ADBitLockerRecoveryKeys = Get-ADObject -LDAPFilter ('(o'+'b'+'jectC'+'la'+'ss=msFVE-R'+'eco'+'veryInfor'+'mation)') -Properties distinguishedName,msFVE-RecoveryPassword,msFVE-RecoveryGuid,msFVE-VolumeGuid,Name,whenCreated
         }
         Catch
         {
-            Write-Warning ("{15}{12}{7}{10}{3}{14}{16}{5}{8}{17}{13}{1}{6}{11}{9}{0}{2}{4}"-f 'mat','er','ion Obj','rro','ects','erating m','yI','tLoc','sFVE-','r','ker] E','nfo','-ADRBi','cov','r while en','[Get','um','Re')
+            Write-Warning ('[G'+'e'+'t-A'+'DRBit'+'Locker] '+'Erro'+'r wh'+'ile en'+'umerating msFV'+'E-'+'RecoveryInf'+'or'+'mat'+'i'+'on '+'O'+'b'+'jects')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -9874,17 +9874,17 @@ Function Get-ADRBitLocker
             $cnt = $([ADRecon.ADWSClass]::ObjectCount($ADBitLockerRecoveryKeys))
             If ($cnt -ge 1)
             {
-                Write-Verbose ('[*]'+' '+'Tota'+'l '+'BitLoc'+'ker'+' '+'Reco'+'very'+' '+'Key'+'s:'+' '+"$cnt")
+                Write-Verbose ('[*'+'] '+'Tota'+'l '+'Bi'+'tLocke'+'r '+'R'+'ecovery '+'Ke'+'ys: '+"$cnt")
                 $BitLockerObj = @()
                 $ADBitLockerRecoveryKeys | ForEach-Object {
                     # Create the object for each instance.
                     $Obj = New-Object PSObject
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}{2}{3}{4}" -f 'Distin','g','uis','hed Nam','e') -Value $((($_.distinguishedName -split '}')[1]).substring(1))
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}"-f'Na','me') -Value $_.Name
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{2}{0}{1}{3}" -f'enCreat','e','wh','d') -Value $_.whenCreated
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{4}{3}{1}{2}"-f'Re','y Ke','y ID','er','cov') -Value $([GUID] $_.'msFVE-RecoveryGuid')
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{2}{1}{0}" -f'very Key','o','Rec') -Value $_.'msFVE-RecoveryPassword'
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{2}{1}" -f 'Vo','UID','lume G') -Value $([GUID] $_.'msFVE-VolumeGuid')
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('Di'+'stingu'+'is'+'hed '+'Na'+'me') -Value $((($_.distinguishedName -split '}')[1]).substring(1))
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('N'+'ame') -Value $_.Name
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('w'+'henCreate'+'d') -Value $_.whenCreated
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('Re'+'covery'+' Key'+' ID') -Value $([GUID] $_.'msFVE-RecoveryGuid')
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('R'+'ecov'+'e'+'ry Key') -Value $_.'msFVE-RecoveryPassword'
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('Vo'+'lume G'+'UID') -Value $([GUID] $_.'msFVE-VolumeGuid')
                     Try
                     {
                         $TempComp = Get-ADComputer -Identity $Obj.'Distinguished Name' -Properties msTPM-OwnerInformation,msTPM-TpmInformationForComputer
@@ -9897,10 +9897,10 @@ Function Get-ADRBitLocker
                     If ($TempComp)
                     {
                         # msTPM-OwnerInformation (Vista/7 or Server 2008/R2)
-                        $Obj | Add-Member -MemberType NoteProperty -Name ("{5}{3}{4}{2}{6}{1}{0}" -f 'ormation','Inf','wn','T','PM-O','ms','er') -Value $TempComp.'msTPM-OwnerInformation'
+                        $Obj | Add-Member -MemberType NoteProperty -Name ('m'+'sT'+'PM-O'+'w'+'n'+'er'+'Information') -Value $TempComp.'msTPM-OwnerInformation'
 
                         # msTPM-TpmInformationForComputer (Windows 8/10 or Server 2012/R2)
-                        $Obj | Add-Member -MemberType NoteProperty -Name ("{5}{4}{0}{2}{3}{7}{6}{1}"-f'-TpmInfor','ter','ma','tionFor','sTPM','m','u','Comp') -Value $TempComp.'msTPM-TpmInformationForComputer'
+                        $Obj | Add-Member -MemberType NoteProperty -Name ('msT'+'P'+'M-TpmInf'+'or'+'mat'+'ionForCom'+'puter') -Value $TempComp.'msTPM-TpmInformationForComputer'
                         If ($null -ne $TempComp.'msTPM-TpmInformationForComputer')
                         {
                             # Grab the TPM Owner Info from the msTPM-InformationObject
@@ -9914,12 +9914,12 @@ Function Get-ADRBitLocker
                     }
                     Else
                     {
-                        $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{4}{1}{5}{2}{3}"-f'msTPM-','nerIn','ma','tion','Ow','for') -Value $null
-                        $Obj | Add-Member -MemberType NoteProperty -Name ("{3}{2}{0}{6}{4}{1}{7}{5}"-f'n','at','mI','msTPM-Tp','orm','onForComputer','f','i') -Value $null
+                        $Obj | Add-Member -MemberType NoteProperty -Name ('msTPM-Owner'+'Info'+'rmatio'+'n') -Value $null
+                        $Obj | Add-Member -MemberType NoteProperty -Name ('msT'+'PM-TpmIn'+'f'+'ormati'+'o'+'nFo'+'rComputer') -Value $null
                         $TPMRecoveryInfo = $null
 
                     }
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{4}{3}{2}{1}{0}{5}" -f 'swo','s',' Pa','Owner','TPM ','rd') -Value $TPMRecoveryInfo
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('TP'+'M Ow'+'ner Pa'+'s'+'swo'+'rd') -Value $TPMRecoveryInfo
                     $BitLockerObj += $Obj
                 }
             }
@@ -9927,13 +9927,13 @@ Function Get-ADRBitLocker
         }
     }
 
-    If ($Method -eq ("{1}{0}" -f 'AP','LD'))
+    If ($Method -eq ('L'+'DAP'))
     {
         $objSearcher = New-Object System.DirectoryServices.DirectorySearcher $objDomain
         $ObjSearcher.PageSize = $PageSize
-        $ObjSearcher.Filter = ("{3}{0}{1}{5}{4}{2}{6}"-f'ss=','msFVE-Recov','rmat','(objectCla','Info','ery','ion)')
-        $ObjSearcher.PropertiesToLoad.AddRange((("{0}{1}{3}{2}" -f 'd','istin','hedName','guis'),("{4}{2}{1}{0}{3}"-f 'passw','covery','fve-re','ord','ms'),("{2}{1}{0}{3}{4}"-f'er','e-recov','msfv','y','guid'),("{1}{2}{0}" -f 'd','msfve-vol','umegui'),("{4}{3}{1}{6}{5}{2}{0}" -f'n','er','io','wn','mstpm-o','rmat','info'),("{2}{4}{0}{8}{3}{1}{7}{6}{5}"-f 'tp','orcom','ms','ormationf','tpm-','r','ute','p','minf'),("{0}{1}" -f'n','ame'),("{2}{1}{0}" -f'd','eate','whencr')))
-        $ObjSearcher.SearchScope = ("{1}{0}"-f'btree','Su')
+        $ObjSearcher.Filter = ('(obje'+'ctClass=msF'+'VE'+'-'+'Re'+'covery'+'Inf'+'o'+'r'+'mat'+'io'+'n)')
+        $ObjSearcher.PropertiesToLoad.AddRange((('d'+'i'+'s'+'t'+'ing'+'uishedName'),('ms'+'fve-r'+'ec'+'overyp'+'ass'+'word'),('m'+'sf'+'ve-'+'rec'+'overyguid'),('msf'+'ve'+'-volum'+'eguid'),('mstp'+'m'+'-own'+'erinfo'+'rmatio'+'n'),('mstp'+'m-tpm'+'i'+'nf'+'ormat'+'ion'+'forc'+'o'+'mpute'+'r'),('nam'+'e'),('w'+'hencre'+'ated')))
+        $ObjSearcher.SearchScope = ('S'+'ubtree')
 
         Try
         {
@@ -9941,7 +9941,7 @@ Function Get-ADRBitLocker
         }
         Catch
         {
-            Write-Warning ("{19}{9}{12}{5}{21}{15}{20}{3}{1}{4}{22}{11}{17}{0}{8}{10}{13}{7}{6}{16}{18}{2}{14}"-f'eryIn','-','c','msFVE','R','er] Error while ','atio','m','f','Get-ADR','o','o','BitLock','r','ts','numerati','n','v',' Obje','[','ng ','e','ec')
+            Write-Warning ('[Get-AD'+'RB'+'it'+'Lo'+'cker]'+' Error w'+'hile enumeratin'+'g '+'ms'+'F'+'VE'+'-R'+'ecove'+'ryInfo'+'rm'+'atio'+'n Objec'+'ts')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -9952,23 +9952,23 @@ Function Get-ADRBitLocker
             $cnt = $([ADRecon.LDAPClass]::ObjectCount($ADBitLockerRecoveryKeys))
             If ($cnt -ge 1)
             {
-                Write-Verbose ('[*'+'] '+'T'+'otal '+'B'+'itL'+'ocker '+'Rec'+'ove'+'ry '+'Ke'+'ys: '+"$cnt")
+                Write-Verbose ('[*]'+' '+'Tota'+'l '+'Bit'+'Locke'+'r'+' '+'R'+'eco'+'very '+'K'+'ey'+'s: '+"$cnt")
                 $BitLockerObj = @()
                 $ADBitLockerRecoveryKeys | ForEach-Object {
                     # Create the object for each instance.
                     $Obj = New-Object PSObject
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{2}{1}{3}{0}"-f 'me','hed','Distinguis',' Na') -Value $((($_.Properties.distinguishedname -split '}')[1]).substring(1))
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}"-f 'me','Na') -Value ([string] ($_.Properties.name))
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}{2}"-f'C','when','reated') -Value ([DateTime] $($_.Properties.whencreated))
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{3}{1}{2}{0}" -f'ID','ry Key',' ','Recove') -Value $([GUID] $_.Properties.'msfve-recoveryguid'[0])
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}{2}" -f 'Recove','ry K','ey') -Value ([string] ($_.Properties.'msfve-recoverypassword'))
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}{2}" -f 'me GU','Volu','ID') -Value $([GUID] $_.Properties.'msfve-volumeguid'[0])
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('Disting'+'uis'+'hed'+' Nam'+'e') -Value $((($_.Properties.distinguishedname -split '}')[1]).substring(1))
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('Na'+'me') -Value ([string] ($_.Properties.name))
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('w'+'he'+'nCreated') -Value ([DateTime] $($_.Properties.whencreated))
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('Rec'+'o'+'very Key I'+'D') -Value $([GUID] $_.Properties.'msfve-recoveryguid'[0])
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('Rec'+'ov'+'ery K'+'ey') -Value ([string] ($_.Properties.'msfve-recoverypassword'))
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('Vol'+'ume G'+'UID') -Value $([GUID] $_.Properties.'msfve-volumeguid'[0])
 
                     $objSearcher = New-Object System.DirectoryServices.DirectorySearcher $objDomain
                     $ObjSearcher.PageSize = $PageSize
                     $ObjSearcher.Filter = "(&(samAccountType=805306369)(distinguishedName=$($Obj.'Distinguished Name'))) "
-                    $ObjSearcher.PropertiesToLoad.AddRange((("{2}{0}{5}{1}{3}{4}" -f 's','ner','m','informa','tion','tpm-ow'),("{6}{2}{1}{4}{3}{0}{5}"-f 'te','t','-','onforcompu','pminformati','r','mstpm')))
-                    $ObjSearcher.SearchScope = ("{1}{0}" -f'ubtree','S')
+                    $ObjSearcher.PropertiesToLoad.AddRange((('m'+'stp'+'m-ownerinform'+'atio'+'n'),('mstpm-tp'+'m'+'i'+'nforma'+'t'+'ionforcom'+'puter')))
+                    $ObjSearcher.SearchScope = ('Su'+'btree')
 
                     Try
                     {
@@ -9984,10 +9984,10 @@ Function Get-ADRBitLocker
                     If ($TempComp)
                     {
                         # msTPM-OwnerInformation (Vista/7 or Server 2008/R2)
-                        $Obj | Add-Member -MemberType NoteProperty -Name ("{5}{0}{2}{1}{4}{3}" -f 'Ow','erI','n','ormation','nf','msTPM-') -Value $([string] $TempComp.Properties.'mstpm-ownerinformation')
+                        $Obj | Add-Member -MemberType NoteProperty -Name ('ms'+'T'+'PM-Own'+'erInformat'+'ion') -Value $([string] $TempComp.Properties.'mstpm-ownerinformation')
 
                         # msTPM-TpmInformationForComputer (Windows 8/10 or Server 2012/R2)
-                        $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{8}{7}{0}{9}{6}{2}{5}{3}{4}"-f'pmIn','msTPM','ati','rComput','er','onFo','m','T','-','for') -Value $([string] $TempComp.Properties.'mstpm-tpminformationforcomputer')
+                        $Obj | Add-Member -MemberType NoteProperty -Name ('ms'+'TPM-'+'TpmInformationForC'+'om'+'pu'+'t'+'er') -Value $([string] $TempComp.Properties.'mstpm-tpminformationforcomputer')
                         If ($null -ne $TempComp.Properties.'mstpm-tpminformationforcomputer')
                         {
                             # Grab the TPM Owner Info from the msTPM-InformationObject
@@ -9995,7 +9995,7 @@ Function Get-ADRBitLocker
                             {
                                 $objSearchPath = New-Object System.DirectoryServices.DirectoryEntry "LDAP://$($DomainController)/$($TempComp.Properties.'mstpm-tpminformationforcomputer')", $Credential.UserName,$Credential.GetNetworkCredential().Password
                                 $objSearcherPath = New-Object System.DirectoryServices.DirectorySearcher $objSearchPath
-                                $objSearcherPath.PropertiesToLoad.AddRange((("{0}{3}{5}{6}{2}{1}{4}" -f 'ms','ormati','nf','t','on','p','m-owneri')))
+                                $objSearcherPath.PropertiesToLoad.AddRange((('m'+'stp'+'m-ownerinform'+'at'+'ion')))
                                 Try
                                 {
                                     $TPMObject = $objSearcherPath.FindAll()
@@ -10038,11 +10038,11 @@ Function Get-ADRBitLocker
                     }
                     Else
                     {
-                        $Obj | Add-Member -MemberType NoteProperty -Name ("{5}{2}{4}{0}{1}{3}"-f 'r','Informatio','sTPM-Own','n','e','m') -Value $null
-                        $Obj | Add-Member -MemberType NoteProperty -Name ("{2}{3}{1}{8}{5}{7}{4}{0}{6}"-f 'te','TPM','m','s','nForCompu','I','r','nformatio','-Tpm') -Value $null
+                        $Obj | Add-Member -MemberType NoteProperty -Name ('msTPM-Own'+'erInf'+'o'+'rm'+'ation') -Value $null
+                        $Obj | Add-Member -MemberType NoteProperty -Name ('m'+'sTPM-TpmInfor'+'m'+'ationF'+'orC'+'o'+'mp'+'uter') -Value $null
                         $TPMRecoveryInfo = $null
                     }
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{4}{0}{1}{2}{3}"-f 'Pa','sswo','r','d','TPM Owner ') -Value $TPMRecoveryInfo
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('TPM'+' Owner Pass'+'w'+'or'+'d') -Value $TPMRecoveryInfo
                     $BitLockerObj += $Obj
                 }
             }
@@ -10126,7 +10126,7 @@ Function ConvertFrom-SID
         [string] $Method,
 
         [Parameter(Mandatory = $true)]
-        [Alias('SID')]
+        [Alias(('S'+'ID'))]
         #[ValidatePattern('^S-1-.*')]
         [String]
         $ObjectSid,
@@ -10171,88 +10171,88 @@ Function ConvertFrom-SID
     }
 
     PROCESS {
-        $TargetSid = $($ObjectSid.TrimStart("O:"))
+        $TargetSid = $($ObjectSid.TrimStart('O:'))
         $TargetSid = $($TargetSid.Trim('*'))
-        If ($TargetSid -match ("{1}{2}{0}" -f'-.*','^','S-1'))
+        If ($TargetSid -match ('^S-'+'1'+'-.*'))
         {
             Try
             {
                 # try to resolve any built-in SIDs first - https://support.microsoft.com/en-us/kb/243330
                 Switch ($TargetSid) {
-                    ("{1}{0}" -f '-1-0','S')         { ("{1}{3}{2}{4}{0}"-f'rity','Nu','Aut','ll ','ho') }
-                    ("{1}{0}" -f'0-0','S-1-')       { ("{2}{1}{0}"-f 'dy','o','Nob') }
-                    ("{0}{1}" -f'S-','1-1')         { ("{2}{3}{1}{0}"-f 'ity','hor','Wo','rld Aut') }
-                    ("{1}{0}" -f'-1-0','S-1')       { ("{0}{1}" -f'Ev','eryone') }
-                    ("{0}{1}"-f 'S-1','-2')         { ("{0}{2}{3}{1}" -f'Lo','hority','cal Au','t') }
-                    ("{2}{0}{1}" -f '1-2-','0','S-')       { ("{1}{0}" -f'ocal','L') }
-                    ("{0}{2}{1}"-f 'S-','1','1-2-')       { ("{0}{1}{3}{2}{4}"-f 'Cons','ol',' Lo','e','gon ') }
-                    ("{0}{1}" -f 'S-','1-3')         { ("{0}{3}{2}{1}" -f 'Crea','ty','uthori','tor A') }
-                    ("{2}{0}{1}" -f'-1-3','-0','S')       { ("{1}{2}{0}"-f 'wner','Cr','eator O') }
-                    ("{1}{0}{2}" -f '-','S-1-3','1')       { ("{3}{1}{0}{2}" -f'or Gro','at','up','Cre') }
-                    ("{0}{1}" -f 'S-1','-3-2')       { ("{2}{1}{0}{3}" -f'er Serve','r Own','Creato','r') }
-                    ("{1}{0}"-f '-1-3-3','S')       { ("{1}{3}{0}{2}"-f 'p Serv','Creator G','er','rou') }
-                    ("{2}{1}{0}" -f '4','-','S-1-3')       { ("{2}{1}{3}{0}"-f 'ghts','wn','O','er Ri') }
-                    ("{0}{1}"-f 'S-1-','4')         { ("{0}{3}{2}{1}" -f 'Non-','y','t','unique Authori') }
-                    ("{0}{1}" -f 'S','-1-5')         { ("{3}{2}{0}{1}" -f'Aut','hority','T ','N') }
-                    ("{1}{0}"-f'-5-1','S-1')       { ("{0}{1}" -f'Dialu','p') }
-                    ("{1}{2}{0}"-f '5-2','S-','1-')       { ("{1}{0}{2}"-f 'etwor','N','k') }
-                    ("{0}{1}{2}"-f 'S-1','-5-','3')       { ("{0}{1}" -f'Ba','tch') }
-                    ("{0}{1}{2}" -f 'S-','1-5-','4')       { ("{0}{2}{3}{1}"-f'In','ive','te','ract') }
-                    ("{0}{1}"-f'S','-1-5-6')       { ("{1}{0}"-f'e','Servic') }
-                    ("{1}{0}"-f'-7','S-1-5')       { ("{0}{2}{1}"-f'Anonym','s','ou') }
-                    ("{0}{1}" -f 'S-1-','5-8')       { ("{0}{1}" -f'Pro','xy') }
-                    ("{0}{1}"-f'S-','1-5-9')       { ("{3}{5}{2}{4}{0}{1}"-f'ler','s','rprise Do','E','main Control','nte') }
-                    ("{0}{2}{1}" -f 'S','1-5-10','-')      { ("{0}{1}{3}{2}" -f'Prin','cip','l Self','a') }
-                    ("{1}{0}"-f '11','S-1-5-')      { ("{1}{3}{2}{0}"-f 's','Authenticat',' User','ed') }
-                    ("{2}{0}{1}" -f '-','1-5-12','S')      { ("{0}{3}{1}{2}" -f'R','cted C','ode','estri') }
-                    ("{0}{1}"-f'S-1-5-1','3')      { ("{0}{2}{3}{1}"-f'Terminal Se','sers','rver',' U') }
-                    ("{0}{1}"-f 'S-1-5-','14')      { ("{6}{1}{2}{3}{0}{4}{5}" -f 'nterac','e','mot','e I','tive Lo','gon','R') }
-                    ("{0}{1}{2}" -f'S-','1-5-1','5')      { ("{3}{4}{0}{2}{1}" -f 'nizatio',' ','n','This Or','ga') }
-                    ("{0}{1}" -f 'S-1-5-1','7')      { ("{0}{1}{4}{2}{3}" -f 'T','his Org','zation',' ','ani') }
-                    ("{2}{1}{0}"-f '5-18','1-','S-')      { ("{2}{3}{0}{1}" -f'e','m','Loc','al Syst') }
-                    ("{1}{0}{2}"-f'-5','S-1','-19')      { ("{1}{2}{3}{0}" -f 'y','NT',' Au','thorit') }
-                    ("{1}{0}" -f'20','S-1-5-')      { ("{3}{1}{2}{0}" -f'ity','Auth','or','NT ') }
-                    ("{3}{0}{2}{1}" -f '-1','-80-0','-5','S')    { ("{3}{1}{2}{0}" -f'ervices ','l',' S','Al') }
-                    ("{0}{3}{1}{2}" -f 'S-1','32-5','44','-5-')  { ((("{1}{0}{3}{5}{6}{4}{2}"-f'LTIN','BUI','ors','JKrAdm','rat','inis','t')) -crePLacE([char]74+[char]75+[char]114),[char]92) }
-                    ("{0}{2}{1}"-f 'S-1-5-3','45','2-5')  { ((("{3}{2}{0}{1}"-f 'IN{0}Us','ers','ILT','BU'))  -F[CHar]92) }
-                    ("{0}{2}{1}"-f'S-1-5-','2-546','3')  { ((("{0}{2}{4}{3}{1}" -f 'B','s','UILTIN','est','{0}Gu'))  -f  [ChAR]92) }
-                    ("{3}{2}{1}{0}" -f '-547','-32','1-5','S-')  { ((("{0}{5}{6}{3}{1}{4}{2}" -f 'B','se','s',' U','r','U','ILTINYpkPower')).repLace('Ypk',[stRING][ChAr]92)) }
-                    ("{0}{1}{3}{2}" -f 'S-1','-','-548','5-32')  { ((("{1}{2}{0}{3}{6}{7}{5}{4}" -f'{0}','BU','ILTIN','Acco','ors','perat','u','nt O'))-F  [CHAr]92) }
-                    ("{2}{0}{3}{1}" -f '-5-32','49','S-1','-5')  { ((("{7}{2}{4}{5}{1}{3}{6}{0}" -f 's','ve','LT','r','INK3FSe','r',' Operator','BUI')) -CREPlAce'K3F',[cHar]92) }
-                    ("{0}{3}{2}{1}" -f'S-','32-550','-','1-5')  { ((("{4}{2}{1}{0}{3}" -f'qPrint Opera','N4H','I','tors','BUILT')) -crePLAcE([ChAr]52+[ChAr]72+[ChAr]113),[ChAr]92) }
-                    ("{2}{0}{3}{1}"-f '1','551','S-','-5-32-')  { ((("{5}{2}{1}{6}{0}{3}{4}"-f 'c','o','INd7','kup Ope','rators','BUILT','Ba'))-rePLacE  'd7o',[ChAr]92) }
-                    ("{2}{3}{0}{1}" -f '5','52','S-1-5-','32-')  { ((("{1}{2}{5}{3}{0}{4}"-f'licator','B','UILTI','iRep','s','NFs')).ReplaCE(([char]70+[char]115+[char]105),'\')) }
-                    ("{0}{2}{1}" -f'S','32-554','-1-5-')  { ((("{9}{11}{3}{8}{4}{5}{2}{10}{6}{7}{1}{0}" -f 's','s','Com','-W','ows 20','00 ','Acc','e','ind','BUI','patible ','LTINJWzPre')) -CReplACe  ([ChAr]74+[ChAr]87+[ChAr]122),[ChAr]92) }
-                    ("{1}{3}{0}{2}" -f'-5-','S','32-555','-1')  { ((("{8}{1}{6}{0}{7}{9}{4}{5}{2}{3}" -f '{0}Remot','U','r','s',' Us','e','ILTIN','e Des','B','ktop'))-f [CHar]92) }
-                    ("{3}{1}{2}{0}" -f '-556','1-5-3','2','S-')  { ((("{9}{4}{8}{2}{1}{10}{0}{5}{7}{6}{11}{3}"-f'i',' C','ork','s','LTI','g','ation Op','ur','NbzANetw','BUI','onf','erator')).rEpLacE('bzA',[STRINg][CHAR]92)) }
-                    ("{0}{1}{2}" -f'S','-1-5','-32-557')  { ((("{7}{4}{3}{1}{0}{2}{5}{6}"-f'g','min',' Forest T','ILTIN{0}Inco','U','rust Bui','lders','B')) -F  [CHAr]92) }
-                    ("{2}{3}{0}{1}"-f'-5','-32-558','S','-1')  { ((("{6}{5}{4}{7}{0}{2}{3}{1}"-f'Performance M','s','onitor Us','er','i','UILTIN','B','5o')).RePlacE('i5o','\')) }
-                    ("{2}{1}{3}{0}"-f '-559','-1-','S','5-32')  { ((("{1}{2}{0}{3}"-f 'manc','BUILTIN','spoPerfor','e Log Users'))-cREplACE  ([cHar]115+[cHar]112+[cHar]111),[cHar]92) }
-                    ("{3}{0}{1}{2}" -f'1','-5','-32-560','S-')  { ((("{3}{0}{5}{1}{2}{4}{6}" -f'LTIN','ws Aut','horization Access Gro','BUI','u','KfTWindo','p'))  -repLACE'KfT',[Char]92) }
-                    ("{1}{0}{2}"-f '32-5','S-1-5-','61')  { ((("{5}{1}{0}{7}{8}{2}{4}{3}{6}" -f 'Termi','LTINRUO','nse ','e','S','BUI','rvers','nal',' Server Lice'))  -REPLacE'RUO',[ChAR]92) }
-                    ("{0}{1}{2}{3}"-f 'S-','1','-5-32-5','62')  { ((("{8}{1}{5}{0}{2}{4}{7}{6}{3}"-f'TINCG','I','IDistrib','s','uted C','L','er','OM Us','BU'))-repLACe'CGI',[chaR]92) }
-                    ("{0}{2}{1}{3}" -f'S','-','-1-5','32-569')  { ((("{1}{8}{3}{7}{2}{4}{5}{6}{0}" -f'ors','BUILTI','hic O','}Cryp','p','e','rat','tograp','N{0'))-f  [cHAR]92) }
-                    ("{1}{0}{2}" -f '-5','S-1-5-32','73')  { ((("{4}{0}{2}{5}{3}{1}"-f'I','ders','LT','ea','BU','INT5vEvent Log R')) -rEPlace'T5v',[cHar]92) }
-                    ("{0}{2}{1}" -f 'S-','5-32-574','1-')  { ((("{2}{5}{6}{7}{12}{10}{0}{3}{4}{8}{9}{1}{11}" -f'ic','s','B','ate Serv','ice D','UI','L','TINjvR','COM ','Acce','if','s','Cert')).REpLace('jvR','\')) }
-                    ("{0}{3}{2}{1}" -f'S','-32-575','5','-1-')  { ((("{1}{8}{4}{3}{6}{5}{2}{7}{0}" -f'rs','BU','Access Se','{0}R','TIN','emote ','DS R','rve','IL'))  -F  [cHaR]92) }
-                    ("{2}{0}{3}{1}"-f'1-5-3','6','S-','2-57')  { ((("{4}{3}{5}{1}{2}{0}"-f'rvers','nt',' Se','dp','BUILTIN{0}RDS En','oi'))  -f[cHar]92) }
-                    ("{2}{1}{0}" -f '32-577','1-5-','S-')  { ((("{6}{1}{0}{4}{3}{8}{5}{2}{7}"-f 'IN','T','ment Server','0}RD','{','e','BUIL','s','S Manag')) -f [ChaR]92) }
-                    ("{2}{0}{3}{1}" -f'-','-578','S-1','5-32')  { ((("{1}{4}{5}{2}{6}{0}{7}{3}" -f'V A','B','INj','ministrators','U','ILT','UJHyper-','d'))-crEpLacE 'jUJ',[ChAr]92) }
-                    ("{2}{1}{3}{0}" -f'79','1','S-','-5-32-5')  { ((("{3}{11}{0}{4}{13}{6}{5}{9}{12}{2}{8}{7}{1}{10}" -f'I','o',' Ope','B','LTINbdqAccess','t','on','t','ra','rol Ass','rs','U','istance',' C'))  -REpLACe  'bdq',[CHAr]92) }
-                    ("{3}{0}{2}{1}"-f'1-5-32','80','-5','S-')  { ((("{0}{3}{1}{5}{2}{4}{6}" -f'BUIL','m','agement U','TIN{0}Re','s','ote Man','ers')) -f [cHAR]92) }
+                    ('S-1'+'-0')         { ('Nul'+'l Auth'+'o'+'rity') }
+                    ('S-'+'1-'+'0-0')       { ('N'+'obody') }
+                    ('S-1-'+'1')         { ('World'+' Auth'+'ori'+'ty') }
+                    ('S'+'-1-1'+'-0')       { ('Ev'+'er'+'yone') }
+                    ('S-'+'1-2')         { ('L'+'ocal Au'+'thorit'+'y') }
+                    ('S'+'-1-2-0')       { ('Loca'+'l') }
+                    ('S-1-2'+'-'+'1')       { ('Co'+'nso'+'l'+'e Logo'+'n ') }
+                    ('S-'+'1-3')         { ('Cre'+'at'+'or Aut'+'hori'+'ty') }
+                    ('S-1-3'+'-'+'0')       { ('Cre'+'ato'+'r Own'+'er') }
+                    ('S-1-'+'3-1')       { ('Cre'+'ator'+' Grou'+'p') }
+                    ('S'+'-'+'1-3-2')       { ('Cre'+'at'+'or Owner Se'+'rver') }
+                    ('S-1-'+'3'+'-3')       { ('Cre'+'ator'+' Group Serv'+'er') }
+                    ('S-1'+'-3-'+'4')       { ('Owne'+'r '+'Rights') }
+                    ('S-1-'+'4')         { ('Non-'+'uniqu'+'e Author'+'i'+'ty') }
+                    ('S-1-'+'5')         { ('NT '+'Auth'+'o'+'rity') }
+                    ('S-1-5-'+'1')       { ('D'+'ial'+'up') }
+                    ('S'+'-1-5-'+'2')       { ('Net'+'wor'+'k') }
+                    ('S-'+'1-5'+'-3')       { ('Ba'+'tch') }
+                    ('S-1-5'+'-'+'4')       { ('Int'+'eracti'+'ve') }
+                    ('S-1-5-'+'6')       { ('Se'+'rv'+'ice') }
+                    ('S-1-5'+'-'+'7')       { ('Anon'+'ymous') }
+                    ('S-'+'1-5-'+'8')       { ('P'+'roxy') }
+                    ('S-1-'+'5-9')       { ('Ent'+'erpr'+'ise Domai'+'n'+' C'+'o'+'nt'+'roll'+'ers') }
+                    ('S-1-5'+'-1'+'0')      { ('Prin'+'cipal Se'+'lf') }
+                    ('S-1-5'+'-11')      { ('Aut'+'he'+'nticated'+' Users') }
+                    ('S-1-5-'+'12')      { ('Res'+'t'+'ricted Code') }
+                    ('S-1'+'-5'+'-13')      { ('Te'+'rminal S'+'erv'+'e'+'r Users') }
+                    ('S-1-'+'5-'+'14')      { ('Re'+'mot'+'e Int'+'eractive '+'Log'+'on') }
+                    ('S-1-'+'5-15')      { ('Thi'+'s O'+'rg'+'anizat'+'io'+'n ') }
+                    ('S'+'-1-5-17')      { ('Th'+'is Organi'+'zat'+'i'+'on ') }
+                    ('S-1'+'-'+'5-18')      { ('Loca'+'l Syst'+'em') }
+                    ('S-'+'1-5-19')      { ('N'+'T Auth'+'ority') }
+                    ('S-1-5-'+'2'+'0')      { ('N'+'T'+' Authority') }
+                    ('S-1-'+'5-80'+'-0')    { ('Al'+'l S'+'er'+'vices ') }
+                    ('S-1-5'+'-'+'32'+'-544')  { (('BUILTI'+'N'+'K79Ad'+'m'+'ini'+'strators').rEplaCe('K79','\')) }
+                    ('S'+'-1-5-32-'+'5'+'45')  { (('BUILTI'+'NcNBU'+'s'+'er'+'s').REplace('cNB',[sTRiNg][CHAR]92)) }
+                    ('S-1-5-'+'3'+'2-'+'546')  { (('BUILTIN{0}Gu'+'e'+'sts')-f[chAr]92) }
+                    ('S'+'-1-5-3'+'2'+'-547')  { (('B'+'UILT'+'I'+'NfCvPo'+'wer U'+'sers').rEpLaCe(([Char]102+[Char]67+[Char]118),'\')) }
+                    ('S'+'-1'+'-5-32-'+'548')  { (('B'+'U'+'I'+'LT'+'INi7'+'g'+'Acc'+'ount Operators').rePlace('i7g',[sTRING][cHAR]92)) }
+                    ('S-1-5-'+'32-54'+'9')  { (('BUILT'+'INjcuSe'+'rv'+'er '+'O'+'perators')-rePlACe 'jcu',[cHAR]92) }
+                    ('S-'+'1-5'+'-32-'+'550')  { (('BUILTINaZf'+'P'+'rint Opera'+'tors')  -CREplaCE([cHAr]97+[cHAr]90+[cHAr]102),[cHAr]92) }
+                    ('S-1'+'-5-32'+'-551')  { (('BUILTIN{0'+'}Backup'+' Oper'+'ators')-F [chaR]92) }
+                    ('S-'+'1-5-32-'+'552')  { (('B'+'UILTI'+'NK'+'ijR'+'e'+'pl'+'icators').RePLACE('Kij','\')) }
+                    ('S-1'+'-5-'+'32'+'-554')  { (('B'+'U'+'ILT'+'INnk0Pre-'+'Windo'+'ws 2000 C'+'om'+'pat'+'ible Acc'+'es'+'s').REPlacE(([ChAr]110+[ChAr]107+[ChAr]48),'\')) }
+                    ('S-1-5-3'+'2'+'-555')  { (('B'+'UILT'+'IN{'+'0}Remote '+'Desk'+'to'+'p U'+'ser'+'s')-F  [ChAR]92) }
+                    ('S'+'-1-'+'5-32-556')  { (('BUILTINB6ONet'+'work C'+'onf'+'ig'+'u'+'r'+'ation Op'+'erator'+'s')-RePlAce  'B6O',[cHAR]92) }
+                    ('S'+'-1'+'-'+'5-32-557')  { (('BUILTI'+'Nw'+'j'+'zI'+'n'+'com'+'ing Fore'+'st '+'Trust '+'Builders').REpLAcE(([cHAr]119+[cHAr]106+[cHAr]122),[strIng][cHAr]92)) }
+                    ('S'+'-1-5'+'-3'+'2-558')  { (('BUILTIN6hFPerforma'+'n'+'ce M'+'onitor'+' U'+'s'+'e'+'rs').replacE('6hF',[STriNG][cHAR]92)) }
+                    ('S-'+'1'+'-5-32-5'+'59')  { (('BUILTI'+'NqhDPerformance'+' '+'L'+'og'+' '+'Users')-CRePlAcE 'qhD',[cHaR]92) }
+                    ('S-1-5-32'+'-56'+'0')  { (('B'+'UI'+'LTIN0lEWind'+'ows Auth'+'o'+'r'+'izat'+'i'+'o'+'n Acce'+'ss '+'Group').RePlace(([CHar]48+[CHar]108+[CHar]69),'\')) }
+                    ('S-1-5'+'-'+'32-'+'561')  { (('BUIL'+'TINbN'+'zT'+'ermi'+'na'+'l '+'Server Li'+'cens'+'e'+' '+'Serv'+'e'+'rs')-rEpLaCe'bNz',[cHar]92) }
+                    ('S-1-5-3'+'2'+'-562')  { (('BUI'+'LTINp'+'ruDistributed C'+'OM Us'+'e'+'rs')  -rEPLACE([ChaR]112+[ChaR]114+[ChaR]117),[ChaR]92) }
+                    ('S'+'-1-5-'+'32-569')  { (('BUILTIN{0}'+'Cry'+'ptogra'+'phi'+'c Op'+'erators') -f  [cHaR]92) }
+                    ('S'+'-1-5-32'+'-57'+'3')  { (('BUI'+'LTI'+'N{0}Even'+'t Log'+' Re'+'aders') -F [chAr]92) }
+                    ('S-'+'1-5-32-5'+'7'+'4')  { (('BUIL'+'TINMT'+'JCerti'+'fi'+'c'+'a'+'te Servi'+'ce'+' '+'DC'+'O'+'M A'+'ccess')  -CRePLace([cHAR]77+[cHAR]84+[cHAR]74),[cHAR]92) }
+                    ('S-1-5-3'+'2'+'-57'+'5')  { (('BUILTINIGMRDS'+' Remote '+'A'+'cc'+'ess'+' '+'Servers').REpLACe(([cHar]73+[cHar]71+[cHar]77),[StRinG][cHar]92)) }
+                    ('S-'+'1-5-32'+'-576')  { (('BU'+'ILTIN{'+'0}R'+'DS'+' '+'Endpoint Serv'+'er'+'s') -f  [char]92) }
+                    ('S-1-'+'5-'+'32-'+'577')  { (('BU'+'IL'+'TIN9m8'+'R'+'DS '+'Managemen'+'t'+' Se'+'rvers').rEplace(([ChAr]57+[ChAr]109+[ChAr]56),[StRiNg][ChAr]92)) }
+                    ('S-1-'+'5-32-5'+'7'+'8')  { (('BUI'+'LTINvw3Hyp'+'er-'+'V Adminis'+'tra'+'tors')  -rePLacE ([Char]118+[Char]119+[Char]51),[Char]92) }
+                    ('S-1'+'-5-32'+'-5'+'79')  { (('BU'+'ILTI'+'N5'+'1a'+'Acc'+'ess'+' Co'+'nt'+'ro'+'l Ass'+'i'+'stance Op'+'erato'+'rs').rePLAce(([CHaR]53+[CHaR]49+[CHaR]97),[striNg][CHaR]92)) }
+                    ('S-'+'1-5-32-'+'580')  { (('BUILTINF6g'+'Rem'+'ote'+' Manag'+'em'+'ent User'+'s') -rEPLAce'F6g',[chAR]92) }
                     Default {
                         # based on Convert-ADName function from https://github.com/PowerShellMafia/PowerSploit/blob/dev/Recon/PowerView.ps1
-                        If ( ($TargetSid -match ("{2}{0}{1}" -f '-.','*','^S-1')) -and ($ResolveSID) )
+                        If ( ($TargetSid -match ('^S-1-'+'.*')) -and ($ResolveSID) )
                         {
-                            If ($Method -eq ("{0}{1}" -f'AD','WS'))
+                            If ($Method -eq ('ADW'+'S'))
                             {
                                 Try
                                 {
-                                    $ADObject = Get-ADObject -Filter ('o'+'b'+'ject'+'Sid '+'-'+'eq '+"'$TargetSid'") -Properties DistinguishedName,sAMAccountName
+                                    $ADObject = Get-ADObject -Filter ('ob'+'j'+'ectSid '+'-e'+'q '+"'$TargetSid'") -Properties DistinguishedName,sAMAccountName
                                 }
                                 Catch
                                 {
-                                    Write-Warning ("{8}{10}{0}{2}{5}{7}{9}{3}{4}{1}{6}"-f ' ','ng SI','Error wh','t us','i','ile','D',' enumerating Ob','[ConvertFrom-SID','jec',']')
+                                    Write-Warning ('[C'+'onve'+'rtFro'+'m-SID'+'] Err'+'or while '+'e'+'numer'+'ating Object'+' usin'+'g SID')
                                     Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
                                 }
                                 If ($ADObject)
@@ -10263,7 +10263,7 @@ Function ConvertFrom-SID
                                 }
                             }
 
-                            If ($Method -eq ("{1}{0}" -f'DAP','L'))
+                            If ($Method -eq ('L'+'DAP'))
                             {
                                 If ($Credential -ne [Management.Automation.PSCredential]::Empty)
                                 {
@@ -10294,7 +10294,7 @@ Function ConvertFrom-SID
                                     $ADSInitType = $ADS_NAME_INITTYPE_DOMAIN
                                     Try
                                     {
-                                        [System.__ComObject].InvokeMember(("{0}{1}" -f'InitE','x'),("{3}{2}{1}{0}" -f'thod','Me','voke','In'),$null,$Translate,$(@($ADSInitType,$DomainFQDN,($Credential.GetNetworkCredential()).UserName,$DomainFQDN,($Credential.GetNetworkCredential()).Password)))
+                                        [System.__ComObject].InvokeMember(('I'+'nitEx'),('Inv'+'okeMeth'+'od'),$null,$Translate,$(@($ADSInitType,$DomainFQDN,($Credential.GetNetworkCredential()).UserName,$DomainFQDN,($Credential.GetNetworkCredential()).Password)))
                                     }
                                     Catch
                                     {
@@ -10308,7 +10308,7 @@ Function ConvertFrom-SID
                                     $ADSInitType = $ADS_NAME_INITTYPE_GC
                                     Try
                                     {
-                                        [System.__ComObject].InvokeMember(("{1}{0}"-f'nit','I'),("{2}{0}{3}{1}"-f'keM','od','Invo','eth'),$null,$Translate,($ADSInitType,$null))
+                                        [System.__ComObject].InvokeMember(('Ini'+'t'),('Invok'+'e'+'Metho'+'d'),$null,$Translate,($ADSInitType,$null))
                                     }
                                     Catch
                                     {
@@ -10319,11 +10319,11 @@ Function ConvertFrom-SID
                                 }
                                 If ($Init)
                                 {
-                                    [System.__ComObject].InvokeMember(("{3}{2}{1}{0}" -f'al','ferr','eRe','Chas'),("{1}{2}{3}{0}"-f'ty','Set','Prop','er'),$null,$Translate,$ADS_CHASE_REFERRALS_ALWAYS)
+                                    [System.__ComObject].InvokeMember(('C'+'haseR'+'eferral'),('S'+'etPro'+'p'+'erty'),$null,$Translate,$ADS_CHASE_REFERRALS_ALWAYS)
                                     Try
                                     {
-                                        [System.__ComObject].InvokeMember("Set",("{2}{0}{1}"-f 'Me','thod','Invoke'),$null,$Translate,($ADS_NAME_TYPE_UNKNOWN, $TargetSID))
-                                        $ADSOutput = [System.__ComObject].InvokeMember("Get",("{1}{2}{3}{0}"-f'thod','Inv','ok','eMe'),$null,$Translate,$ADSOutputType)
+                                        [System.__ComObject].InvokeMember(('Se'+'t'),('I'+'nvokeMe'+'th'+'od'),$null,$Translate,($ADS_NAME_TYPE_UNKNOWN, $TargetSID))
+                                        $ADSOutput = [System.__ComObject].InvokeMember(('G'+'et'),('In'+'vok'+'eMeth'+'od'),$null,$Translate,$ADSOutputType)
                                     }
                                     Catch
                                     {
@@ -10424,7 +10424,7 @@ Function Get-ADRACL
         [int] $Threads = 10
     )
 
-    If ($Method -eq ("{0}{1}"-f'ADW','S'))
+    If ($Method -eq ('A'+'DWS'))
     {
         If ($Credential -eq [Management.Automation.PSCredential]::Empty)
         {
@@ -10434,19 +10434,19 @@ Function Get-ADRACL
             }
             Else
             {
-                Write-Warning ("{2}{1}{4}{3}{0}{8}{5}{6}{7}" -f ' ','ef','D','ve','ault AD dri',' found ... Skipping ACL en','umera','tion','not')
+                Write-Warning ('Defa'+'ult'+' AD'+' '+'dr'+'i'+'ve'+' no'+'t '+'fo'+'und .'+'..'+' S'+'kipping'+' ACL e'+'numeration')
                 Return $null
             }
         }
-        $GUIDs = @{("{9}{7}{5}{6}{2}{8}{4}{1}{3}{0}" -f'00000','0','00','0000','0','0000-00','00-0','000000-','0-0','00') = 'All'}
+        $GUIDs = @{('00'+'0'+'00000-00'+'0'+'0-'+'0000-000'+'0-0000000'+'0000'+'0') = ('Al'+'l')}
         Try
         {
-            Write-Verbose ("{2}{1}{4}{3}{0}"-f ' schemaIDs','mer','[*] Enu','ting','a')
-            $schemaIDs = Get-ADObject -SearchBase (Get-ADRootDSE).schemaNamingContext -LDAPFilter (("{1}{2}{3}{0}"-f '=*)','(sch','emaI','DGUID')) -Properties name, schemaIDGUID
+            Write-Verbose ('['+'*] Enumer'+'a'+'ting '+'schemaIDs')
+            $schemaIDs = Get-ADObject -SearchBase (Get-ADRootDSE).schemaNamingContext -LDAPFilter ('('+'sch'+'e'+'maIDGUI'+'D=*)') -Properties name, schemaIDGUID
         }
         Catch
         {
-            Write-Warning ("{1}{8}{5}{9}{4}{3}{2}{0}{7}{6}" -f 'era','[Get-ADRA',' enum','while',' ','L] E','emaIDs','ting sch','C','rror')
+            Write-Warning ('[Get-ADR'+'AC'+'L'+'] Err'+'or '+'w'+'h'+'ile en'+'um'+'erating'+' schemaIDs')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
         }
 
@@ -10461,12 +10461,12 @@ Function Get-ADRACL
 
         Try
         {
-            Write-Verbose ("{5}{1}{6}{4}{3}{0}{2}" -f'e','ting ','ctory Rights',' Dir','e','[*] Enumera','Activ')
-            $schemaIDs = Get-ADObject -SearchBase "CN=Extended-Rights,$((Get-ADRootDSE).configurationNamingContext)" -LDAPFilter ("{0}{5}{2}{1}{4}{3}{6}"-f'(obje','ces','controlAc','igh','sR','ctClass=','t)') -Properties name, rightsGUID
+            Write-Verbose ('[*]'+' '+'Enum'+'erat'+'ing '+'A'+'ctive Direct'+'o'+'ry '+'Rig'+'hts')
+            $schemaIDs = Get-ADObject -SearchBase "CN=Extended-Rights,$((Get-ADRootDSE).configurationNamingContext)" -LDAPFilter ('(objectCla'+'ss=cont'+'r'+'o'+'lAcce'+'ssR'+'ig'+'ht)') -Properties name, rightsGUID
         }
         Catch
         {
-            Write-Warning ("{2}{1}{8}{0}{5}{9}{7}{11}{3}{6}{12}{4}{10}" -f 'rro','Get-ADRAC','[','umerating Acti',' ','r whi','v',' e','L] E','le','Directory Rights','n','e')
+            Write-Warning ('['+'Get-'+'ADRACL] '+'Error'+' whi'+'le en'+'um'+'era'+'tin'+'g Ac'+'ti'+'ve Di'+'recto'+'ry Ri'+'ghts')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
         }
 
@@ -10487,18 +10487,18 @@ Function Get-ADRACL
         }
         Catch
         {
-            Write-Warning ("{7}{8}{4}{0}{1}{6}{3}{2}{5}" -f'L]',' Er','n Contex','or getting Domai','AC','t','r','[Get-AD','R')
+            Write-Warning ('[Get-ADRACL'+'] '+'Err'+'or getti'+'ng Domain'+' '+'Con'+'te'+'xt')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
         }
 
         Try
         {
-            Write-Verbose ("{8}{0}{10}{1}{13}{7}{6}{5}{2}{14}{3}{12}{4}{11}{9}"-f ']','at',' OU,','User,','ut','in,','oma',' D','[*','ts',' Enumer','er and Group Objec',' Comp','ing',' GPO, ')
-            $Objs += Get-ADObject -LDAPFilter (((("{41}{18}{52}{25}{22}{1}{5}{19}{42}{44}{16}{20}{24}{54}{30}{14}{31}{58}{38}{27}{7}{33}{32}{17}{55}{0}{47}{48}{9}{40}{51}{6}{39}{10}{21}{2}{53}{50}{23}{15}{11}{45}{57}{4}{43}{36}{34}{56}{35}{12}{8}{28}{26}{13}{46}{37}{3}{29}{49}" -f 'tTy','main)(','Ty','nttype','4354','o',')','iner',')','5','cc','tt','ype=268435457','70912)(sam','a','samaccoun','aniza','mAcc','mD','bjectC','ti','ount','ss=do','05306369)(','onalunit','ectCla','counttype=5368','upPolicyConta','(samac','=53687091','bjectC','tegory=g','a',')(s','acco','t',')(sam','ccou','o','(samA','30','(','a','56','tegory=org','ype=26','a','pe=8','0','3))','=8','6368','W(obj','pe',')(o','oun','unt','8','r')) -REPlaCe  'mDW',[ChAR]124)) -Properties DisplayName, DistinguishedName, Name, ntsecuritydescriptor, ObjectClass, objectsid
+            Write-Verbose ('[*] '+'Enumerat'+'i'+'ng '+'Do'+'mai'+'n, O'+'U, GPO'+', '+'U'+'se'+'r, Com'+'pu'+'ter and Gro'+'up '+'Obj'+'ec'+'ts')
+            $Objs += Get-ADObject -LDAPFilter (('({0'+'}('+'o'+'b'+'jectC'+'lass='+'dom'+'a'+'in)(o'+'bjectCategor'+'y'+'='+'o'+'rga'+'nizatio'+'nal'+'u'+'nit'+')(objectC'+'ateg'+'o'+'ry=gr'+'o'+'u'+'p'+'Polic'+'yContai'+'ner'+')'+'(samAc'+'co'+'untTy'+'pe='+'805'+'3'+'06368'+')'+'(samAccountTyp'+'e'+'=805'+'306369)('+'s'+'am'+'acc'+'oun'+'tt'+'yp'+'e='+'26'+'8'+'43'+'5'+'456)(sa'+'m'+'acc'+'ountty'+'pe=26843'+'5457)(sama'+'c'+'counttype=5368'+'709'+'12'+')'+'(sa'+'maccountt'+'ype=536'+'87'+'0913)'+')')-f [CHAR]124) -Properties DisplayName, DistinguishedName, Name, ntsecuritydescriptor, ObjectClass, objectsid
         }
         Catch
         {
-            Write-Warning ("{18}{3}{12}{14}{16}{13}{5}{4}{15}{21}{6}{8}{9}{0}{22}{17}{7}{10}{19}{1}{20}{2}{11}"-f'U, ','and Grou',' Obje','et-A',' e','e',' Domai','om','n',', O','put','cts','DR','il','ACL] Err','num','or wh',' C','[G','er ','p','erating','GPO, User,')
+            Write-Warning ('[Ge'+'t-A'+'DRA'+'C'+'L] Error while enume'+'ratin'+'g '+'D'+'o'+'ma'+'in,'+' OU'+','+' GP'+'O, User, Comp'+'uter '+'a'+'n'+'d G'+'r'+'oup Objects')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
         }
 
@@ -10506,12 +10506,12 @@ Function Get-ADRACL
         {
             Try
             {
-                Write-Verbose ("{2}{3}{8}{4}{0}{6}{1}{5}{9}{7}" -f'ting ','ot','[*]',' E','ra',' Con','Ro','ner Objects','nume','tai')
-                $Objs += Get-ADObject -SearchBase $($ADDomain.DistinguishedName) -SearchScope OneLevel -LDAPFilter ("{1}{6}{5}{0}{3}{2}{4}" -f 'a','(obje','r','ine',')','lass=cont','ctC') -Properties DistinguishedName, Name, ntsecuritydescriptor, ObjectClass
+                Write-Verbose ('[*'+'] E'+'n'+'umera'+'t'+'ing R'+'oot Co'+'n'+'t'+'aine'+'r Objects')
+                $Objs += Get-ADObject -SearchBase $($ADDomain.DistinguishedName) -SearchScope OneLevel -LDAPFilter ('('+'o'+'bje'+'ct'+'C'+'lass=container)') -Properties DistinguishedName, Name, ntsecuritydescriptor, ObjectClass
             }
             Catch
             {
-                Write-Warning ("{6}{5}{4}{1}{2}{7}{9}{11}{8}{10}{3}{12}{0}" -f's','r ','w','iner O','t-ADRACL] Erro','e','[G','hile','t',' enum','a','erating Root Con','bject')
+                Write-Warning ('[Get-ADRACL'+'] Error'+' '+'wh'+'i'+'le e'+'numeratin'+'g Ro'+'ot Cont'+'ainer '+'Objects')
                 Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             }
         }
@@ -10520,44 +10520,44 @@ Function Get-ADRACL
         {
             $ACLObj = @()
             Write-Verbose "[*] Total Objects: $([ADRecon.ADWSClass]::ObjectCount($Objs)) "
-            Write-Verbose ("{1}{2}{0}" -f 'CLs','[-]',' DA')
+            Write-Verbose ('[-] DA'+'CLs')
             $DACLObj = [ADRecon.ADWSClass]::DACLParser($Objs, $GUIDs, $Threads)
             #Write-Verbose "[-] SACLs - May need a Privileged Account"
-            Write-Warning ("{6}{10}{2}{0}{8}{3}{11}{1}{9}{12}{4}{13}{5}{7}"-f '- Currentl',' is ','s ','e','supported w',' LDA','[*] S','P.','y, th','only','ACL',' module',' ','ith')
+            Write-Warning ('[*'+'] SACL'+'s '+'- Cur'+'r'+'en'+'t'+'ly, the mo'+'d'+'ule'+' is only '+'suppo'+'rte'+'d w'+'ith'+' '+'LDAP'+'.')
             #$SACLObj = [ADRecon.ADWSClass]::SACLParser($Objs, $GUIDs, $Threads)
             Remove-Variable Objs
             Remove-Variable GUIDs
         }
     }
 
-    If ($Method -eq ("{1}{0}" -f'AP','LD'))
+    If ($Method -eq ('LDA'+'P'))
     {
-        $GUIDs = @{("{0}{3}{4}{5}{1}{2}"-f'0000000','0000','0','0','-0000-0000-','0000-0000000') = 'All'}
+        $GUIDs = @{('0'+'0000000-0000-0'+'000-0'+'000'+'-0'+'0000'+'00'+'00000') = ('Al'+'l')}
 
         If ($Credential -ne [Management.Automation.PSCredential]::Empty)
         {
             $DomainFQDN = Get-DNtoFQDN($objDomain.distinguishedName)
-            $DomainContext = New-Object System.DirectoryServices.ActiveDirectory.DirectoryContext(("{1}{0}" -f'omain','D'),$($DomainFQDN),$($Credential.UserName),$($Credential.GetNetworkCredential().password))
+            $DomainContext = New-Object System.DirectoryServices.ActiveDirectory.DirectoryContext(('Doma'+'i'+'n'),$($DomainFQDN),$($Credential.UserName),$($Credential.GetNetworkCredential().password))
             Try
             {
                 $ADDomain = [System.DirectoryServices.ActiveDirectory.Domain]::GetDomain($DomainContext)
             }
             Catch
             {
-                Write-Warning ("{6}{11}{4}{3}{10}{2}{9}{0}{8}{1}{7}{5}" -f ' gett','ain ','ro','L','ADRAC','xt','[G','Conte','ing Dom','r','] Er','et-')
+                Write-Warning ('[Ge'+'t-ADR'+'ACL] '+'Error '+'getting Do'+'m'+'ain Conte'+'xt')
                 Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             }
 
             Try
             {
-                $ForestContext = New-Object System.DirectoryServices.ActiveDirectory.DirectoryContext(("{0}{1}"-f'Fore','st'),$($ADDomain.Forest),$($Credential.UserName),$($Credential.GetNetworkCredential().password))
+                $ForestContext = New-Object System.DirectoryServices.ActiveDirectory.DirectoryContext(('For'+'est'),$($ADDomain.Forest),$($Credential.UserName),$($Credential.GetNetworkCredential().password))
                 $ADForest = [System.DirectoryServices.ActiveDirectory.Forest]::GetForest($ForestContext)
                 $SchemaPath = $ADForest.Schema.Name
                 Remove-Variable ADForest
             }
             Catch
             {
-                Write-Warning ("{2}{1}{8}{7}{0}{6}{9}{10}{3}{5}{4}" -f'rro','Ge','[','tin','SchemaPath','g ','r','L] E','t-ADRAC',' e','numera')
+                Write-Warning ('[Get-A'+'DRACL] Error enum'+'era'+'t'+'i'+'ng S'+'chemaP'+'ath')
                 Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             }
         }
@@ -10571,7 +10571,7 @@ Function Get-ADRACL
 
         If ($SchemaPath)
         {
-            Write-Verbose ("{0}{6}{1}{5}{2}{3}{4}"-f '[*','E','ting',' ','schemaIDs','numera','] ')
+            Write-Verbose ('['+'*] Enume'+'rat'+'ing sc'+'hemaIDs')
             If ($Credential -ne [Management.Automation.PSCredential]::Empty)
             {
                 $objSearchPath = New-Object System.DirectoryServices.DirectoryEntry "LDAP://$($DomainController)/$($SchemaPath)", $Credential.UserName,$Credential.GetNetworkCredential().Password
@@ -10582,7 +10582,7 @@ Function Get-ADRACL
                 $objSearcherPath = New-Object System.DirectoryServices.DirectorySearcher ([ADSI] "LDAP://$($SchemaPath)")
             }
             $objSearcherPath.PageSize = $PageSize
-            $objSearcherPath.filter = ("{1}{2}{0}{3}"-f'U','(schema','IDG','ID=*)')
+            $objSearcherPath.filter = ('(sc'+'he'+'maIDGUID=*'+')')
 
             Try
             {
@@ -10590,7 +10590,7 @@ Function Get-ADRACL
             }
             Catch
             {
-                Write-Warning ("{2}{10}{0}{8}{9}{5}{7}{6}{1}{3}{4}" -f 'ADR','chema','[Get','ID','s','or en','S','umerating ','ACL]',' Err','-')
+                Write-Warning ('[Get'+'-'+'AD'+'RACL] '+'Error en'+'um'+'era'+'ting Sch'+'e'+'maIDs')
                 Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             }
 
@@ -10604,7 +10604,7 @@ Function Get-ADRACL
             }
             $objSearcherPath.dispose()
 
-            Write-Verbose ("{5}{6}{1}{0}{3}{7}{4}{2}" -f'Activ',' Enumerating ','s','e Directo','ht','[','*]','ry Rig')
+            Write-Verbose ('[*]'+' '+'E'+'numerating '+'Act'+'iv'+'e Directo'+'ry'+' R'+'ig'+'hts')
             If ($Credential -ne [Management.Automation.PSCredential]::Empty)
             {
                 $objSearchPath = New-Object System.DirectoryServices.DirectoryEntry (("LDAP://$($DomainController)/$($SchemaPath.replace("Schema","Extended-Rights"))")), $Credential.UserName,$Credential.GetNetworkCredential().Password
@@ -10615,7 +10615,7 @@ Function Get-ADRACL
                 $objSearcherPath = New-Object System.DirectoryServices.DirectorySearcher ([ADSI] (("LDAP://$($SchemaPath.replace("Schema","Extended-Rights"))")))
             }
             $objSearcherPath.PageSize = $PageSize
-            $objSearcherPath.filter = (("{7}{2}{4}{6}{3}{1}{5}{0}" -f 'Right)','ce','b','ntrolAc','jectClass=c','ss','o','(o'))
+            $objSearcherPath.filter = ('(ob'+'jec'+'tClass=c'+'o'+'n'+'tr'+'olAcc'+'e'+'ssR'+'ight)')
 
             Try
             {
@@ -10623,7 +10623,7 @@ Function Get-ADRACL
             }
             Catch
             {
-                Write-Warning ("{3}{1}{5}{2}{4}{11}{6}{7}{10}{9}{8}{0}"-f 'ts','ADRA','Er','[Get-','ror enumer','CL] ','g Ac','tive Di',' Righ','tory','rec','atin')
+                Write-Warning ('[G'+'et-ADRACL'+']'+' Erro'+'r enu'+'m'+'er'+'ating Acti'+'ve'+' Dir'+'ect'+'or'+'y Righ'+'ts')
                 Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             }
 
@@ -10640,14 +10640,14 @@ Function Get-ADRACL
 
         # Get the Domain, OUs, Root Containers, GPO, User, Computer and Group objects.
         $Objs = @()
-        Write-Verbose ("{6}{8}{11}{10}{12}{5}{2}{7}{13}{9}{1}{0}{4}{3}" -f 'up','o','ompu','s',' Object','C','[*] Enu','t','merati',' and Gr',' Domain, OU, GPO, Us','ng','er, ','er')
+        Write-Verbose ('[*] '+'E'+'n'+'u'+'m'+'erating'+' '+'Dom'+'a'+'in, OU, GPO,'+' U'+'ser'+','+' Comp'+'uter an'+'d '+'Group'+' '+'Ob'+'jects')
         $objSearcher = New-Object System.DirectoryServices.DirectorySearcher $objDomain
         $ObjSearcher.PageSize = $PageSize
-        $ObjSearcher.Filter = ((("{33}{41}{19}{18}{27}{53}{11}{46}{12}{56}{2}{45}{49}{39}{21}{0}{29}{61}{52}{5}{58}{6}{57}{13}{43}{48}{32}{59}{4}{17}{1}{22}{26}{54}{24}{16}{14}{40}{28}{42}{60}{51}{20}{44}{30}{55}{31}{7}{25}{36}{38}{34}{50}{47}{9}{8}{10}{3}{35}{37}{15}{23}"-f 'g','30','z','c','e','roup','yConta','2684','s','(','ama','teg','=orga','(','5306369)','70913)','tType=80','=805','o','(','4','e','6',')','Accoun','35','36','bjectC','ama','ory','sam','pe=','AccountT','(EJq(objectClas','53','counttype=5','457)(sama','368','ccounttype=','Cat','(s','s=domain)','cco','s','35456)(','ationalunit)(obj','ory','0912)','am','ect','687','ttype=268','g','a','8)(sam','accountty','ni','iner)','Polic','yp','un','=')).RePlace('EJq','|'))
+        $ObjSearcher.Filter = (('(yXI(o'+'bje'+'ctCl'+'ass=do'+'main)('+'o'+'bjec'+'tCategory='+'or'+'ganiza'+'t'+'ional'+'u'+'nit)(object'+'C'+'a'+'tego'+'ry=gro'+'upPo'+'l'+'i'+'c'+'yCon'+'tainer)('+'samAccoun'+'tTy'+'pe=805306368'+')('+'sa'+'m'+'A'+'c'+'c'+'ountTy'+'pe=8053063'+'69)'+'('+'sama'+'ccou'+'ntt'+'yp'+'e='+'2'+'6'+'84'+'35'+'456'+')('+'s'+'am'+'accounttype'+'='+'2'+'68'+'435457)(s'+'amacc'+'ount'+'t'+'ype'+'=53'+'687'+'091'+'2)(s'+'a'+'ma'+'c'+'c'+'ounttype=536870'+'913)'+')')-CrePlACE ([CHAr]121+[CHAr]88+[CHAr]73),[CHAr]124)
         # https://msdn.microsoft.com/en-us/library/system.directoryservices.securitymasks(v=vs.110).aspx
         $ObjSearcher.SecurityMasks = [System.DirectoryServices.SecurityMasks]::Dacl -bor [System.DirectoryServices.SecurityMasks]::Group -bor [System.DirectoryServices.SecurityMasks]::Owner -bor [System.DirectoryServices.SecurityMasks]::Sacl
-        $ObjSearcher.PropertiesToLoad.AddRange((("{0}{1}{2}"-f'di','splayna','me'),("{5}{0}{4}{3}{1}{2}"-f'i','shedna','me','i','stingu','d'),("{0}{1}" -f 'na','me'),("{2}{4}{3}{1}{0}" -f 'tor','p','n','cri','tsecuritydes'),("{0}{2}{1}"-f'obj','s','ectclas'),("{1}{3}{2}{0}" -f 'tsid','obj','c','e')))
-        $ObjSearcher.SearchScope = ("{1}{0}" -f'ee','Subtr')
+        $ObjSearcher.PropertiesToLoad.AddRange((('dis'+'pla'+'ynam'+'e'),('d'+'isti'+'ngu'+'ishedname'),('nam'+'e'),('ntsecuri'+'tydescr'+'i'+'pto'+'r'),('o'+'bj'+'e'+'ctclass'),('o'+'bjectsid')))
+        $ObjSearcher.SearchScope = ('Subtre'+'e')
 
         Try
         {
@@ -10655,19 +10655,19 @@ Function Get-ADRACL
         }
         Catch
         {
-            Write-Warning ("{4}{9}{2}{10}{7}{5}{6}{14}{3}{13}{11}{12}{1}{8}{0}"-f 'ts','nd','w','User, ','[Get-ADRACL] E','ating',' Domain, OU, G','umer',' Group Objec','rror ','hile en','puter',' a','Com','PO, ')
+            Write-Warning ('['+'G'+'et-ADRACL]'+' Error w'+'hile en'+'u'+'merati'+'ng Dom'+'ai'+'n,'+' OU, G'+'PO, '+'Us'+'e'+'r, Co'+'m'+'puter an'+'d Gr'+'o'+'up'+' Obje'+'cts')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
         }
         $ObjSearcher.dispose()
 
-        Write-Verbose ("{0}{1}{5}{6}{3}{2}{4}{7}{8}"-f '[','*] E',' C','Root','ont','numer','ating ','ainer Obje','cts')
+        Write-Verbose ('[*] E'+'n'+'umer'+'atin'+'g R'+'o'+'o'+'t '+'Contain'+'er'+' Objects')
         $objSearcher = New-Object System.DirectoryServices.DirectorySearcher $objDomain
         $ObjSearcher.PageSize = $PageSize
-        $ObjSearcher.Filter = (("{5}{4}{3}{0}{2}{1}" -f 'ss','container)','=','a','Cl','(object'))
+        $ObjSearcher.Filter = ('(objectC'+'l'+'as'+'s='+'co'+'nta'+'iner)')
         # https://msdn.microsoft.com/en-us/library/system.directoryservices.securitymasks(v=vs.110).aspx
         $ObjSearcher.SecurityMasks = $ObjSearcher.SecurityMasks = [System.DirectoryServices.SecurityMasks]::Dacl -bor [System.DirectoryServices.SecurityMasks]::Group -bor [System.DirectoryServices.SecurityMasks]::Owner -bor [System.DirectoryServices.SecurityMasks]::Sacl
-        $ObjSearcher.PropertiesToLoad.AddRange((("{0}{3}{4}{1}{2}"-f 'dist','e','dname','i','nguish'),("{1}{0}" -f'e','nam'),("{3}{2}{0}{1}{4}"-f 'uritydescrip','t','c','ntse','or'),("{3}{1}{2}{0}"-f 'ss','ect','cla','obj')))
-        $ObjSearcher.SearchScope = ("{0}{1}{2}"-f 'O','neLeve','l')
+        $ObjSearcher.PropertiesToLoad.AddRange((('disting'+'u'+'ish'+'edname'),('na'+'me'),('n'+'tsecuri'+'tyd'+'escrip'+'t'+'or'),('obj'+'e'+'ctclass')))
+        $ObjSearcher.SearchScope = ('OneLe'+'ve'+'l')
 
         Try
         {
@@ -10675,7 +10675,7 @@ Function Get-ADRACL
         }
         Catch
         {
-            Write-Warning ("{1}{6}{0}{7}{5}{8}{3}{9}{2}{4}" -f'rati','[Get-ADRACL] Error whil','bje','n','cts','g Root C','e enume','n','ontai','er O')
+            Write-Warning ('[G'+'et-ADRAC'+'L] Err'+'or whi'+'le '+'e'+'num'+'era'+'tin'+'g Root Co'+'n'+'t'+'ain'+'e'+'r O'+'bj'+'e'+'cts')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
         }
         $ObjSearcher.dispose()
@@ -10683,9 +10683,9 @@ Function Get-ADRACL
         If ($Objs)
         {
             Write-Verbose "[*] Total Objects: $([ADRecon.LDAPClass]::ObjectCount($Objs)) "
-            Write-Verbose ("{2}{0}{1}" -f' D','ACLs','[-]')
+            Write-Verbose ('[-]'+' '+'DACLs')
             $DACLObj = [ADRecon.LDAPClass]::DACLParser($Objs, $GUIDs, $Threads)
-            Write-Verbose ("{6}{9}{5}{4}{2}{10}{8}{7}{3}{1}{11}{0}"-f 'nt','ed','s - May','ileg','L','SAC','[-]','v',' a Pri',' ',' need',' Accou')
+            Write-Verbose ('[-'+'] SACL'+'s'+' '+'- May'+' '+'ne'+'ed a Pri'+'vil'+'eged Accoun'+'t')
             $SACLObj = [ADRecon.LDAPClass]::SACLParser($Objs, $GUIDs, $Threads)
             Remove-Variable Objs
             Remove-Variable GUIDs
@@ -10694,13 +10694,13 @@ Function Get-ADRACL
 
     If ($DACLObj)
     {
-        Export-ADR $DACLObj $ADROutputDir $OutputType ("{0}{1}"-f'DAC','Ls')
+        Export-ADR $DACLObj $ADROutputDir $OutputType ('DA'+'CLs')
         Remove-Variable DACLObj
     }
 
     If ($SACLObj)
     {
-        Export-ADR $SACLObj $ADROutputDir $OutputType ("{1}{0}" -f's','SACL')
+        Export-ADR $SACLObj $ADROutputDir $OutputType ('SACL'+'s')
         Remove-Variable SACLObj
     }
 }
@@ -10740,13 +10740,13 @@ Function Get-ADRGPOReport
         [string] $ADROutputDir
     )
 
-    If ($Method -eq ("{0}{1}"-f'A','DWS'))
+    If ($Method -eq ('A'+'DWS'))
     {
         Try
         {
             # Suppress verbose output on module import
             $SaveVerbosePreference = $script:VerbosePreference
-            $script:VerbosePreference = ("{1}{2}{0}"-f 'Continue','Silen','tly')
+            $script:VerbosePreference = ('Silent'+'lyCon'+'t'+'inue')
             Import-Module GroupPolicy -WarningAction Stop -ErrorAction Stop | Out-Null
             If ($SaveVerbosePreference)
             {
@@ -10756,7 +10756,7 @@ Function Get-ADRGPOReport
         }
         Catch
         {
-            Write-Warning ("{15}{5}{9}{18}{1}{12}{10}{20}{13}{17}{8}{0}{14}{7}{11}{3}{2}{4}{16}{19}{6}" -f't','RGP','Sk','dule. ','ipp','e','eport','roupPolic','r','t-A','port','y Mo','ORe','E','ing the G','[G','i','rror impo','D','ng GPOR','] ')
+            Write-Warning ('['+'G'+'et-ADR'+'G'+'PORe'+'port] Err'+'o'+'r'+' imp'+'orting the GroupP'+'o'+'licy Module. Ski'+'p'+'pin'+'g'+' G'+'PORe'+'port')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             If ($SaveVerbosePreference)
             {
@@ -10767,42 +10767,42 @@ Function Get-ADRGPOReport
         }
         Try
         {
-            Write-Verbose ("{3}{1}{2}{0}" -f' XML','o','rt','[*] GPORep')
-            $ADFileName = -join($ADROutputDir,'\',("{0}{1}{2}{3}" -f 'G','P','O-Repo','rt'),("{1}{0}" -f'l','.xm'))
+            Write-Verbose ('['+'*] GPORep'+'or'+'t '+'XML')
+            $ADFileName = -join($ADROutputDir,'\',('GPO-R'+'epor'+'t'),('.xm'+'l'))
             Get-GPOReport -All -ReportType XML -Path $ADFileName
         }
         Catch
         {
             If ($UseAltCreds)
             {
-                Write-Warning ("{6}{3}{0}{4}{5}{1}{7}{2}{8}"-f 'e t','sing','UN','th','ool',' u','[*] Run ',' R','AS.')
-                Write-Warning ((("{2}{1}{8}{3}{6}{7}{5}{0}{4}{9}" -f 'owe','*] runas /user:<Dom','[','in FQDN>Z','rshel','rname> /netonly p','Vp<U','se','a','l.exe')).replaCE(([ChAr]90+[ChAr]86+[ChAr]112),[StRiNg][ChAr]92))
+                Write-Warning ('[*] '+'Ru'+'n the t'+'o'+'ol usin'+'g '+'R'+'UNA'+'S.')
+                Write-Warning (('[*]'+' ru'+'n'+'as /'+'u'+'ser:<Do'+'main FQDN>'+'dav<Username'+'> /neto'+'nly po'+'we'+'r'+'shell.exe')  -RepLAce([chaR]100+[chaR]97+[chaR]118),[chaR]92)
                 Return $null
             }
-            Write-Warning ("{3}{2}{7}{6}{8}{0}{5}{4}{1}{9}"-f'th','ort in','POR','[Get-ADRG','p','e GPORe','get','eport] Error ','ting ',' XML')
+            Write-Warning ('['+'G'+'et-AD'+'RGPORe'+'port'+']'+' '+'Err'+'or getting the '+'GPORe'+'port in XML')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
         }
         Try
         {
-            Write-Verbose ("{3}{5}{4}{1}{2}{0}" -f 'L','t H','TM','[*] G','por','PORe')
-            $ADFileName = -join($ADROutputDir,'\',("{2}{1}{0}{3}"-f'-','PO','G','Report'),("{1}{0}"-f'tml','.h'))
+            Write-Verbose ('[*] '+'G'+'PORe'+'port '+'HTML')
+            $ADFileName = -join($ADROutputDir,'\',('GPO-'+'Rep'+'ort'),('.ht'+'ml'))
             Get-GPOReport -All -ReportType HTML -Path $ADFileName
         }
         Catch
         {
             If ($UseAltCreds)
             {
-                Write-Warning ("{7}{1}{0}{6}{2}{3}{4}{5}" -f 'Run t',' ','n','g R','U','NAS.','he tool usi','[*]')
-                Write-Warning ((("{5}{14}{3}{0}{11}{2}{9}{1}{10}{16}{6}{4}{13}{15}{7}{12}{8}{17}"-f'ser','Us','<D','/u',' ','[*] run','>','owersh','ll','omain FQDN>k1P<','e',':','e','/','as ','netonly p','rname','.exe')) -RepLaCE  ([CHAR]107+[CHAR]49+[CHAR]80),[CHAR]92)
+                Write-Warning ('[*'+']'+' Run'+' t'+'he too'+'l us'+'ing RU'+'NA'+'S.')
+                Write-Warning (('[*] runas /user'+':<Doma'+'in'+' '+'F'+'QD'+'N'+'>cvG<User'+'name>'+' /netonly p'+'ower'+'s'+'hell.exe').RePLAce(([CHar]99+[CHar]118+[CHar]71),'\'))
                 Return $null
             }
-            Write-Warning ("{2}{6}{7}{0}{1}{8}{5}{4}{3}"-f 'ADRGPORep','ort] Error getting t','[','ML','t in X','epor','Ge','t-','he GPOR')
+            Write-Warning ('['+'Get'+'-ADRGPOR'+'eport] E'+'rror'+' getting'+' the G'+'PORe'+'p'+'ort'+' in X'+'ML')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
         }
     }
-    If ($Method -eq ("{0}{1}"-f'LD','AP'))
+    If ($Method -eq ('LDA'+'P'))
     {
-        Write-Warning ("{12}{3}{4}{11}{8}{10}{7}{9}{1}{13}{2}{0}{6}{5}"-f ' with A','y supp','ed',' C','ur','S.','DW','the module i','nt','s onl','ly, ','re','[*]','ort')
+        Write-Warning ('['+'*] C'+'ur'+'ren'+'t'+'ly, th'+'e '+'mod'+'ule is onl'+'y suppo'+'rted'+' wi'+'t'+'h '+'A'+'DWS.')
     }
 }
 
@@ -10854,14 +10854,14 @@ The TokenHandle result from LogonUser.
 #>
 
     [OutputType([IntPtr])]
-    [CmdletBinding(DefaultParameterSetName = {"{0}{1}{3}{2}"-f'Cr','e','ial','dent'})]
+    [CmdletBinding(DefaultParameterSetName = {'C'+'re'+'dential'})]
     Param(
-        [Parameter(Mandatory = $True, ParameterSetName = "Cr`edEnt`iaL")]
+        [Parameter(Mandatory = $True, ParameterSetName = "cre`DeNTi`Al")]
         [Management.Automation.PSCredential]
         [Management.Automation.CredentialAttribute()]
         $Credential,
 
-        [Parameter(Mandatory = $True, ParameterSetName = "tO`kenH`A`NDle")]
+        [Parameter(Mandatory = $True, ParameterSetName = "t`OK`enHan`dLe")]
         [ValidateNotNull()]
         [IntPtr]
         $TokenHandle,
@@ -10870,12 +10870,12 @@ The TokenHandle result from LogonUser.
         $Quiet
     )
 
-    If (([System.Threading.Thread]::CurrentThread.GetApartmentState() -ne 'STA') -and (-not $PSBoundParameters[("{1}{0}"-f 't','Quie')]))
+    If (([System.Threading.Thread]::CurrentThread.GetApartmentState() -ne ('ST'+'A')) -and (-not $PSBoundParameters[('Quie'+'t')]))
     {
-        Write-Warning ("{5}{10}{2}{16}{6}{20}{9}{22}{4}{17}{18}{3}{19}{15}{1}{8}{11}{0}{21}{12}{14}{13}{7}" -f'ona',', token i','onat','ent sta','threa','[Get-ADRUserI','n] powershel','t work.','mper',' is not cu','mpers','s','m',' no','ay','e','io','ded',' apartm','t','l.exe','tion ','rrently in a single-')
+        Write-Warning ('[Get-ADR'+'UserImpersonation]'+' '+'po'+'wersh'+'el'+'l.exe '+'is not currently in a single-'+'th'+'read'+'ed '+'apartme'+'nt state, '+'token imper'+'s'+'o'+'nation m'+'ay'+' '+'not'+' work.')
     }
 
-    If ($PSBoundParameters[("{0}{1}{2}" -f'To','kenH','andle')])
+    If ($PSBoundParameters[('Toke'+'n'+'Hand'+'le')])
     {
         $LogonTokenHandle = $TokenHandle
     }
@@ -10886,7 +10886,7 @@ The TokenHandle result from LogonUser.
         $UserDomain = $NetworkCredential.Domain
         If (-Not $UserDomain)
         {
-            Write-Warning ((("{15}{1}{11}{2}{13}{4}{3}{0}{8}{9}{12}{10}{6}{5}{14}{7}" -f 'D','et-ADRUser','personati',' Domain FQ','e credential with','}','omain FQDN>{0','me>)','N','. ','<D','Im','(','on] Us','<Userna','[G'))  -f[cHAr]92)
+            Write-Warning (('['+'G'+'et-ADRU'+'ser'+'Impersona'+'t'+'ion]'+' Us'+'e cred'+'e'+'ntia'+'l'+' with '+'D'+'o'+'m'+'ain '+'FQ'+'DN.'+' '+'(<Doma'+'in FQD'+'N'+'>'+'w4v<User'+'name'+'>)')  -CRePlAce  'w4v',[cHAR]92)
         }
         $UserName = $NetworkCredential.UserName
         Write-Warning "[Get-ADRUserImpersonation] Executing LogonUser() with user: $($UserDomain)\$($UserName) "
@@ -10910,7 +10910,7 @@ The TokenHandle result from LogonUser.
         throw "[Get-ADRUserImpersonation] ImpersonateLoggedOnUser() Error: $(([ComponentModel.Win32Exception] $LastError).Message) "
     }
 
-    Write-Verbose ("{6}{9}{16}{15}{14}{3}{0}{17}{18}{19}{22}{12}{21}{11}{4}{2}{13}{20}{1}{8}{7}{10}{5}"-f'io','y','cces','sonat',' su','ated','[Get-AD','p',' im','R-Us','erson','als','cr','sful','er','rImp','e','n] ','Alt','ernat','l','edenti','e ')
+    Write-Verbose ('[Get-ADR-U'+'s'+'e'+'rIm'+'perso'+'nation'+'] Alt'+'ernate'+' crede'+'nt'+'i'+'als s'+'ucce'+'s'+'sfu'+'lly'+' impe'+'rsonated')
     $LogonTokenHandle
 }
 
@@ -10951,9 +10951,9 @@ Invoke-RevertToSelf -TokenHandle $Token
         $TokenHandle
     )
 
-    If ($PSBoundParameters[("{1}{2}{0}" -f 'dle','TokenHa','n')])
+    If ($PSBoundParameters[('Tok'+'en'+'H'+'andle')])
     {
-        Write-Warning ("{5}{17}{10}{23}{13}{9}{18}{15}{14}{8}{11}{6}{7}{20}{4}{22}{0}{12}{24}{1}{3}{19}{2}{21}{16}"-f'o','r()','h',' toke',' L','[G','los','in','nd','Se','-ADR',' c','n','ertTo','ersonation a','en imp','le','et','lf] Reverting tok','n ','g','and','og','Rev','Use')
+        Write-Warning ('[G'+'et-A'+'DR'+'Reve'+'r'+'t'+'To'+'S'+'el'+'f'+'] '+'Rev'+'e'+'rti'+'ng tok'+'en'+' impersonatio'+'n '+'and'+' cl'+'osing'+' Log'+'o'+'nUser'+'() toke'+'n handle')
         $Result = $Kernel32::CloseHandle($TokenHandle)
     }
 
@@ -10965,7 +10965,7 @@ Invoke-RevertToSelf -TokenHandle $Token
         Write-Error "[Get-ADRRevertToSelf] RevertToSelf() Error: $(([ComponentModel.Win32Exception] $LastError).Message) "
     }
 
-    Write-Verbose ("{1}{0}{6}{3}{2}{8}{10}{4}{11}{9}{5}{7}"-f 'RevertToSelf] To','[Get-ADR',' ','n','fully ','ver','ke','ted','impersonation succe','e','ss','r')
+    Write-Verbose ('[Get-ADRR'+'evert'+'ToSel'+'f] '+'To'+'ken im'+'perso'+'nation successfull'+'y r'+'e'+'verte'+'d')
 }
 
 # Modified Get-DomainSPNTicket function from https://github.com/PowerShellMafia/PowerSploit/blob/dev/Recon/PowerView.ps1
@@ -10997,12 +10997,12 @@ Function Get-ADRSPNTicket
 
     Try
     {
-        $Null = [Reflection.Assembly]::LoadWithPartialName(("{1}{3}{0}{2}"-f 'IdentityMode','Sy','l','stem.'))
+        $Null = [Reflection.Assembly]::LoadWithPartialName(('S'+'y'+'s'+'tem.Ident'+'i'+'tyModel'))
         $Ticket = New-Object System.IdentityModel.Tokens.KerberosRequestorSecurityToken -ArgumentList $UserSPN
     }
     Catch
     {
-        Write-Warning ('[Get'+'-A'+'DRS'+'PNTicket] '+'Er'+'ro'+'r '+'reque'+'sti'+'n'+'g '+'t'+'i'+'cket '+'f'+'or '+'SP'+'N '+"$UserSPN")
+        Write-Warning ('[Get-AD'+'R'+'SPNTi'+'ck'+'e'+'t] '+'Error'+' '+'req'+'u'+'e'+'sting '+'tick'+'et '+'for'+' '+'S'+'PN '+"$UserSPN")
         Write-Warning "[EXCEPTION] $($_.Exception.Message) "
         Return $null
     }
@@ -11025,9 +11025,9 @@ Function Get-ADRSPNTicket
             $CipherText = $Matches.DataToEnd.Substring(0,$CipherTextLen*2)
 
             # Make sure the next field matches the beginning of the KRB_AP_REQ.Authenticator object
-            If ($Matches.DataToEnd.Substring($CipherTextLen*2, 4) -ne ("{1}{0}"-f'482','A'))
+            If ($Matches.DataToEnd.Substring($CipherTextLen*2, 4) -ne ('A4'+'82'))
             {
-                Write-Warning ('[Get-ADRSP'+'NT'+'icket]'+' '+'E'+'rror'+' '+'pa'+'rsing'+' '+'ci'+'pher'+'text'+' '+'for'+' '+'the'+' '+'S'+'PN '+' '+(('PY'+'Z(PY'+'ZT'+'i'+'cket.Se'+'rvicePri'+'nc'+'ipalName).') -rEPlaCe'PYZ',[cHar]36)) # Use the TicketByteHexStream field and extract the hash offline with Get-KerberoastHashFromAPReq
+                Write-Warning ('[Get-ADRSP'+'N'+'T'+'i'+'cket'+'] '+'Erro'+'r '+'pa'+'rs'+'ing '+'ciphe'+'rt'+'e'+'xt '+'f'+'or '+'th'+'e '+'S'+'PN '+' '+('iZS(iZ'+'S'+'T'+'ic'+'ket.'+'S'+'ervicePrincipalN'+'ame)'+'.').rEPLAcE(([cHAr]105+[cHAr]90+[cHAr]83),'$')) # Use the TicketByteHexStream field and extract the hash offline with Get-KerberoastHashFromAPReq
                 $Hash = $null
             }
             Else
@@ -11042,9 +11042,9 @@ Function Get-ADRSPNTicket
         }
     }
     $Obj = New-Object PSObject
-    $Obj | Add-Member -MemberType NoteProperty -Name ("{3}{2}{1}{0}" -f 'palName','ePrinci','vic','Ser') -Value $Ticket.ServicePrincipalName
-    $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}" -f 'E','type') -Value $Etype
-    $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}"-f 'sh','Ha') -Value $Hash
+    $Obj | Add-Member -MemberType NoteProperty -Name ('Ser'+'vi'+'cePrincip'+'alName') -Value $Ticket.ServicePrincipalName
+    $Obj | Add-Member -MemberType NoteProperty -Name ('Etyp'+'e') -Value $Etype
+    $Obj | Add-Member -MemberType NoteProperty -Name ('Ha'+'sh') -Value $Hash
     Return $Obj
 }
 
@@ -11095,15 +11095,15 @@ Function Get-ADRKerberoast
         $LogonToken = Get-ADRUserImpersonation -Credential $Credential
     }
 
-    If ($Method -eq ("{0}{1}"-f 'AD','WS'))
+    If ($Method -eq ('ADW'+'S'))
     {
         Try
         {
-            $ADUsers = Get-ADObject -LDAPFilter ((("{11}{6}{1}{15}{9}{16}{14}{13}{0}{10}{3}{8}{4}{5}{2}{7}{12}" -f'e',')','56','Ac','Control:1.2.840.','1135','ter','.1.4.8','count','icePr','=*)(!user','(&(!objectClass=compu','03:=2))','am','cipalN','(serv','in'))) -Properties sAMAccountName,servicePrincipalName,DistinguishedName -ResultPageSize $PageSize
+            $ADUsers = Get-ADObject -LDAPFilter ('(&(!obj'+'ec'+'t'+'Cl'+'ass=comput'+'er'+')(servic'+'ePrin'+'ci'+'pa'+'lNam'+'e'+'=*)('+'!u'+'serAc'+'countC'+'ontrol:1.2'+'.840.1'+'13556.1.4.80'+'3'+':'+'=2'+'))') -Properties sAMAccountName,servicePrincipalName,DistinguishedName -ResultPageSize $PageSize
         }
         Catch
         {
-            Write-Warning ("{0}{7}{6}{14}{8}{5}{13}{1}{2}{4}{11}{9}{3}{12}{10}"-f'[','or',' w','ng U','hile enumera','t] E','RK','Get-AD','rberoas','i','N Objects','t','serSP','rr','e')
+            Write-Warning ('[Get-'+'ADRK'+'er'+'bero'+'ast] Error wh'+'ile '+'enum'+'erating'+' Use'+'rSPN'+' Obj'+'ects')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -11115,13 +11115,13 @@ Function Get-ADRKerberoast
                 ForEach ($UserSPN in $_.servicePrincipalName)
                 {
                     $Obj = New-Object PSObject
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}"-f 'Usern','ame') -Value $_.sAMAccountName
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{4}{6}{0}{5}{3}{1}{2}" -f'vi','i','palName','rinc','Se','ceP','r') -Value $UserSPN
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('Us'+'erna'+'me') -Value $_.sAMAccountName
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('ServicePrinc'+'ip'+'a'+'lN'+'ame') -Value $UserSPN
 
                     $HashObj = Get-ADRSPNTicket $UserSPN
                     If ($HashObj)
                     {
-                        $UserDomain = $_.DistinguishedName.SubString($_.DistinguishedName.IndexOf('DC=')) -replace 'DC=','' -replace ',','.'
+                        $UserDomain = $_.DistinguishedName.SubString($_.DistinguishedName.IndexOf(('D'+'C='))) -replace ('DC'+'='),'' -replace ',','.'
                         # JohnTheRipper output format
                         $JTRHash = "`$krb5tgs`$$($HashObj.ServicePrincipalName):$($HashObj.Hash)"
                         # hashcat output format
@@ -11132,8 +11132,8 @@ Function Get-ADRKerberoast
                         $JTRHash = $null
                         $HashcatHash = $null
                     }
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}" -f'Joh','n') -Value $JTRHash
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}" -f'Hash','cat') -Value $HashcatHash
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('Joh'+'n') -Value $JTRHash
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('Hash'+'ca'+'t') -Value $HashcatHash
                     $UserSPNObj += $Obj
                 }
             }
@@ -11141,20 +11141,20 @@ Function Get-ADRKerberoast
         }
     }
 
-    If ($Method -eq ("{0}{1}"-f 'LD','AP'))
+    If ($Method -eq ('LDA'+'P'))
     {
         $objSearcher = New-Object System.DirectoryServices.DirectorySearcher $objDomain
         $ObjSearcher.PageSize = $PageSize
-        $ObjSearcher.Filter = ("{15}{18}{8}{4}{10}{7}{19}{2}{12}{11}{3}{17}{1}{6}{16}{20}{14}{5}{22}{0}{13}{9}{25}{23}{21}{24}" -f 'ntCo','(','ipal','me=','ct','c','!us','o','bje','ol:1.2.840','Class=c','a','N','ntr','A','(&(','e','*)','!o','mputer)(servicePrinc','r','2','cou','.1.4.803:=','))','.113556')
-        $ObjSearcher.PropertiesToLoad.AddRange((("{3}{0}{1}{2}" -f'istingui','shednam','e','d'),("{4}{1}{3}{2}{0}"-f 'name','acc','nt','ou','sam'),("{1}{0}{3}{2}{6}{4}{5}"-f'ervice','s','ri','p','ipalnam','e','nc'),("{1}{3}{4}{0}{2}" -f'acc','u','ountcontrol','s','er')))
-        $ObjSearcher.SearchScope = ("{1}{0}"-f 'tree','Sub')
+        $ObjSearcher.Filter = ('(&('+'!'+'o'+'bje'+'ctCla'+'s'+'s=c'+'om'+'p'+'ut'+'er'+')(servicePrinc'+'i'+'p'+'alNa'+'me'+'=*)(!userA'+'cco'+'untControl:1.2.84'+'0.1'+'1'+'3556.1.4.803:=2'+'))')
+        $ObjSearcher.PropertiesToLoad.AddRange((('di'+'st'+'ingu'+'ishe'+'dname'),('samacco'+'u'+'nt'+'nam'+'e'),('s'+'ervice'+'p'+'r'+'inci'+'palname'),('u'+'seraccou'+'ntcont'+'rol')))
+        $ObjSearcher.SearchScope = ('Su'+'b'+'tree')
         Try
         {
             $ADUsers = $ObjSearcher.FindAll()
         }
         Catch
         {
-            Write-Warning ("{0}{3}{2}{5}{4}{11}{9}{7}{14}{10}{8}{13}{6}{1}{12}" -f'[','t','ber','Get-ADRKer',' Err','oast]','c','e','N Ob','hile ','P','or w','s','je','numerating UserS')
+            Write-Warning ('[Get-'+'A'+'DRKe'+'rb'+'ero'+'ast] Error'+' while'+' enumera'+'t'+'i'+'n'+'g '+'U'+'s'+'e'+'rSPN O'+'bject'+'s')
             Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
             Return $null
         }
@@ -11167,13 +11167,13 @@ Function Get-ADRKerberoast
                 ForEach ($UserSPN in $_.Properties.serviceprincipalname)
                 {
                     $Obj = New-Object PSObject
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}" -f'User','name') -Value $_.Properties.samaccountname[0]
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{3}{0}{4}{2}"-f'n','Servic','ipalName','ePri','c') -Value $UserSPN
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('U'+'sern'+'ame') -Value $_.Properties.samaccountname[0]
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('Ser'+'vic'+'ePrincip'+'alName') -Value $UserSPN
 
                     $HashObj = Get-ADRSPNTicket $UserSPN
                     If ($HashObj)
                     {
-                        $UserDomain = $_.Properties.distinguishedname[0].SubString($_.Properties.distinguishedname[0].IndexOf('DC=')) -replace 'DC=','' -replace ',','.'
+                        $UserDomain = $_.Properties.distinguishedname[0].SubString($_.Properties.distinguishedname[0].IndexOf(('D'+'C='))) -replace ('D'+'C='),'' -replace ',','.'
                         # JohnTheRipper output format
                         $JTRHash = "`$krb5tgs`$$($HashObj.ServicePrincipalName):$($HashObj.Hash)"
                         # hashcat output format
@@ -11184,8 +11184,8 @@ Function Get-ADRKerberoast
                         $JTRHash = $null
                         $HashcatHash = $null
                     }
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}" -f'hn','Jo') -Value $JTRHash
-                    $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{2}{1}"-f 'H','shcat','a') -Value $HashcatHash
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('Jo'+'hn') -Value $JTRHash
+                    $Obj | Add-Member -MemberType NoteProperty -Name ('Ha'+'shca'+'t') -Value $HashcatHash
                     $UserSPNObj += $Obj
                 }
             }
@@ -11342,16 +11342,16 @@ Function Get-ADRDomainAccountsusedforServiceLogon
                         $serviceList = $data | Where-Object { if ($_.StartName) { $_ }}
                         $serviceList | ForEach-Object {
                             $Obj = New-Object PSObject
-                            $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}{2}" -f'oun','Acc','t') -Value $_.StartName
-                            $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{1}{2}{3}" -f 'Servi','ce ','N','ame') -Value $_.Name
-                            $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{2}{0}" -f 'me','Syst','emNa') -Value $_.SystemName
+                            $Obj | Add-Member -MemberType NoteProperty -Name ('Acco'+'u'+'nt') -Value $_.StartName
+                            $Obj | Add-Member -MemberType NoteProperty -Name ('S'+'ervice'+' Na'+'me') -Value $_.Name
+                            $Obj | Add-Member -MemberType NoteProperty -Name ('Syste'+'mNam'+'e') -Value $_.SystemName
                             If ($_.StartName.toUpper().Contains($currentDomain))
                             {
-                                $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{3}{5}{0}{2}{6}{4}" -f's D','Runni','omain ','ng ','er','a','Us') -Value $true
+                                $Obj | Add-Member -MemberType NoteProperty -Name ('Ru'+'n'+'nin'+'g '+'as Domain User') -Value $true
                             }
                             Else
                             {
-                                $Obj | Add-Member -MemberType NoteProperty -Name ("{0}{6}{5}{2}{1}{4}{3}" -f'Runni','ain',' Dom','User',' ','g as','n') -Value $false
+                                $Obj | Add-Member -MemberType NoteProperty -Name ('Run'+'ning as Dom'+'a'+'in U'+'ser') -Value $false
                             }
                             $script:serviceAccounts += $Obj
                         }
@@ -11370,7 +11370,7 @@ Function Get-ADRDomainAccountsusedforServiceLogon
     {
         $script:serviceAccounts = @()
         [string[]] $warnings = @()
-        If ($Method -eq ("{0}{1}"-f'A','DWS'))
+        If ($Method -eq ('AD'+'WS'))
         {
             Try
             {
@@ -11378,7 +11378,7 @@ Function Get-ADRDomainAccountsusedforServiceLogon
             }
             Catch
             {
-                Write-Warning ("{0}{6}{5}{16}{15}{13}{2}{1}{14}{3}{10}{9}{8}{7}{4}{11}{12}" -f'[G','ServiceLo','susedfor','rror','omain','-','et','D','g ','gettin',' ',' Co','ntext','unt','gon] E','DRDomainAcco','A')
+                Write-Warning ('[Get-'+'ADRDomain'+'Ac'+'c'+'o'+'untsu'+'sed'+'f'+'orService'+'Logon'+'] Error g'+'etting '+'Do'+'main Cont'+'ext')
                 Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
                 Return $null
             }
@@ -11390,16 +11390,16 @@ Function Get-ADRDomainAccountsusedforServiceLogon
             Else
             {
                 $currentDomain = ""
-                Write-Warning ("{2}{5}{1}{9}{10}{0}{6}{3}{4}{8}{7}" -f 'ain co','r','Cu','b','e ','r','uld not ','.','retrieved','en','t Dom')
+                Write-Warning ('C'+'urre'+'nt Dom'+'ain c'+'o'+'ul'+'d n'+'ot be '+'ret'+'r'+'ieved.')
             }
 
             Try
             {
-                $ADComputers = Get-ADComputer -Filter { Enabled -eq $true -and OperatingSystem -Like ("{1}{2}{0}{3}"-f 'ows','*W','ind','*') } -Properties Name,DNSHostName,OperatingSystem
+                $ADComputers = Get-ADComputer -Filter { Enabled -eq $true -and OperatingSystem -Like ('*Window'+'s'+'*') } -Properties Name,DNSHostName,OperatingSystem
             }
             Catch
             {
-                Write-Warning ("{6}{0}{2}{1}{15}{12}{7}{5}{4}{9}{14}{16}{11}{13}{8}{3}{17}{10}{18}" -f 't-AD','om','RD',' O','Lo','dforService','[Ge','ntsuse','Computer','go','t','Win','ccou','dows ','n] Error while e','ainA','numerating ','bjec','s')
+                Write-Warning ('['+'Get-'+'A'+'D'+'R'+'Domai'+'n'+'Ac'+'countsu'+'se'+'d'+'f'+'orS'+'erv'+'iceLogon] '+'Erro'+'r '+'whi'+'le '+'en'+'ume'+'ratin'+'g'+' Wi'+'ndows Co'+'mput'+'er Objects')
                 Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
                 Return $null
             }
@@ -11409,7 +11409,7 @@ Function Get-ADRDomainAccountsusedforServiceLogon
                 # start data retrieval job for each server in the list
                 # use up to $Threads threads
                 $cnt = $([ADRecon.ADWSClass]::ObjectCount($ADComputers))
-                Write-Verbose ('['+'*] '+'Total'+' '+'W'+'in'+'dows '+'Ho'+'sts'+': '+"$cnt")
+                Write-Verbose ('[*'+'] '+'Tota'+'l'+' '+'W'+'indows'+' '+'Ho'+'st'+'s: '+"$cnt")
                 $icnt = 0
                 $ADComputers | ForEach-Object {
                     $StopWatch = [System.Diagnostics.StopWatch]::StartNew()
@@ -11420,7 +11420,7 @@ Function Get-ADRDomainAccountsusedforServiceLogon
 		                ++$icnt
 		                If ($StopWatch.Elapsed.TotalMilliseconds -ge 1000)
                         {
-                            Write-Progress -Activity ("{0}{3}{2}{1}{4}"-f'Re','om','rieving data fr','t',' servers') -Status "$("{0:N2}" -f (($icnt/$cnt*100),2)) % Complete:" -PercentComplete 100
+                            Write-Progress -Activity ('Re'+'t'+'rievin'+'g'+' d'+'ata'+' f'+'rom se'+'rvers') -Status "$("{0:N2}" -f (($icnt/$cnt*100),2)) % Complete:" -PercentComplete 100
                             $StopWatch.Reset()
                             $StopWatch.Start()
 		                }
@@ -11431,23 +11431,23 @@ Function Get-ADRDomainAccountsusedforServiceLogon
 
                 # process remaining jobs
 
-                Write-Progress -Activity ("{2}{1}{5}{3}{4}{0}"-f 'servers','ie','Retr','fr','om ','ving data ') -Status ("{7}{0}{5}{4}{3}{2}{1}{6}"-f't','nd jobs to complete..',' backgrou','r','ng fo','i','.','Wai') -PercentComplete 100
+                Write-Progress -Activity ('Re'+'tr'+'ie'+'vi'+'ng da'+'ta f'+'rom '+'ser'+'vers') -Status ('Wai'+'tin'+'g'+' for '+'ba'+'ckgro'+'und jobs to'+' co'+'mp'+'let'+'e..'+'.') -PercentComplete 100
                 Wait-Job -State Running -Timeout 30  | Out-Null
                 Get-Job -State Running | Stop-Job
                 processCompletedJobs
-                Write-Progress -Activity ("{0}{3}{1}{4}{5}{2}" -f'Ret','ving data ','rvers','rie','from s','e') -Completed -Status ("{0}{2}{1}" -f 'A',' Done','ll')
+                Write-Progress -Activity ('Retriev'+'i'+'ng data fr'+'om'+' s'+'erv'+'e'+'rs') -Completed -Status ('A'+'ll D'+'one')
             }
         }
 
-        If ($Method -eq ("{1}{0}" -f'P','LDA'))
+        If ($Method -eq ('LD'+'AP'))
         {
             $currentDomain = ([string]($objDomain.name)).toUpper()
 
             $objSearcher = New-Object System.DirectoryServices.DirectorySearcher $objDomain
             $ObjSearcher.PageSize = $PageSize
-            $ObjSearcher.Filter = ((("{3}{15}{1}{14}{7}{9}{0}{5}{8}{11}{10}{12}{2}{6}{13}{4}"-f '(!userAccountControl:1','Acc','tem=','(&','dows*))','.2.840.1135','*','e=80530','56','6369)','=2)','.1.4.803:','(operatingSys','Win','ountTyp','(sam')))
-            $ObjSearcher.PropertiesToLoad.AddRange((("{1}{0}" -f 'ame','n'),("{0}{1}{2}" -f'd','nshostna','me'),("{1}{3}{4}{2}{0}" -f'stem','o','ingsy','per','at')))
-            $ObjSearcher.SearchScope = ("{1}{2}{0}" -f'tree','S','ub')
+            $ObjSearcher.Filter = ('(&('+'s'+'amAccountType=8053'+'06'+'36'+'9)(!us'+'erAccountControl:1.'+'2.'+'840.113'+'55'+'6.1'+'.4.803:=2)(operatingSy'+'stem='+'*'+'Wi'+'ndows*))')
+            $ObjSearcher.PropertiesToLoad.AddRange((('na'+'me'),('d'+'n'+'sh'+'ostname'),('op'+'er'+'ating'+'syst'+'em')))
+            $ObjSearcher.SearchScope = ('Su'+'b'+'tree')
 
             Try
             {
@@ -11455,7 +11455,7 @@ Function Get-ADRDomainAccountsusedforServiceLogon
             }
             Catch
             {
-                Write-Warning ("{15}{14}{25}{4}{20}{21}{19}{8}{7}{6}{1}{0}{16}{10}{24}{5}{3}{26}{18}{17}{9}{23}{22}{2}{13}{11}{12}" -f'g','dforServiceLo','t','umerat','RD',' en','e','sus','nAccount','ndo','n] Error ','bject','s','er O','e','[G','o','i','W','i','om','a','mpu','ws Co','while','t-AD','ing ')
+                Write-Warning ('[Get-'+'ADRDom'+'a'+'in'+'Acco'+'untsus'+'edforService'+'Logon] Er'+'ror whi'+'le enu'+'merating Window'+'s Com'+'put'+'er'+' Ob'+'jects')
                 Write-Verbose "[EXCEPTION] $($_.Exception.Message) "
                 Return $null
             }
@@ -11466,7 +11466,7 @@ Function Get-ADRDomainAccountsusedforServiceLogon
                 # start data retrieval job for each server in the list
                 # use up to $Threads threads
                 $cnt = $([ADRecon.LDAPClass]::ObjectCount($ADComputers))
-                Write-Verbose ('[*'+'] '+'Tot'+'al'+' '+'Wind'+'ows'+' '+'Host'+'s'+': '+"$cnt")
+                Write-Verbose ('[*'+'] '+'Tot'+'al'+' '+'Win'+'dows'+' '+'Ho'+'sts:'+' '+"$cnt")
                 $icnt = 0
                 $ADComputers | ForEach-Object {
                     If( $_.Properties.dnshostname )
@@ -11476,7 +11476,7 @@ Function Get-ADRDomainAccountsusedforServiceLogon
 		                ++$icnt
 		                If ($StopWatch.Elapsed.TotalMilliseconds -ge 1000)
                         {
-		                    Write-Progress -Activity ("{5}{0}{4}{3}{6}{2}{1}"-f 'ie',' servers','rom','da','ving ','Retr','ta f') -Status "$("{0:N2}" -f (($icnt/$cnt*100),2)) % Complete:" -PercentComplete 100
+		                    Write-Progress -Activity ('Retri'+'ev'+'in'+'g data'+' fro'+'m server'+'s') -Status "$("{0:N2}" -f (($icnt/$cnt*100),2)) % Complete:" -PercentComplete 100
                             $StopWatch.Reset()
                             $StopWatch.Start()
 		                }
@@ -11486,11 +11486,11 @@ Function Get-ADRDomainAccountsusedforServiceLogon
                 }
 
                 # process remaining jobs
-                Write-Progress -Activity ("{4}{5}{0}{3}{2}{1}" -f'rieving data','s','server',' from ','Re','t') -Status ("{4}{8}{3}{1}{9}{7}{5}{6}{0}{10}{2}" -f'p',' ','..','ng','Wa','kground jobs to ','com','r bac','iti','fo','lete.') -PercentComplete 100
+                Write-Progress -Activity ('Retrievi'+'n'+'g'+' data'+' '+'from'+' '+'servers') -Status ('Waiti'+'ng '+'for b'+'a'+'ckg'+'round jobs to '+'com'+'pl'+'ete...') -PercentComplete 100
                 Wait-Job -State Running -Timeout 30  | Out-Null
                 Get-Job -State Running | Stop-Job
                 processCompletedJobs
-                Write-Progress -Activity ("{1}{6}{4}{3}{5}{0}{2}"-f 'm se','Re','rvers','fr','ving data ','o','trie') -Completed -Status ("{0}{1}{2}"-f'Al','l Don','e')
+                Write-Progress -Activity ('Retrie'+'ving data f'+'ro'+'m '+'servers') -Completed -Status ('All'+' D'+'one')
             }
         }
 
@@ -11532,39 +11532,39 @@ Function Remove-EmptyADROutputDir
 
     Switch ($OutputType)
     {
-        'CSV'
+        ('CS'+'V')
         {
-            $CSVPath  = -join($ADROutputDir,'\',("{0}{1}{2}"-f'C','SV-File','s'))
+            $CSVPath  = -join($ADROutputDir,'\',('CSV'+'-Fil'+'es'))
             If (!(Test-Path -Path $CSVPath\*))
             {
-                Write-Verbose ('R'+'emoved'+' '+'Em'+'pty '+'Dire'+'ctor'+'y '+"$CSVPath")
+                Write-Verbose ('Re'+'mo'+'ved '+'Emp'+'ty '+'Dir'+'ec'+'tory '+"$CSVPath")
                 Remove-Item $CSVPath
             }
         }
-        'XML'
+        ('X'+'ML')
         {
-            $XMLPath  = -join($ADROutputDir,'\',("{1}{0}{2}" -f 'L-Fil','XM','es'))
+            $XMLPath  = -join($ADROutputDir,'\',('XM'+'L-File'+'s'))
             If (!(Test-Path -Path $XMLPath\*))
             {
-                Write-Verbose ('R'+'emo'+'ved '+'Empt'+'y'+' '+'Direc'+'to'+'ry '+"$XMLPath")
+                Write-Verbose ('Rem'+'ov'+'ed '+'Emp'+'ty '+'Di'+'recto'+'r'+'y '+"$XMLPath")
                 Remove-Item $XMLPath
             }
         }
-        ("{1}{0}"-f 'N','JSO')
+        ('J'+'SON')
         {
-            $JSONPath  = -join($ADROutputDir,'\',("{2}{1}{0}"-f '-Files','ON','JS'))
+            $JSONPath  = -join($ADROutputDir,'\',('JS'+'ON'+'-'+'Files'))
             If (!(Test-Path -Path $JSONPath\*))
             {
-                Write-Verbose ('Remove'+'d'+' '+'Empty'+' '+'Direc'+'t'+'or'+'y '+"$JSONPath")
+                Write-Verbose ('Re'+'mo'+'ved '+'Em'+'pty '+'Dir'+'ecto'+'ry '+"$JSONPath")
                 Remove-Item $JSONPath
             }
         }
-        ("{0}{1}"-f'HT','ML')
+        ('HT'+'ML')
         {
-            $HTMLPath  = -join($ADROutputDir,'\',("{1}{2}{3}{0}" -f '-Files','HT','M','L'))
+            $HTMLPath  = -join($ADROutputDir,'\',('H'+'TML-Fil'+'es'))
             If (!(Test-Path -Path $HTMLPath\*))
             {
-                Write-Verbose ('Re'+'move'+'d '+'Emp'+'ty '+'Dire'+'ct'+'or'+'y '+"$HTMLPath")
+                Write-Verbose ('Re'+'move'+'d '+'E'+'m'+'pty '+'D'+'i'+'r'+'ectory '+"$HTMLPath")
                 Remove-Item $HTMLPath
             }
         }
@@ -11572,7 +11572,7 @@ Function Remove-EmptyADROutputDir
     If (!(Test-Path -Path $ADROutputDir\*))
     {
         Remove-Item $ADROutputDir
-        Write-Verbose ('Remov'+'e'+'d '+'Em'+'pty '+'Direc'+'tor'+'y '+"$ADROutputDir")
+        Write-Verbose ('Remove'+'d'+' '+'Emp'+'ty'+' '+'D'+'irectory'+' '+"$ADROutputDir")
     }
 }
 
@@ -11634,7 +11634,7 @@ Function Get-ADRAbout
 
     $AboutADRecon = @()
 
-    $Version = $Method + ("{1}{2}{0}" -f 'sion',' Ve','r')
+    $Version = $Method + (' Vers'+'i'+'on')
 
     If ($Credential -ne [Management.Automation.PSCredential]::Empty)
     {
@@ -11645,13 +11645,13 @@ Function Get-ADRAbout
         $Username = $([Environment]::UserName)
     }
 
-    $ObjValues = @(("{1}{0}"-f'ate','D'), $($date), ("{0}{2}{1}"-f 'A','con','DRe'), ("{7}{5}{6}{3}{8}{2}{1}{0}{9}{4}"-f'on','c','re','co','con',':','//github.','https','m/ad','/ADRe'), $Version, $($ADReconVersion), ("{3}{2}{0}{1}"-f 'u','ser','s ','Ran a'), $Username, ("{2}{3}{0}{1}" -f'ute','r','Ran on ','comp'), $RanonComputer, ("{0}{2}{3}{1}{4}" -f 'Exec','e (mins','u','tion Tim',')'), $($TotalTime))
+    $ObjValues = @(('Dat'+'e'), $($date), ('ADReco'+'n'), ('https://githu'+'b'+'.com/adreco'+'n/'+'A'+'DRecon'), $Version, $($ADReconVersion), ('R'+'an a'+'s user'), $Username, ('Ran '+'on comput'+'e'+'r'), $RanonComputer, ('E'+'x'+'ecut'+'ion T'+'ime (mi'+'ns)'), $($TotalTime))
 
     For ($i = 0; $i -lt $($ObjValues.Count); $i++)
     {
         $Obj = New-Object PSObject
-        $Obj | Add-Member -MemberType NoteProperty -Name ("{2}{1}{0}"-f'ry','tego','Ca') -Value $ObjValues[$i]
-        $Obj | Add-Member -MemberType NoteProperty -Name ("{1}{0}"-f'ue','Val') -Value $ObjValues[$i+1]
+        $Obj | Add-Member -MemberType NoteProperty -Name ('C'+'ategor'+'y') -Value $ObjValues[$i]
+        $Obj | Add-Member -MemberType NoteProperty -Name ('Valu'+'e') -Value $ObjValues[$i+1]
         $i++
         $AboutADRecon += $Obj
     }
@@ -11715,8 +11715,8 @@ Function Invoke-ADRecon
         [string] $GenExcel,
 
         [Parameter(Mandatory = $false)]
-        [ValidateSet({"{0}{1}" -f 'A','DWS'}, {"{0}{1}" -f 'L','DAP'})]
-        [string] $Method = ("{0}{1}"-f'ADW','S'),
+        [ValidateSet(('A'+'DWS'), ('LDA'+'P'))]
+        [string] $Method = ('ADW'+'S'),
 
         [Parameter(Mandatory = $true)]
         [array] $Collect,
@@ -11749,14 +11749,14 @@ Function Invoke-ADRecon
         [bool] $UseAltCreds = $false
     )
 
-    [string] $ADReconVersion = ("{1}{0}" -f '.24','v1')
-    Write-Output ('['+'*] '+'ADRecon'+' '+"$ADReconVersion "+'by'+' '+'Pr'+'ashan'+'t '+'M'+'ahaj'+'an '+'('+'@pr'+'a'+'sha'+'nt3535)')
+    [string] $ADReconVersion = ('v1.'+'24')
+    Write-Output ('[*]'+' '+'ADRe'+'con'+' '+"$ADReconVersion "+'b'+'y '+'Pra'+'sh'+'a'+'nt '+'Mahaja'+'n '+'('+'@prashan'+'t3'+'535)')
 
     If ($GenExcel)
     {
         If (!(Test-Path $GenExcel))
         {
-            Write-Output ("{5}{4}{9}{8}{10}{6}{12}{7}{0}{11}{2}{3}{1}"-f'Pa','ing',' ...',' Exit','I','[','n] ','nvalid ','ke-','nvo','ADReco','th','I')
+            Write-Output ('['+'Inv'+'o'+'k'+'e-A'+'DRecon'+']'+' Invalid '+'Pat'+'h'+' ... Exiting')
             Return $null
         }
         Export-ADRExcel -ExcelPath $GenExcel
@@ -11765,7 +11765,7 @@ Function Invoke-ADRecon
 
     # Suppress verbose output
     $SaveVerbosePreference = $script:VerbosePreference
-    $script:VerbosePreference = ("{0}{1}{2}{3}{4}"-f 'S','i','lently','Co','ntinue')
+    $script:VerbosePreference = ('Silen'+'tl'+'yCo'+'nt'+'in'+'ue')
     Try
     {
         If ($PSVersionTable.PSVersion.Major -ne 2)
@@ -11793,21 +11793,21 @@ Function Invoke-ADRecon
     {
         0
         {
-            [string] $computerrole = ("{0}{1}{3}{2}" -f 'Standalone ','W','tation','orks')
+            [string] $computerrole = ('Standal'+'one '+'W'+'orkstatio'+'n')
             $Env:ADPS_LoadDefaultDrive = 0
             $UseAltCreds = $true
         }
-        1 { [string] $computerrole = ("{3}{4}{2}{1}{0}" -f'ion','orkstat','r W','Memb','e') }
+        1 { [string] $computerrole = ('Member W'+'or'+'ks'+'t'+'ation') }
         2
         {
-            [string] $computerrole = ("{2}{0}{3}{1}" -f'nd','ver','Sta','alone Ser')
+            [string] $computerrole = ('S'+'t'+'anda'+'lone Ser'+'ver')
             $UseAltCreds = $true
             $Env:ADPS_LoadDefaultDrive = 0
         }
-        3 { [string] $computerrole = ("{0}{1}{2}{3}"-f 'Member ','S','er','ver') }
-        4 { [string] $computerrole = ("{7}{3}{4}{6}{0}{2}{5}{1}" -f 'C','roller','on','ackup',' D','t','omain ','B') }
-        5 { [string] $computerrole = ("{2}{0}{4}{1}{3}"-f 'imary ','omain Control','Pr','ler','D') }
-        default { Write-Output ("{2}{1}{5}{3}{7}{8}{4}{6}{0}"-f 'be identified.','mput','Co','u','o','er Role co','t ','ld ','n') }
+        3 { [string] $computerrole = ('Member S'+'e'+'r'+'ver') }
+        4 { [string] $computerrole = ('Bac'+'ku'+'p '+'Do'+'main'+' '+'Co'+'ntroller') }
+        5 { [string] $computerrole = ('Pr'+'ima'+'r'+'y Do'+'mai'+'n Control'+'ler') }
+        default { Write-Output ('Computer '+'Ro'+'le c'+'oul'+'d n'+'ot b'+'e i'+'dent'+'ified.') }
     }
 
     $RanonComputer = "$($computer.domain)\$([Environment]::MachineName) - $($computerrole) "
@@ -11819,7 +11819,7 @@ Function Invoke-ADRecon
     If (($DomainController -ne "") -or ($Credential -ne [Management.Automation.PSCredential]::Empty))
     {
         # Disable loading of default drive on member
-        If (($Method -eq ("{0}{1}"-f 'AD','WS')) -and (-Not $UseAltCreds))
+        If (($Method -eq ('A'+'DWS')) -and (-Not $UseAltCreds))
         {
             $Env:ADPS_LoadDefaultDrive = 0
         }
@@ -11827,7 +11827,7 @@ Function Invoke-ADRecon
     }
 
     # Import ActiveDirectory module
-    If ($Method -eq ("{1}{0}"-f'S','ADW'))
+    If ($Method -eq ('ADW'+'S'))
     {
         If (Get-Module -ListAvailable -Name ActiveDirectory)
         {
@@ -11835,7 +11835,7 @@ Function Invoke-ADRecon
             {
                 # Suppress verbose output on module import
                 $SaveVerbosePreference = $script:VerbosePreference;
-                $script:VerbosePreference = ("{1}{0}{2}"-f'entlyContin','Sil','ue');
+                $script:VerbosePreference = ('Sil'+'entlyContin'+'ue');
                 Import-Module ActiveDirectory -WarningAction Stop -ErrorAction Stop | Out-Null
                 If ($SaveVerbosePreference)
                 {
@@ -11845,8 +11845,8 @@ Function Invoke-ADRecon
             }
             Catch
             {
-                Write-Warning ("{17}{19}{11}{8}{9}{2}{13}{3}{7}{0}{4}{1}{14}{10}{5}{15}{12}{16}{18}{6}" -f'T (','m','eDir',' Module from R','Re','m','inuing with LDAP','SA','g Act','iv','erver Ad','] Error importin',') ','ectory','ote S','inistration Tools','... C','[Invo','ont','ke-ADRecon')
-                $Method = ("{1}{0}"-f 'AP','LD')
+                Write-Warning ('[In'+'voke-ADRecon'+'] Err'+'or imp'+'ort'+'i'+'n'+'g A'+'ct'+'iveDire'+'ctory '+'Mod'+'u'+'le'+' from'+' RSAT (Rem'+'o'+'te Server'+' '+'A'+'dmini'+'str'+'ation'+' To'+'ols'+') ... Continui'+'ng wit'+'h L'+'DAP')
+                $Method = ('LDA'+'P')
                 If ($SaveVerbosePreference)
                 {
                     $script:VerbosePreference = $SaveVerbosePreference
@@ -11857,22 +11857,22 @@ Function Invoke-ADRecon
         }
         Else
         {
-            Write-Warning (("{20}{4}{29}{11}{0}{19}{6}{15}{28}{23}{22}{34}{21}{33}{24}{26}{30}{17}{35}{13}{3}{2}{25}{5}{7}{8}{18}{14}{32}{1}{27}{16}{31}{10}{12}{9}" -f 'veDir','led ... Co','a','tr','o','ools','ct',') is',' ','P','i','ti','th LDA','s','s','o','u','i','not in','e','[Inv','AT (R','o','r',' Se','tion T','rver','ntin','ry Module f','ke-ADRecon] Ac',' Adm','ing w','tal','emote','m RS','ni'))
-            $Method = ("{1}{0}"-f'P','LDA')
+            Write-Warning ('[Invok'+'e-A'+'DRecon] '+'A'+'ctiveD'+'ir'+'e'+'ctory Mo'+'du'+'le'+' '+'from RS'+'AT (Rem'+'ot'+'e '+'Server '+'A'+'dmin'+'ist'+'ration'+' '+'Tool'+'s) i'+'s'+' not installed '+'... '+'Con'+'tinuing'+' with LDA'+'P')
+            $Method = ('L'+'DAP')
         }
     }
 
     # Compile C# code
     # Suppress Debug output
     $SaveDebugPreference = $script:DebugPreference
-    $script:DebugPreference = ("{1}{3}{0}{2}" -f 'on','Sile','tinue','ntlyC')
+    $script:DebugPreference = ('Sile'+'ntl'+'yCo'+'nti'+'nue')
     Try
     {
-        $Advapi32 = Add-Type -MemberDefinition $Advapi32Def -Name ("{0}{1}{2}" -f 'A','dvapi','32') -Namespace ADRecon -PassThru
-        $Kernel32 = Add-Type -MemberDefinition $Kernel32Def -Name ("{2}{0}{1}"-f 'nel','32','Ker') -Namespace ADRecon -PassThru
+        $Advapi32 = Add-Type -MemberDefinition $Advapi32Def -Name ('Advapi'+'3'+'2') -Namespace ADRecon -PassThru
+        $Kernel32 = Add-Type -MemberDefinition $Kernel32Def -Name ('Ke'+'rn'+'el32') -Namespace ADRecon -PassThru
         #Add-Type -TypeDefinition $PingCastleSMBScannerSource
         $CLR = ([System.Reflection.Assembly]::GetExecutingAssembly().ImageRuntimeVersion)[1]
-        If ($Method -eq ("{1}{0}" -f 'S','ADW'))
+        If ($Method -eq ('A'+'DWS'))
         {
             <#
             If ($PSVersionTable.PSEdition -eq "Core")
@@ -11921,35 +11921,35 @@ Function Invoke-ADRecon
             If ($CLR -eq "4")
             {
                 Add-Type -TypeDefinition $($ADWSSource+$PingCastleSMBScannerSource) -ReferencedAssemblies ([System.String[]]@(
-                    ([System.Reflection.Assembly]::LoadWithPartialName(("{7}{2}{6}{1}{9}{5}{3}{8}{0}{4}"-f 'ageme','ve','icroso','.Ma','nt','irectory','ft.Acti','M','n','D'))).Location
-                    ([System.Reflection.Assembly]::LoadWithPartialName(("{1}{3}{2}{5}{0}{4}{6}"-f 'ervi','System.Direc','y','tor','c','S','es'))).Location
-                    ([System.Reflection.Assembly]::LoadWithPartialName(("{0}{3}{1}{2}"-f 'System.','M','L','X'))).Location
+                    ([System.Reflection.Assembly]::LoadWithPartialName(('Micr'+'os'+'oft'+'.A'+'ctiveD'+'irectory.'+'Man'+'age'+'ment'))).Location
+                    ([System.Reflection.Assembly]::LoadWithPartialName(('System.Di'+'rec'+'toryS'+'ervic'+'es'))).Location
+                    ([System.Reflection.Assembly]::LoadWithPartialName(('Sys'+'tem'+'.XML'))).Location
                 ))
             }
             Else
             {
                 Add-Type -TypeDefinition $($ADWSSource+$PingCastleSMBScannerSource) -ReferencedAssemblies ([System.String[]]@(
-                    ([System.Reflection.Assembly]::LoadWithPartialName(("{6}{4}{8}{9}{2}{3}{5}{0}{7}{1}" -f'ire','ment','t.A','ctiv','i','eD','M','ctory.Manage','cros','of'))).Location
-                    ([System.Reflection.Assembly]::LoadWithPartialName(("{0}{1}{5}{4}{3}{2}"-f'Syst','em','ices','v','ctorySer','.Dire'))).Location
-                    ([System.Reflection.Assembly]::LoadWithPartialName(("{0}{2}{1}"-f 'S','em.XML','yst'))).Location
+                    ([System.Reflection.Assembly]::LoadWithPartialName(('Mi'+'crosoft.Ac'+'t'+'iveDirec'+'to'+'r'+'y.M'+'an'+'ag'+'emen'+'t'))).Location
+                    ([System.Reflection.Assembly]::LoadWithPartialName(('System.D'+'i'+'r'+'ecto'+'rySe'+'r'+'vice'+'s'))).Location
+                    ([System.Reflection.Assembly]::LoadWithPartialName(('S'+'yst'+'em.XML'))).Location
                 )) -Language CSharpVersion3
             }
         }
 
-        If ($Method -eq ("{0}{1}"-f 'LD','AP'))
+        If ($Method -eq ('LD'+'AP'))
         {
             If ($CLR -eq "4")
             {
                 Add-Type -TypeDefinition $($LDAPSource+$PingCastleSMBScannerSource) -ReferencedAssemblies ([System.String[]]@(
-                    ([System.Reflection.Assembly]::LoadWithPartialName(("{0}{5}{4}{2}{6}{3}{1}"-f'Syst','es','ry','ic','.Directo','em','Serv'))).Location
-                    ([System.Reflection.Assembly]::LoadWithPartialName(("{2}{0}{1}" -f 'em.','XML','Syst'))).Location
+                    ([System.Reflection.Assembly]::LoadWithPartialName(('S'+'yst'+'em.Di'+'rectorySe'+'rv'+'ices'))).Location
+                    ([System.Reflection.Assembly]::LoadWithPartialName(('Syste'+'m'+'.XML'))).Location
                 ))
             }
             Else
             {
                 Add-Type -TypeDefinition $($LDAPSource+$PingCastleSMBScannerSource) -ReferencedAssemblies ([System.String[]]@(
-                    ([System.Reflection.Assembly]::LoadWithPartialName(("{2}{1}{0}{5}{6}{4}{7}{3}" -f 'rect','m.Di','Syste','ces','e','ory','S','rvi'))).Location
-                    ([System.Reflection.Assembly]::LoadWithPartialName(("{1}{2}{3}{0}"-f 'ML','Sys','tem.','X'))).Location
+                    ([System.Reflection.Assembly]::LoadWithPartialName(('Syste'+'m.Dir'+'ect'+'or'+'yServices'))).Location
+                    ([System.Reflection.Assembly]::LoadWithPartialName(('System.X'+'M'+'L'))).Location
                 )) -Language CSharpVersion3
             }
         }
@@ -11967,14 +11967,14 @@ Function Invoke-ADRecon
 
     # Allow running using RUNAS from a non-domain joined machine
     # runas /user:<Domain FQDN>\<Username> /netonly powershell.exe
-    If (($Method -eq ("{0}{1}" -f'LD','AP')) -and ($UseAltCreds) -and ($DomainController -eq "") -and ($Credential -eq [Management.Automation.PSCredential]::Empty))
+    If (($Method -eq ('L'+'DAP')) -and ($UseAltCreds) -and ($DomainController -eq "") -and ($Credential -eq [Management.Automation.PSCredential]::Empty))
     {
         Try
         {
             $objDomain = [ADSI]""
             If(!($objDomain.name))
             {
-                Write-Verbose ("{1}{7}{10}{9}{8}{2}{4}{6}{3}{5}{0}"-f'sful','[','R','AP bin','UNAS','d Unsucces',' Check, LD','Inv','on] ','ke-ADRec','o')
+                Write-Verbose ('[Invo'+'k'+'e'+'-'+'ADRecon'+'] '+'RUNAS '+'Check,'+' L'+'DA'+'P bind Unsu'+'ccessful')
             }
             $UseAltCreds = $false
             $objDomain.Dispose()
@@ -12002,50 +12002,50 @@ Function Invoke-ADRecon
         }
         Else
         {
-            Write-Output ((("{15}{4}{5}{0}{1}{10}{6}{11}{7}{18}{3}{9}{2}{12}{13}{8}{14}{17}{16}"-f't-','Help .z',' a','-E','n ','Ge','QA','n','al ','xamples for','c','DReco','dditi','on','inf','Ru','n.','ormatio','.ps1 '))  -CrEpLACe'zcQ',[cHar]92)
-            Write-Output ("{9}{7}{0}{3}{12}{5}{6}{8}{1}{11}{4}{2}{10}" -f't','ar','t','he -D','e','mainController and ','-','voke-ADRecon] Use ','Credential p','[In','er.','am','o')`n
+            Write-Output (('Run Get'+'-Help .'+'fJ'+'DADR'+'e'+'con.ps1'+' -'+'Examp'+'l'+'e'+'s '+'for addi'+'ti'+'onal '+'inf'+'orm'+'ati'+'on.').rePlace('fJD','\'))
+            Write-Output ('['+'I'+'n'+'voke-A'+'D'+'Recon]'+' Use'+' '+'th'+'e -D'+'omai'+'nCo'+'ntrol'+'ler'+' and -'+'Credentia'+'l'+' param'+'eter.')`n
             Return $null
         }
     }
 
-    Write-Output ('[*]'+' '+'Runni'+'ng'+' '+'o'+'n '+"$RanonComputer")
+    Write-Output ('[*]'+' '+'R'+'unnin'+'g '+'o'+'n '+"$RanonComputer")
 
     Switch ($Collect)
     {
-        ("{1}{0}"-f't','Fores') { $ADRForest = $true }
-        ("{1}{0}{2}" -f'a','Dom','in') {$ADRDomain = $true }
-        ("{2}{1}{0}" -f'sts','u','Tr') { $ADRTrust = $true }
-        ("{0}{1}" -f 'Si','tes') { $ADRSite = $true }
-        ("{1}{0}" -f 'ets','Subn') { $ADRSubnet = $true }
-        ("{1}{3}{4}{0}{2}" -f 'Histor','S','y','che','ma') { $ADRSchemaHistory = $true }
-        ("{2}{0}{1}"-f 'a','sswordPolicy','P') { $ADRPasswordPolicy = $true }
-        ("{0}{4}{2}{3}{1}" -f'FineGra','sswordPolicy','edP','a','in') { $ADRFineGrainedPasswordPolicy = $true }
-        ("{3}{0}{4}{2}{1}"-f'm','lers','rol','Do','ainCont') { $ADRDomainControllers = $true }
-        ("{0}{1}"-f'User','s') { $ADRUsers = $true }
-        ("{1}{0}" -f'rSPNs','Use') { $ADRUserSPNs = $true }
-        ("{5}{3}{4}{0}{2}{1}" -f'b','tes','u','rdAtt','ri','Passwo') { $ADRPasswordAttributes = $true }
-        ("{1}{0}{2}" -f'up','Gro','s') {$ADRGroups = $true }
-        ("{1}{2}{0}{3}"-f 'Cha','Gr','oup','nges') { $ADRGroupChanges = $true }
-        ("{1}{2}{3}{0}"-f 'bers','Gro','upM','em') { $ADRGroupMembers = $true }
-        'OUs' { $ADROUs = $true }
-        ("{1}{0}"-f 's','GPO') { $ADRGPOs = $true }
-        ("{2}{0}{1}" -f'PL','inks','g') { $ADRgPLinks = $true }
-        ("{0}{1}{2}"-f'DNSZon','e','s') { $ADRDNSZones = $true }
-        ("{2}{0}{1}" -f 'c','ords','DNSRe') { $ADRDNSRecords = $true }
-        ("{2}{1}{0}" -f 'ers','int','Pr') { $ADRPrinters = $true }
-        ("{0}{2}{1}"-f'Compu','s','ter') { $ADRComputers = $true }
-        ("{2}{3}{1}{0}"-f'PNs','rS','Co','mpute') { $ADRComputerSPNs = $true }
-        ("{1}{0}"-f'S','LAP') { $ADRLAPS = $true }
-        ("{0}{3}{1}{2}"-f'Bit','ke','r','Loc') { $ADRBitLocker = $true }
-        ("{0}{1}"-f'A','CLs') { $ADRACLs = $true }
-        ("{0}{1}{2}" -f 'GPOR','epo','rt')
+        ('Fores'+'t') { $ADRForest = $true }
+        ('D'+'oma'+'in') {$ADRDomain = $true }
+        ('T'+'rusts') { $ADRTrust = $true }
+        ('Si'+'tes') { $ADRSite = $true }
+        ('Su'+'bne'+'ts') { $ADRSubnet = $true }
+        ('Sc'+'h'+'emaHi'+'story') { $ADRSchemaHistory = $true }
+        ('Passw'+'or'+'dPol'+'icy') { $ADRPasswordPolicy = $true }
+        ('FineG'+'raine'+'dPas'+'swordPo'+'licy') { $ADRFineGrainedPasswordPolicy = $true }
+        ('D'+'oma'+'i'+'nCon'+'troll'+'ers') { $ADRDomainControllers = $true }
+        ('Us'+'ers') { $ADRUsers = $true }
+        ('UserSP'+'N'+'s') { $ADRUserSPNs = $true }
+        ('Passwo'+'rdA'+'ttr'+'i'+'butes') { $ADRPasswordAttributes = $true }
+        ('G'+'roups') {$ADRGroups = $true }
+        ('Group'+'Ch'+'ang'+'es') { $ADRGroupChanges = $true }
+        ('G'+'roupMemb'+'er'+'s') { $ADRGroupMembers = $true }
+        ('O'+'Us') { $ADROUs = $true }
+        ('GPO'+'s') { $ADRGPOs = $true }
+        ('g'+'P'+'Links') { $ADRgPLinks = $true }
+        ('DNS'+'Zones') { $ADRDNSZones = $true }
+        ('D'+'NS'+'Reco'+'rds') { $ADRDNSRecords = $true }
+        ('P'+'rin'+'ters') { $ADRPrinters = $true }
+        ('Co'+'mputer'+'s') { $ADRComputers = $true }
+        ('Compu'+'ter'+'SP'+'Ns') { $ADRComputerSPNs = $true }
+        ('L'+'APS') { $ADRLAPS = $true }
+        ('B'+'itLocker') { $ADRBitLocker = $true }
+        ('ACL'+'s') { $ADRACLs = $true }
+        ('G'+'POR'+'eport')
         {
             $ADRGPOReport = $true
             $ADRCreate = $true
         }
-        ("{1}{2}{0}" -f'st','Kerber','oa') { $ADRKerberoast = $true }
-        ("{1}{5}{3}{4}{0}{2}"-f'dforSe','Doma','rviceLogon','nAc','countsuse','i') { $ADRDomainAccountsusedforServiceLogon = $true }
-        ("{0}{2}{1}" -f'D','fault','e')
+        ('Ker'+'b'+'eroast') { $ADRKerberoast = $true }
+        ('DomainAcc'+'ou'+'ntsuse'+'dfo'+'rSe'+'rviceLogon') { $ADRDomainAccountsusedforServiceLogon = $true }
+        ('D'+'efault')
         {
             $ADRForest = $true
             $ADRDomain = $true
@@ -12077,42 +12077,42 @@ Function Invoke-ADRecon
             #$ADRKerberoast = $true
             #$ADRDomainAccountsusedforServiceLogon = $true
 
-            If ($OutputType -eq ("{1}{0}"-f'efault','D'))
+            If ($OutputType -eq ('De'+'faul'+'t'))
             {
-                [array] $OutputType = "CSV",("{0}{1}"-f'Exc','el')
+                [array] $OutputType = ('C'+'SV'),('Exc'+'el')
             }
         }
     }
 
     Switch ($OutputType)
     {
-        ("{1}{0}"-f 'UT','STDO') { $ADRSTDOUT = $true }
-        'CSV'
+        ('STDO'+'UT') { $ADRSTDOUT = $true }
+        ('CS'+'V')
         {
             $ADRCSV = $true
             $ADRCreate = $true
         }
-        'XML'
+        ('XM'+'L')
         {
             $ADRXML = $true
             $ADRCreate = $true
         }
-        ("{0}{1}" -f'JS','ON')
+        ('J'+'SON')
         {
             $ADRJSON = $true
             $ADRCreate = $true
         }
-        ("{1}{0}" -f 'TML','H')
+        ('HTM'+'L')
         {
             $ADRHTML = $true
             $ADRCreate = $true
         }
-        ("{1}{0}"-f 'el','Exc')
+        ('Ex'+'cel')
         {
             $ADRExcel = $true
             $ADRCreate = $true
         }
-        'All'
+        ('A'+'ll')
         {
             #$ADRSTDOUT = $true
             $ADRCSV = $true
@@ -12121,11 +12121,11 @@ Function Invoke-ADRecon
             $ADRHTML = $true
             $ADRExcel = $true
             $ADRCreate = $true
-            [array] $OutputType = "CSV","XML",("{0}{1}"-f'JS','ON'),("{1}{0}" -f 'ML','HT'),("{1}{0}" -f'xcel','E')
+            [array] $OutputType = ('C'+'SV'),('XM'+'L'),('J'+'SON'),('HTM'+'L'),('Exce'+'l')
         }
-        ("{1}{2}{0}"-f 'lt','De','fau')
+        ('Def'+'ault')
         {
-            [array] $OutputType = {"{0}{1}"-f 'STD','OUT'}
+            [array] $OutputType = ('S'+'TDOUT')
             $ADRSTDOUT = $true
         }
     }
@@ -12133,7 +12133,7 @@ Function Invoke-ADRecon
     If ( ($ADRExcel) -and (-Not $ADRCSV) )
     {
         $ADRCSV = $true
-        [array] $OutputType += "CSV"
+        [array] $OutputType += ('C'+'SV')
     }
 
     $returndir = Get-Location
@@ -12147,20 +12147,20 @@ Function Invoke-ADRecon
             New-Item $ADROutputDir -type directory | Out-Null
             If (!(Test-Path $ADROutputDir))
             {
-                Write-Output ("{6}{9}{2}{3}{5}{7}{0}{1}{8}{4}" -f 'put','D','on] Error,',' in','.. Exiting','v','[Inv','alid Out','ir Path .','oke-ADRec')
+                Write-Output ('[I'+'nvoke-ADR'+'econ'+']'+' Error'+', in'+'va'+'lid Out'+'pu'+'tDir'+' '+'Path ... E'+'xi'+'ting')
                 Return $null
             }
         }
         $ADROutputDir = $((Convert-Path $ADROutputDir).TrimEnd("\"))
-        Write-Verbose ('[*]'+' '+'Out'+'put '+'Direct'+'o'+'ry: '+"$ADROutputDir")
+        Write-Verbose ('[*'+'] '+'Out'+'put'+' '+'Direc'+'tory:'+' '+"$ADROutputDir")
     }
     ElseIf ($ADRCreate)
     {
-        $ADROutputDir =  -join($returndir,'\',("{0}{3}{1}{2}"-f 'ADReco','Re','port-','n-'),$(Get-Date -UFormat %Y%m%d%H%M%S))
+        $ADROutputDir =  -join($returndir,'\',('ADR'+'ec'+'on-Repo'+'r'+'t-'),$(Get-Date -UFormat %Y%m%d%H%M%S))
         New-Item $ADROutputDir -type directory | Out-Null
         If (!(Test-Path $ADROutputDir))
         {
-            Write-Output ("{2}{15}{5}{17}{9}{8}{6}{0}{13}{12}{3}{14}{4}{1}{7}{11}{16}{10}"-f'ror, coul','d','[',' crea','put ','e',' Er','irec','n]','co','y','t','not','d ','te out','Invok','or','-ADRe')
+            Write-Output ('[In'+'v'+'oke'+'-A'+'DRecon] Error, could'+' not cr'+'ea'+'te'+' o'+'utput '+'directory')
             Return $null
         }
         $ADROutputDir = $((Convert-Path $ADROutputDir).TrimEnd("\"))
@@ -12173,11 +12173,11 @@ Function Invoke-ADRecon
 
     If ($ADRCSV)
     {
-        $CSVPath = [System.IO.DirectoryInfo] -join($ADROutputDir,'\',("{1}{2}{0}"-f'iles','C','SV-F'))
+        $CSVPath = [System.IO.DirectoryInfo] -join($ADROutputDir,'\',('C'+'SV-Fi'+'les'))
         New-Item $CSVPath -type directory | Out-Null
         If (!(Test-Path $CSVPath))
         {
-            Write-Output ("{5}{0}{1}{6}{9}{10}{2}{7}{8}{4}{3}" -f 'oke-ADRecon] E','r','a','directory','ut ','[Inv','ror, could','te',' outp',' not cr','e')
+            Write-Output ('[Invoke-'+'ADRecon] E'+'rr'+'or'+', cou'+'l'+'d not create'+' '+'output '+'directory')
             Return $null
         }
         Remove-Variable ADRCSV
@@ -12185,11 +12185,11 @@ Function Invoke-ADRecon
 
     If ($ADRXML)
     {
-        $XMLPath = [System.IO.DirectoryInfo] -join($ADROutputDir,'\',("{1}{0}{2}"-f 'L-File','XM','s'))
+        $XMLPath = [System.IO.DirectoryInfo] -join($ADROutputDir,'\',('XML-'+'Files'))
         New-Item $XMLPath -type directory | Out-Null
         If (!(Test-Path $XMLPath))
         {
-            Write-Output ("{4}{14}{0}{1}{11}{9}{13}{8}{16}{10}{15}{12}{3}{6}{7}{2}{5}" -f 'k','e-A','ctor','utput ','[Inv','y','di','re','uld n','Er',' ','DRecon] ','eate o','ror, co','o','cr','ot')
+            Write-Output ('[Inv'+'oke-A'+'D'+'Recon]'+' Error,'+' co'+'uld no'+'t'+' '+'create'+' ou'+'tp'+'ut dire'+'ctory')
             Return $null
         }
         Remove-Variable ADRXML
@@ -12197,11 +12197,11 @@ Function Invoke-ADRecon
 
     If ($ADRJSON)
     {
-        $JSONPath = [System.IO.DirectoryInfo] -join($ADROutputDir,'\',("{2}{1}{0}" -f '-Files','SON','J'))
+        $JSONPath = [System.IO.DirectoryInfo] -join($ADROutputDir,'\',('JSON'+'-'+'F'+'iles'))
         New-Item $JSONPath -type directory | Out-Null
         If (!(Test-Path $JSONPath))
         {
-            Write-Output ("{7}{8}{2}{6}{10}{0}{5}{9}{4}{1}{3}"-f'oul','irect','-ADRecon] ','ory',' d','d not c','Error','[','Invoke','reate output',', c')
+            Write-Output ('['+'In'+'vo'+'ke-AD'+'Recon] Er'+'ror, co'+'uld no'+'t'+' create '+'outpu'+'t'+' dir'+'ect'+'ory')
             Return $null
         }
         Remove-Variable ADRJSON
@@ -12209,18 +12209,18 @@ Function Invoke-ADRecon
 
     If ($ADRHTML)
     {
-        $HTMLPath = [System.IO.DirectoryInfo] -join($ADROutputDir,'\',("{2}{1}{0}"-f 'iles','-F','HTML'))
+        $HTMLPath = [System.IO.DirectoryInfo] -join($ADROutputDir,'\',('H'+'TM'+'L-Files'))
         New-Item $HTMLPath -type directory | Out-Null
         If (!(Test-Path $HTMLPath))
         {
-            Write-Output ("{3}{14}{2}{10}{11}{13}{6}{5}{12}{0}{4}{8}{7}{9}{1}"-f 'ul','y','v','[','d no',' ','r,','r','t c','eate output director','oke','-ADRecon]','co',' Erro','In')
+            Write-Output ('[In'+'v'+'oke-'+'ADRec'+'on] Error, cou'+'ld '+'not c'+'re'+'a'+'te'+' out'+'put directory')
             Return $null
         }
         Remove-Variable ADRHTML
     }
 
     # AD Login
-    If ($UseAltCreds -and ($Method -eq ("{1}{0}"-f'S','ADW')))
+    If ($UseAltCreds -and ($Method -eq ('AD'+'WS')))
     {
         If (!(Test-Path ADR:))
         {
@@ -12256,10 +12256,10 @@ Function Invoke-ADRecon
             }
         }
         Set-Location ADR:
-        Write-Debug ("{1}{2}{3}{0}{4}"-f'ate','AD','R',' PSDrive Cre','d')
+        Write-Debug ('ADR'+' PSDr'+'i'+'ve '+'Creat'+'ed')
     }
 
-    If ($Method -eq ("{0}{1}"-f 'L','DAP'))
+    If ($Method -eq ('L'+'DAP'))
     {
         If ($UseAltCreds)
         {
@@ -12279,7 +12279,7 @@ Function Invoke-ADRecon
             }
             If(!($objDomain.name))
             {
-                Write-Output ("{9}{10}{11}{1}{5}{6}{3}{8}{7}{2}{0}{4}" -f 'cces','vok','AP bind Unsu','n]','sful','e-ADRec','o','D',' L','[','I','n')
+                Write-Output ('['+'Invoke-ADRecon] L'+'DAP '+'bind Unsuc'+'c'+'es'+'s'+'ful')
                 If ($ADROutputDir)
                 {
                     Remove-EmptyADROutputDir $ADROutputDir $OutputType
@@ -12288,16 +12288,16 @@ Function Invoke-ADRecon
             }
             Else
             {
-                Write-Output ("{0}{5}{2}{4}{6}{3}{1}" -f'[*','sful','LDAP bi',' Succes','n','] ','d')
+                Write-Output ('['+'*] LDA'+'P b'+'i'+'nd Succ'+'essf'+'ul')
             }
         }
         Else
         {
             $objDomain = [ADSI]""
-            $objDomainRootDSE = ([ADSI] ("{1}{4}{2}{3}{0}" -f 'E','LD','t','DS','AP://Roo'))
+            $objDomainRootDSE = ([ADSI] ('LD'+'AP'+':/'+'/Root'+'DSE'))
             If(!($objDomain.name))
             {
-                Write-Output ("{5}{6}{2}{11}{1}{4}{7}{3}{0}{9}{8}{10}"-f 'ce','econ] LD','v','d Unsuc','AP bi','[','In','n','sf','s','ul','oke-ADR')
+                Write-Output ('[In'+'vok'+'e'+'-ADRecon] LDAP'+' bind'+' Unsuccessf'+'ul')
                 If ($ADROutputDir)
                 {
                     Remove-EmptyADROutputDir $ADROutputDir $OutputType
@@ -12305,105 +12305,105 @@ Function Invoke-ADRecon
                 Return $null
             }
         }
-        Write-Debug ("{4}{1}{0}{2}{3}" -f ' B','AP','ing Su','ccessful','LD')
+        Write-Debug ('LDAP Bing '+'Succ'+'es'+'sf'+'ul')
     }
 
-    Write-Output ('[*]'+' '+'C'+'o'+'mmenc'+'ing '+'- '+"$date")
+    Write-Output ('['+'*] '+'C'+'ommenc'+'ing '+'- '+"$date")
     If ($ADRDomain)
     {
-        Write-Output ("{1}{0}{2}"-f'-]','[',' Domain')
+        Write-Output ('[-] D'+'omai'+'n')
         $ADRObject = Get-ADRDomain -Method $Method -objDomain $objDomain -objDomainRootDSE $objDomainRootDSE -DomainController $DomainController -Credential $Credential
         If ($ADRObject)
         {
-            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ("{0}{1}{2}"-f'Do','m','ain')
+            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ('D'+'omain')
             Remove-Variable ADRObject
         }
         Remove-Variable ADRDomain
     }
     If ($ADRForest)
     {
-        Write-Output ("{0}{1}{2}"-f '[-] F','o','rest')
+        Write-Output ('[-] F'+'ore'+'st')
         $ADRObject = Get-ADRForest -Method $Method -objDomain $objDomain -objDomainRootDSE $objDomainRootDSE -DomainController $DomainController -Credential $Credential
         If ($ADRObject)
         {
-            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ("{1}{0}{2}" -f'e','For','st')
+            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ('For'+'es'+'t')
             Remove-Variable ADRObject
         }
         Remove-Variable ADRForest
     }
     If ($ADRTrust)
     {
-        Write-Output ("{1}{0}{2}"-f 'ust','[-] Tr','s')
+        Write-Output ('[-] '+'Trust'+'s')
         $ADRObject = Get-ADRTrust -Method $Method -objDomain $objDomain
         If ($ADRObject)
         {
-            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ("{1}{0}{2}"-f 'st','Tru','s')
+            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ('Trus'+'ts')
             Remove-Variable ADRObject
         }
         Remove-Variable ADRTrust
     }
     If ($ADRSite)
     {
-        Write-Output ("{2}{1}{0}"-f '] Sites','-','[')
+        Write-Output ('[-] Si'+'te'+'s')
         $ADRObject = Get-ADRSite -Method $Method -objDomain $objDomain -objDomainRootDSE $objDomainRootDSE -DomainController $DomainController -Credential $Credential
         If ($ADRObject)
         {
-            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ("{0}{1}"-f'S','ites')
+            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ('S'+'ites')
             Remove-Variable ADRObject
         }
         Remove-Variable ADRSite
     }
     If ($ADRSubnet)
     {
-        Write-Output ("{3}{1}{0}{2}"-f'ubne','] S','ts','[-')
+        Write-Output ('[-] S'+'u'+'bne'+'ts')
         $ADRObject = Get-ADRSubnet -Method $Method -objDomain $objDomain -objDomainRootDSE $objDomainRootDSE -DomainController $DomainController -Credential $Credential
         If ($ADRObject)
         {
-            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ("{2}{1}{0}" -f 'nets','b','Su')
+            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ('Subne'+'ts')
             Remove-Variable ADRObject
         }
         Remove-Variable ADRSubnet
     }
     If ($ADRSchemaHistory)
     {
-        Write-Output ("{6}{3}{2}{5}{1}{0}{4}" -f 't',' - May take some ','aHisto','m','ime','ry','[-] Sche')
+        Write-Output ('[-]'+' S'+'chemaH'+'i'+'st'+'ory - May ta'+'ke some ti'+'m'+'e')
         $ADRObject = Get-ADRSchemaHistory -Method $Method -objDomain $objDomain -objDomainRootDSE $objDomainRootDSE -DomainController $DomainController -Credential $Credential
         If ($ADRObject)
         {
-            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ("{3}{0}{2}{1}"-f'hemaHisto','y','r','Sc')
+            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ('Sch'+'ema'+'H'+'istory')
             Remove-Variable ADRObject
         }
         Remove-Variable ADRSchemaHistory
     }
     If ($ADRPasswordPolicy)
     {
-        Write-Output ("{5}{0}{1}{4}{2}{3}" -f' D','efau','Poli','cy','lt Password ','[-]')
+        Write-Output ('[-] Def'+'a'+'ult Pas'+'sw'+'ord Policy')
         $ADRObject = Get-ADRDefaultPasswordPolicy -Method $Method -objDomain $objDomain
         If ($ADRObject)
         {
-            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ("{5}{4}{1}{3}{0}{2}" -f 'oli','asswo','cy','rdP','ultP','Defa')
+            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ('D'+'ef'+'aultPa'+'sswordPo'+'l'+'icy')
             Remove-Variable ADRObject
         }
         Remove-Variable ADRPasswordPolicy
     }
     If ($ADRFineGrainedPasswordPolicy)
     {
-        Write-Output ("{11}{0}{4}{2}{9}{1}{6}{7}{8}{3}{10}{5}{12}" -f' Fine',' P','ned P','vileg',' Grai','un','oli','cy ','- May need a Pri','assword','ed Acco','[-]','t')
+        Write-Output ('[-]'+' Fine Gra'+'ined Password P'+'o'+'licy - M'+'a'+'y need a'+' Privi'+'leg'+'e'+'d Account')
         $ADRObject = Get-ADRFineGrainedPasswordPolicy -Method $Method -objDomain $objDomain
         If ($ADRObject)
         {
-            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ("{6}{3}{4}{0}{2}{5}{1}"-f 'assw','y','o','neGr','ainedP','rdPolic','Fi')
+            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ('F'+'ineG'+'r'+'ain'+'edPasswo'+'r'+'dPo'+'licy')
             Remove-Variable ADRObject
         }
         Remove-Variable ADRFineGrainedPasswordPolicy
     }
     If ($ADRDomainControllers)
     {
-        Write-Output ("{3}{5}{4}{1}{0}{2}"-f'ler','n Control','s','[-] Do','ai','m')
+        Write-Output ('[-] Do'+'main Co'+'ntro'+'l'+'lers')
         $ADRObject = Get-ADRDomainController -Method $Method -objDomain $objDomain -Credential $Credential
         If ($ADRObject)
         {
-            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ("{0}{1}{3}{2}"-f'DomainCon','tro','s','ller')
+            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ('Doma'+'in'+'Con'+'tr'+'ollers')
             Remove-Variable ADRObject
         }
         Remove-Variable ADRDomainControllers
@@ -12412,17 +12412,17 @@ Function Invoke-ADRecon
     {
         If (!$ADRUserSPNs)
         {
-            Write-Output ("{6}{1}{5}{2}{4}{7}{3}{0}{8}"-f' ti','] User','- May t','e','ak','s ','[-','e som','me')
+            Write-Output ('[-]'+' User'+'s '+'- May t'+'ake s'+'o'+'me'+' '+'time')
             $ADRUserSPNs = $false
         }
         ElseIf (!$ADRUsers)
         {
-            Write-Output ("{1}{2}{3}{0}" -f'Ns','[-] U','ser',' SP')
+            Write-Output ('['+'-] U'+'ser SP'+'Ns')
             $ADRUsers = $false
         }
         Else
         {
-            Write-Output ("{4}{2}{3}{6}{0}{11}{8}{9}{1}{5}{7}{10}" -f'N','ay take','a','nd ','[-] Users ',' som','SP','e ',' -',' M','time','s')
+            Write-Output ('['+'-] User'+'s an'+'d SPNs'+' -'+' '+'M'+'ay take '+'some '+'time')
         }
         Get-ADRUser -Method $Method -date $date -objDomain $objDomain -DormantTimeSpan $DormantTimeSpan -PageSize $PageSize -Threads $Threads -ADRUsers $ADRUsers -ADRUserSPNs $ADRUserSPNs
         Remove-Variable ADRUsers
@@ -12430,11 +12430,11 @@ Function Invoke-ADRecon
     }
     If ($ADRPasswordAttributes)
     {
-        Write-Output ("{5}{9}{4}{8}{1}{10}{3}{6}{2}{7}{0}"-f'xperimental','rdAt','-','r','ass','[-','ibutes ',' E','wo','] P','t')
+        Write-Output ('[-] '+'Passwo'+'rdAttributes'+' - Ex'+'peri'+'me'+'ntal')
         $ADRObject = Get-ADRPasswordAttributes -Method $Method -objDomain $objDomain -PageSize $PageSize
         If ($ADRObject)
         {
-            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ("{0}{1}{3}{2}"-f'Passwo','rdAttrib','es','ut')
+            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ('P'+'a'+'ssw'+'ord'+'Attributes')
             Remove-Variable ADRObject
         }
         Remove-Variable ADRPasswordAttributes
@@ -12443,17 +12443,17 @@ Function Invoke-ADRecon
     {
         If (!$ADRGroupChanges)
         {
-            Write-Output ("{0}{6}{1}{4}{3}{2}{5}"-f'[-] Groups','- May ',' t','some','take ','ime',' ')
+            Write-Output ('[-] Groups - '+'May take'+' some t'+'i'+'m'+'e')
             $ADRGroupChanges = $false
         }
         ElseIf (!$ADRGroups)
         {
-            Write-Output ("{6}{13}{3}{0}{8}{5}{1}{2}{10}{4}{11}{9}{12}{7}" -f 'embership ',' -',' ','roup M','ay tak','anges','[-] ','ime','Ch','e','M','e som',' t','G')
+            Write-Output ('[-] Group Me'+'mber'+'shi'+'p Changes '+'- May'+' take s'+'om'+'e ti'+'m'+'e')
             $ADRGroups = $false
         }
         Else
         {
-            Write-Output ("{2}{3}{13}{14}{1}{6}{5}{10}{11}{9}{0}{4}{12}{8}{7}" -f 'ake','h','[-] Groups',' a',' ','p Chang','i','e','tim',' May t','e','s -','some ','nd Membe','rs')
+            Write-Output ('[-'+'] G'+'roups'+' and Mem'+'be'+'rship'+' Changes'+' - May'+' take so'+'me ti'+'me')
         }
         Get-ADRGroup -Method $Method -date $date -objDomain $objDomain -PageSize $PageSize -Threads $Threads -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRGroups $ADRGroups -ADRGroupChanges $ADRGroupChanges
         Remove-Variable ADRGroups
@@ -12461,45 +12461,45 @@ Function Invoke-ADRecon
     }
     If ($ADRGroupMembers)
     {
-        Write-Output ("{6}{8}{0}{1}{9}{7}{3}{4}{5}{2}" -f'ershi','p','ime','t','ak','e some t','[-] Group ','- May ','Memb','s ')
+        Write-Output ('[-]'+' Group M'+'emb'+'ersh'+'i'+'ps - May '+'take'+' som'+'e'+' t'+'ime')
 
         $ADRObject = Get-ADRGroupMember -Method $Method -objDomain $objDomain -PageSize $PageSize -Threads $Threads
         If ($ADRObject)
         {
-            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ("{2}{0}{1}"-f'er','s','GroupMemb')
+            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ('GroupM'+'e'+'m'+'bers')
             Remove-Variable ADRObject
         }
         Remove-Variable ADRGroupMembers
     }
     If ($ADROUs)
     {
-        Write-Output ("{1}{3}{0}{2}{5}{7}{4}{6}"-f ' ','[','Organi','-]',' (OU','zationalUni','s)','ts')
+        Write-Output ('[-'+'] '+'Or'+'gan'+'iz'+'a'+'tiona'+'lUnits '+'(OUs)')
         $ADRObject = Get-ADROU -Method $Method -objDomain $objDomain -PageSize $PageSize -Threads $Threads
         If ($ADRObject)
         {
-            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName "OUs"
+            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ('OU'+'s')
             Remove-Variable ADRObject
         }
         Remove-Variable ADROUs
     }
     If ($ADRGPOs)
     {
-        Write-Output ("{1}{0}" -f'-] GPOs','[')
+        Write-Output ('[-] '+'GPOs')
         $ADRObject = Get-ADRGPO -Method $Method -objDomain $objDomain -PageSize $PageSize -Threads $Threads
         If ($ADRObject)
         {
-            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ("{0}{1}"-f'G','POs')
+            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ('G'+'POs')
             Remove-Variable ADRObject
         }
         Remove-Variable ADRGPOs
     }
     If ($ADRgPLinks)
     {
-        Write-Output ("{5}{4}{9}{6}{0}{2}{10}{1}{7}{3}{8}"-f'p','nt','e ','(SO',' gPLinks -','[-]','Sco',' ','M)',' ','of Manageme')
+        Write-Output ('[-] gPLinks - '+'Scope of Mana'+'gem'+'ent'+' '+'(S'+'OM)')
         $ADRObject = Get-ADRgPLink -Method $Method -objDomain $objDomain -PageSize $PageSize -Threads $Threads
         If ($ADRObject)
         {
-            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ("{0}{1}" -f'gPLink','s')
+            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ('gPL'+'inks')
             Remove-Variable ADRObject
         }
         Remove-Variable ADRgPLinks
@@ -12508,28 +12508,28 @@ Function Invoke-ADRecon
     {
         If (!$ADRDNSRecords)
         {
-            Write-Output ("{0}{2}{1}{3}{4}"-f '[-','NS Zo','] D','ne','s')
+            Write-Output ('[-] D'+'NS Zone'+'s')
             $ADRDNSRecords = $false
         }
         ElseIf (!$ADRDNSZones)
         {
-            Write-Output ("{0}{3}{1}{2}" -f '[-] DNS','Rec','ords',' ')
+            Write-Output ('[-'+'] DNS'+' '+'Rec'+'ords')
             $ADRDNSZones = $false
         }
         Else
         {
-            Write-Output ("{3}{1}{2}{4}{0}" -f 'cords','one','s','[-] DNS Z',' and Re')
+            Write-Output ('[-] DNS Zones a'+'nd'+' '+'R'+'ecor'+'ds')
         }
         Get-ADRDNSZone -Method $Method -objDomain $objDomain -DomainController $DomainController -Credential $Credential -PageSize $PageSize -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRDNSZones $ADRDNSZones -ADRDNSRecords $ADRDNSRecords
         Remove-Variable ADRDNSZones
     }
     If ($ADRPrinters)
     {
-        Write-Output ("{1}{0}{3}{2}"-f'in','[-] Pr','ers','t')
+        Write-Output ('[-]'+' Pr'+'inter'+'s')
         $ADRObject = Get-ADRPrinter -Method $Method -objDomain $objDomain -PageSize $PageSize -Threads $Threads
         If ($ADRObject)
         {
-            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ("{1}{0}" -f'rs','Printe')
+            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ('P'+'rin'+'ters')
             Remove-Variable ADRObject
         }
         Remove-Variable ADRPrinters
@@ -12538,17 +12538,17 @@ Function Invoke-ADRecon
     {
         If (!$ADRComputerSPNs)
         {
-            Write-Output ("{2}{8}{0}{6}{10}{9}{3}{7}{1}{4}{5}"-f'omputer','m','[-',' s','e tim','e','s -','o','] C','take',' May ')
+            Write-Output ('[-] C'+'omputer'+'s - May '+'take'+' some '+'time')
             $ADRComputerSPNs = $false
         }
         ElseIf (!$ADRComputers)
         {
-            Write-Output ("{4}{0}{2}{3}{1}"-f '-]','SPNs',' Comp','uter ','[')
+            Write-Output ('['+'-]'+' Co'+'mput'+'er SPNs')
             $ADRComputers = $false
         }
         Else
         {
-            Write-Output ("{6}{1}{7}{5}{8}{3}{4}{0}{2}" -f 'e','] Computers and S',' some time','ta','k','s - M','[-','PN','ay ')
+            Write-Output ('[-]'+' Co'+'mpute'+'rs'+' '+'and '+'SP'+'Ns - M'+'ay t'+'ake some time')
         }
         Get-ADRComputer -Method $Method -date $date -objDomain $objDomain -DormantTimeSpan $DormantTimeSpan -PassMaxAge $PassMaxAge -PageSize $PageSize -Threads $Threads -ADRComputers $ADRComputers -ADRComputerSPNs $ADRComputerSPNs
         Remove-Variable ADRComputers
@@ -12556,56 +12556,56 @@ Function Invoke-ADRecon
     }
     If ($ADRLAPS)
     {
-        Write-Output ("{0}{1}{3}{4}{5}{2}"-f '[-] LAPS - ','Nee','leged Account','ds ','Pri','vi')
+        Write-Output ('[-] LAPS -'+' '+'N'+'e'+'ed'+'s Pri'+'vi'+'le'+'ged Ac'+'c'+'ount')
         $ADRObject = Get-ADRLAPSCheck -Method $Method -objDomain $objDomain -PageSize $PageSize -Threads $Threads
         If ($ADRObject)
         {
-            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ("{1}{0}" -f'S','LAP')
+            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ('LA'+'PS')
             Remove-Variable ADRObject
         }
         Remove-Variable ADRLAPS
     }
     If ($ADRBitLocker)
     {
-        Write-Output ("{6}{0}{12}{5}{4}{3}{1}{10}{9}{7}{13}{11}{2}{8}"-f'Locker R','s','cc','d','- Nee','s ','[-] Bit','iv','ount','Pr',' ','ged A','ecovery Key','ile')
+        Write-Output ('[-] Bi'+'tLocker Re'+'covery Key'+'s - N'+'eed'+'s Privileged '+'Acc'+'ou'+'nt')
         $ADRObject = Get-ADRBitLocker -Method $Method -objDomain $objDomain -DomainController $DomainController -Credential $Credential
         If ($ADRObject)
         {
-            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ("{2}{4}{1}{3}{0}{5}" -f 'Key','eco','BitLock','very','erR','s')
+            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ('B'+'it'+'LockerReco'+'ver'+'y'+'Ke'+'ys')
             Remove-Variable ADRObject
         }
         Remove-Variable ADRBitLocker
     }
     If ($ADRACLs)
     {
-        Write-Output ("{3}{8}{1}{7}{2}{6}{5}{0}{4}" -f 'ome ',' ACL','- M','[-','time','s','ay take ','s ',']')
+        Write-Output ('[-] A'+'CLs - M'+'ay ta'+'k'+'e s'+'ome '+'t'+'ime')
         $ADRObject = Get-ADRACL -Method $Method -objDomain $objDomain -DomainController $DomainController -Credential $Credential -PageSize $PageSize -Threads $Threads
         Remove-Variable ADRACLs
     }
     If ($ADRGPOReport)
     {
-        Write-Output ("{6}{5}{0}{4}{3}{2}{1}" -f 'May t','e','tim','e some ','ak','] GPOReport - ','[-')
+        Write-Output ('[-] GP'+'O'+'R'+'ep'+'ort'+' - '+'M'+'ay take some time')
         Get-ADRGPOReport -Method $Method -UseAltCreds $UseAltCreds -ADROutputDir $ADROutputDir
         Remove-Variable ADRGPOReport
     }
     If ($ADRKerberoast)
     {
-        Write-Output ("{3}{1}{0}{2}" -f ' Ker','-]','beroast','[')
+        Write-Output ('['+'-] Ker'+'beroast')
         $ADRObject = Get-ADRKerberoast -Method $Method -objDomain $objDomain -Credential $Credential -PageSize $PageSize
         If ($ADRObject)
         {
-            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ("{2}{0}{1}{3}" -f 'r','o','Kerbe','ast')
+            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ('Kerb'+'eroa'+'st')
             Remove-Variable ADRObject
         }
         Remove-Variable ADRKerberoast
     }
     If ($ADRDomainAccountsusedforServiceLogon)
     {
-        Write-Output ("{4}{8}{17}{5}{10}{13}{0}{2}{11}{3}{9}{16}{15}{18}{19}{14}{6}{1}{7}{12}" -f 'oun','leged ','ts used for','r','[-','ma','vi','Acc',']','vi','i',' Se','ount','n Acc',' Needs Pri',' ','ce',' Do','Logo','n -')
+        Write-Output ('[-] Domain'+' A'+'cc'+'ounts'+' us'+'ed'+' for Se'+'rvice Lo'+'gon'+' '+'- Needs'+' '+'Privile'+'g'+'ed '+'Accou'+'nt')
         $ADRObject = Get-ADRDomainAccountsusedforServiceLogon -Method $Method -objDomain $objDomain -Credential $Credential -PageSize $PageSize -Threads $Threads
         If ($ADRObject)
         {
-            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ("{6}{7}{1}{0}{2}{3}{5}{4}"-f 'suse','nt','dforServic','eL','on','og','DomainAcco','u')
+            Export-ADR -ADRObj $ADRObject -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ('Dom'+'a'+'inAcc'+'ou'+'nt'+'s'+'us'+'edforSer'+'viceLogon')
             Remove-Variable ADRObject
         }
         Remove-Variable ADRDomainAccountsusedforServiceLogon
@@ -12615,31 +12615,31 @@ Function Invoke-ADRecon
 
     $AboutADRecon = Get-ADRAbout -Method $Method -date $date -ADReconVersion $ADReconVersion -Credential $Credential -RanonComputer $RanonComputer -TotalTime $TotalTime
 
-    If ( ($OutputType -Contains "CSV") -or ($OutputType -Contains "XML") -or ($OutputType -Contains ("{1}{0}"-f 'SON','J')) -or ($OutputType -Contains ("{0}{1}"-f'HTM','L')) )
+    If ( ($OutputType -Contains ('CS'+'V')) -or ($OutputType -Contains ('XM'+'L')) -or ($OutputType -Contains ('JS'+'ON')) -or ($OutputType -Contains ('H'+'TML')) )
     {
         If ($AboutADRecon)
         {
-            Export-ADR -ADRObj $AboutADRecon -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ("{0}{2}{1}" -f'AboutADR','con','e')
+            Export-ADR -ADRObj $AboutADRecon -ADROutputDir $ADROutputDir -OutputType $OutputType -ADRModuleName ('AboutA'+'DReco'+'n')
         }
         Write-Output "[*] Total Execution Time (mins): $($TotalTime) "
-        Write-Output ('['+'*] '+'Outp'+'u'+'t '+'D'+'i'+'rectory:'+' '+"$ADROutputDir")
+        Write-Output ('[*'+'] '+'O'+'ut'+'put '+'Dir'+'ectory'+': '+"$ADROutputDir")
         $ADRSTDOUT = $false
     }
 
     Switch ($OutputType)
     {
-        ("{1}{0}{2}"-f'DOU','ST','T')
+        ('S'+'TDOUT')
         {
             If ($ADRSTDOUT)
             {
                 Write-Output "[*] Total Execution Time (mins): $($TotalTime) "
             }
         }
-        ("{1}{0}" -f 'L','HTM')
+        ('HT'+'ML')
         {
-            Export-ADR -ADRObj $(New-Object PSObject) -ADROutputDir $ADROutputDir -OutputType $([array] ("{1}{0}"-f 'TML','H')) -ADRModuleName ("{1}{0}" -f'dex','In')
+            Export-ADR -ADRObj $(New-Object PSObject) -ADROutputDir $ADROutputDir -OutputType $([array] ('H'+'TML')) -ADRModuleName ('Inde'+'x')
         }
-        ("{1}{0}"-f'CEL','EX')
+        ('EXC'+'EL')
         {
             Export-ADRExcel $ADROutputDir
         }
@@ -12649,12 +12649,12 @@ Function Invoke-ADRecon
     Set-Location $returndir
     Remove-Variable returndir
 
-    If (($Method -eq ("{0}{1}" -f 'A','DWS')) -and $UseAltCreds)
+    If (($Method -eq ('AD'+'WS')) -and $UseAltCreds)
     {
         Remove-PSDrive ADR
     }
 
-    If ($Method -eq ("{1}{0}" -f 'AP','LD'))
+    If ($Method -eq ('LDA'+'P'))
     {
         $objDomain.Dispose()
         $objDomainRootDSE.Dispose()
