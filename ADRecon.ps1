@@ -1146,6 +1146,7 @@ namespace ADRecon
                                 GroupMemberObj.Members.Add(new PSNoteProperty("Group Name", GroupName));
                                 GroupMemberObj.Members.Add(new PSNoteProperty("Member UserName", MemberUserName));
                                 GroupMemberObj.Members.Add(new PSNoteProperty("Member Name", MemberName));
+                                GroupMemberObj.Members.Add(new PSNoteProperty("Member SID", AdGroup.Members["objectSid"].Value));
                                 GroupMemberObj.Members.Add(new PSNoteProperty("AccountType", AccountType));
                                 GroupsList.Add( GroupMemberObj );
                             }
@@ -1165,6 +1166,7 @@ namespace ADRecon
                                 GroupMemberObj.Members.Add(new PSNoteProperty("Group Name", GroupName));
                                 GroupMemberObj.Members.Add(new PSNoteProperty("Member UserName", MemberUserName));
                                 GroupMemberObj.Members.Add(new PSNoteProperty("Member Name", MemberName));
+                                GroupMemberObj.Members.Add(new PSNoteProperty("Member SID", AdGroup.Members["objectSid"].Value));
                                 GroupMemberObj.Members.Add(new PSNoteProperty("AccountType", AccountType));
                                 GroupsList.Add( GroupMemberObj );
                             }
@@ -1190,6 +1192,7 @@ namespace ADRecon
                         GroupMemberObj.Members.Add(new PSNoteProperty("Group Name", GroupName));
                         GroupMemberObj.Members.Add(new PSNoteProperty("Member UserName", MemberUserName));
                         GroupMemberObj.Members.Add(new PSNoteProperty("Member Name", MemberName));
+                        GroupMemberObj.Members.Add(new PSNoteProperty("Member SID", AdGroup.Members["objectSid"].Value));
                         GroupMemberObj.Members.Add(new PSNoteProperty("AccountType", AccountType));
                         GroupsList.Add( GroupMemberObj );
 
@@ -1203,6 +1206,7 @@ namespace ADRecon
                                 GroupMemberObj.Members.Add(new PSNoteProperty("Group Name", GroupName));
                                 GroupMemberObj.Members.Add(new PSNoteProperty("Member UserName", MemberUserName));
                                 GroupMemberObj.Members.Add(new PSNoteProperty("Member Name", MemberName));
+                                GroupMemberObj.Members.Add(new PSNoteProperty("Member SID", AdGroup.Members["objectSid"].Value));
                                 GroupMemberObj.Members.Add(new PSNoteProperty("AccountType", AccountType));
                                 GroupsList.Add( GroupMemberObj );
                             }
@@ -1228,6 +1232,7 @@ namespace ADRecon
                         GroupMemberObj.Members.Add(new PSNoteProperty("Group Name", GroupName));
                         GroupMemberObj.Members.Add(new PSNoteProperty("Member UserName", MemberUserName));
                         GroupMemberObj.Members.Add(new PSNoteProperty("Member Name", MemberName));
+                        GroupMemberObj.Members.Add(new PSNoteProperty("Member SID", AdGroup.Members["objectSid"].Value));
                         GroupMemberObj.Members.Add(new PSNoteProperty("AccountType", AccountType));
                         GroupsList.Add( GroupMemberObj );
 
@@ -1241,6 +1246,7 @@ namespace ADRecon
                                 GroupMemberObj.Members.Add(new PSNoteProperty("Group Name", GroupName));
                                 GroupMemberObj.Members.Add(new PSNoteProperty("Member UserName", MemberUserName));
                                 GroupMemberObj.Members.Add(new PSNoteProperty("Member Name", MemberName));
+                                GroupMemberObj.Members.Add(new PSNoteProperty("Member SID", AdGroup.Members["objectSid"].Value));
                                 GroupMemberObj.Members.Add(new PSNoteProperty("AccountType", AccountType));
                                 GroupsList.Add( GroupMemberObj );
                             }
@@ -1266,6 +1272,7 @@ namespace ADRecon
                         GroupMemberObj.Members.Add(new PSNoteProperty("Group Name", GroupName));
                         GroupMemberObj.Members.Add(new PSNoteProperty("Member UserName", MemberUserName));
                         GroupMemberObj.Members.Add(new PSNoteProperty("Member Name", MemberName));
+                        GroupMemberObj.Members.Add(new PSNoteProperty("Member SID", AdGroup.Members["objectSid"].Value));
                         GroupMemberObj.Members.Add(new PSNoteProperty("AccountType", AccountType));
                         GroupsList.Add( GroupMemberObj );
                     }
@@ -2866,6 +2873,7 @@ namespace ADRecon
                             GroupMemberObj.Members.Add(new PSNoteProperty("Group Name", GroupName));
                             GroupMemberObj.Members.Add(new PSNoteProperty("Member UserName", MemberUserName));
                             GroupMemberObj.Members.Add(new PSNoteProperty("Member Name", MemberName));
+                            GroupMemberObj.Members.Add(new PSNoteProperty("Member SID", Convert.ToString(new SecurityIdentifier((byte[])AdGroup.Properties["objectSid"][0], 0))));
                             GroupMemberObj.Members.Add(new PSNoteProperty("AccountType", AccountType));
                             GroupsList.Add( GroupMemberObj );
                         }
@@ -2882,6 +2890,7 @@ namespace ADRecon
                             GroupMemberObj.Members.Add(new PSNoteProperty("Group Name", GroupName));
                             GroupMemberObj.Members.Add(new PSNoteProperty("Member UserName", MemberUserName));
                             GroupMemberObj.Members.Add(new PSNoteProperty("Member Name", MemberName));
+                            GroupMemberObj.Members.Add(new PSNoteProperty("Member SID", Convert.ToString(new SecurityIdentifier((byte[])AdGroup.Properties["objectSid"][0], 0))));
                             GroupMemberObj.Members.Add(new PSNoteProperty("AccountType", AccountType));
                             GroupsList.Add( GroupMemberObj );
                         }
@@ -2906,6 +2915,7 @@ namespace ADRecon
                         GroupMemberObj.Members.Add(new PSNoteProperty("Group Name", GroupName));
                         GroupMemberObj.Members.Add(new PSNoteProperty("Member UserName", MemberUserName));
                         GroupMemberObj.Members.Add(new PSNoteProperty("Member Name", MemberName));
+                        GroupMemberObj.Members.Add(new PSNoteProperty("Member SID", Convert.ToString(new SecurityIdentifier((byte[])AdGroup.Properties["objectSid"][0], 0))));
                         GroupMemberObj.Members.Add(new PSNoteProperty("AccountType", AccountType));
                         GroupsList.Add( GroupMemberObj );
 
@@ -2916,6 +2926,7 @@ namespace ADRecon
                             GroupMemberObj.Members.Add(new PSNoteProperty("Group Name", GroupName));
                             GroupMemberObj.Members.Add(new PSNoteProperty("Member UserName", MemberUserName));
                             GroupMemberObj.Members.Add(new PSNoteProperty("Member Name", MemberName));
+                            GroupMemberObj.Members.Add(new PSNoteProperty("Member SID", Convert.ToString(new SecurityIdentifier((byte[])AdGroup.Properties["objectSid"][0], 0))));
                             GroupMemberObj.Members.Add(new PSNoteProperty("AccountType", AccountType));
                             GroupsList.Add( GroupMemberObj );
                         }
@@ -2940,6 +2951,7 @@ namespace ADRecon
                         GroupMemberObj.Members.Add(new PSNoteProperty("Group Name", GroupName));
                         GroupMemberObj.Members.Add(new PSNoteProperty("Member UserName", MemberUserName));
                         GroupMemberObj.Members.Add(new PSNoteProperty("Member Name", MemberName));
+                        GroupMemberObj.Members.Add(new PSNoteProperty("Member SID", Convert.ToString(new SecurityIdentifier((byte[])AdGroup.Properties["objectSid"][0], 0))));
                         GroupMemberObj.Members.Add(new PSNoteProperty("AccountType", AccountType));
                         GroupsList.Add( GroupMemberObj );
 
@@ -2950,6 +2962,7 @@ namespace ADRecon
                             GroupMemberObj.Members.Add(new PSNoteProperty("Group Name", GroupName));
                             GroupMemberObj.Members.Add(new PSNoteProperty("Member UserName", MemberUserName));
                             GroupMemberObj.Members.Add(new PSNoteProperty("Member Name", MemberName));
+                            GroupMemberObj.Members.Add(new PSNoteProperty("Member SID", Convert.ToString(new SecurityIdentifier((byte[])AdGroup.Properties["objectSid"][0], 0))));
                             GroupMemberObj.Members.Add(new PSNoteProperty("AccountType", AccountType));
                             GroupsList.Add( GroupMemberObj );
                         }
@@ -2974,6 +2987,7 @@ namespace ADRecon
                         GroupMemberObj.Members.Add(new PSNoteProperty("Group Name", GroupName));
                         GroupMemberObj.Members.Add(new PSNoteProperty("Member UserName", MemberUserName));
                         GroupMemberObj.Members.Add(new PSNoteProperty("Member Name", MemberName));
+                        GroupMemberObj.Members.Add(new PSNoteProperty("Member SID", Convert.ToString(new SecurityIdentifier((byte[])AdGroup.Properties["objectSid"][0], 0))));
                         GroupMemberObj.Members.Add(new PSNoteProperty("AccountType", AccountType));
                         GroupsList.Add( GroupMemberObj );
                     }
@@ -8419,7 +8433,7 @@ Function Get-ADRGroupMember
 
         Try
         {
-            $ADGroupMembers = @( Get-ADObject -LDAPFilter '(|(memberof=*)(primarygroupid=*))' -Properties DistinguishedName,ObjectClass,memberof,primaryGroupID,sAMAccountName,samaccounttype )
+            $ADGroupMembers = @( Get-ADObject -LDAPFilter '(|(memberof=*)(primarygroupid=*))' -Properties DistinguishedName,ObjectClass,memberof,primaryGroupID,sAMAccountName,samaccounttype, objectSid )
         }
         Catch
         {
@@ -8536,7 +8550,7 @@ Function Get-ADRGroupMember
         $objSearcher = New-Object System.DirectoryServices.DirectorySearcher $objDomain
         $ObjSearcher.PageSize = $PageSize
         $ObjSearcher.Filter = "(|(memberof=*)(primarygroupid=*))"
-        $ObjSearcher.PropertiesToLoad.AddRange(("distinguishedname", "dnshostname", "objectclass", "primarygroupid", "memberof", "samaccountname", "samaccounttype"))
+        $ObjSearcher.PropertiesToLoad.AddRange(("distinguishedname", "dnshostname", "objectclass", "primarygroupid", "memberof", "samaccountname", "samaccounttype", "objectsid"))
         $ObjSearcher.SearchScope = "Subtree"
 
         Try
