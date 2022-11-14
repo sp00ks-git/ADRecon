@@ -4580,6 +4580,7 @@ Function Get-ADRExcelImport
 .PARAMETER method
     [int]
     Method to use for the import.
+    3 - Prints data horizontally. Headers column 1, then first data row in column 2, etc.
 
 .PARAMETER row
     [int]
@@ -4657,6 +4658,47 @@ Function Get-ADRExcelImport
             $worksheet.Cells.Item($row, $column) = "Error!"
         }
         Remove-Variable ADFileName
+    }
+    Elseif ($Method -eq 3)
+    {
+        $worksheet = $workbook.Worksheets.Item(1)
+        If (Test-Path $ADFileName)
+        {
+            $CsvData = Import-Csv -Path $ADFileName
+
+            $row_output = $row
+            $CsvData[0].PsObject.Properties.Name | ForEach {
+                $worksheet.Cells.Item($row_output, $column) = $_
+                $row_output++
+            }
+            Remove-Variable row_output
+
+            $column_output = $column + 1
+            $CsvData | ForEach-Object {
+                $row_output = $row
+                ForEach ($prop_value in $_.PSObject.Properties.Value)
+                {
+                    $worksheet.Cells.Item($row_output, $column_output) = $prop_value
+                    $row_output++
+                }
+                $column_output++
+            }
+            Remove-Variable column_output
+            Remove-Variable row_output
+
+            Remove-Variable CsvData
+
+            $listObject = $worksheet.ListObjects.Add([Microsoft.Office.Interop.Excel.XlListObjectSourceType]::xlSrcRange, $worksheet.UsedRange, $null, [Microsoft.Office.Interop.Excel.XlYesNoGuess]::xlYes, $null)
+            $listObject.TableStyle = "TableStyleLight2" # Style Cheat Sheet: https://msdn.microsoft.com/en-au/library/documentformat.openxml.spreadsheet.tablestyle.aspx
+            $usedRange = $worksheet.UsedRange
+            $usedRange.EntireColumn.AutoFit() | Out-Null
+        }
+        Else
+        {
+            $worksheet.Cells.Item($row, $column) = "Error!"
+        }
+        Remove-Variable ADFileName
+
     }
     $excel.ScreenUpdating = $true
 
@@ -5321,8 +5363,19 @@ Function Export-ADRExcel
         If (Test-Path $ADFileName)
         {
             Get-ADRExcelWorkbook -Name "Fine Grained Password Policy"
-            Get-ADRExcelImport -ADFileName $ADFileName
+            Get-ADRExcelImport -ADFileName $ADFileName -Method 3
             Remove-Variable ADFileName
+
+            $worksheet = $workbook.Worksheets.Item(1)
+            $usedRange = $worksheet.UsedRange
+
+            $usedRange.Rows(2).WrapText = $True
+
+            $usedRange.Columns | ForEach-Object {
+                $_.ColumnWidth = 60
+            }
+            $usedRange.Rows(2).AutoFit() | Out-Null
+            $usedRange.Columns["A"].AutoFit() | Out-Null
         }
 
         $ADFileName = -join($ReportPath,'\','DefaultPasswordPolicy.csv')
@@ -5404,7 +5457,7 @@ Function Export-ADRExcel
             #"F2", '=IF(B2<8,TRUE, FALSE)'
 
             # ACSC ISM Maximum password age (days)
-            #"F3", '=IF(OR(B3=0,B3>90),TRUE, FALSE)'
+            "F3", '=IF(OR(B3=0,B3>365),TRUE, FALSE)'
 
             # ACSC ISM Minimum password age (days)
             #"F4", '=IF(B4=0,TRUE, FALSE)'
@@ -5463,7 +5516,7 @@ Function Export-ADRExcel
             }
 
             $workbook.Worksheets.Item(1).Hyperlinks.Add($workbook.Worksheets.Item(1).Cells.Item(1,5) , "https://www.pcisecuritystandards.org/document_library?category=pcidss&document=pci_dss", "" , "", "PCI DSS Requirement") | Out-Null
-            $workbook.Worksheets.Item(1).Hyperlinks.Add($workbook.Worksheets.Item(1).Cells.Item(1,7) , "https://www.cyber.gov.au/acsc/view-all-content/ism", "" , "", "ISM Controls 10Mar2022") | Out-Null
+            $workbook.Worksheets.Item(1).Hyperlinks.Add($workbook.Worksheets.Item(1).Cells.Item(1, 7) , "https://www.cyber.gov.au/acsc/view-all-content/ism", "" , "", "ISM Controls 16Jun2022") | Out-Null
             $workbook.Worksheets.Item(1).Hyperlinks.Add($workbook.Worksheets.Item(1).Cells.Item(1,8) , "https://www.cisecurity.org/benchmark/microsoft_windows_server/", "" , "", "CIS Benchmark 2022") | Out-Null
 
             $excel.ScreenUpdating = $true
@@ -7555,7 +7608,7 @@ Function Get-ADRDefaultPasswordPolicy
         If ($ADpasspolicy)
         {
             $ObjValues = @( "Enforce password history (passwords)", $ADpasspolicy.PasswordHistoryCount, "4", "4", "Req. 8.2.5 / 8.3.7", "N/A", "-", "24 or more",
-            "Maximum password age (days)", $ADpasspolicy.MaxPasswordAge.days, "90", "90", "Req. 8.2.4 / 8.3.9", "N/A", "-", "1 to 365",
+            "Maximum password age (days)", $ADpasspolicy.MaxPasswordAge.days, "90", "90", "Req. 8.2.4 / 8.3.9", "365", "ISM-1590 Rev:1 Mar22", "1 to 365",
             "Minimum password age (days)", $ADpasspolicy.MinPasswordAge.days, "N/A", "N/A", "-", "N/A", "-", "1 or more",
             "Minimum password length (characters)", $ADpasspolicy.MinPasswordLength, "7", "12", "Req. 8.2.3 / 8.3.6", "14", "Control: ISM-0421 Rev:8 Dec21", "14 or more",
             "Password must meet complexity requirements", $ADpasspolicy.ComplexityEnabled, $true, $true, "Req. 8.2.3 / 8.3.6", "N/A", "-", $true,
@@ -7608,7 +7661,7 @@ Function Get-ADRDefaultPasswordPolicy
             }
 
             $ObjValues = @( "Enforce password history (passwords)", $ObjDomain.PwdHistoryLength.value, "4", "4", "Req. 8.2.5 / 8.3.7", "N/A", "-", "24 or more",
-            "Maximum password age (days)", $($ObjDomain.ConvertLargeIntegerToInt64($ObjDomain.maxpwdage.value) /-864000000000), "90", "90", "Req. 8.2.4 / 8.3.9", "N/A", "-", "1 to 365",
+                "Maximum password age (days)", $($ObjDomain.ConvertLargeIntegerToInt64($ObjDomain.maxpwdage.value) / -864000000000), "90", "90", "Req. 8.2.4 / 8.3.9", "365", "ISM-1590 Rev:1 Mar22", "1 to 365",
             "Minimum password age (days)", $($ObjDomain.ConvertLargeIntegerToInt64($ObjDomain.minpwdage.value) /-864000000000), "N/A", "N/A", "-", "N/A", "-", "1 or more",
             "Minimum password length (characters)", $ObjDomain.MinPwdLength.value, "7", "12", "Req. 8.2.3 / 8.3.6", "14", "Control: ISM-0421 Rev:8 Dec21", "14 or more",
             "Password must meet complexity requirements", $ComplexPasswords, $true, $true, "Req. 8.2.3 / 8.3.6", "N/A", "-", $true,
@@ -7635,7 +7688,7 @@ Function Get-ADRDefaultPasswordPolicy
             $Obj | Add-Member -MemberType NoteProperty -Name "PCI DSS v4.0" -Value $ObjValues[$i+3]
             $Obj | Add-Member -MemberType NoteProperty -Name "PCI DSS Requirement" -Value $ObjValues[$i+4]
             $Obj | Add-Member -MemberType NoteProperty -Name "ACSC ISM" -Value $ObjValues[$i+5]
-            $Obj | Add-Member -MemberType NoteProperty -Name "ISM Controls 10Mar2022" -Value $ObjValues[$i+6]
+            $Obj | Add-Member -MemberType NoteProperty -Name "ISM Controls 16Jun2022" -Value $ObjValues[$i+6]
             $Obj | Add-Member -MemberType NoteProperty -Name "CIS Benchmark 2022" -Value $ObjValues[$i+7]
             $i += 7
             $ADPassPolObj += $Obj
@@ -7692,26 +7745,29 @@ Function Get-ADRFineGrainedPasswordPolicy
 
         If ($ADFinepasspolicy)
         {
-            $ADPassPolObj = @()
+            $FgppPassPolObj = @()
 
             $ADFinepasspolicy | ForEach-Object {
-                For($i=0; $i -lt $($_.AppliesTo.Count); $i++)
-                {
-                    $AppliesTo = $AppliesTo + "," + $_.AppliesTo[$i]
+                $AppliesTo = ""
+                $AppliesTo = $_.AppliesTo -join ", "
+
+                $FgppValues = [ordered]@{
+                    "Name"                                       = $($_.Name)
+                    "Applies To"                                 = $AppliesTo
+                    "Enforce password history"                   = $_.PasswordHistoryCount
+                    "Maximum password age (days)"                = $_.MaxPasswordAge.days
+                    "Minimum password age (days)"                = $_.MinPasswordAge.days
+                    "Minimum password length"                    = $_.MinPasswordLength
+                    "Password must meet complexity requirements" = $_.ComplexityEnabled
+                    "Store password using reversible encryption" = $_.ReversibleEncryptionEnabled
+                    "Account lockout duration (mins)"            = $_.LockoutDuration.minutes
+                    "Account lockout threshold"                  = $_.LockoutThreshold
+                    "Reset account lockout counter after (mins)" = $_.LockoutObservationWindow.minutes
+                    "Precedence"                                 = $($_.Precedence)
                 }
-                If ($null -ne $AppliesTo)
-                {
-                    $AppliesTo = $AppliesTo.TrimStart(",")
-                }
-                $ObjValues = @("Name", $($_.Name), "Applies To", $AppliesTo, "Enforce password history", $_.PasswordHistoryCount, "Maximum password age (days)", $_.MaxPasswordAge.days, "Minimum password age (days)", $_.MinPasswordAge.days, "Minimum password length", $_.MinPasswordLength, "Password must meet complexity requirements", $_.ComplexityEnabled, "Store password using reversible encryption", $_.ReversibleEncryptionEnabled, "Account lockout duration (mins)", $_.LockoutDuration.minutes, "Account lockout threshold", $_.LockoutThreshold, "Reset account lockout counter after (mins)", $_.LockoutObservationWindow.minutes, "Precedence", $($_.Precedence))
-                For ($i = 0; $i -lt $($ObjValues.Count); $i++)
-                {
-                    $Obj = New-Object PSObject
-                    $Obj | Add-Member -MemberType NoteProperty -Name "Policy" -Value $ObjValues[$i]
-                    $Obj | Add-Member -MemberType NoteProperty -Name "Value" -Value $ObjValues[$i+1]
-                    $i++
-                    $ADPassPolObj += $Obj
-                }
+
+                $FgppObj = New-Object -TypeName PsObject -Property $FgppValues
+                $FgppPassPolObj += $FgppObj
             }
             Remove-Variable ADFinepasspolicy
         }
@@ -7740,25 +7796,28 @@ Function Get-ADRFineGrainedPasswordPolicy
             {
                 If ([ADRecon.LDAPClass]::ObjectCount($ADFinepasspolicy) -ge 1)
                 {
-                    $ADPassPolObj = @()
+                    $FgppPassPolObj = @()
                     $ADFinepasspolicy | ForEach-Object {
-                    For($i=0; $i -lt $($_.Properties.'msds-psoappliesto'.Count); $i++)
-                    {
-                        $AppliesTo = $AppliesTo + "," + $_.Properties.'msds-psoappliesto'[$i]
-                    }
-                    If ($null -ne $AppliesTo)
-                    {
-                        $AppliesTo = $AppliesTo.TrimStart(",")
-                    }
-                        $ObjValues = @("Name", $($_.Properties.name), "Applies To", $AppliesTo, "Enforce password history", $($_.Properties.'msds-passwordhistorylength'), "Maximum password age (days)", $($($_.Properties.'msds-maximumpasswordage') /-864000000000), "Minimum password age (days)", $($($_.Properties.'msds-minimumpasswordage') /-864000000000), "Minimum password length", $($_.Properties.'msds-minimumpasswordlength'), "Password must meet complexity requirements", $($_.Properties.'msds-passwordcomplexityenabled'), "Store password using reversible encryption", $($_.Properties.'msds-passwordreversibleencryptionenabled'), "Account lockout duration (mins)", $($($_.Properties.'msds-lockoutduration')/-600000000), "Account lockout threshold", $($_.Properties.'msds-lockoutthreshold'), "Reset account lockout counter after (mins)", $($($_.Properties.'msds-lockoutobservationwindow')/-600000000), "Precedence", $($_.Properties.'msds-passwordsettingsprecedence'))
-                        For ($i = 0; $i -lt $($ObjValues.Count); $i++)
-                        {
-                            $Obj = New-Object PSObject
-                            $Obj | Add-Member -MemberType NoteProperty -Name "Policy" -Value $ObjValues[$i]
-                            $Obj | Add-Member -MemberType NoteProperty -Name "Value" -Value $ObjValues[$i+1]
-                            $i++
-                            $ADPassPolObj += $Obj
+                        $AppliesTo = ""
+                        $AppliesTo = $_.Properties.'msds-psoappliesto' -join ", "
+
+                        $FgppValues = [ordered]@{
+                            "Name"                                       = $($_.Properties.name)
+                            "Applies To"                                 = $AppliesTo
+                            "Enforce password history"                   = $($_.Properties.'msds-passwordhistorylength')
+                            "Maximum password age (days)"                = $($($_.Properties.'msds-maximumpasswordage') /-864000000000)
+                            "Minimum password age (days)"                = $($($_.Properties.'msds-minimumpasswordage') /-864000000000)
+                            "Minimum password length"                    = $($_.Properties.'msds-minimumpasswordlength')
+                            "Password must meet complexity requirements" = $($_.Properties.'msds-passwordcomplexityenabled')
+                            "Store password using reversible encryption" = $($_.Properties.'msds-passwordreversibleencryptionenabled')
+                            "Account lockout duration (mins)"            = $($($_.Properties.'msds-lockoutduration')/-600000000)
+                            "Account lockout threshold"                  = $($_.Properties.'msds-lockoutthreshold')
+                            "Reset account lockout counter after (mins)" = $($($_.Properties.'msds-lockoutobservationwindow')/-600000000)
+                            "Precedence"                                 = $($_.Properties.'msds-passwordsettingsprecedence')
                         }
+
+                        $FgppObj = New-Object -TypeName PsObject -Property $FgppValues
+                        $FgppPassPolObj += $FgppObj
                     }
                 }
                 Remove-Variable ADFinepasspolicy
@@ -7766,9 +7825,9 @@ Function Get-ADRFineGrainedPasswordPolicy
         }
     }
 
-    If ($ADPassPolObj)
+    If ($FgppPassPolObj)
     {
-        Return $ADPassPolObj
+        Return $FgppPassPolObj
     }
     Else
     {
